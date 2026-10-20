@@ -5,8 +5,8 @@ import net.minecraft.util.Mth;
 
 public final class FacingDirectionResolver {
     public Direction resolveFacingDirection(float[] fArr) {
-        float intBitsToFloat = fArr[1] * Float.intBitsToFloat(1016003125);
-        float intBitsToFloat2 = (-fArr[0]) * Float.intBitsToFloat(1016003125);
+        float intBitsToFloat = fArr[1] * 0.017453292f;
+        float intBitsToFloat2 = (-fArr[0]) * 0.017453292f;
         float sin = Mth.sin(intBitsToFloat);
         float cos = Mth.cos(intBitsToFloat);
         float sin2 = Mth.sin(intBitsToFloat2);

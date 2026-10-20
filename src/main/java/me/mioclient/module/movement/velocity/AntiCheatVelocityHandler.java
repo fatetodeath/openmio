@@ -106,23 +106,23 @@ public class AntiCheatVelocityHandler extends VelocityModeHandler {
 
     public static boolean isHorizontallyColliding() {
         HashSet<BlockPos> hashSet = new HashSet<>();
-        hashSet.add(getBlockPosAtOffset(Float.intBitsToFloat(1065353216), 0.0f));
-        hashSet.add(getBlockPosAtOffset(Float.intBitsToFloat(-1082130432), 0.0f));
-        hashSet.add(getBlockPosAtOffset(0.0f, Float.intBitsToFloat(1065353216)));
-        hashSet.add(getBlockPosAtOffset(0.0f, Float.intBitsToFloat(-1082130432)));
+        hashSet.add(getBlockPosAtOffset(1.0f, 0.0f));
+        hashSet.add(getBlockPosAtOffset((-1.0f), 0.0f));
+        hashSet.add(getBlockPosAtOffset(0.0f, 1.0f));
+        hashSet.add(getBlockPosAtOffset(0.0f, (-1.0f)));
         return hashSet.stream().filter(AntiCheatVelocityHandler::hasCollisionShape).count() >= 2;
     }
 
     public static boolean is1886() {
         // 26.2: BlockPos.stream -> betweenClosedStream, AABB.shrink -> deflate,
         // AABB.withMaxY -> setMaxY, AABB.offset -> move
-        return BlockPos.betweenClosedStream(minecraftClient.player.getBoundingBox().deflate(BoxMath.val, 0.0d, BoxMath.val).setMaxY(minecraftClient.player.getY()).move(0.0d, Double.longBitsToDouble(4591870180174331904L), 0.0d)).anyMatch(AntiCheatVelocityHandler::hasCollisionShape);
+        return BlockPos.betweenClosedStream(minecraftClient.player.getBoundingBox().deflate(BoxMath.val, 0.0d, BoxMath.val).setMaxY(minecraftClient.player.getY()).move(0.0d, 0.10000000149011612d, 0.0d)).anyMatch(AntiCheatVelocityHandler::hasCollisionShape);
     }
 
     public static BlockPos getBlockPosAtOffset(float f, float f2) {
         LocalPlayer clientPlayerEntity = minecraftClient.player;
-        float lengthX = (float) (clientPlayerEntity.getBoundingBox().getXsize() / Double.longBitsToDouble(4611686018427387904L));
-        return BlockPos.containing(clientPlayerEntity.getX() + (f * lengthX * Float.intBitsToFloat(1065353224)), Math.round(clientPlayerEntity.getY()), clientPlayerEntity.getZ() + (f2 * lengthX * Float.intBitsToFloat(1065353224)));
+        float lengthX = (float) (clientPlayerEntity.getBoundingBox().getXsize() / 2.0d);
+        return BlockPos.containing(clientPlayerEntity.getX() + (f * lengthX * 1.000001f), Math.round(clientPlayerEntity.getY()), clientPlayerEntity.getZ() + (f2 * lengthX * 1.000001f));
     }
 
     public static boolean hasCollisionShape(BlockPos blockPos) {

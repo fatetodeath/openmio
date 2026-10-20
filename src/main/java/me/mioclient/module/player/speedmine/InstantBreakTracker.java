@@ -66,7 +66,7 @@ public final class InstantBreakTracker {
         if (!this.flag || this.blockPos == null) {
             return false;
         }
-        long max = Math.max((long) (Math.ceil((ClientServices.holeSnapRenderHelper.getPing() * Float.intBitsToFloat(1097859072)) / Float.intBitsToFloat(1112014848)) * Double.longBitsToDouble(4632233691727265792L)), 750L);
+        long max = Math.max((long) (Math.ceil((ClientServices.holeSnapRenderHelper.getPing() * 15.0f) / 50.0f) * 50.0d), 750L);
         if (this.speedMine.tPSSync.getValue().booleanValue()) {
             max = (long) (((float) max) / ClientServices.holeSnapRenderHelper.getTickRateFactor());
         }

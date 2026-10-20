@@ -87,7 +87,7 @@ public class Tracers extends Module {
             return;
         }
         Camera camera = minecraftClient.gameRenderer.mainCamera();
-        Vec3 add = new Vec3(0.0d, 0.0d, Double.longBitsToDouble(4636737291354636288L)).xRot(-((float) Math.toRadians(camera.xRot()))).yRot(-((float) Math.toRadians(camera.yRot()))).add(minecraftClient.getEntityRenderDispatcher().camera.position());
+        Vec3 add = new Vec3(0.0d, 0.0d, 100.0d).xRot(-((float) Math.toRadians(camera.xRot()))).yRot(-((float) Math.toRadians(camera.yRot()))).add(minecraftClient.getEntityRenderDispatcher().camera.position());
         GL32C.glLineWidth(this.lineWidth.getValue().floatValue());
         for (Player playerEntity : minecraftClient.level.players()) {
             if (minecraftClient.player != playerEntity) {
@@ -99,7 +99,7 @@ public class Tracers extends Module {
                         Color value = this.color.getValue();
                         boolean booleanValue = this.distanceColor.getValue().booleanValue();
                         if (booleanValue) {
-                            value = ColorUtils.withAlpha(ColorUtils.lerpColor(Color.red, Color.green, Float.intBitsToFloat(1065353216) - ((float) ((Mth.clamp(minecraftClient.player.getEyePosition().distanceTo(add2), Double.longBitsToDouble(4620693217682128896L), Double.longBitsToDouble(4634204016564240384L)) - Double.longBitsToDouble(4620693217682128896L)) / Double.longBitsToDouble(4633078116657397760L)))), this.color.getValue().getAlpha());
+                            value = ColorUtils.withAlpha(ColorUtils.lerpColor(Color.red, Color.green, 1.0f - ((float) ((Mth.clamp(minecraftClient.player.getEyePosition().distanceTo(add2), 8.0d, 64.0d) - 8.0d) / 56.0d))), this.color.getValue().getAlpha());
                         }
                         if (ClientServices.socialManager.isFriendEntity(playerEntity)) {
                             value = ColorUtils.withAlpha(ClientServices.socialManager.getFriendColor(), this.color.getValue().getAlpha());
@@ -121,6 +121,6 @@ public class Tracers extends Module {
                 }
             }
         }
-        GL32C.glLineWidth(Float.intBitsToFloat(1065353216));
+        GL32C.glLineWidth(1.0f);
     }
 }

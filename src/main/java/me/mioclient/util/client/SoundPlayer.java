@@ -31,11 +31,11 @@ public class SoundPlayer implements ClientAccessor {
     }
 
     public void do1016() {
-        play(Float.intBitsToFloat(1065353216));
+        play(1.0f);
     }
 
     public void playAt(Vec3 vec3d) {
-        playAt(vec3d, Float.intBitsToFloat(1065353216));
+        playAt(vec3d, 1.0f);
     }
 
     public void play(float f) {

@@ -51,7 +51,7 @@ public final class BreakProgressTracker {
             this.val2 = this.val;
         }
         resetTimer();
-        this.val = Mth.clamp(f, 0.0f, Float.intBitsToFloat(1065353216));
+        this.val = Mth.clamp(f, 0.0f, 1.0f);
     }
 
     public int get2093() {
@@ -68,9 +68,9 @@ public final class BreakProgressTracker {
 
     public boolean is2817() {
         Entity entity181;
-        if ((this.val == Float.intBitsToFloat(1065353216) && this.stopwatch.hasElapsedMs(2000L)) || (entity181 = getEntity()) == null) {
+        if ((this.val == 1.0f && this.stopwatch.hasElapsedMs(2000L)) || (entity181 = getEntity()) == null) {
             return true;
         }
-        return entity181.getEyePosition().distanceToSqr(Vec3.atCenterOf(this.blockPos)) >= Double.longBitsToDouble(4634204016564240384L);
+        return entity181.getEyePosition().distanceToSqr(Vec3.atCenterOf(this.blockPos)) >= 64.0d;
     }
 }

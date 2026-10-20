@@ -111,7 +111,7 @@ public class Scaffold extends Module {
         this.stopwatch4 = new Stopwatch();
         this.stopwatch5 = new Stopwatch();
         this.num2 = -1;
-        this.val2 = Float.intBitsToFloat(-1082130432);
+        this.val2 = (-1.0f);
         ClientServices.antiPhaseBlockHelper.register(new BlockHighlightRenderer.Record(this, this.fill, this.outline, this.lineWidth, this.fadeTime, () -> {
             return false;
         }, this.fade, 450));
@@ -143,7 +143,7 @@ public class Scaffold extends Module {
         boolean z2;
         if (this.val2 > 0.0f) {
             setJumpStrength(this.val2);
-            this.val2 = Float.intBitsToFloat(-1082130432);
+            this.val2 = (-1.0f);
         }
         if (minecraftClient.player.isPassenger()) {
             return;
@@ -194,7 +194,7 @@ public class Scaffold extends Module {
                             if (scaffoldData1460.getDirection() == Direction.DOWN) {
                                 add = vec3d843.with(Direction.Axis.Y, this.scaffoldData_2.getBlockPos().getY());
                             } else {
-                                add = vec3d843.add(0.0d, scaffoldData1460.getCollisionShape().isEmpty() ? MathConstants.val2 : scaffoldData1460.getCollisionShape().bounds().maxY - Double.longBitsToDouble(4576918229304087675L), 0.0d);
+                                add = vec3d843.add(0.0d, scaffoldData1460.getCollisionShape().isEmpty() ? MathConstants.val2 : scaffoldData1460.getCollisionShape().bounds().maxY - 0.01d, 0.0d);
                             }
                             boolean isSneaking = ClientServices.holeSnapRenderHelper.isSneaking();
                             { net.minecraft.world.entity.player.Input _cur = minecraftClient.player.input.keyPresses; PacketSender.sendPacket(new net.minecraft.network.protocol.game.ServerboundPlayerInputPacket(new net.minecraft.world.entity.player.Input(_cur.forward(), _cur.backward(), _cur.left(), _cur.right(), _cur.jump(), true, _cur.sprint()))); };
@@ -241,7 +241,7 @@ public class Scaffold extends Module {
         if (this.safeWalk.getValue().booleanValue() && RotationManager.is724() && minecraftClient.player.onGround() && !minecraftClient.player.isPassenger()) {
             AABB offset = minecraftClient.player.getBoundingBox().move(moveEvent.getX(), 0.0d, moveEvent.getZ());
             boolean isSneaking = minecraftClient.player.isShiftKeyDown();
-            if (minecraftClient.level.noCollision(offset.expandTowards(0.0d, Double.longBitsToDouble(-4616189618054758400L), 0.0d))) {
+            if (minecraftClient.level.noCollision(offset.expandTowards(0.0d, (-1.0d), 0.0d))) {
                 if (!isSneaking) {
                     minecraftClient.player.setShiftKeyDown(true);
                 }
@@ -270,13 +270,13 @@ public class Scaffold extends Module {
                 if (RotationManager.is724()) {
                     if (minecraftClient.player.onGround()) {
                         this.val2 = get510();
-                        setJumpStrength(Float.intBitsToFloat(1052539785));
+                        setJumpStrength(0.36813f);
                         return;
                     }
                     return;
                 }
                 if (this.scaffoldData_2 != null) {
-                    minecraftClient.player.setDeltaMovement(0.0d, Double.longBitsToDouble(4601237667055665185L), 0.0d);
+                    minecraftClient.player.setDeltaMovement(0.0d, 0.41999998688698d, 0.0d);
                 }
             }
         }
@@ -345,14 +345,14 @@ public class Scaffold extends Module {
 
     public float[] getPlacementRotations(ScaffoldMode scaffoldMode) {
         if (scaffoldMode != ScaffoldMode.PRE) {
-            return RotationManager.getRotationsTo(scaffoldMode.vec3d.add(0.0d, scaffoldMode.scaffoldData.getCollisionShape().isEmpty() ? MathConstants.val2 : scaffoldMode.scaffoldData.getCollisionShape().bounds().maxY - Double.longBitsToDouble(4576918229304087675L), 0.0d));
+            return RotationManager.getRotationsTo(scaffoldMode.vec3d.add(0.0d, scaffoldMode.scaffoldData.getCollisionShape().isEmpty() ? MathConstants.val2 : scaffoldMode.scaffoldData.getCollisionShape().bounds().maxY - 0.01d, 0.0d));
         }
         PlacementTarget scaffoldData1460 = PlacementTarget.fromCandidate(this.scaffoldData_2, false);
-        float[] floatArray2484 = RotationManager.getRotationsTo(scaffoldData1460.getPlacementTarget().add(0.0d, scaffoldData1460.getCollisionShape().isEmpty() ? MathConstants.val2 : scaffoldData1460.getCollisionShape().bounds().maxY - Double.longBitsToDouble(4576918229304087675L), 0.0d));
+        float[] floatArray2484 = RotationManager.getRotationsTo(scaffoldData1460.getPlacementTarget().add(0.0d, scaffoldData1460.getCollisionShape().isEmpty() ? MathConstants.val2 : scaffoldData1460.getCollisionShape().bounds().maxY - 0.01d, 0.0d));
         if (MovementUtils.is2181()) {
-            double[] doubleArray2508 = MovementUtils.computeVelocity(minecraftClient.player.getYRot(), minecraftClient.player.input, Double.longBitsToDouble(4607182418800017408L));
-            float degrees = (float) (Math.toDegrees(Math.atan2(doubleArray2508[1], doubleArray2508[0])) - Double.longBitsToDouble(4643457506423603200L));
-            if (Mth.degreesDifferenceAbs(degrees, floatArray2484[0]) < Float.intBitsToFloat(1114636288)) {
+            double[] doubleArray2508 = MovementUtils.computeVelocity(minecraftClient.player.getYRot(), minecraftClient.player.input, 1.0d);
+            float degrees = (float) (Math.toDegrees(Math.atan2(doubleArray2508[1], doubleArray2508[0])) - 270.0d);
+            if (Mth.degreesDifferenceAbs(degrees, floatArray2484[0]) < 60.0f) {
                 floatArray2484[0] = degrees;
             }
         }
@@ -419,15 +419,15 @@ public class Scaffold extends Module {
         if (isOnGround) {
             arrayList.addAll(List.of(new Vec3(d, f, d2), new Vec3(d3, f, d2), new Vec3(d, f, d4), new Vec3(d3, f, d4)));
         }
-        double longBitsToDouble2 = Double.longBitsToDouble(-4571373524106608640L);
+        double longBitsToDouble2 = (-999.0d);
         for (Vec3 vec3d : arrayList) {
-            BlockHitResult blockHitResult2784 = RaycastUtils.performCustomBlockRaycast(new CustomRaycastContext.Inner(vec3d, vec3d.add(0.0d, Double.longBitsToDouble(-4616189618054758400L), 0.0d)).setEntity(minecraftClient.player.isPassenger() ? minecraftClient.player.getVehicle() : minecraftClient.player).build());
+            BlockHitResult blockHitResult2784 = RaycastUtils.performCustomBlockRaycast(new CustomRaycastContext.Inner(vec3d, vec3d.add(0.0d, (-1.0d), 0.0d)).setEntity(minecraftClient.player.isPassenger() ? minecraftClient.player.getVehicle() : minecraftClient.player).build());
             if (blockHitResult2784.getType() == HitResult.Type.MISS) {
                 y = vec3d.y();
-                longBitsToDouble = Double.longBitsToDouble(4607182418800017408L);
+                longBitsToDouble = 1.0d;
             } else {
                 y = blockHitResult2784.getLocation().y();
-                longBitsToDouble = Double.longBitsToDouble(4576918229175238656L);
+                longBitsToDouble = 0.009999999776482582d;
             }
             longBitsToDouble2 = Math.max(longBitsToDouble2, y - longBitsToDouble);
         }

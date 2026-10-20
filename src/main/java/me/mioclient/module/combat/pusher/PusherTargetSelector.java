@@ -46,7 +46,7 @@ public final class PusherTargetSelector implements ClientAccessor {
         if (list.contains(blockState.getBlock())) {
             return false;
         }
-        if (blockState.getDestroySpeed(minecraftClient.level, blockPos.above()) == Float.intBitsToFloat(-1082130432)) {
+        if (blockState.getDestroySpeed(minecraftClient.level, blockPos.above()) == (-1.0f)) {
             return false;
         }
         if (ClientServices.stashFinderHelper.isBlockSolid(blockPos.above(2))) {
@@ -56,7 +56,7 @@ public final class PusherTargetSelector implements ClientAccessor {
             return false;
         }
         if (this.pusher.onlySafe.getValue().booleanValue() && !ClientServices.holeSnapOverlayHelper.isHoleAt(blockPos)) {
-            if (minecraftClient.level.getBlockState(playerEntity.blockPosition()).getBlock().getExplosionResistance() < Float.intBitsToFloat(1142292480)) {
+            if (minecraftClient.level.getBlockState(playerEntity.blockPosition()).getBlock().getExplosionResistance() < 600.0f) {
                 return false;
             }
         }

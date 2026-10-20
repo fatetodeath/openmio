@@ -329,7 +329,7 @@ public class BlockPlacer implements ClientAccessor {
                 return false;
             }
         }
-        AABB box = new AABB(blockPos2.getX(), blockPos2.getY(), blockPos2.getZ(), blockPos2.getX() + 1, blockPos2.getY() + (z5 ? Double.longBitsToDouble(4606281698874543309L) : Double.longBitsToDouble(4611686018427387904L)), blockPos2.getZ() + 1);
+        AABB box = new AABB(blockPos2.getX(), blockPos2.getY(), blockPos2.getZ(), blockPos2.getX() + 1, blockPos2.getY() + (z5 ? 0.9d : 2.0d), blockPos2.getZ() + 1);
         int i = 0;
         Iterator it = minecraftClient.level.getEntitiesOfClass(Entity.class, box, e -> true).iterator();
         while (true) {
@@ -340,7 +340,7 @@ public class BlockPlacer implements ClientAccessor {
             if (!((Entity) clientPlayerEntity).isRemoved() && ((Entity) clientPlayerEntity).isAlive()) {
                 AABB boundingBox = ((Entity) clientPlayerEntity).getBoundingBox();
                 if ((clientPlayerEntity instanceof Player) && clientPlayerEntity != minecraftClient.player && z6) {
-                    boundingBox = boundingBox.inflate(Double.longBitsToDouble(4576918229304087675L));
+                    boundingBox = boundingBox.inflate(0.01d);
                 } else if ((clientPlayerEntity instanceof EndCrystal) && !z3) {
                 }
                 if (boundingBox.intersects(box)) {

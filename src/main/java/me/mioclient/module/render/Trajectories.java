@@ -104,11 +104,11 @@ public class Trajectories extends Module {
             this.flag = true;
             this.box = new AABB(blockHitResult.getLocation(), blockHitResult.getLocation());
             if (blockHitResult.getDirection() == Direction.UP || blockHitResult.getDirection() == Direction.DOWN) {
-                this.box = this.box.inflate(Double.longBitsToDouble(4598175219545276416L), 0.0d, Double.longBitsToDouble(4598175219545276416L));
+                this.box = this.box.inflate(0.25d, 0.0d, 0.25d);
             } else if (blockHitResult.getDirection() == Direction.NORTH || blockHitResult.getDirection() == Direction.SOUTH) {
-                this.box = this.box.inflate(Double.longBitsToDouble(4598175219545276416L), Double.longBitsToDouble(4598175219545276416L), 0.0d);
+                this.box = this.box.inflate(0.25d, 0.25d, 0.0d);
             } else {
-                this.box = this.box.inflate(0.0d, Double.longBitsToDouble(4598175219545276416L), Double.longBitsToDouble(4598175219545276416L));
+                this.box = this.box.inflate(0.0d, 0.25d, 0.25d);
             }
             this.list.add(hitResult.getLocation());
         }

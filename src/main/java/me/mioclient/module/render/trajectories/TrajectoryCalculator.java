@@ -80,9 +80,9 @@ public class TrajectoryCalculator implements ClientAccessor {
         if ((item instanceof BowItem) && trajectories.bow.getValue().booleanValue()) {
             double lerp = Mth.lerp(d2, trajectories.getLastPullProgress(), BowItem.getPowerForTime(minecraftClient.player.getTicksUsingItem()));
             if (lerp <= 0.0d) {
-                lerp = Double.longBitsToDouble(4607182418800017408L);
+                lerp = 1.0d;
             }
-            calculateShotTrajectory(entity, 0.0d, lerp * Double.longBitsToDouble(4613937818241073152L), d, Double.longBitsToDouble(4587366580546961408L), Double.longBitsToDouble(4603579539098121011L), z, d2);
+            calculateShotTrajectory(entity, 0.0d, lerp * 3.0d, d, 0.05000000074505806d, 0.6d, z, d2);
             return true;
         }
         if ((item instanceof CrossbowItem) && trajectories.xBow.getValue().booleanValue()) {
@@ -90,10 +90,10 @@ public class TrajectoryCalculator implements ClientAccessor {
                 return false;
             }
             if (chargedProjectilesComponent.contains(Items.FIREWORK_ROCKET)) {
-                calculateShotTrajectory(entity, 0.0d, chargedProjectilesComponent.contains(Items.FIREWORK_ROCKET) ? 1.6f : 3.15f, d, 0.0d, Double.longBitsToDouble(4603579539098121011L), z, d2);
+                calculateShotTrajectory(entity, 0.0d, chargedProjectilesComponent.contains(Items.FIREWORK_ROCKET) ? 1.6f : 3.15f, d, 0.0d, 0.6d, z, d2);
                 return true;
             }
-            calculateShotTrajectory(entity, 0.0d, chargedProjectilesComponent.contains(Items.FIREWORK_ROCKET) ? 1.6f : 3.15f, d, Double.longBitsToDouble(4587366580546961408L), Double.longBitsToDouble(4603579539098121011L), z, d2);
+            calculateShotTrajectory(entity, 0.0d, chargedProjectilesComponent.contains(Items.FIREWORK_ROCKET) ? 1.6f : 3.15f, d, 0.05000000074505806d, 0.6d, z, d2);
             return true;
         }
         if ((item instanceof FishingRodItem) && trajectories.others.getValue().booleanValue()) {
@@ -101,21 +101,21 @@ public class TrajectoryCalculator implements ClientAccessor {
             return true;
         }
         if ((item instanceof TridentItem) && trajectories.trident.getValue().booleanValue()) {
-            calculateShotTrajectory(entity, 0.0d, Double.longBitsToDouble(4612811918334230528L), d, Double.longBitsToDouble(4587366580546961408L), Double.longBitsToDouble(4607092346807469998L), z, d2);
+            calculateShotTrajectory(entity, 0.0d, 2.5d, d, 0.05000000074505806d, 0.99d, z, d2);
             return true;
         }
         if ((((item instanceof SnowballItem) || (item instanceof EggItem)) && trajectories.others.getValue().booleanValue()) || ((item instanceof EnderpearlItem) && trajectories.pearls.getValue().booleanValue())) {
-            calculateShotTrajectory(entity, 0.0d, Double.longBitsToDouble(4609434218613702656L), d, Double.longBitsToDouble(4584304132692975288L), Double.longBitsToDouble(4605380978949069210L), z, d2);
+            calculateShotTrajectory(entity, 0.0d, 1.5d, d, 0.03d, 0.8d, z, d2);
             return true;
         }
         if ((item instanceof ExperienceBottleItem) && trajectories.exp.getValue().booleanValue()) {
-            calculateShotTrajectory(entity, Double.longBitsToDouble(-4597049319638433792L), Double.longBitsToDouble(4604480259023595110L), d, Double.longBitsToDouble(4589708452245819884L), Double.longBitsToDouble(4605380978949069210L), z, d2);
+            calculateShotTrajectory(entity, (-20.0d), 0.7d, d, 0.07d, 0.8d, z, d2);
             return true;
         }
         if (!(item instanceof ThrowablePotionItem) || !trajectories.others.getValue().booleanValue()) {
             return false;
         }
-        calculateShotTrajectory(entity, Double.longBitsToDouble(-4597049319638433792L), MathConstants.val2, d, Double.longBitsToDouble(4587366580439587226L), Double.longBitsToDouble(4605380978949069210L), z, d2);
+        calculateShotTrajectory(entity, (-20.0d), MathConstants.val2, d, 0.05d, 0.8d, z, d2);
         return true;
     }
 
@@ -154,7 +154,7 @@ public class TrajectoryCalculator implements ClientAccessor {
             }
         }
         this.val = d4;
-        this.val2 = Double.longBitsToDouble(4607092346807469998L);
+        this.val2 = 0.99d;
         this.val3 = d5;
     }
 
@@ -163,29 +163,29 @@ public class TrajectoryCalculator implements ClientAccessor {
             return false;
         }
         if (entity instanceof Arrow) {
-            calculateAirborneTrajectory(entity, ((Arrow) entity).getDeltaMovement().length(), Double.longBitsToDouble(4587366580546961408L), Double.longBitsToDouble(4603579539098121011L), z, d);
+            calculateAirborneTrajectory(entity, ((Arrow) entity).getDeltaMovement().length(), 0.05000000074505806d, 0.6d, z, d);
         } else if ((entity instanceof ThrownEnderpearl) || (entity instanceof Snowball) || (entity instanceof ThrownEgg)) {
-            calculateAirborneTrajectory(entity, Double.longBitsToDouble(4609434218613702656L), Double.longBitsToDouble(4584304132692975288L), Double.longBitsToDouble(4605380978949069210L), z, d);
-            if (BlockPos.betweenClosedStream(entity.getBoundingBox().inflate(0.0d, Double.longBitsToDouble(4611686018427387904L), 0.0d)).map((v0) -> {
+            calculateAirborneTrajectory(entity, 1.5d, 0.03d, 0.8d, z, d);
+            if (BlockPos.betweenClosedStream(entity.getBoundingBox().inflate(0.0d, 2.0d, 0.0d)).map((v0) -> {
                 return new BlockPos(v0);
             }).anyMatch(blockPos -> {
                 return minecraftClient.level.getBlockState(blockPos).getBlock() == Blocks.BUBBLE_COLUMN;
             })) {
                 Vec3 velocity = entity.getDeltaMovement();
-                Vec3 vec3d3 = new Vec3(velocity.x, Double.longBitsToDouble(-4571373524106608640L), velocity.z);
-                interpolateVelocity(entity, vec3d3, Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(4609434218613702656L));
+                Vec3 vec3d3 = new Vec3(velocity.x, (-999.0d), velocity.z);
+                interpolateVelocity(entity, vec3d3, 1.0d, 1.5d);
             }
         } else if (entity instanceof ThrownTrident) {
-            calculateAirborneTrajectory(entity, Double.longBitsToDouble(4612811918334230528L), Double.longBitsToDouble(4587366580546961408L), Double.longBitsToDouble(4607092346807469998L), z, d);
+            calculateAirborneTrajectory(entity, 2.5d, 0.05000000074505806d, 0.99d, z, d);
         } else if (entity instanceof ThrownExperienceBottle) {
-            calculateAirborneTrajectory(entity, Double.longBitsToDouble(4604480259023595110L), Double.longBitsToDouble(4589708452245819884L), Double.longBitsToDouble(4605380978949069210L), z, d);
+            calculateAirborneTrajectory(entity, 0.7d, 0.07d, 0.8d, z, d);
         } else if (entity instanceof ThrowableProjectile) {
-            calculateAirborneTrajectory(entity, MathConstants.val2, Double.longBitsToDouble(4587366580439587226L), Double.longBitsToDouble(4605380978949069210L), z, d);
+            calculateAirborneTrajectory(entity, MathConstants.val2, 0.05d, 0.8d, z, d);
         } else {
             if (!(entity instanceof WitherSkull) && !(entity instanceof Fireball) && !(entity instanceof DragonFireball)) {
                 return false;
             }
-            calculateAirborneTrajectory(entity, Double.longBitsToDouble(4606732058837280358L), 0.0d, Double.longBitsToDouble(4605380978949069210L), z, d);
+            calculateAirborneTrajectory(entity, 0.95d, 0.0d, 0.8d, z, d);
         }
         if (!entity.isNoGravity()) {
             return true;
@@ -205,7 +205,7 @@ public class TrajectoryCalculator implements ClientAccessor {
             vector3d.add(d5, d6, velocity.z);
         }
         this.val = d2;
-        this.val2 = Double.longBitsToDouble(4607092346807469998L);
+        this.val2 = 0.99d;
         this.val3 = d3;
     }
 
@@ -217,17 +217,17 @@ public class TrajectoryCalculator implements ClientAccessor {
     public void calculateFishingRodTrajectory(Entity entity, double d) {
         double lerp = Mth.lerp(d, entity.yRotO, entity.getYRot());
         double lerp2 = Mth.lerp(d, entity.xRotO, entity.getXRot());
-        double cos = Math.cos(((-lerp) * MathConstants.val4) - Double.longBitsToDouble(4614256656748904448L));
-        double sin = Math.sin(((-lerp) * MathConstants.val4) - Double.longBitsToDouble(4614256656748904448L));
+        double cos = Math.cos(((-lerp) * MathConstants.val4) - 3.1415927410125732d);
+        double sin = Math.sin(((-lerp) * MathConstants.val4) - 3.1415927410125732d);
         double d2 = -Math.cos((-lerp2) * MathConstants.val4);
         double sin2 = Math.sin((-lerp2) * MathConstants.val4);
         this.vector3d.set(Mth.lerp(d, entity.xo, entity.getX()), Mth.lerp(d, entity.yo, entity.getY()) + entity.getEyeHeight(entity.getPose()), Mth.lerp(d, entity.zo, entity.getZ()));
-        this.vector3d.sub(sin * Double.longBitsToDouble(4599075939470750515L), 0.0d, cos * Double.longBitsToDouble(4599075939470750515L));
-        this.vector3d2.set(-sin, Mth.clamp(-(sin2 / d2), Double.longBitsToDouble(-4606056518893174784L), Double.longBitsToDouble(4617315517961601024L)), -cos);
+        this.vector3d.sub(sin * 0.3d, 0.0d, cos * 0.3d);
+        this.vector3d2.set(-sin, Mth.clamp(-(sin2 / d2), (-5.0d), 5.0d), -cos);
         double length = this.vector3d2.length();
-        this.vector3d2.mul((Double.longBitsToDouble(4603579539098121011L) / length) + MathConstants.val2, (Double.longBitsToDouble(4603579539098121011L) / length) + MathConstants.val2, (Double.longBitsToDouble(4603579539098121011L) / length) + MathConstants.val2);
-        this.val = Double.longBitsToDouble(4584304132692975288L);
-        this.val2 = Double.longBitsToDouble(4606461842859638129L);
+        this.vector3d2.mul((0.6d / length) + MathConstants.val2, (0.6d / length) + MathConstants.val2, (0.6d / length) + MathConstants.val2);
+        this.val = 0.03d;
+        this.val2 = 0.92d;
         this.val3 = 0.0d;
     }
 
@@ -239,7 +239,7 @@ public class TrajectoryCalculator implements ClientAccessor {
         if (this.vector3d.y < minecraftClient.level.getMinY()) {
             return hitResult;
         }
-        if (!minecraftClient.level.getChunkSource().hasChunk((int) (this.vector3d.x / Double.longBitsToDouble(4625196817309499392L)), (int) (this.vector3d.z / Double.longBitsToDouble(4625196817309499392L)))) {
+        if (!minecraftClient.level.getChunkSource().hasChunk((int) (this.vector3d.x / 16.0d), (int) (this.vector3d.z / 16.0d))) {
             return hitResult;
         }
         vec3d = new Vec3(this.vector3d.x, this.vector3d.y, this.vector3d.z);
@@ -262,7 +262,7 @@ public class TrajectoryCalculator implements ClientAccessor {
         if (raycast.getType() != HitResult.Type.MISS) {
             vec3d3 = raycast.getLocation();
         }
-        net.minecraft.world.phys.HitResult entityCollision = ProjectileUtil.getEntityHitResult(minecraftClient.level, minecraftClient.player, vec3d3, vec3d, new AABB(this.vector3d.x, this.vector3d.y, this.vector3d.z, this.vector3d.x, this.vector3d.y, this.vector3d.z).expandTowards(minecraftClient.player.getDeltaMovement()).inflate(Double.longBitsToDouble(4607182418800017408L)), entity -> {
+        net.minecraft.world.phys.HitResult entityCollision = ProjectileUtil.getEntityHitResult(minecraftClient.level, minecraftClient.player, vec3d3, vec3d, new AABB(this.vector3d.x, this.vector3d.y, this.vector3d.z, this.vector3d.x, this.vector3d.y, this.vector3d.z).expandTowards(minecraftClient.player.getDeltaMovement()).inflate(1.0d), entity -> {
             return !entity.isSpectator() && entity.isAlive() && entity.isPickable();
         }, 0.0f);
         if (entityCollision != null) {

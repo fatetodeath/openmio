@@ -26,7 +26,7 @@ public class LadderTargetResolver implements ClientAccessor, AntiPhaseTargetReso
         BlockPos blockPos2008 = PlayerUtils.getRoundedBlockPos((LivingEntity) playerEntity);
         Direction direction = null;
         AABB box = null;
-        float intBitsToFloat = Float.intBitsToFloat(1148829696);
+        float intBitsToFloat = 999.0f;
         if (!WorldUtils.isAir(blockPos2008)) {
             return null;
         }

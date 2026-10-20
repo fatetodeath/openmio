@@ -64,21 +64,21 @@ public class LongJump extends Module {
         }
         double d3 = moveEvent.getY();
         if (this.useTimer.getValue().booleanValue() && ClientServices.holeSnapRenderHelper.getSetbackStopwatch().hasElapsedMs(250L)) {
-            ClientServices.holeSnapHelper.requestTickRate(this, Float.intBitsToFloat(1066098124));
+            ClientServices.holeSnapHelper.requestTickRate(this, 1.0888f);
         } else if (this.useTimer.getValue().booleanValue()) {
             ClientServices.holeSnapHelper.releaseTickRate(this);
         }
         if (!ClientServices.holeSnapRenderHelper.getSetbackStopwatch().hasElapsedMs(250L) && this.autoDisable.getValue().booleanValue()) {
             toggle();
         }
-        double intBitsToFloat = Float.intBitsToFloat(1073741824) * this.jumpSpeed.getValue().floatValue();
+        double intBitsToFloat = 2.0f * this.jumpSpeed.getValue().floatValue();
         if (this.num == 1 && MovementUtils.is2181()) {
-            this.val = (Double.longBitsToDouble(4608758678669597082L) * MovementUtils.computeMoveSpeed(false, Double.longBitsToDouble(4598847156609680094L) * intBitsToFloat)) - Double.longBitsToDouble(4576918229304087675L);
+            this.val = (1.35d * MovementUtils.computeMoveSpeed(false, 0.2873d * intBitsToFloat)) - 0.01d;
         } else if (this.num == 2 && MovementUtils.is2181()) {
-            d3 = Double.longBitsToDouble(4601237667291888353L) + MovementUtils.getJumpBoostBonus();
-            this.val *= this.flag ? Double.longBitsToDouble(4610260629145325142L) : Double.longBitsToDouble(4608961340652828754L);
+            d3 = 0.42d + MovementUtils.getJumpBoostBonus();
+            this.val *= this.flag ? 1.6835d : 1.395d;
         } else if (this.num == 3) {
-            this.val = this.val2 - (Double.longBitsToDouble(4604119971289628672L) * (this.val2 - MovementUtils.computeMoveSpeed(true, Double.longBitsToDouble(4598847156609680094L) * intBitsToFloat)));
+            this.val = this.val2 - (0.6600000262260437d * (this.val2 - MovementUtils.computeMoveSpeed(true, 0.2873d * intBitsToFloat)));
             this.flag = !this.flag;
         } else {
             if (!minecraftClient.player.verticalCollision) {
@@ -86,9 +86,9 @@ public class LongJump extends Module {
             if (this.num > 0) {
                 this.num = MovementUtils.is2181() ? 1 : 0;
             }
-            this.val = this.val2 - (this.val2 / Double.longBitsToDouble(4639798331726364672L));
+            this.val = this.val2 - (this.val2 / 159.0d);
         }
-        this.val = Math.max(this.val, MovementUtils.computeMoveSpeed(false, Double.longBitsToDouble(4598847156609680094L) * intBitsToFloat));
+        this.val = Math.max(this.val, MovementUtils.computeMoveSpeed(false, 0.2873d * intBitsToFloat));
         if (MovementUtils.is2181()) {
             double[] doubleArray2508 = MovementUtils.computeVelocity(minecraftClient.player.getYRot(), minecraftClient.player.input, this.val);
             d = doubleArray2508[0];
@@ -122,6 +122,6 @@ public class LongJump extends Module {
 
     public boolean hasHeadCollision() {
         AABB boundingBox = minecraftClient.player.getBoundingBox();
-        return !minecraftClient.level.noCollision(minecraftClient.player, new AABB(minecraftClient.player.blockPosition().getX(), boundingBox.minY, minecraftClient.player.blockPosition().getZ(), minecraftClient.player.blockPosition().getX() + Double.longBitsToDouble(4607182418800017408L), boundingBox.maxY, minecraftClient.player.blockPosition().getZ() + Double.longBitsToDouble(4607182418800017408L)).deflate(Double.longBitsToDouble(4502148214488346440L)));
+        return !minecraftClient.level.noCollision(minecraftClient.player, new AABB(minecraftClient.player.blockPosition().getX(), boundingBox.minY, minecraftClient.player.blockPosition().getZ(), minecraftClient.player.blockPosition().getX() + 1.0d, boundingBox.maxY, minecraftClient.player.blockPosition().getZ() + 1.0d).deflate(1.0E-7d));
     }
 }

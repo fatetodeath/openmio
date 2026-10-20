@@ -78,7 +78,7 @@ public class AutoClicker extends Module {
     public AutoClicker() {
         super("AutoClicker", "Spams attack as you hold down the attack button.", Category.COMBAT, new String[0]);
         this.stopwatch = new Stopwatch();
-        this.val = Float.intBitsToFloat(1065353216);
+        this.val = 1.0f;
         this.list = new ArrayList();
     }
 
@@ -100,7 +100,7 @@ public class AutoClicker extends Module {
             performClick();
             this.list.add(Long.valueOf(System.currentTimeMillis()));
             this.stopwatch.reset();
-            this.val = MathUtils.randomFloat(Float.intBitsToFloat(1065353216), this.delay.getValue().floatValue());
+            this.val = MathUtils.randomFloat(1.0f, this.delay.getValue().floatValue());
         }
     }
 

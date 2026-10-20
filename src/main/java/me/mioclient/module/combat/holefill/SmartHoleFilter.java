@@ -27,13 +27,13 @@ public class SmartHoleFilter extends RangeHoleFilter {
             if (!this.holeFill.ignoreNakeds.getValue().booleanValue() || PlayerUtils.hasArmor(livingEntity)) {
                 AABB box1109 = this.holeFill.extrapolation.getValue().booleanValue() ? ClientServices.mainhandHelper.getPredictedBox((Player) livingEntity, BoxMath.getSnapDivisions((Player) livingEntity, this.holeFill.ticks)) : BoxMath.getServerBox(livingEntity);
                 boolean z = !MovementUtils.isPlayerMoving((Player) livingEntity) || MovementUtils.isEntityMovingToward((Player) livingEntity, Vec3.atCenterOf(holeSnapData.getBlockPos()));
-                if (Vec3dUtils.getHorizontalDistance(Vec3.atCenterOf(holeSnapData.getBlockPos()), BoxMath.getBottomCenter(box1109)) <= this.holeFill.smartRange.getValue().floatValue() && ((AbstractClientPlayer) livingEntity).getY() > holeSnapData.getBlockPos().getY() && box1109.minY - holeSnapData.getBlockPos().getY() <= Double.longBitsToDouble(4616189618054758400L) && !((AbstractClientPlayer) livingEntity).isRemoved() && minecraftClient.player != livingEntity) {
+                if (Vec3dUtils.getHorizontalDistance(Vec3.atCenterOf(holeSnapData.getBlockPos()), BoxMath.getBottomCenter(box1109)) <= this.holeFill.smartRange.getValue().floatValue() && ((AbstractClientPlayer) livingEntity).getY() > holeSnapData.getBlockPos().getY() && box1109.minY - holeSnapData.getBlockPos().getY() <= 4.0d && !((AbstractClientPlayer) livingEntity).isRemoved() && minecraftClient.player != livingEntity) {
                     if (ClientServices.socialManager.isFriend(((AbstractClientPlayer) livingEntity).getGameProfile().name())) {
                         continue;
                     } else if (!ClientServices.holeSnapOverlayHelper.isHoleAt(BlockPos.containing(((AbstractClientPlayer) livingEntity).position())) && z) {
                         if (this.holeFill.selfSafety.getValue().booleanValue()) {
                             if (!ClientServices.holeSnapOverlayHelper.isHoleAt(BlockPos.containing(minecraftClient.player.position()))) {
-                                if (minecraftClient.player.position().distanceTo(Vec3.atCenterOf(holeSnapData.getBlockPos())) < Double.longBitsToDouble(4611686018427387904L)) {
+                                if (minecraftClient.player.position().distanceTo(Vec3.atCenterOf(holeSnapData.getBlockPos())) < 2.0d) {
                                     return false;
                                 }
                             }

@@ -47,10 +47,10 @@ public final class HeadTargetStrategy extends MineStrategyBase {
         boolean anyMatch = BlockPos.betweenClosedStream(boundingBox.setMaxY(boundingBox.minY)).anyMatch(blockPos -> {
             return BlockPlacer.getBlockAt(blockPos) == Blocks.BEDROCK;
         });
-        if (BlockPos.betweenClosedStream(boundingBox.deflate(Double.longBitsToDouble(4587366580439587226L), Double.longBitsToDouble(4587366580439587226L), Double.longBitsToDouble(4587366580439587226L))).filter(blockPos2 -> {
-            return (BlockPlacer.getBlockAt(blockPos2).getExplosionResistance() < Float.intBitsToFloat(1142292480) || is724() || BlockPlacer.getBlockAt(blockPos2) == Blocks.AIR) ? false : true;
+        if (BlockPos.betweenClosedStream(boundingBox.deflate(0.05d, 0.05d, 0.05d)).filter(blockPos2 -> {
+            return (BlockPlacer.getBlockAt(blockPos2).getExplosionResistance() < 600.0f || is724() || BlockPlacer.getBlockAt(blockPos2) == Blocks.AIR) ? false : true;
         }).toList().isEmpty()) {
-            AtomicReference<BlockPos> atomicReference = new AtomicReference<>(BlockPos.betweenClosedStream(boundingBox.setMaxY(boundingBox.maxY + Double.longBitsToDouble(4602678819172646912L))).map(v0 -> v0.immutable()).filter(this::isValidHeadTarget).max(Comparator.comparing((BlockPos blockPos3) -> Boolean.valueOf(this.isSpeedMineTarget(blockPos3)))).orElse(null));
+            AtomicReference<BlockPos> atomicReference = new AtomicReference<>(BlockPos.betweenClosedStream(boundingBox.setMaxY(boundingBox.maxY + 0.5d)).map(v0 -> v0.immutable()).filter(this::isValidHeadTarget).max(Comparator.comparing((BlockPos blockPos3) -> Boolean.valueOf(this.isSpeedMineTarget(blockPos3)))).orElse(null));
             AtomicReference<BlockPos> atomicReference2 = new AtomicReference<>(PlayerUtils.getSurroundPositions(playerEntity886).stream().map(v0 -> v0.above()).map(v0 -> v0.immutable()).filter(this::isValidHeadTarget).max(Comparator.comparing((BlockPos blockPos4) -> Boolean.valueOf(this.isSpeedMineTarget(blockPos4)))).orElse(null));
             if (atomicReference.get() == null && atomicReference2.get() != null && !is724()) {
                 atomicReference.set(atomicReference2.get());

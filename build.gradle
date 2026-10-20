@@ -8,13 +8,8 @@ group = project.maven_group
 
 base { archivesName = project.archives_base_name }
 
-loom {
-    accessWidenerPath = file("src/main/resources/mio.accesswidener")
-}
-
 repositories {
     maven { url = 'https://maven.fabricmc.net/' }
-    maven { url = 'https://maven.terraformersmc.com/' }
     maven { url = 'https://api.modrinth.com/maven' }
     mavenCentral()
 }
@@ -24,29 +19,17 @@ dependencies {
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    // MixinExtras (used by the mixins)
     include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.5.5")))
 
-    // Discord Rich Presence — real artifact (CDAGaming maintained fork, same com.jagrosh.discordipc packages)
     implementation "io.github.cdagaming:DiscordIPC:0.11.3"
     implementation "net.lenni0451:Reflect:1.4.0"
     implementation "com.kohlschutter.junixsocket:junixsocket-core:2.10.1"
 
-    // Soft-dependency compat APIs (compile-only; code guards with Class.forName at runtime)
     compileOnly "maven.modrinth:sodium:mc26.2-0.9.2-fabric"
     compileOnly "maven.modrinth:entityculling:1.11.2"
     compileOnly "maven.modrinth:lithium:mc26.2-0.25.3-fabric"
-    // NOTE: Fabrishot has no 26.2 build — its mixin stays disabled (see mio.mixins.json)
-    // Real Baritone 26.2 (dysnasia fork, Fabric/MojMap) — runtime mod jar: baritone-fabric-26.2.jar from
-    // https://github.com/dysnasia/baritone-26.3/releases/tag/26.2 (asset: fabric-26.2.jar)
-    // NOTE: do NOT use JitPack here (com.github.dysnasia.baritone-26.3:fabric:...) — JitPack cannot
-    // build this repo (dotted repo name breaks Maven coordinates) and returns 401 Unauthorized.
-    // Use the prebuilt jar checked into libs/ instead.
-    // implementation (not compileOnly): the Baritone module touches this API at
-    // runtime, so it must be on the classpath in dev runs too.
     implementation files("libs/baritone-fabric-26.2.jar")
 
-    // gson / brigadier are provided by MC
 }
 
 java {
@@ -58,6 +41,5 @@ java {
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = 'UTF-8'
     it.options.release = 25
-    // decompiled code: don't fail the whole build on warnings
     it.options.compilerArgs += ['-nowarn','-Xlint:none','-Xmaxerrs','100000','-Xmaxwarns','0']
 }

@@ -21,10 +21,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
 
 public class PlayerMotionPredictor implements ClientAccessor {
-    public static final float val = Float.intBitsToFloat(-1113550802);
+    public static final float val = (-0.0784f);
     public static final float val2 = MovementUtils.val;
-    public static final float val3 = val2 * Float.intBitsToFloat(1050253722);
-    public static final float val4 = (val2 * Float.intBitsToFloat(1068708659)) + Float.intBitsToFloat(1045220557);
+    public static final float val3 = val2 * 0.3f;
+    public static final float val4 = (val2 * 1.4f) + 0.2f;
     public final List<AABB> list = new ArrayList();
     public final Player playerEntity;
 
@@ -45,7 +45,7 @@ public class PlayerMotionPredictor implements ClientAccessor {
                 z = (z / hypot) * clamp;
             }
             if (EntityUtil.isOnGround(this.playerEntity) && y > 0.0d) {
-                y = Double.longBitsToDouble(-4633058300752035840L);
+                y = (-0.07840000092983246d);
             }
             AABB box234 = BoxMath.getServerBox(this.playerEntity);
             if (y > 0.0d) {
@@ -55,12 +55,12 @@ public class PlayerMotionPredictor implements ClientAccessor {
                 x = 0.0d;
                 z = 0.0d;
             }
-            if (hypot < MovementUtils.val2 && Math.abs(y) < Double.longBitsToDouble(4591870180066957722L)) {
+            if (hypot < MovementUtils.val2 && Math.abs(y) < 0.1d) {
                 this.list.addAll(Collections.nCopies(20, box234));
                 return;
             }
             for (int i = 0; i <= 20; i++) {
-                y = !is2711(this.playerEntity, box234.move(0.0d, Double.longBitsToDouble(-4646453807550688133L), 0.0d)) ? applyGravity(y) : Double.longBitsToDouble(-4633058300752035840L);
+                y = !is2711(this.playerEntity, box234.move(0.0d, (-0.01d), 0.0d)) ? applyGravity(y) : (-0.07840000092983246d);
                 List entityCollisions = minecraftClient.level.getEntityCollisions(this.playerEntity, box234.expandTowards(x, y, z));
                 ArrayList arrayList = new ArrayList();
                 synchronized (ClientServices.stashFinderHelper.getTimedBlockMap()) {
@@ -80,7 +80,7 @@ public class PlayerMotionPredictor implements ClientAccessor {
     }
 
     public static double applyGravity(double d) {
-        return (d + Double.longBitsToDouble(4590429028186199163L)) * Double.longBitsToDouble(4607002274814922588L);
+        return (d + 0.08d) * 0.98d;
     }
 
     public static AABB calculateMovementBox(AABB box, List<VoxelShape> list, double d, double d2, double d3) {

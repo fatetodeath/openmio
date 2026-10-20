@@ -121,7 +121,7 @@ public class AntiPhase extends Module {
         if (!playerEntity.isAlive() || minecraftClient.player == playerEntity || playerEntity.isSwimming() || ClientServices.socialManager.isFriendEntity(playerEntity) || PlayerUtils.getFeetPositions((LivingEntity) playerEntity).size() != 1 || hasItemAtPosition(PlayerUtils.getRoundedBlockPos((LivingEntity) playerEntity)) || !PlayerUtils.hasArmor((LivingEntity) playerEntity)) {
             return false;
         }
-        return (!this.noCrawl.getValue().booleanValue() || playerEntity.getBoundingBox().getYsize() > Double.longBitsToDouble(4607182418800017408L)) && playerEntity.distanceTo(minecraftClient.player) <= this.range.getValue().floatValue();
+        return (!this.noCrawl.getValue().booleanValue() || playerEntity.getBoundingBox().getYsize() > 1.0d) && playerEntity.distanceTo(minecraftClient.player) <= this.range.getValue().floatValue();
     }
 
     public boolean hasItemAtPosition(BlockPos blockPos) {

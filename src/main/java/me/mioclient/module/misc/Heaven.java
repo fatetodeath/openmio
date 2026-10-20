@@ -23,7 +23,7 @@ public class Heaven extends Module {
             }
             LocalPlayer clientPlayerEntity = minecraftClient.player;
             Vec3 velocity = minecraftClient.player.getDeltaMovement();
-            clientPlayerEntity.setDeltaMovement(velocity.with(Direction.Axis.Y, Double.longBitsToDouble(4613937818241073152L)));
+            clientPlayerEntity.setDeltaMovement(velocity.with(Direction.Axis.Y, 3.0d));
         }
     }
 }

@@ -57,10 +57,10 @@ public class Skeleton extends Module {
                     float f2 = 0.0f;
                     float f3 = 0.0f;
                     if (!abstractClientPlayerEntity.isPassenger() && abstractClientPlayerEntity.isAlive()) {
-                        f2 = Math.min(abstractClientPlayerEntity.walkAnimation.speed(f), Float.intBitsToFloat(1065353216));
+                        f2 = Math.min(abstractClientPlayerEntity.walkAnimation.speed(f), 1.0f);
                         f3 = abstractClientPlayerEntity.walkAnimation.position(f);
                         if (abstractClientPlayerEntity.isBaby()) {
-                            f3 *= Float.intBitsToFloat(1077936128);
+                            f3 *= 3.0f;
                         }
                     }
                     model.head.yRot = lerpAngleDegrees2 * 0.017453292f;
@@ -80,63 +80,63 @@ public class Skeleton extends Module {
                 ModelPart modelPart5 = model.rightLeg;
                 matrixStack472.translate(vec3d2641.x, vec3d2641.y, vec3d2641.z);
                 if (isInSwimmingPose) {
-                    matrixStack472.translate(0.0f, Float.intBitsToFloat(1051931443), 0.0f);
+                    matrixStack472.translate(0.0f, 0.35f, 0.0f);
                 }
-                matrixStack472.mulPose(new Quaternionf().setAngleAxis(((lerpAngleDegrees + Float.intBitsToFloat(1127481344)) * MathConstants.val) / Double.longBitsToDouble(4640537203540230144L), 0.0d, Double.longBitsToDouble(-4616189618054758400L), 0.0d));
+                matrixStack472.mulPose(new Quaternionf().setAngleAxis(((lerpAngleDegrees + 180.0f) * MathConstants.val) / 180.0d, 0.0d, (-1.0d), 0.0d));
                 if (isInSwimmingPose || isFallFlying) {
-                    matrixStack472.mulPose(new Quaternionf().setAngleAxis(((MathConstants.num2 + lerp) * MathConstants.val) / Double.longBitsToDouble(4640537203540230144L), Double.longBitsToDouble(-4616189618054758400L), 0.0d, 0.0d));
+                    matrixStack472.mulPose(new Quaternionf().setAngleAxis(((MathConstants.num2 + lerp) * MathConstants.val) / 180.0d, (-1.0d), 0.0d, 0.0d));
                 }
                 if (isInSwimmingPose) {
-                    matrixStack472.translate(0.0f, Float.intBitsToFloat(-1082969293), 0.0f);
+                    matrixStack472.translate(0.0f, (-0.95f), 0.0f);
                 }
                 if (animations.isPlayerScaleModified()) {
                     matrixStack472.scale(animations.playerScale.getValue().floatValue(), animations.playerScale.getValue().floatValue(), animations.playerScale.getValue().floatValue());
                 }
                 PoseStack.Pose pose = matrixStack472.last();
                 int rgb = value.getRGB();
-                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose, 0.0f, z ? Float.intBitsToFloat(1058642330) : Float.intBitsToFloat(1060320051), z ? Float.intBitsToFloat(1047233823) : 0.0f, 0.0f, z ? Float.intBitsToFloat(1065772646) : Float.intBitsToFloat(1068708659), 0.0f, rgb);
-                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose, Float.intBitsToFloat(-1094881116), z ? Float.intBitsToFloat(1065772646) : Float.intBitsToFloat(1068289229), 0.0f, Float.intBitsToFloat(1052602532), z ? Float.intBitsToFloat(1065772646) : Float.intBitsToFloat(1068289229), 0.0f, rgb);
-                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose, Float.intBitsToFloat(-1105618534), z ? Float.intBitsToFloat(1058642330) : Float.intBitsToFloat(1060320051), z ? Float.intBitsToFloat(1047233823) : 0.0f, Float.intBitsToFloat(1041865114), z ? Float.intBitsToFloat(1058642330) : Float.intBitsToFloat(1060320051), z ? Float.intBitsToFloat(1047233823) : 0.0f, rgb);
+                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose, 0.0f, z ? 0.6f : 0.7f, z ? 0.23f : 0.0f, 0.0f, z ? 1.05f : 1.4f, 0.0f, rgb);
+                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose, (-0.37f), z ? 1.05f : 1.35f, 0.0f, 0.37f, z ? 1.05f : 1.35f, 0.0f, rgb);
+                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose, (-0.15f), z ? 0.6f : 0.7f, z ? 0.23f : 0.0f, 0.15f, z ? 0.6f : 0.7f, z ? 0.23f : 0.0f, rgb);
                 matrixStack472.pushPose();
-                matrixStack472.translate(0.0f, z ? Float.intBitsToFloat(1065772646) : Float.intBitsToFloat(1068708659), 0.0f);
+                matrixStack472.translate(0.0f, z ? 1.05f : 1.4f, 0.0f);
                 applyModelPartRotation(matrixStack472, modelPart);
                 PoseStack.Pose pose2 = matrixStack472.last();
-                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose2, 0.0f, 0.0f, 0.0f, 0.0f, Float.intBitsToFloat(1041865114), 0.0f, rgb);
+                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose2, 0.0f, 0.0f, 0.0f, 0.0f, 0.15f, 0.0f, rgb);
                 matrixStack472.popPose();
                 matrixStack472.pushPose();
-                matrixStack472.translate(Float.intBitsToFloat(1041865114), z ? Float.intBitsToFloat(1058642330) : Float.intBitsToFloat(1060320051), z ? Float.intBitsToFloat(1047233823) : 0.0f);
+                matrixStack472.translate(0.15f, z ? 0.6f : 0.7f, z ? 0.23f : 0.0f);
                 applyModelPartRotation(matrixStack472, modelPart5);
                 PoseStack.Pose pose3 = matrixStack472.last();
-                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose3, 0.0f, 0.0f, 0.0f, 0.0f, Float.intBitsToFloat(-1088841318), 0.0f, rgb);
+                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose3, 0.0f, 0.0f, 0.0f, 0.0f, (-0.6f), 0.0f, rgb);
                 matrixStack472.popPose();
                 matrixStack472.pushPose();
-                matrixStack472.translate(Float.intBitsToFloat(-1105618534), z ? Float.intBitsToFloat(1058642330) : Float.intBitsToFloat(1060320051), z ? Float.intBitsToFloat(1047233823) : 0.0f);
+                matrixStack472.translate((-0.15f), z ? 0.6f : 0.7f, z ? 0.23f : 0.0f);
                 applyModelPartRotation(matrixStack472, modelPart4);
                 PoseStack.Pose pose4 = matrixStack472.last();
-                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose4, 0.0f, 0.0f, 0.0f, 0.0f, Float.intBitsToFloat(-1088841318), 0.0f, rgb);
+                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose4, 0.0f, 0.0f, 0.0f, 0.0f, (-0.6f), 0.0f, rgb);
                 matrixStack472.popPose();
                 matrixStack472.pushPose();
-                matrixStack472.translate(Float.intBitsToFloat(1052602532), z ? Float.intBitsToFloat(1065772646) : Float.intBitsToFloat(1068289229), 0.0f);
+                matrixStack472.translate(0.37f, z ? 1.05f : 1.35f, 0.0f);
                 applyModelPartRotation(matrixStack472, modelPart3);
                 PoseStack.Pose pose5 = matrixStack472.last();
-                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose5, 0.0f, 0.0f, 0.0f, 0.0f, Float.intBitsToFloat(-1089680179), 0.0f, rgb);
+                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose5, 0.0f, 0.0f, 0.0f, 0.0f, (-0.55f), 0.0f, rgb);
                 matrixStack472.popPose();
                 matrixStack472.pushPose();
-                matrixStack472.translate(Float.intBitsToFloat(-1094881116), z ? Float.intBitsToFloat(1065772646) : Float.intBitsToFloat(1068289229), 0.0f);
+                matrixStack472.translate((-0.37f), z ? 1.05f : 1.35f, 0.0f);
                 applyModelPartRotation(matrixStack472, modelPart2);
                 PoseStack.Pose pose6 = matrixStack472.last();
-                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose6, 0.0f, 0.0f, 0.0f, 0.0f, Float.intBitsToFloat(-1089680179), 0.0f, rgb);
+                me.mioclient.render.shape.BoxRenderer.submitLinePair(matrixStack472, pose6, 0.0f, 0.0f, 0.0f, 0.0f, (-0.55f), 0.0f, rgb);
                 matrixStack472.popPose();
                 if (isInSwimmingPose) {
-                    matrixStack472.translate(0.0f, Float.intBitsToFloat(1064514355), 0.0f);
+                    matrixStack472.translate(0.0f, 0.95f, 0.0f);
                 }
                 if (isInSwimmingPose || isFallFlying) {
-                    matrixStack472.mulPose(new Quaternionf().setAngleAxis(((MathConstants.num2 + lerp) * MathConstants.val) / Double.longBitsToDouble(4640537203540230144L), Double.longBitsToDouble(4607182418800017408L), 0.0d, 0.0d));
+                    matrixStack472.mulPose(new Quaternionf().setAngleAxis(((MathConstants.num2 + lerp) * MathConstants.val) / 180.0d, 1.0d, 0.0d, 0.0d));
                 }
                 if (isInSwimmingPose) {
-                    matrixStack472.translate(0.0f, Float.intBitsToFloat(-1095552205), 0.0f);
+                    matrixStack472.translate(0.0f, (-0.35f), 0.0f);
                 }
-                matrixStack472.mulPose(new Quaternionf().setAngleAxis(((lerpAngleDegrees + Float.intBitsToFloat(1127481344)) * MathConstants.val) / Double.longBitsToDouble(4640537203540230144L), 0.0d, Double.longBitsToDouble(4607182418800017408L), 0.0d));
+                matrixStack472.mulPose(new Quaternionf().setAngleAxis(((lerpAngleDegrees + 180.0f) * MathConstants.val) / 180.0d, 0.0d, 1.0d, 0.0d));
                 matrixStack472.translate(-vec3d2641.x, -vec3d2641.y, -vec3d2641.z);
             }
         }

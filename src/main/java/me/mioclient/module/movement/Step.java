@@ -87,7 +87,7 @@ public class Step extends Module {
         if (isNotInGame()) {
             return;
         }
-        EntityUtil.setStepHeight(minecraftClient.player, Float.intBitsToFloat(1058642330));
+        EntityUtil.setStepHeight(minecraftClient.player, 0.6f);
     }
 
     @Override // me.mioclient.module.Module
@@ -123,7 +123,7 @@ public class Step extends Module {
             moveEvent_2.setSpeed(this.height.getValue().floatValue());
         }
         if (moveEvent_2.getPhase() == KeyPearlMode.Post) {
-            if (moveEvent_2.getSpeed() <= Double.longBitsToDouble(4603579539098121011L)) {
+            if (moveEvent_2.getSpeed() <= 0.6d) {
                 ClientServices.holeSnapHelper.releaseTickRate(this);
                 return;
             }
@@ -137,12 +137,12 @@ public class Step extends Module {
                 this.flag = true;
             }
             this.num++;
-            if (moveEvent_2.getSpeed() <= Float.intBitsToFloat(1065353216)) {
-                arrayList.addAll(List.of(Double.valueOf(Double.longBitsToDouble(4601237667291888353L) * moveEvent_2.getSpeed()), Double.valueOf(Double.longBitsToDouble(4604930618986332160L) * moveEvent_2.getSpeed())));
-            } else if (moveEvent_2.getSpeed() <= Double.longBitsToDouble(4609434218613702656L)) {
-                arrayList.addAll(List.of(Double.valueOf(Double.longBitsToDouble(4601237667291888353L)), Double.valueOf(Double.longBitsToDouble(4604930618986332160L)), Double.valueOf(Double.longBitsToDouble(4607182418800017408L)), Double.valueOf(Double.longBitsToDouble(4607902994740396687L)), Double.valueOf(Double.longBitsToDouble(4608218246714312622L)), Double.valueOf(Double.longBitsToDouble(4608083138725491507L))));
+            if (moveEvent_2.getSpeed() <= 1.0f) {
+                arrayList.addAll(List.of(Double.valueOf(0.42d * moveEvent_2.getSpeed()), Double.valueOf(0.75d * moveEvent_2.getSpeed())));
+            } else if (moveEvent_2.getSpeed() <= 1.5d) {
+                arrayList.addAll(List.of(Double.valueOf(0.42d), Double.valueOf(0.75d), Double.valueOf(1.0d), Double.valueOf(1.16d), Double.valueOf(1.23d), Double.valueOf(1.2d)));
             } else if (moveEvent_2.getSpeed() <= this.height.getValue().floatValue()) {
-                arrayList.addAll(List.of(Double.valueOf(Double.longBitsToDouble(4601237667291888353L)), Double.valueOf(Double.longBitsToDouble(4605200834963974390L)), Double.valueOf(Double.longBitsToDouble(4603849755075763241L)), Double.valueOf(Double.longBitsToDouble(4602768891165194322L)), Double.valueOf(Double.longBitsToDouble(4606281698874543309L)), Double.valueOf(Double.longBitsToDouble(4608128174721765212L)), Double.valueOf(Double.longBitsToDouble(4609209038632334131L)), Double.valueOf(Double.longBitsToDouble(4609118966639786721L))));
+                arrayList.addAll(List.of(Double.valueOf(0.42d), Double.valueOf(0.78d), Double.valueOf(0.63d), Double.valueOf(0.51d), Double.valueOf(0.9d), Double.valueOf(1.21d), Double.valueOf(1.45d), Double.valueOf(1.43d)));
             }
             if (arrayList.isEmpty()) {
                 return;

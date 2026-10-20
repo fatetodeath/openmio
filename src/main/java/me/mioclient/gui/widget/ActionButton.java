@@ -26,7 +26,7 @@ public class ActionButton extends PresetPresetSettingButton {
     @Override // me.mioclient.setting.PresetPresetSettingButton, me.mioclient.gui.widget.PanelComponent, me.mioclient.gui.GuiComponent
     public void render(GuiGraphicsExtractor drawContext, PoseStack matrixStack, double d, double d2) {
         if (isHighlighted()) {
-            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + 1, this.presetEnumSettingHelper.getY() + this.num + Float.intBitsToFloat(1056964608), (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 1, ((this.presetEnumSettingHelper.getY() + this.num) + getFontHeight()) - Float.intBitsToFloat(1056964608), getUI().color.getValue());
+            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + 1, this.presetEnumSettingHelper.getY() + this.num + 0.5f, (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 1, ((this.presetEnumSettingHelper.getY() + this.num) + getFontHeight()) - 0.5f, getUI().color.getValue());
         }
         super.render(drawContext, matrixStack, d, d2);
     }

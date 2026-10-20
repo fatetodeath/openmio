@@ -144,8 +144,8 @@ public class HUD extends Module {
             return this.setting8.getValue() == MixinTitleScreenMode.RAW && this.setting6.isShown();
         }));
         this.list = new ArrayList(this.setting11.getMaxValue().intValue());
-        this.hUDHelper_2 = new InterpolatedFloat(Float.intBitsToFloat(1073741824));
-        this.hUDHelper_22 = new InterpolatedFloat(Float.intBitsToFloat(1069547520));
+        this.hUDHelper_2 = new InterpolatedFloat(2.0f);
+        this.hUDHelper_22 = new InterpolatedFloat(1.5f);
         this.setting.setChangeCallback(() -> {
             if (this.setting.getValue().booleanValue()) {
                 this.setting.setValue(false);
@@ -193,8 +193,8 @@ public class HUD extends Module {
         float f = this.hUDHelper_22.getValue();
         float scaledWidth = minecraftClient.getWindow().getGuiScaledWidth();
         float scaledHeight = minecraftClient.getWindow().getGuiScaledHeight();
-        if (f > Float.intBitsToFloat(1065353216) && !(minecraftClient.gui.screen() instanceof ChatScreen)) {
-            matrixStackEvent_2.getDrawContext().fill(2, (int) ((scaledHeight - Float.intBitsToFloat(1073741824)) - f), (int) (scaledWidth - Float.intBitsToFloat(1073741824)), (int) (scaledHeight - Float.intBitsToFloat(1073741824)), (int) (minecraftClient.options.textBackgroundOpacity().get() * 255) << 24);
+        if (f > 1.0f && !(minecraftClient.gui.screen() instanceof ChatScreen)) {
+            matrixStackEvent_2.getDrawContext().fill(2, (int) ((scaledHeight - 2.0f) - f), (int) (scaledWidth - 2.0f), (int) (scaledHeight - 2.0f), (int) (minecraftClient.options.textBackgroundOpacity().get() * 255) << 24);
         }
         DraggableHudElement.flag = true;
         if (!(minecraftClient.gui.screen() instanceof HudEditorScreen)) {
@@ -208,7 +208,7 @@ public class HUD extends Module {
     }
 
     public float getStatusEffectOffset() {
-        return this.hUDHelper_2.val == Float.intBitsToFloat(1082130432) ? Float.intBitsToFloat(1065353216) : this.hUDHelper_2.val;
+        return this.hUDHelper_2.val == 4.0f ? 1.0f : this.hUDHelper_2.val;
     }
 
     public void animateBottomOffset(float f) {

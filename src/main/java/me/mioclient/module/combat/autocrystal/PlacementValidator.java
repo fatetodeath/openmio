@@ -30,7 +30,7 @@ public class PlacementValidator implements ClientAccessor {
     public int num;
     public boolean flag2 = true;
     public boolean flag4 = true;
-    public float val = Float.intBitsToFloat(1086324736);
+    public float val = 6.0f;
 
     public boolean isPositionValid(BlockPos blockPos) {
         if (!this.flag7 && !WorldUtils.isBedrockOrObsidian(blockPos)) {
@@ -80,7 +80,7 @@ public class PlacementValidator implements ClientAccessor {
                     DuckPlayerEntity duckPlayer = entity instanceof DuckPlayerEntity ? (DuckPlayerEntity) entity : null;
                     boundingBox = BoxMath.getServerBox((LivingEntity) entity);
                     if (this.flag6 && duckPlayer != null && !duckPlayer.mio$isNextToWall()) {
-                        boundingBox = boundingBox.inflate(Double.longBitsToDouble(4547007122018943789L), 0.0d, Double.longBitsToDouble(4547007122018943789L));
+                        boundingBox = boundingBox.inflate(1.0E-4d, 0.0d, 1.0E-4d);
                     }
                     for (int i2 = 1; i2 <= this.num; i2++) {
                         if (ClientServices.mainhandHelper.getPredictedBox(playerEntity, i2).setMaxY(boundingBox.maxY).setMinY(boundingBox.minY).intersects(withMaxY)) {

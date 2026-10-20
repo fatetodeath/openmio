@@ -61,7 +61,7 @@ public class SelfFill extends Module {
 
     public SelfFill() {
         super("SelfFill", "Places solid blocks inside you blocking your lower hitbox.", Category.COMBAT, "burrow");
-        this.list = List.of(Double.valueOf(Double.longBitsToDouble(4600877379321698714L)), Double.valueOf(Double.longBitsToDouble(4604930618986332160L)), Double.valueOf(Double.longBitsToDouble(4607227454796291113L)), Double.valueOf(Double.longBitsToDouble(4607857958744122982L)));
+        this.list = List.of(Double.valueOf(0.4d), Double.valueOf(0.75d), Double.valueOf(1.01d), Double.valueOf(1.15d));
     }
 
     @Override // me.mioclient.module.Module
@@ -86,7 +86,7 @@ public class SelfFill extends Module {
         ClientboundPlayerPositionPacket packet904 = (channelRead0Event.getPacket()) instanceof ClientboundPlayerPositionPacket ? (ClientboundPlayerPositionPacket) (channelRead0Event.getPacket()) : null;
         if (packet904 instanceof ClientboundPlayerPositionPacket) {
             ClientboundPlayerPositionPacket playerPositionLookS2CPacket = packet904;
-            if (minecraftClient.player.position().distanceToSqr(playerPositionLookS2CPacket.change().position()) > Double.longBitsToDouble(4621256167635550208L)) {
+            if (minecraftClient.player.position().distanceToSqr(playerPositionLookS2CPacket.change().position()) > 9.0d) {
                 this.val = playerPositionLookS2CPacket.change().position().y;
             }
         }
@@ -211,9 +211,9 @@ public class SelfFill extends Module {
         if (!this.noLagBack.getValue().booleanValue()) {
             minecraftClient.player.connection.send(new ServerboundMovePlayerPacket.PosRot(minecraftClient.player.getX(), minecraftClient.player.getY() + d, minecraftClient.player.getZ(), minecraftClient.player.getYRot(), MathConstants.num2, false, minecraftClient.player.horizontalCollision));
         } else {
-            minecraftClient.player.connection.send(new ServerboundMovePlayerPacket.PosRot(minecraftClient.player.getX(), minecraftClient.player.getY() + Double.longBitsToDouble(4607182418800017408L), minecraftClient.player.getZ(), minecraftClient.player.getYRot(), MathConstants.num2, true, minecraftClient.player.horizontalCollision));
+            minecraftClient.player.connection.send(new ServerboundMovePlayerPacket.PosRot(minecraftClient.player.getX(), minecraftClient.player.getY() + 1.0d, minecraftClient.player.getZ(), minecraftClient.player.getYRot(), MathConstants.num2, true, minecraftClient.player.horizontalCollision));
             ClientServices.tooltipsHelper.schedule(() -> {
-                minecraftClient.player.setPos(minecraftClient.player.getX(), minecraftClient.player.getY() + Double.longBitsToDouble(4607182418800017408L), minecraftClient.player.getZ());
+                minecraftClient.player.setPos(minecraftClient.player.getX(), minecraftClient.player.getY() + 1.0d, minecraftClient.player.getZ());
             }, 1);
         }
     }

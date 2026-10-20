@@ -61,10 +61,10 @@ public class RainbowShader extends OutlineShader {
         this.framebufferHelper_3.setUniformInt("u_Overlay", 1);
         this.framebufferHelper_3.setUniformFloat("u_OverlayAlpha", shader_lcl.getOverlayAlpha());
         this.framebufferHelper_3.setUniformColor("u_Fill", shader_lcl.isHandFillDisabled() ? ColorUtils.color : shader_lcl.applyClusterAlpha(shader_lcl.fill.getValue()));
-        this.framebufferHelper_3.setUniformFloat("u_Fill_Offset", ((float) (System.currentTimeMillis() - this.num)) * Float.intBitsToFloat(981668463) * shader_lcl.fillSpeed.getValue().floatValue());
+        this.framebufferHelper_3.setUniformFloat("u_Fill_Offset", ((float) (System.currentTimeMillis() - this.num)) * 0.001f * shader_lcl.fillSpeed.getValue().floatValue());
         this.framebufferHelper_3.setUniformFloat("u_Fill_Strength", shader_lcl.fillStrength.getValue().floatValue());
         this.framebufferHelper_3.setUniformColor("u_Outline", shader_lcl.outline2.getValue());
-        this.framebufferHelper_3.setUniformFloat("u_Outline_Offset", ((float) (System.currentTimeMillis() - this.num)) * Float.intBitsToFloat(981668463) * shader_lcl.outlineSpeed.getValue().floatValue());
+        this.framebufferHelper_3.setUniformFloat("u_Outline_Offset", ((float) (System.currentTimeMillis() - this.num)) * 0.001f * shader_lcl.outlineSpeed.getValue().floatValue());
         this.framebufferHelper_3.setUniformFloat("u_Outline_Strength", shader_lcl.outlineStrength.getValue().floatValue());
         this.framebufferHelper_3.setUniformInt("u_Radius", shader_lcl.isHandOutlineDisabled() ? 0 : shader_lcl.lineWidth.getValue().intValue());
         this.framebufferHelper_3.setUniformFloat("u_GlowMultiplier", shader_lcl.glow.getValue().floatValue());

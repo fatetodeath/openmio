@@ -18,7 +18,7 @@ public class Lag extends me.mioclient.module.HudModule {
     public Lag() {
         super("Lag'O'Meter", "lag", "lagometer");
         this.setting = add(new ColorSetting("Color", Color.gray));
-        this.progress = new AnimationProgress(Float.intBitsToFloat(1065353216));
+        this.progress = new AnimationProgress(1.0f);
         setElement(new ResizableHudElement(this));
     }
 
@@ -29,7 +29,7 @@ public class Lag extends me.mioclient.module.HudModule {
         if (string773 == null) {
             return;
         }
-        ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, string773, 0.0f, (Float.intBitsToFloat(1065353216) - this.progress.getValue()) * (-ClientTextRenderer.INSTANCE.getFontHeight()), this.setting.getValue());
+        ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, string773, 0.0f, (1.0f - this.progress.getValue()) * (-ClientTextRenderer.INSTANCE.getFontHeight()), this.setting.getValue());
     }
 
     @Override // me.mioclient.module.HudModule
@@ -42,6 +42,6 @@ public class Lag extends me.mioclient.module.HudModule {
         if ((Math.max(System.currentTimeMillis() - ClientServices.holeSnapRenderHelper.getLastPacketTime(), 0L) <= 1000 || minecraftClient.hasSingleplayerServer()) && !isInHudEditor()) {
             return null;
         }
-        return "The server is not responding for %.1fs".formatted(Float.valueOf(((float) (System.currentTimeMillis() - ClientServices.holeSnapRenderHelper.getLastPacketTime())) / Float.intBitsToFloat(1148846080)));
+        return "The server is not responding for %.1fs".formatted(Float.valueOf(((float) (System.currentTimeMillis() - ClientServices.holeSnapRenderHelper.getLastPacketTime())) / 1000.0f));
     }
 }

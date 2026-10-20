@@ -11,7 +11,7 @@ public class FullscreenQuad {
     public static void init() {
         byteBufferSearchHelper4 = new MeshBuilder(MeshBuilder.Mode_2.Triangles, MeshBuilder.Mode.Vec2);
         byteBufferSearchHelper4.beginBuild();
-        byteBufferSearchHelper4.submitQuad(byteBufferSearchHelper4.writeScreenPosition(Double.longBitsToDouble(-4616189618054758400L), Double.longBitsToDouble(-4616189618054758400L)).nextVertexIndex(), byteBufferSearchHelper4.writeScreenPosition(Double.longBitsToDouble(-4616189618054758400L), Double.longBitsToDouble(4607182418800017408L)).nextVertexIndex(), byteBufferSearchHelper4.writeScreenPosition(Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(4607182418800017408L)).nextVertexIndex(), byteBufferSearchHelper4.writeScreenPosition(Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(-4616189618054758400L)).nextVertexIndex());
+        byteBufferSearchHelper4.submitQuad(byteBufferSearchHelper4.writeScreenPosition((-1.0d), (-1.0d)).nextVertexIndex(), byteBufferSearchHelper4.writeScreenPosition((-1.0d), 1.0d).nextVertexIndex(), byteBufferSearchHelper4.writeScreenPosition(1.0d, 1.0d).nextVertexIndex(), byteBufferSearchHelper4.writeScreenPosition(1.0d, (-1.0d)).nextVertexIndex());
         byteBufferSearchHelper4.endBuild();
     }
 

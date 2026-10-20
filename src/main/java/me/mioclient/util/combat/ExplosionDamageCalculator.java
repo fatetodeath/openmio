@@ -58,11 +58,11 @@ public class ExplosionDamageCalculator implements ClientAccessor {
     }
 
     public static float getCrystalDamage(Vec3 vec3d, LivingEntity livingEntity) {
-        return getExplosionDamage(vec3d, livingEntity, Double.longBitsToDouble(4618441417868443648L), true, (BlockPos) null);
+        return getExplosionDamage(vec3d, livingEntity, 6.0d, true, (BlockPos) null);
     }
 
     public static float getCrystalDamage(Vec3 vec3d, LivingEntity livingEntity, AABB box) {
-        return getExplosionDamage(vec3d, livingEntity, box, Double.longBitsToDouble(4618441417868443648L), true, (BlockPos) null, (BlockPos) null);
+        return getExplosionDamage(vec3d, livingEntity, box, 6.0d, true, (BlockPos) null, (BlockPos) null);
     }
 
     public static float getBedDamage(Vec3 vec3d, LivingEntity livingEntity) {
@@ -70,7 +70,7 @@ public class ExplosionDamageCalculator implements ClientAccessor {
     }
 
     public static float getBedDamage(Vec3 vec3d, LivingEntity livingEntity, AABB box) {
-        return getExplosionDamage(vec3d, livingEntity, box, Double.longBitsToDouble(4617315517961601024L), true, (BlockPos) null, (BlockPos) null);
+        return getExplosionDamage(vec3d, livingEntity, box, 5.0d, true, (BlockPos) null, (BlockPos) null);
     }
 
     public static float getExplosionDamage(Vec3 vec3d, LivingEntity livingEntity, double d, boolean z, BlockPos blockPos) {
@@ -82,13 +82,13 @@ public class ExplosionDamageCalculator implements ClientAccessor {
             return 0.0f;
         }
         Vec3 vec3d2 = new Vec3(Mth.lerp(MathConstants.val2, box.minX, box.maxX), box.minY, Mth.lerp(MathConstants.val2, box.minZ, box.maxZ));
-        double longBitsToDouble = d * Double.longBitsToDouble(4611686018427387904L);
+        double longBitsToDouble = d * 2.0d;
         double distanceTo = vec3d2.distanceTo(vec3d) / longBitsToDouble;
-        if (distanceTo > Double.longBitsToDouble(4607182418800017408L)) {
+        if (distanceTo > 1.0d) {
             return 0.0f;
         }
-        double longBitsToDouble2 = (Double.longBitsToDouble(4607182418800017408L) - distanceTo) * getExposure(vec3d, (Entity) livingEntity, box, blockPos, blockPos2, z);
-        return Math.max(getDamageAfterProtection(livingEntity, getDifficultyScaledDamage((float) (((((longBitsToDouble2 * longBitsToDouble2) + longBitsToDouble2) / Double.longBitsToDouble(4611686018427387904L)) * Double.longBitsToDouble(4619567317775286272L) * longBitsToDouble) + Double.longBitsToDouble(4607182418800017408L)))), 0.0f);
+        double longBitsToDouble2 = (1.0d - distanceTo) * getExposure(vec3d, (Entity) livingEntity, box, blockPos, blockPos2, z);
+        return Math.max(getDamageAfterProtection(livingEntity, getDifficultyScaledDamage((float) (((((longBitsToDouble2 * longBitsToDouble2) + longBitsToDouble2) / 2.0d) * 7.0d * longBitsToDouble) + 1.0d))), 0.0f);
     }
 
     public static float getExposure(Vec3 vec3d, Entity entity, BlockPos blockPos, boolean z) {
@@ -96,11 +96,11 @@ public class ExplosionDamageCalculator implements ClientAccessor {
     }
 
     public static float getExposure(Vec3 vec3d, Entity entity, AABB box, BlockPos blockPos, BlockPos blockPos2, boolean z) {
-        double longBitsToDouble = Double.longBitsToDouble(4607182418800017408L) / (((box.maxX - box.minX) * Double.longBitsToDouble(4611686018427387904L)) + Double.longBitsToDouble(4607182418800017408L));
-        double longBitsToDouble2 = Double.longBitsToDouble(4607182418800017408L) / (((box.maxY - box.minY) * Double.longBitsToDouble(4611686018427387904L)) + Double.longBitsToDouble(4607182418800017408L));
-        double longBitsToDouble3 = Double.longBitsToDouble(4607182418800017408L) / (((box.maxZ - box.minZ) * Double.longBitsToDouble(4611686018427387904L)) + Double.longBitsToDouble(4607182418800017408L));
-        double longBitsToDouble4 = (Double.longBitsToDouble(4607182418800017408L) - (Math.floor(Double.longBitsToDouble(4607182418800017408L) / longBitsToDouble) * longBitsToDouble)) / Double.longBitsToDouble(4611686018427387904L);
-        double longBitsToDouble5 = (Double.longBitsToDouble(4607182418800017408L) - (Math.floor(Double.longBitsToDouble(4607182418800017408L) / longBitsToDouble3) * longBitsToDouble3)) / Double.longBitsToDouble(4611686018427387904L);
+        double longBitsToDouble = 1.0d / (((box.maxX - box.minX) * 2.0d) + 1.0d);
+        double longBitsToDouble2 = 1.0d / (((box.maxY - box.minY) * 2.0d) + 1.0d);
+        double longBitsToDouble3 = 1.0d / (((box.maxZ - box.minZ) * 2.0d) + 1.0d);
+        double longBitsToDouble4 = (1.0d - (Math.floor(1.0d / longBitsToDouble) * longBitsToDouble)) / 2.0d;
+        double longBitsToDouble5 = (1.0d - (Math.floor(1.0d / longBitsToDouble3) * longBitsToDouble3)) / 2.0d;
         if (longBitsToDouble < 0.0d || longBitsToDouble2 < 0.0d || longBitsToDouble3 < 0.0d) {
             return 0.0f;
         }
@@ -109,17 +109,17 @@ public class ExplosionDamageCalculator implements ClientAccessor {
         double d = 0.0d;
         while (true) {
             double d2 = d;
-            if (d2 > Double.longBitsToDouble(4607182418800017408L)) {
+            if (d2 > 1.0d) {
                 return (float) i / (float) i2;   // çˆ†ç‚¸æš´éœ²çŽ‡(å‘½ä¸­æ ·æœ¬/æ€»æ ·æœ¬), å¿…é¡»æµ®ç‚¹é™¤æ³•; åç¼–è¯‘ä¸¢äº†è½¬åž‹å¯¼è‡´æ•´æ•°é™¤æ³•â†’æ’0â†’æ°´æ™¶ä¼¤å®³â‰ˆ0â†’AutoCrystalä¸æ”¾ç½®
             }
             double d3 = 0.0d;
             while (true) {
                 double d4 = d3;
-                if (d4 <= Double.longBitsToDouble(4607182418800017408L)) {
+                if (d4 <= 1.0d) {
                     double d5 = 0.0d;
                     while (true) {
                         double d6 = d5;
-                        if (d6 <= Double.longBitsToDouble(4607182418800017408L)) {
+                        if (d6 <= 1.0d) {
                             CustomRaycastContext.Inner inner1603 = new CustomRaycastContext.Inner(new Vec3(Mth.lerp(d2, box.minX, box.maxX) + longBitsToDouble4, Mth.lerp(d4, box.minY, box.maxY), Mth.lerp(d6, box.minZ, box.maxZ) + longBitsToDouble5), vec3d).setEntity(entity);
                             BlockRaycastFilter[] holeSnapHelperArr = new BlockRaycastFilter[3];
                             BlockPos[] blockPosArr = new BlockPos[2];
@@ -153,7 +153,7 @@ public class ExplosionDamageCalculator implements ClientAccessor {
         float clamped = Mth.clamp(armor - f / (2.0f + toughness / 4.0f), armor * 0.2f, 20.0f);
         float damageLeft = f * (1.0f - clamped / 25.0f);
         if (livingEntity.hasEffect(MobEffects.RESISTANCE)) {
-            damageLeft = (damageLeft * (25 - ((livingEntity.getEffect(MobEffects.RESISTANCE).getAmplifier() + 1) * 5))) / Float.intBitsToFloat(1103626240);
+            damageLeft = (damageLeft * (25 - ((livingEntity.getEffect(MobEffects.RESISTANCE).getAmplifier() + 1) * 5))) / 25.0f;
         }
         int i = 0;
         // 26.2 port: iterate armor slots via getItemBySlot.
@@ -164,7 +164,7 @@ public class ExplosionDamageCalculator implements ClientAccessor {
         if (i > 20 || (autoCrystal.isToggled() && autoCrystal.assumeBestArmor.getValue().booleanValue())) {
             i = 20;
         }
-        float intBitsToFloat = damageLeft * (Float.intBitsToFloat(1065353216) - (i / Float.intBitsToFloat(1103626240)));
+        float intBitsToFloat = damageLeft * (1.0f - (i / 25.0f));
         if (intBitsToFloat < 0.0f) {
             return 0.0f;
         }
@@ -176,15 +176,15 @@ public class ExplosionDamageCalculator implements ClientAccessor {
             case 1:
                 return 0.0f;
             case 2:
-                return Math.min((f / Float.intBitsToFloat(1073741824)) + Float.intBitsToFloat(1065353216), f);
+                return Math.min((f / 2.0f) + 1.0f, f);
             case 3:
-                return (f * Float.intBitsToFloat(1077936128)) / Float.intBitsToFloat(1073741824);
+                return (f * 3.0f) / 2.0f;
             default:
                 return f;
         }
     }
 
     public static int getClampedDurabilityPercent(ItemStack itemStack) {
-        return Mth.clamp(100 - ((int) Math.ceil((Float.intBitsToFloat(1065353216) - ((itemStack.getMaxDamage() - itemStack.getDamageValue()) / (float) itemStack.getMaxDamage())) * Float.intBitsToFloat(1120403456))), 1, 100);
+        return Mth.clamp(100 - ((int) Math.ceil((1.0f - ((itemStack.getMaxDamage() - itemStack.getDamageValue()) / (float) itemStack.getMaxDamage())) * 100.0f)), 1, 100);
     }
 }

@@ -141,7 +141,7 @@ public class Tunnels extends Module {
                 });
             }
             this.list.removeIf(inner -> {
-                return Math.sqrt(minecraftClient.player.getEyePosition().distanceToSqr(inner.box.getCenter())) > Double.longBitsToDouble(4643211215818981376L);
+                return Math.sqrt(minecraftClient.player.getEyePosition().distanceToSqr(inner.box.getCenter())) > 256.0d;
             });
         }
     }

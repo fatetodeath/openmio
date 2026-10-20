@@ -25,7 +25,7 @@ public class EspTargetFilter implements ClientAccessor {
 
     public EspTargetFilter(ItemEntity itemEntity) {
         float tickDelta = minecraftClient.getDeltaTracker().getGameTimeDeltaPartialTick(true);
-        this.box = AABB.ofSize(itemEntity.getPosition(tickDelta), Double.longBitsToDouble(4617315517961601024L), Double.longBitsToDouble(4617315517961601024L), Double.longBitsToDouble(4617315517961601024L));
+        this.box = AABB.ofSize(itemEntity.getPosition(tickDelta), 5.0d, 5.0d, 5.0d);
         this.box2 = BoxMath.getInterpolatedBox((Entity) itemEntity, tickDelta);
         addTrackedItem(itemEntity);
     }
@@ -48,7 +48,7 @@ public class EspTargetFilter implements ClientAccessor {
             return Integer.valueOf(itemEntity.getItem().getCount() + (num == null ? 0 : num.intValue()));
         });
         this.val = Math.max(ClientTextRenderer.INSTANCE.getStringWidth(formatItemCountLabel(string, this.map.get(string).intValue())), this.val);
-        if (new Vec3(itemEntity.getX() - itemEntity.xo, itemEntity.getY() - itemEntity.yo, itemEntity.getZ() - itemEntity.zo).lengthSqr() >= Double.longBitsToDouble(4547007122018943789L)) {
+        if (new Vec3(itemEntity.getX() - itemEntity.xo, itemEntity.getY() - itemEntity.yo, itemEntity.getZ() - itemEntity.zo).lengthSqr() >= 1.0E-4d) {
             return true;
         }
         this.box2 = this.box2.minmax(BoxMath.getInterpolatedBox((Entity) itemEntity, tickDelta));

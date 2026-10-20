@@ -273,7 +273,7 @@ public final class RotationManager implements ClientAccessor {
 
     public static float[] getRotations(Vec3 vec3d, Vec3 vec3d2) {
         double d = vec3d2.x - vec3d.x;
-        double longBitsToDouble = (vec3d2.y - vec3d.y) * Double.longBitsToDouble(-4616189618054758400L);
+        double longBitsToDouble = (vec3d2.y - vec3d.y) * (-1.0d);
         double d2 = vec3d2.z - vec3d.z;
         return new float[]{(float) Mth.wrapDegrees(Math.toDegrees(Math.atan2(d2, d)) - MathConstants.num2), (float) Mth.wrapDegrees(Math.toDegrees(Math.atan2(longBitsToDouble, Math.sqrt((d * d) + (d2 * d2)))))};
     }
@@ -282,19 +282,19 @@ public final class RotationManager implements ClientAccessor {
         if (fArr == null) {
             return null;
         }
-        float clamp = Mth.clamp(f, Float.intBitsToFloat(1036831949), Float.intBitsToFloat(1065353216));
-        if (clamp < Float.intBitsToFloat(1065353216)) {
+        float clamp = Mth.clamp(f, 0.1f, 1.0f);
+        if (clamp < 1.0f) {
             float lastYaw = ((DuckClientPlayerEntity)(Object) minecraftClient.player).lastYaw();
             float wrapDegrees = Mth.wrapDegrees(fArr[0] - lastYaw);
-            if (Math.abs(wrapDegrees) > Float.intBitsToFloat(1127481344) * clamp) {
-                fArr[0] = lastYaw + (wrapDegrees * ((Float.intBitsToFloat(1127481344) * clamp) / Math.abs(wrapDegrees)));
+            if (Math.abs(wrapDegrees) > 180.0f * clamp) {
+                fArr[0] = lastYaw + (wrapDegrees * ((180.0f * clamp) / Math.abs(wrapDegrees)));
             }
         }
         return new float[]{fArr[0], fArr[1]};
     }
 
     public static int getYawOctant(float f) {
-        return Mth.floor(((f * Float.intBitsToFloat(1090519040)) / MathConstants.num3) + MathConstants.val2) & 7;
+        return Mth.floor(((f * 8.0f) / MathConstants.num3) + MathConstants.val2) & 7;
     }
 
     public static int getYawQuadrant() {
@@ -302,7 +302,7 @@ public final class RotationManager implements ClientAccessor {
     }
 
     public static int getYawQuadrant(float f) {
-        return Mth.floor(((f * Float.intBitsToFloat(1082130432)) / MathConstants.num3) + MathConstants.val2) & 3;
+        return Mth.floor(((f * 4.0f) / MathConstants.num3) + MathConstants.val2) & 3;
     }
 
     public static Direction getDirectionFromQuadrant(int i) {
@@ -392,23 +392,23 @@ public final class RotationManager implements ClientAccessor {
         float f3 = f2;
         double x = minecraftClient.player.getX() - minecraftClient.player.xo;
         double z = minecraftClient.player.getZ() - minecraftClient.player.zo;
-        if ((x * x) + (z * z) > Double.longBitsToDouble(4567911030457368576L)) {
-            float atan2 = (((float) Mth.atan2(z, x)) * Float.intBitsToFloat(1113927392)) - MathConstants.num2;
+        if ((x * x) + (z * z) > 0.002500000176951289d) {
+            float atan2 = (((float) Mth.atan2(z, x)) * 57.295776f) - MathConstants.num2;
             float abs = Mth.abs(Mth.wrapDegrees(f) - atan2);
-            f3 = (Float.intBitsToFloat(1119748096) >= abs || abs >= Float.intBitsToFloat(1132756992)) ? atan2 : atan2 - Float.intBitsToFloat(1127481344);
+            f3 = (95.0f >= abs || abs >= 265.0f) ? atan2 : atan2 - 180.0f;
         }
         if (minecraftClient.player.attackAnim > 0.0f) {
             f3 = f;
         }
-        float wrapDegrees = Mth.wrapDegrees(f - (f2 + (Mth.wrapDegrees(f3 - f2) * Float.intBitsToFloat(1050253722))));
-        if (wrapDegrees < Float.intBitsToFloat(-1030356992)) {
-            wrapDegrees = Float.intBitsToFloat(-1030356992);
-        } else if (wrapDegrees >= Float.intBitsToFloat(1117126656)) {
-            wrapDegrees = Float.intBitsToFloat(1117126656);
+        float wrapDegrees = Mth.wrapDegrees(f - (f2 + (Mth.wrapDegrees(f3 - f2) * 0.3f)));
+        if (wrapDegrees < (-75.0f)) {
+            wrapDegrees = (-75.0f);
+        } else if (wrapDegrees >= 75.0f) {
+            wrapDegrees = 75.0f;
         }
         float f4 = f - wrapDegrees;
-        if (wrapDegrees * wrapDegrees > Float.intBitsToFloat(1159479296)) {
-            f4 += wrapDegrees * Float.intBitsToFloat(1045220557);
+        if (wrapDegrees * wrapDegrees > 2500.0f) {
+            f4 += wrapDegrees * 0.2f;
         }
         return f4;
     }

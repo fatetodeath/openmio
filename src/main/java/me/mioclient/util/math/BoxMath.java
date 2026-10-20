@@ -21,14 +21,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
 
 public class BoxMath implements ClientAccessor {
-    public static double val = Double.longBitsToDouble(4589168020290535424L);
+    public static double val = 0.0625d;
 
     public static Vec3 getBottomCenter(AABB box) {
         return new Vec3(Mth.lerp(MathConstants.val2, box.minX, box.maxX), box.minY, Mth.lerp(MathConstants.val2, box.minZ, box.maxZ));
     }
 
     public static Vec3 getCenter(AABB box) {
-        return getBottomCenter(box).add(0.0d, box.getYsize() * Double.longBitsToDouble(4598175219545276416L), 0.0d);
+        return getBottomCenter(box).add(0.0d, box.getYsize() * 0.25d, 0.0d);
     }
 
     public static Vec3 getTopCenter(AABB box) {
@@ -53,7 +53,7 @@ public class BoxMath implements ClientAccessor {
         }
         VoxelShape outlineShape = blockState.getShape(minecraftClient.level, blockPos);
         if (outlineShape.isEmpty()) {
-            outlineShape = Shapes.box(0.0d, 0.0d, 0.0d, Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(4607182418800017408L));
+            outlineShape = Shapes.box(0.0d, 0.0d, 0.0d, 1.0d, 1.0d, 1.0d);
         }
         return outlineShape.bounds().move(blockPos);
     }
@@ -67,7 +67,7 @@ public class BoxMath implements ClientAccessor {
     }
 
     public static boolean isFullBlockBox(AABB box) {
-        return box.getZsize() == Double.longBitsToDouble(4607182418800017408L) && box.getYsize() == Double.longBitsToDouble(4607182418800017408L) && box.getXsize() == Double.longBitsToDouble(4607182418800017408L);
+        return box.getZsize() == 1.0d && box.getYsize() == 1.0d && box.getXsize() == 1.0d;
     }
 
     public static boolean isFullBlockShape(VoxelShape voxelShape) {
@@ -81,17 +81,17 @@ public class BoxMath implements ClientAccessor {
         if (!setting.isHoleSnapConfigured()) {
             return setting.getValue().intValue();
         }
-        double hypot = Math.hypot(playerEntity.getX() - playerEntity.xo, playerEntity.getZ() - playerEntity.zo) * Double.longBitsToDouble(4626322717216342016L) * Double.longBitsToDouble(4615288898129284301L);
-        if (hypot < Double.longBitsToDouble(4613937818241073152L)) {
+        double hypot = Math.hypot(playerEntity.getX() - playerEntity.xo, playerEntity.getZ() - playerEntity.zo) * 20.0d * 3.6d;
+        if (hypot < 3.0d) {
             return 0;
         }
-        if (hypot <= Double.longBitsToDouble(4621819117588971520L)) {
+        if (hypot <= 10.0d) {
             return 1;
         }
-        if (hypot <= Double.longBitsToDouble(4626322717216342016L)) {
+        if (hypot <= 20.0d) {
             return 3;
         }
-        return hypot <= Double.longBitsToDouble(4629137466983448576L) ? 4 : 5;
+        return hypot <= 30.0d ? 4 : 5;
     }
 
     public static Vec3 getClosestPointInBox(Vec3 vec3d, AABB box) {
@@ -112,13 +112,13 @@ public class BoxMath implements ClientAccessor {
         if (vec3d.lengthSqr() == 0.0d) {
             return livingEntity.getBoundingBox();
         }
-        double lengthX = boundingBox.getXsize() / Double.longBitsToDouble(4611686018427387904L);
-        double lengthZ = boundingBox.getZsize() / Double.longBitsToDouble(4611686018427387904L);
+        double lengthX = boundingBox.getXsize() / 2.0d;
+        double lengthZ = boundingBox.getZsize() / 2.0d;
         return new AABB(-lengthX, 0.0d, -lengthZ, lengthX, boundingBox.getYsize(), lengthZ).move(vec3d);
     }
 
     public static boolean hasSignificantIntersection(AABB box, AABB box2) {
         AABB intersection = box.intersect(box2);
-        return ((double) ((float) Math.min(intersection.getXsize(), Math.min(intersection.getYsize(), intersection.getZsize())))) > Double.longBitsToDouble(4502148214488346440L);
+        return ((double) ((float) Math.min(intersection.getXsize(), Math.min(intersection.getYsize(), intersection.getZsize())))) > 1.0E-7d;
     }
 }

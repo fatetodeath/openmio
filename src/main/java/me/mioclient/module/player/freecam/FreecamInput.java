@@ -52,7 +52,7 @@ public class FreecamInput extends KeyboardInput implements ClientAccessor {
         if (z == z2) {
             return 0.0f;
         }
-        return z ? Float.intBitsToFloat(1065353216) : Float.intBitsToFloat(-1082130432);
+        return z ? 1.0f : (-1.0f);
     }
 
     public boolean isKeyBindingActive(KeyMapping keyBinding) {

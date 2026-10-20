@@ -38,7 +38,7 @@ public class HudEditorScreen extends AbstractClickGuiScreen implements ClientAcc
     public static final List<ModuleListRenderer> list = Collections.synchronizedList(new ArrayList());
     public static final TextRenderState helper_22 = new TextRenderState();
     public final HudEdgeDragHandler zoomHelper_2 = new HudEdgeDragHandler();
-    public final AnimationProgress progress = new AnimationProgress(Float.intBitsToFloat(1073741824), true);
+    public final AnimationProgress progress = new AnimationProgress(2.0f, true);
     public boolean isDraggingModule;
     public float dragOffsetX;
     public float dragOffsetY;
@@ -65,12 +65,12 @@ public class HudEditorScreen extends AbstractClickGuiScreen implements ClientAcc
         helper_22.setActive(false);
         this.lastMouseX = i;
         this.lastMouseY = i2;
-        float scaledWindowWidth = drawContext.guiWidth() / Float.intBitsToFloat(1073741824);
-        float scaledWindowHeight = drawContext.guiHeight() / Float.intBitsToFloat(1073741824);
-        Color color817 = ColorUtils.withAlphaPercent(Color.white, getAlpha() * Float.intBitsToFloat(1053609165));
-        drawContext.fill((int) (scaledWindowWidth - Float.intBitsToFloat(1056964608)), 0, (int) (scaledWindowWidth + Float.intBitsToFloat(1056964608)), (int) (scaledWindowHeight * Float.intBitsToFloat(1073741824)), color817.getRGB());
-        drawContext.fill(0, (int) (scaledWindowHeight - Float.intBitsToFloat(1056964608)), (int) (scaledWindowWidth - Float.intBitsToFloat(1056964608)), (int) (scaledWindowHeight + Float.intBitsToFloat(1056964608)), color817.getRGB());
-        drawContext.fill((int) (scaledWindowWidth + Float.intBitsToFloat(1056964608)), (int) (scaledWindowHeight - Float.intBitsToFloat(1056964608)), (int) (scaledWindowWidth * Float.intBitsToFloat(1073741824)), (int) (scaledWindowHeight + Float.intBitsToFloat(1056964608)), color817.getRGB());
+        float scaledWindowWidth = drawContext.guiWidth() / 2.0f;
+        float scaledWindowHeight = drawContext.guiHeight() / 2.0f;
+        Color color817 = ColorUtils.withAlphaPercent(Color.white, getAlpha() * 0.4f);
+        drawContext.fill((int) (scaledWindowWidth - 0.5f), 0, (int) (scaledWindowWidth + 0.5f), (int) (scaledWindowHeight * 2.0f), color817.getRGB());
+        drawContext.fill(0, (int) (scaledWindowHeight - 0.5f), (int) (scaledWindowWidth - 0.5f), (int) (scaledWindowHeight + 0.5f), color817.getRGB());
+        drawContext.fill((int) (scaledWindowWidth + 0.5f), (int) (scaledWindowHeight - 0.5f), (int) (scaledWindowWidth * 2.0f), (int) (scaledWindowHeight + 0.5f), color817.getRGB());
         this.zoomHelper_2.do1010(drawContext, i, i2, f);
         renderAll(drawContext, i, i2);
         if (this.isDraggingModule) {
@@ -79,23 +79,23 @@ public class HudEditorScreen extends AbstractClickGuiScreen implements ClientAcc
             object1989.setRelativeX(Math.max(0.0f, Math.min(drawContext.guiWidth() - floatArray2950[0], i - this.dragOffsetX)), true);
             object1989.setRelativeY(Math.max(0.0f, Math.min(drawContext.guiHeight() - floatArray2950[1], i2 - this.dragOffsetY)), true);
             object1989.computeSides();
-            if (Math.abs((object1989.getX() + (floatArray2950[0] / Float.intBitsToFloat(1073741824))) - scaledWindowWidth) <= Float.intBitsToFloat(1084227584)) {
-                float intBitsToFloat = scaledWindowWidth - (floatArray2950[0] / Float.intBitsToFloat(1073741824));
+            if (Math.abs((object1989.getX() + (floatArray2950[0] / 2.0f)) - scaledWindowWidth) <= 5.0f) {
+                float intBitsToFloat = scaledWindowWidth - (floatArray2950[0] / 2.0f);
                 object1989.setRelativeX(intBitsToFloat, true);
-                drawSnapGuide(drawContext, intBitsToFloat - Double.longBitsToDouble(4602678819172646912L), true);
+                drawSnapGuide(drawContext, intBitsToFloat - 0.5d, true);
                 drawSnapGuide(drawContext, intBitsToFloat + floatArray2950[0], true);
             }
-            if (Math.abs((object1989.getY() + (floatArray2950[1] / Float.intBitsToFloat(1073741824))) - scaledWindowHeight) <= Float.intBitsToFloat(1084227584)) {
-                float intBitsToFloat2 = scaledWindowHeight - (floatArray2950[1] / Float.intBitsToFloat(1073741824));
+            if (Math.abs((object1989.getY() + (floatArray2950[1] / 2.0f)) - scaledWindowHeight) <= 5.0f) {
+                float intBitsToFloat2 = scaledWindowHeight - (floatArray2950[1] / 2.0f);
                 object1989.setRelativeY(intBitsToFloat2, true);
-                drawSnapGuide(drawContext, intBitsToFloat2 - Double.longBitsToDouble(4602678819172646912L), false);
+                drawSnapGuide(drawContext, intBitsToFloat2 - 0.5d, false);
                 drawSnapGuide(drawContext, intBitsToFloat2 + floatArray2950[1], false);
             }
         }
         float f2 = this.progress.getValue();
         this.progress.animateToggle(helper_22.isActive());
-        if (helper_22.isActive() || f2 > Double.longBitsToDouble(4591870180066957722L)) {
-            ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, helper_22.getText(), helper_22.getX() + (Float.intBitsToFloat(1092616192) * (Float.intBitsToFloat(1065353216) - f2) * helper_22.getSide()), helper_22.getY(), ColorUtils.withAlpha(Color.white, (int) (f2 * Float.intBitsToFloat(1132396544))));
+        if (helper_22.isActive() || f2 > 0.1d) {
+            ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, helper_22.getText(), helper_22.getX() + (10.0f * (1.0f - f2) * helper_22.getSide()), helper_22.getY(), ColorUtils.withAlpha(Color.white, (int) (f2 * 255.0f)));
         }
         super.extractRenderState(drawContext, i, i2, f);
     }
@@ -151,7 +151,7 @@ public class HudEditorScreen extends AbstractClickGuiScreen implements ClientAcc
                 }
             }
             for (ModuleListMode moduleListMode : ModuleListMode.values()) {
-                if (moduleListMode.getData_32936().overlaps(object1989.getData_32936().expand(Float.intBitsToFloat(1084227584)))) {
+                if (moduleListMode.getData_32936().overlaps(object1989.getData_32936().expand(5.0f))) {
                     getRenderer(moduleListMode).getElements().addLast(object1989);
                     object1989.setAnchor(moduleListMode);
                     return true;
@@ -286,7 +286,7 @@ public class HudEditorScreen extends AbstractClickGuiScreen implements ClientAcc
 
     public void drawSnapGuide(GuiGraphicsExtractor drawContext, double d, boolean z) {
         int f = (int) d;
-        int w = (int) Float.intBitsToFloat(1056964608);
+        int w = (int) 0.5f;
         if (z) {
             drawContext.fill(f, 0, f + w, drawContext.guiHeight(), Color.yellow.getRGB());
         } else {

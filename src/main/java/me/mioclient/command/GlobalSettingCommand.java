@@ -31,7 +31,7 @@ public class GlobalSettingCommand extends CommandFeature {
             });
             return 1;
         })));
-        literalArgumentBuilder.then(CommandFeature.literal("linewidth").then(CommandFeature.argument("value", FloatArgumentType.floatArg(Float.intBitsToFloat(1036831949), Float.intBitsToFloat(1084227584))).executes(commandContext2 -> {
+        literalArgumentBuilder.then(CommandFeature.literal("linewidth").then(CommandFeature.argument("value", FloatArgumentType.floatArg(0.1f, 5.0f)).executes(commandContext2 -> {
             float floatValue = ((Float) commandContext2.getArgument("value", Float.class)).floatValue();
             forEachModuleSetting((module, setting) -> {
                 if ((setting.getValue() instanceof Float) && setting.getName().equalsIgnoreCase("LineWidth")) {

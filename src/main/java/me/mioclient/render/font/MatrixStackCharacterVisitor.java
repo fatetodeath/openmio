@@ -37,16 +37,16 @@ public class MatrixStackCharacterVisitor {
         if (orderedText == null) {
             return 0;
         }
-        this.val2 = f * Float.intBitsToFloat(1073741824);
-        this.val3 = f2 * Float.intBitsToFloat(1073741824);
+        this.val2 = f * 2.0f;
+        this.val3 = f2 * 2.0f;
         visitCharacters(this.matrixStack, orderedText);
-        return (int) (this.val2 / Float.intBitsToFloat(1082130432));
+        return (int) (this.val2 / 4.0f);
     }
 
     public void visitCharacters(PoseStack matrixStack, FormattedCharSequence orderedText) {
         matrixStack.pushPose();
         matrixStack.translate(ClientTextRenderer.getTranslateOffset(), ClientTextRenderer.getShiftOffset(), 0.0f);
-        matrixStack.scale(Float.intBitsToFloat(1056964608), Float.intBitsToFloat(1056964608), Float.intBitsToFloat(1065353216));
+        matrixStack.scale(0.5f, 0.5f, 1.0f);
         if (!AdvanceGlyph.trajectoriesVertexConsumer.isBuilding()) {
             AdvanceGlyph.trajectoriesVertexConsumer.beginBuffer(PrimitiveTopology.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
         }
@@ -59,16 +59,16 @@ public class MatrixStackCharacterVisitor {
         float intBitsToFloat2;
         float intBitsToFloat3;
         TextColor color = style.getColor();
-        float intBitsToFloat4 = ((this.num >> 24) & 255) / Float.intBitsToFloat(1132396544);
+        float intBitsToFloat4 = ((this.num >> 24) & 255) / 255.0f;
         if (color != null) {
             int rgb = color.getValue();
-            intBitsToFloat = ((rgb >> 16) & 255) / Float.intBitsToFloat(1132396544);
-            intBitsToFloat2 = ((rgb >> 8) & 255) / Float.intBitsToFloat(1132396544);
-            intBitsToFloat3 = (rgb & 255) / Float.intBitsToFloat(1132396544);
+            intBitsToFloat = ((rgb >> 16) & 255) / 255.0f;
+            intBitsToFloat2 = ((rgb >> 8) & 255) / 255.0f;
+            intBitsToFloat3 = (rgb & 255) / 255.0f;
         } else {
-            intBitsToFloat = ((this.num >> 16) & 255) / Float.intBitsToFloat(1132396544);
-            intBitsToFloat2 = ((this.num >> 8) & 255) / Float.intBitsToFloat(1132396544);
-            intBitsToFloat3 = (this.num & 255) / Float.intBitsToFloat(1132396544);
+            intBitsToFloat = ((this.num >> 16) & 255) / 255.0f;
+            intBitsToFloat2 = ((this.num >> 8) & 255) / 255.0f;
+            intBitsToFloat3 = (this.num & 255) / 255.0f;
         }
         float f = intBitsToFloat * this.val;
         float f2 = intBitsToFloat2 * this.val;

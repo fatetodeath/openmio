@@ -100,22 +100,22 @@ public class Criticals extends Module {
         switch (this.mode.getValue().ordinal()) {
             case 1:
                 if (PlayerUtils.isInCobweb(minecraftClient.player)) {
-                    sendCriticalOffsets(Double.longBitsToDouble(4589168748072235207L), 0.0d, Double.longBitsToDouble(4578359381184846234L), 0.0d);
+                    sendCriticalOffsets(0.0625101d, 0.0d, 0.0125d, 0.0d);
                     return;
                 } else {
-                    sendCriticalOffsets(Double.longBitsToDouble(4592590756007337001L), Double.longBitsToDouble(4592590853854343945L));
+                    sendCriticalOffsets(0.11d, 0.1100013579d);
                     return;
                 }
             case 2:
-                PacketSender.sendFullMove(minecraftClient.player.getX(), minecraftClient.player.getY() - Double.longBitsToDouble(4517329193108106637L), minecraftClient.player.getZ(), fArr[0], fArr[1], false);
+                PacketSender.sendFullMove(minecraftClient.player.getX(), minecraftClient.player.getY() - 1.0E-6d, minecraftClient.player.getZ(), fArr[0], fArr[1], false);
                 return;
             case 3:
-                float clamp = Math.clamp(fArr[1], Float.intBitsToFloat(-1028390912) + AntiCheat.val, Float.intBitsToFloat(1119092736) - AntiCheat.val);
-                PacketSender.sendFullMove(minecraftClient.player.getX(), minecraftClient.player.getY() + Double.longBitsToDouble(4589175226049939217L), minecraftClient.player.getZ(), fArr[0], clamp + AntiCheat.val, false);
-                PacketSender.sendFullMove(minecraftClient.player.getX(), minecraftClient.player.getY() + Double.longBitsToDouble(4586718062093245874L), minecraftClient.player.getZ(), fArr[0], clamp - AntiCheat.val, false);
+                float clamp = Math.clamp(fArr[1], (-90.0f) + AntiCheat.val, 90.0f - AntiCheat.val);
+                PacketSender.sendFullMove(minecraftClient.player.getX(), minecraftClient.player.getY() + 0.0626d, minecraftClient.player.getZ(), fArr[0], clamp + AntiCheat.val, false);
+                PacketSender.sendFullMove(minecraftClient.player.getX(), minecraftClient.player.getY() + 0.0455d, minecraftClient.player.getZ(), fArr[0], clamp - AntiCheat.val, false);
                 return;
             default:
-                sendCriticalOffsets(Double.longBitsToDouble(4589168748072235207L), 0.0d);
+                sendCriticalOffsets(0.0625101d, 0.0d);
                 return;
         }
     }

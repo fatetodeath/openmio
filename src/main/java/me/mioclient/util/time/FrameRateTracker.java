@@ -29,6 +29,6 @@ public final class FrameRateTracker implements ClientAccessor {
     }
 
     public float getFrameDelta(float f) {
-        return Mth.clamp(Float.intBitsToFloat(1065353216) / (this.num * f), 0.0f, Float.intBitsToFloat(1065353216));
+        return Mth.clamp(1.0f / (this.num * f), 0.0f, 1.0f);
     }
 }

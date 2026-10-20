@@ -29,6 +29,6 @@ public class PlayerModel extends me.mioclient.module.HudModule {
 
     @Override // me.mioclient.module.HudModule
     public float[] getSize() {
-        return new float[]{Float.intBitsToFloat(1112014848), Float.intBitsToFloat(1117782016)};
+        return new float[]{50.0f, 80.0f};
     }
 }

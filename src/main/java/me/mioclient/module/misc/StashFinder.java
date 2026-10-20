@@ -144,7 +144,7 @@ public class StashFinder extends Module {
         if (!this.sound.getValue().booleanValue()) {
             return true;
         }
-        if (!this.stopwatch.hasElapsed(Double.longBitsToDouble(4617315517961601024L), TimeUnit.SECONDS)) {
+        if (!this.stopwatch.hasElapsed(5.0d, TimeUnit.SECONDS)) {
             return true;
         }
         KillstreakSoundManager KillstreakSoundManager = ClientServices.killstreakSoundManager;

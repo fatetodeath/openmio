@@ -133,7 +133,7 @@ public class Ambience extends Module {
             ((net.minecraft.client.multiplayer.ClientLevel.ClientLevelData) minecraftClient.level.getLevelData()).setGameTime(j);
         }
         if (this.brightness.getValue() == MixinEntityRendererMode.GAMMA) {
-            ((me.mioclient.ducks.DuckSimpleOption) (Object) minecraftClient.options.gamma()).forceSetValue(Double.valueOf(Double.longBitsToDouble(4652007308841189376L)));
+            ((me.mioclient.ducks.DuckSimpleOption) (Object) minecraftClient.options.gamma()).forceSetValue(Double.valueOf(1000.0d));
         } else if (this.brightness.getValue() == MixinEntityRendererMode.POTION) {
             if (minecraftClient.player.hasEffect(MobEffects.NIGHT_VISION)) {
                 return;
@@ -144,10 +144,10 @@ public class Ambience extends Module {
 
     public long getWorldTime() {
         if (!this.sync.getValue().booleanValue()) {
-            return (long) ((this.time.getValue().floatValue() * Float.intBitsToFloat(1148846080)) + Float.intBitsToFloat(1183621120));
+            return (long) ((this.time.getValue().floatValue() * 1000.0f) + 18000.0f);
         }
         Calendar calendar = Calendar.getInstance();
-        return (long) (((calendar.get(11) + (calendar.get(12) / Float.intBitsToFloat(1114636288))) * Float.intBitsToFloat(1148846080)) + Float.intBitsToFloat(1183621120));
+        return (long) (((calendar.get(11) + (calendar.get(12) / 60.0f)) * 1000.0f) + 18000.0f);
     }
 
     public boolean isWeatherForced() {

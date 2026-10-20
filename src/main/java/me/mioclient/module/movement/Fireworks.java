@@ -166,15 +166,15 @@ public final class Fireworks extends Module {
     }
 
     public void do138(MoveEvent moveEvent) {
-        float intBitsToFloat = Float.intBitsToFloat(-1165815185);
+        float intBitsToFloat = (-0.001f);
         if (minecraftClient.player.input.keyPresses.jump()) {
             intBitsToFloat = this.vertical.getValue().floatValue();
         } else if (minecraftClient.player.input.keyPresses.shift()) {
             intBitsToFloat = -this.vertical.getValue().floatValue();
         }
         float floatValue = this.horizontal.getValue().floatValue();
-        if (floatValue > Double.longBitsToDouble(4609884578576439706L)) {
-            floatValue = Mth.clamp(Float.intBitsToFloat(1070386381) + (this.num2 * Float.intBitsToFloat(1036831949)), Float.intBitsToFloat(1070386381), floatValue);
+        if (floatValue > 1.6d) {
+            floatValue = Mth.clamp(1.6f + (this.num2 * 0.1f), 1.6f, floatValue);
             this.num2++;
         }
         double[] doubleArray2507 = MovementUtils.applyVelocity(moveEvent, floatValue);

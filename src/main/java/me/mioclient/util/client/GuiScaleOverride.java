@@ -9,7 +9,7 @@ public class GuiScaleOverride implements ClientAccessor {
     public static boolean flag = FabricLoader.getInstance().isModLoaded("advanced-ui-scale");
 
     public static void injectModuleFields() {
-        applyScale(Float.intBitsToFloat(1065353216));
+        applyScale(1.0f);
     }
 
     public static void applyScale(float f) {
@@ -24,11 +24,11 @@ public class GuiScaleOverride implements ClientAccessor {
         if (isScaleModLoaded()) {
             return;
         }
-        if (val == Double.longBitsToDouble(-4616189618054758400L)) {
+        if (val == (-1.0d)) {
             throw new UnsupportedOperationException();
         }
         minecraftClient.getWindow().setGuiScale((int) val);
-        val = Double.longBitsToDouble(-4616189618054758400L);
+        val = (-1.0d);
     }
 
     public static float getBaseScaleFactor() {
@@ -36,7 +36,7 @@ public class GuiScaleOverride implements ClientAccessor {
     }
 
     public static double getScaleMultiplier(float f) {
-        return isScaleModLoaded() ? Double.longBitsToDouble(4607182418800017408L) : (getBaseScaleFactor() / minecraftClient.getWindow().getGuiScale()) * f;
+        return isScaleModLoaded() ? 1.0d : (getBaseScaleFactor() / minecraftClient.getWindow().getGuiScale()) * f;
     }
 
     public static boolean isScaleModLoaded() {

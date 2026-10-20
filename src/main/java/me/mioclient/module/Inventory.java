@@ -36,12 +36,12 @@ public class Inventory extends me.mioclient.module.HudModule {
         this.zoomHelper.toggle(!isEmpty(), 200L);
         float f = this.zoomHelper.getValue();
         if (!this.setting3.getValue().booleanValue()) {
-            f = Float.intBitsToFloat(1065353216);
+            f = 1.0f;
         }
-        Color color817 = ColorUtils.withAlphaPercent(this.setting.getValue(), (this.setting.getValue().getAlpha() / Float.intBitsToFloat(1132396544)) * f);
-        Color color8172 = ColorUtils.withAlphaPercent(this.setting2.getValue(), (this.setting2.getValue().getAlpha() / Float.intBitsToFloat(1132396544)) * f);
-        drawContext.fill(0, 0, (int) Float.intBitsToFloat(1126301696), (int) Float.intBitsToFloat(1113063424), color817.hashCode());
-        drawContext.fill((int) Float.intBitsToFloat(-1082130432), (int) Float.intBitsToFloat(-1082130432), (int) Float.intBitsToFloat(1126301696), (int) Float.intBitsToFloat(1113063424), color8172.hashCode());
+        Color color817 = ColorUtils.withAlphaPercent(this.setting.getValue(), (this.setting.getValue().getAlpha() / 255.0f) * f);
+        Color color8172 = ColorUtils.withAlphaPercent(this.setting2.getValue(), (this.setting2.getValue().getAlpha() / 255.0f) * f);
+        drawContext.fill(0, 0, (int) 162.0f, (int) 54.0f, color817.hashCode());
+        drawContext.fill((int) (-1.0f), (int) (-1.0f), (int) 162.0f, (int) 54.0f, color8172.hashCode());
         for (int i = 0; i < 27; i++) {
             int i2 = (i % 9) * 18;
             int i3 = (i / 9) * 18;
@@ -62,6 +62,6 @@ public class Inventory extends me.mioclient.module.HudModule {
 
     @Override // me.mioclient.module.HudModule
     public float[] getSize() {
-        return new float[]{Float.intBitsToFloat(1126301696), Float.intBitsToFloat(1113063424)};
+        return new float[]{162.0f, 54.0f};
     }
 }

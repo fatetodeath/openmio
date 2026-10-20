@@ -23,7 +23,7 @@ public class StatusEffectHudElement extends HudTextLine implements ClientAccesso
             if (statusEffect == null) {
                 return Component.empty();
             }
-            String string = MobEffectUtil.formatDuration(statusEffect, Float.intBitsToFloat(1065353216), minecraftClient.level.tickRateManager().tickrate()).getString();
+            String string = MobEffectUtil.formatDuration(statusEffect, 1.0f, minecraftClient.level.tickRateManager().tickrate()).getString();
             if (string.startsWith("0")) {
                 string = string.substring(1);
             }

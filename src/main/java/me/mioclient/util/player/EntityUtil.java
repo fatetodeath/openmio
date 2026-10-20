@@ -22,7 +22,7 @@ public class EntityUtil implements ClientAccessor {
 
     public static float getEntityHealth(Entity entity) {
         if (!(entity instanceof LivingEntity)) {
-            return Float.intBitsToFloat(1073741824);
+            return 2.0f;
         }
         LivingEntity livingEntity = (LivingEntity) entity;
         return livingEntity.getHealth() + livingEntity.getAbsorptionAmount();
@@ -48,7 +48,7 @@ public class EntityUtil implements ClientAccessor {
     }
 
     public static boolean isOnGround(LivingEntity livingEntity) {
-        return !minecraftClient.level.noCollision(livingEntity, livingEntity.getBoundingBox().expandTowards(0.0d, Double.longBitsToDouble(-4631501856787818086L), 0.0d));
+        return !minecraftClient.level.noCollision(livingEntity, livingEntity.getBoundingBox().expandTowards(0.0d, (-0.1d), 0.0d));
     }
 
     public static boolean isFirstPersonView(Entity entity) {

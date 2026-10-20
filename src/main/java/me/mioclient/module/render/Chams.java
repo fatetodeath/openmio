@@ -155,10 +155,10 @@ public class Chams extends Module {
         if (this.shine2.getValue().booleanValue()) {
             this.trajectoriesVertexConsumer.beginBuffer(PrimitiveTopology.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
         }
-        float intBitsToFloat = is2047() ? Float.intBitsToFloat(1075000115) : Float.intBitsToFloat(1065353216);
+        float intBitsToFloat = is2047() ? 2.3f : 1.0f;
         EspBoxRenderer.disableEntityCulling();
         org.lwjgl.opengl.GL32C.glEnable(32823);
-        org.lwjgl.opengl.GL32C.glPolygonOffset(Float.intBitsToFloat(1065353216), Float.intBitsToFloat(-900358272) * intBitsToFloat);
+        org.lwjgl.opengl.GL32C.glPolygonOffset(1.0f, (-3500000.0f) * intBitsToFloat);
         for (Entity entity : minecraftClient.level.entitiesForRendering()) {
             if (shouldRenderEntity(entity)) {
                 NoRender norender_lcl = getNorender();
@@ -178,7 +178,7 @@ public class Chams extends Module {
             }
         }
         org.lwjgl.opengl.GL32C.glDisable(32823);
-        org.lwjgl.opengl.GL32C.glPolygonOffset(Float.intBitsToFloat(1065353216), Float.intBitsToFloat(1247125376) * intBitsToFloat);
+        org.lwjgl.opengl.GL32C.glPolygonOffset(1.0f, 3500000.0f * intBitsToFloat);
         EspBoxRenderer.restoreEntityCulling();
     }
 
@@ -193,13 +193,13 @@ public class Chams extends Module {
         if (this.pop.getValue().booleanValue()) {
             synchronized (this.map) {
                 this.map.entrySet().removeIf(entry -> {
-                    return ((float) ((Long) entry.getValue()).longValue()) + (this.time.getValue().floatValue() * Float.intBitsToFloat(1148846080)) < ((float) System.currentTimeMillis());
+                    return ((float) ((Long) entry.getValue()).longValue()) + (this.time.getValue().floatValue() * 1000.0f) < ((float) System.currentTimeMillis());
                 });
                 this.map.forEach((otherClientPlayerEntity, l) -> {
-                    float intBitsToFloat = Float.intBitsToFloat(1065353216) - Mth.clamp(((float) (System.currentTimeMillis() - l.longValue())) / (this.time.getValue().floatValue() * Float.intBitsToFloat(1148846080)), 0.0f, Float.intBitsToFloat(1065353216));
-                    otherClientPlayerEntity.setPos(otherClientPlayerEntity.getX(), otherClientPlayerEntity.getLastPosition().y + ((Float.intBitsToFloat(1065353216) - intBitsToFloat) * this.motion.getValue().floatValue()), otherClientPlayerEntity.getZ());
+                    float intBitsToFloat = 1.0f - Mth.clamp(((float) (System.currentTimeMillis() - l.longValue())) / (this.time.getValue().floatValue() * 1000.0f), 0.0f, 1.0f);
+                    otherClientPlayerEntity.setPos(otherClientPlayerEntity.getX(), otherClientPlayerEntity.getLastPosition().y + ((1.0f - intBitsToFloat) * this.motion.getValue().floatValue()), otherClientPlayerEntity.getZ());
                     Color[] colorArray593 = this.wireframe.getValue().getChamsColors(this);
-                    ChamsRenderDispatcher.setChamsColors(ColorUtils.withAlphaPercent(colorArray593[0], (colorArray593[0].getAlpha() / Float.intBitsToFloat(1132396544)) * intBitsToFloat), ColorUtils.withAlphaPercent(colorArray593[1], (colorArray593[1].getAlpha() / Float.intBitsToFloat(1132396544)) * intBitsToFloat));
+                    ChamsRenderDispatcher.setChamsColors(ColorUtils.withAlphaPercent(colorArray593[0], (colorArray593[0].getAlpha() / 255.0f) * intBitsToFloat), ColorUtils.withAlphaPercent(colorArray593[1], (colorArray593[1].getAlpha() / 255.0f) * intBitsToFloat));
                     ChamsRenderDispatcher.renderEntityChams(inner_3.getMatrixStack(), otherClientPlayerEntity);
                 });
             }
@@ -236,7 +236,7 @@ public class Chams extends Module {
             if ((playerEntityEvent.getType() != TotemPopEvent.LogoutSpotsHelperMode.DEATH || this.death.getValue().booleanValue()) && (playerEntity1890 = playerEntityEvent.getPlayer()) != minecraftClient.player) {
                 ClonedPlayerEntity otherClientPlayerEntity = new ClonedPlayerEntity(minecraftClient.level);
                 otherClientPlayerEntity.copyFromPlayer(playerEntity1890);
-                otherClientPlayerEntity.walkAnimation.setSpeed(otherClientPlayerEntity.walkAnimation.speed() * Float.intBitsToFloat(1073741824));
+                otherClientPlayerEntity.walkAnimation.setSpeed(otherClientPlayerEntity.walkAnimation.speed() * 2.0f);
                 if (!this.animate.getValue().booleanValue()) {
                     otherClientPlayerEntity.walkAnimation.stop();
                 } else if (this.boost.getValue().booleanValue()) {
@@ -244,7 +244,7 @@ public class Chams extends Module {
                     otherClientPlayerEntity.attackAnim = 0.0f;
                     otherClientPlayerEntity.oAttackAnim = 0.0f;
                     otherClientPlayerEntity.walkAnimation.stop();
-                    otherClientPlayerEntity.walkAnimation.setSpeed((float) ((Math.random() * Double.longBitsToDouble(4605380979056443392L)) + Double.longBitsToDouble(4596373779801702400L)));
+                    otherClientPlayerEntity.walkAnimation.setSpeed((float) ((Math.random() * 0.800000011920929d) + 0.20000000298023224d));
                 }
                 synchronized (this.map) {
                     this.map.putIfAbsent(otherClientPlayerEntity, Long.valueOf(System.currentTimeMillis()));
@@ -281,7 +281,7 @@ public class Chams extends Module {
     }
 
     public float get2044(Entity entity) {
-        return (float) (Double.longBitsToDouble(4607182418800017408L) - Mth.clamp(((minecraftClient.gameRenderer.mainCamera().position().distanceTo(entity.position()) / this.range.getValue().intValue()) - (this.fadeRadius.getValue().intValue() / Float.intBitsToFloat(1120403456))) / (Float.intBitsToFloat(1065353216) - (this.fadeRadius.getValue().intValue() / Float.intBitsToFloat(1120403456))), 0.0d, Double.longBitsToDouble(4607182418800017408L)));
+        return (float) (1.0d - Mth.clamp(((minecraftClient.gameRenderer.mainCamera().position().distanceTo(entity.position()) / this.range.getValue().intValue()) - (this.fadeRadius.getValue().intValue() / 100.0f)) / (1.0f - (this.fadeRadius.getValue().intValue() / 100.0f)), 0.0d, 1.0d));
     }
 
     public boolean shouldRenderChams(Entity entity) {
@@ -296,7 +296,7 @@ public class Chams extends Module {
     }
 
     public boolean is2047() {
-        float intBitsToFloat = Float.intBitsToFloat(1050253722);
+        float intBitsToFloat = 0.3f;
         Vec3 eyePos = minecraftClient.player.getEyePosition();
         BlockPos ofFloored = BlockPos.containing(eyePos.x, eyePos.y, eyePos.z);
         AABB eyeBox = new AABB(eyePos.x - intBitsToFloat, eyePos.y - intBitsToFloat, eyePos.z - intBitsToFloat, eyePos.x + intBitsToFloat, eyePos.y + intBitsToFloat, eyePos.z + intBitsToFloat);

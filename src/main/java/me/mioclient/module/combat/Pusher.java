@@ -296,7 +296,7 @@ public class Pusher extends Module {
                 }
                 if (!this.raytrace.getValue().booleanValue() || WorldUtils.isAnyPositionVisible(AutoCraftMode.X8.getWorldCorners(offset))) {
                     if (!this.rotate.getValue().booleanValue()) {
-                        return new Record(direction2, blockPos, minecraftClient.player.getEyePosition().relative(direction.getOpposite(), Double.longBitsToDouble(4607182418800017408L)));
+                        return new Record(direction2, blockPos, minecraftClient.player.getEyePosition().relative(direction.getOpposite(), 1.0d));
                     }
                     for (Vec3 vec3d : AutoCraftMode.X8.getVisibleFaceCorners(offset, direction2.getOpposite())) {
                         if (this.pusherHelper.resolveFacingDirection(RotationManager.getRotationsTo(vec3d)) == direction.getOpposite()) {

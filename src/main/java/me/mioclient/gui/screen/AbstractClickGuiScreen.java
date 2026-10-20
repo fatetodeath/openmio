@@ -69,8 +69,8 @@ public class AbstractClickGuiScreen extends Screen implements ClientAccessor {
         super(Component.literal("mio"));
         this.arrayList = new ArrayList<>();
         this.list = new ArrayList();
-        this.hUDHelper_2 = new InterpolatedFloat(Float.intBitsToFloat(1075838976), true);
-        this.hUDHelper_22 = new InterpolatedFloat(Float.intBitsToFloat(1075838976), true);
+        this.hUDHelper_2 = new InterpolatedFloat(2.5f, true);
+        this.hUDHelper_22 = new InterpolatedFloat(2.5f, true);
         this.flag = false;
         this.string = "";
         this.num2 = 0L;
@@ -84,8 +84,8 @@ public class AbstractClickGuiScreen extends Screen implements ClientAccessor {
             getParentScreen().init(scaledWidth, scaledHeight);
         }
         if (!isNotInGame()) {
-            this.hUDHelper_2.setImmediate(scaledWidth / Float.intBitsToFloat(1073741824));
-            this.hUDHelper_22.setImmediate(scaledHeight / Float.intBitsToFloat(1073741824));
+            this.hUDHelper_2.setImmediate(scaledWidth / 2.0f);
+            this.hUDHelper_22.setImmediate(scaledHeight / 2.0f);
         }
         this.flag = false;
         getGuiPanels().forEach(presetEnumSettingHelper -> {
@@ -157,23 +157,23 @@ public class AbstractClickGuiScreen extends Screen implements ClientAccessor {
             }
             /* 4px text padding on both sides so the first/last glyphs (plus the
                custom-font translate offset) are never clipped by the box edge. */
-            float intBitsToFloat = f5 + Float.intBitsToFloat(1086324736);
-            float intBitsToFloat2 = f5 + f7 + Float.intBitsToFloat(1096810496);
+            float intBitsToFloat = f5 + 6.0f;
+            float intBitsToFloat2 = f5 + f7 + 14.0f;
             if (intBitsToFloat2 > minecraftClient.getWindow().getGuiScaledWidth()) {
-                intBitsToFloat2 = f5 - Float.intBitsToFloat(1086324736);
-                intBitsToFloat = intBitsToFloat2 - f7 - Float.intBitsToFloat(1090519040);
+                intBitsToFloat2 = f5 - 6.0f;
+                intBitsToFloat = intBitsToFloat2 - f7 - 8.0f;
             }
             float f9 = intBitsToFloat;
             float f10 = intBitsToFloat2;
             int i5 = (int) f6;
-            float intBitsToFloat3 = (f6 - Float.intBitsToFloat(1065353216)) + ((ClientTextRenderer.INSTANCE.getFontHeight() + Float.intBitsToFloat(1065353216)) * split.length);
+            float intBitsToFloat3 = (f6 - 1.0f) + ((ClientTextRenderer.INSTANCE.getFontHeight() + 1.0f) * split.length);
             BlurFramebuffer.renderWithBlur(() -> {
-                drawContext.fill((int) f9, i5 - Float.intBitsToFloat(1065353216) < 0 ? 0 : i5 - 1, (int) f10, (int) intBitsToFloat3, ColorUtils.argbToInt(10, 10, 10, 140));
-            }, Float.intBitsToFloat(1086324736));
-            drawContext.fill((int) intBitsToFloat, (int) (f6 - Float.intBitsToFloat(1065353216)), (int) intBitsToFloat2, (int) intBitsToFloat3, new Color(10, 10, 10, 80).getRGB());
+                drawContext.fill((int) f9, i5 - 1.0f < 0 ? 0 : i5 - 1, (int) f10, (int) intBitsToFloat3, ColorUtils.argbToInt(10, 10, 10, 140));
+            }, 6.0f);
+            drawContext.fill((int) intBitsToFloat, (int) (f6 - 1.0f), (int) intBitsToFloat2, (int) intBitsToFloat3, new Color(10, 10, 10, 80).getRGB());
             int i6 = 0;
             for (String str2 : split) {
-                ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, str2, intBitsToFloat + Float.intBitsToFloat(1082130432), f6 + ((ClientTextRenderer.INSTANCE.getFontHeight() + Float.intBitsToFloat(1065353216)) * i6), Color.white);
+                ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, str2, intBitsToFloat + 4.0f, f6 + ((ClientTextRenderer.INSTANCE.getFontHeight() + 1.0f) * i6), Color.white);
                 i6++;
             }
             this.num2 = System.currentTimeMillis();
@@ -241,7 +241,7 @@ public class AbstractClickGuiScreen extends Screen implements ClientAccessor {
         int orElse = this.arrayList.stream().mapToInt((v0) -> {
             return v0.getFontHeight();
         }).max().orElse(i);
-        int scaledHeight = ((double) orElse) > ((double) (minecraftClient.getWindow().getGuiScaledHeight() + 5)) / d5 ? orElse - ((int) ((minecraftClient.getWindow().getGuiScaledHeight() - 5) / d5)) : (int) (Double.longBitsToDouble(-4606056518893174784L) / d5);
+        int scaledHeight = ((double) orElse) > ((double) (minecraftClient.getWindow().getGuiScaledHeight() + 5)) / d5 ? orElse - ((int) ((minecraftClient.getWindow().getGuiScaledHeight() - 5) / d5)) : (int) ((-5.0d) / d5);
         if (d4 != 0.0d) {
             int i2 = (int) (d4 * i);
             Iterator<ClickGuiPanel> it = this.arrayList.iterator();
@@ -334,11 +334,11 @@ public class AbstractClickGuiScreen extends Screen implements ClientAccessor {
     }
 
     public float getAlpha() {
-        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.num3)) / Float.intBitsToFloat(1125515264);
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.num3)) / 150.0f;
         if (this.flag2) {
-            currentTimeMillis = Float.intBitsToFloat(1065353216) - currentTimeMillis;
+            currentTimeMillis = 1.0f - currentTimeMillis;
         }
-        return Mth.clamp(currentTimeMillis, 0.0f, Float.intBitsToFloat(1065353216));
+        return Mth.clamp(currentTimeMillis, 0.0f, 1.0f);
     }
 
     public void resetPanelLayout() {

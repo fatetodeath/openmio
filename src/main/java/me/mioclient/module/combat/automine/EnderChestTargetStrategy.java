@@ -17,7 +17,7 @@ public final class EnderChestTargetStrategy extends MineStrategyBase {
     public void findTargets(MineTargetState autoMineHelper) {
         BlockPos blockPos = null;
         for (BlockEntity blockEntity : ClientServices.stashFinderHelper.getLoadedBlockEntities()) {
-            if (minecraftClient.player.getEyePosition().distanceTo(Vec3.atCenterOf(blockEntity.getBlockPos())) <= Double.longBitsToDouble(4612136378390124954L) && (blockEntity instanceof EnderChestBlockEntity)) {
+            if (minecraftClient.player.getEyePosition().distanceTo(Vec3.atCenterOf(blockEntity.getBlockPos())) <= 2.2d && (blockEntity instanceof EnderChestBlockEntity)) {
                 if (isValidMineTarget(blockEntity.getBlockPos())) {
                     if (blockPos != null) {
                         if (isSpeedMineTarget(blockEntity.getBlockPos())) {

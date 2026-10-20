@@ -61,10 +61,10 @@ public class ModuleButton extends PanelComponent implements ClosableElement {
         super(presetEnumSettingHelper, i);
         this.arrayList = new ArrayList<>();
         this.hUDHelper_2 = new InterpolatedFloat((Supplier<Float>) () -> {
-            return Float.valueOf(getUI().animSpeed.getValue().floatValue() * Float.intBitsToFloat(1073741824));
+            return Float.valueOf(getUI().animSpeed.getValue().floatValue() * 2.0f);
         }, true);
         this.progress = new AnimationProgress((Supplier<Float>) () -> {
-            return Float.valueOf(Float.intBitsToFloat(1073741824) * UI.uI.animSpeed.getValue().floatValue());
+            return Float.valueOf(2.0f * UI.uI.animSpeed.getValue().floatValue());
         }, true);
         this.zoomHelper = new ValueAnimator();
         this.flashNum = 0;
@@ -205,17 +205,17 @@ public class ModuleButton extends PanelComponent implements ClosableElement {
         this.progress.animateToggle(this.module.isToggled());
         float f = this.progress.getValue();
         float f2 = getAnimationOffset();
-        if (this.module.isToggled() || f > Double.longBitsToDouble(4576918229304087675L)) {
-            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + Float.intBitsToFloat(1065353216) + ((this.presetEnumSettingHelper.getTotalWidth() - Float.intBitsToFloat(1065353216)) * f), this.presetEnumSettingHelper.getY() + this.num + Float.intBitsToFloat(1056964608), (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - Float.intBitsToFloat(1065353216), ((this.presetEnumSettingHelper.getY() + this.num) + getRowHeight()) - Float.intBitsToFloat(1056964608), getUI().bgButton.getValue());
-            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + Float.intBitsToFloat(1065353216), this.presetEnumSettingHelper.getY() + this.num + Float.intBitsToFloat(1056964608), this.presetEnumSettingHelper.getX() + ((this.presetEnumSettingHelper.getTotalWidth() - Float.intBitsToFloat(1065353216)) * f), ((this.presetEnumSettingHelper.getY() + this.num) + getRowHeight()) - Float.intBitsToFloat(1056964608), getUI().bgEnabled.getValue());
+        if (this.module.isToggled() || f > 0.01d) {
+            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + 1.0f + ((this.presetEnumSettingHelper.getTotalWidth() - 1.0f) * f), this.presetEnumSettingHelper.getY() + this.num + 0.5f, (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 1.0f, ((this.presetEnumSettingHelper.getY() + this.num) + getRowHeight()) - 0.5f, getUI().bgButton.getValue());
+            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + 1.0f, this.presetEnumSettingHelper.getY() + this.num + 0.5f, this.presetEnumSettingHelper.getX() + ((this.presetEnumSettingHelper.getTotalWidth() - 1.0f) * f), ((this.presetEnumSettingHelper.getY() + this.num) + getRowHeight()) - 0.5f, getUI().bgEnabled.getValue());
         } else {
-            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + Float.intBitsToFloat(1065353216), this.presetEnumSettingHelper.getY() + this.num + Float.intBitsToFloat(1056964608), (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - Float.intBitsToFloat(1065353216), ((this.presetEnumSettingHelper.getY() + this.num) + getRowHeight()) - Float.intBitsToFloat(1056964608), getUI().bgButton.getValue());
+            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + 1.0f, this.presetEnumSettingHelper.getY() + this.num + 0.5f, (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 1.0f, ((this.presetEnumSettingHelper.getY() + this.num) + getRowHeight()) - 0.5f, getUI().bgButton.getValue());
         }
         if (this.flashNum > 0) {
             float f3 = this.zoomHelper.getValue();
-            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + Float.intBitsToFloat(1065353216), this.presetEnumSettingHelper.getY() + this.num + Float.intBitsToFloat(1056964608), (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - Float.intBitsToFloat(1065353216), ((this.presetEnumSettingHelper.getY() + this.num) + getRowHeight()) - Float.intBitsToFloat(1056964608), ColorUtils.argbFloatsToInt(Float.intBitsToFloat(1065353216), 0.0f, 0.0f, f3));
-            if (f3 == Float.intBitsToFloat(1065353216) || f3 == 0.0f) {
-                this.zoomHelper.animateTo((f3 + Float.intBitsToFloat(1065353216)) % Float.intBitsToFloat(1073741824), 150L);
+            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + 1.0f, this.presetEnumSettingHelper.getY() + this.num + 0.5f, (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 1.0f, ((this.presetEnumSettingHelper.getY() + this.num) + getRowHeight()) - 0.5f, ColorUtils.argbFloatsToInt(1.0f, 0.0f, 0.0f, f3));
+            if (f3 == 1.0f || f3 == 0.0f) {
+                this.zoomHelper.animateTo((f3 + 1.0f) % 2.0f, 150L);
             }
             if (f3 == 0.0f) {
                 this.flashNum = (this.flashNum + 1) % 4;
@@ -234,7 +234,7 @@ public class ModuleButton extends PanelComponent implements ClosableElement {
             empty.append("[").append(this.module.getKeybind().getBindString().toUpperCase(Locale.ROOT)).append("]");
         }
         if (!empty.getString().isEmpty()) {
-            ClientTextRenderer.INSTANCE.drawScaledTextShadowObj(drawContext, empty, this.presetEnumSettingHelper.getX() + ClientTextRenderer.INSTANCE.getStringWidth(this.module.getName()) + getUI().modulePadding.getValue().intValue(), ((this.presetEnumSettingHelper.getY() + getTextOffsetY()) - f2) + this.num + Float.intBitsToFloat(1065353216), Float.intBitsToFloat(1056964608), getUI().textColor.getValue());
+            ClientTextRenderer.INSTANCE.drawScaledTextShadowObj(drawContext, empty, this.presetEnumSettingHelper.getX() + ClientTextRenderer.INSTANCE.getStringWidth(this.module.getName()) + getUI().modulePadding.getValue().intValue(), ((this.presetEnumSettingHelper.getY() + getTextOffsetY()) - f2) + this.num + 1.0f, 0.5f, getUI().textColor.getValue());
         }
         matrixStack.pushPose();
         if (this.val > getRowHeight() || this.flag) {
@@ -312,7 +312,7 @@ public class ModuleButton extends PanelComponent implements ClosableElement {
 
     public void flashHighlight() {
         this.zoomHelper.setImmediate(0.0f);
-        this.zoomHelper.animateTo(Float.intBitsToFloat(1065353216), 150L);
+        this.zoomHelper.animateTo(1.0f, 150L);
         this.flashNum = 1;
     }
 

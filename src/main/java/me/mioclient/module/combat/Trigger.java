@@ -69,7 +69,7 @@ public class Trigger extends Module {
                     return;
                 }
                 if (z2 || (((entity instanceof AgeableMob) && this.setting8.getValue().booleanValue()) || (((entity instanceof Monster) && this.setting9.getValue().booleanValue()) || ((entity instanceof EndCrystal) && this.setting10.getValue().booleanValue())))) {
-                    if (minecraftClient.player.getAttackStrengthScale(Float.intBitsToFloat(1056964608)) >= Float.intBitsToFloat(1065353216)) {
+                    if (minecraftClient.player.getAttackStrengthScale(0.5f) >= 1.0f) {
                         if (!this.stopwatch.hasElapsed(this.setting3.getValue().doubleValue() * Math.random(), TimeUnit.SECONDS) || minecraftClient.player.distanceTo(entity) > this.setting.getValue().floatValue()) {
                             return;
                         }

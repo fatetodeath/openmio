@@ -29,6 +29,6 @@ public class EspOutlineShader extends OutlineShader {
         this.framebufferHelper_3.setUniformInt("u_Texture", 0);
         this.framebufferHelper_3.setUniformInt("u_Width", 2);
         this.framebufferHelper_3.setUniformBool("u_FastLines", true);
-        this.framebufferHelper_3.setUniformFloat("u_GlowMultiplier", Double.longBitsToDouble(4607182418800017408L));
+        this.framebufferHelper_3.setUniformFloat("u_GlowMultiplier", 1.0d);
     }
 }

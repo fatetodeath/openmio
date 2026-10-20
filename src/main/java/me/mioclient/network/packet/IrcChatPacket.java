@@ -33,7 +33,7 @@ public class IrcChatPacket implements NetworkMessage {
         iRC.num++;
         Component empty = Component.empty();
         ((MutableComponent) empty).append("<");
-        Color color814 = iRC.gradient.getValue().booleanValue() ? ColorUtils.getGradientColor(ColorUtils.getThemeColor(), ColorUtils.getThemeColor().darker(), Double.longBitsToDouble(4658815484840378368L), 0.0d) : ColorUtils.getThemeColor();
+        Color color814 = iRC.gradient.getValue().booleanValue() ? ColorUtils.getGradientColor(ColorUtils.getThemeColor(), ColorUtils.getThemeColor().darker(), 3000.0d, 0.0d) : ColorUtils.getThemeColor();
         ((MutableComponent) empty).append(Component.literal(this.string).withStyle(style -> {
             Objects.requireNonNull(color814);
             return ChatUtils.withDynamicColor(style, color814::hashCode);

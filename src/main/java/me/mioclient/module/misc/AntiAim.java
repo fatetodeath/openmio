@@ -184,7 +184,7 @@ public class AntiAim extends Module {
         }
         if (this.enderman.getValue().booleanValue() && (endermanEntity852 = getEndermanEntity852()) != null) {
             if (this.look.getValue() == AntiAimMode_2.AVOID) {
-                f2 = Float.intBitsToFloat(1119092736);
+                f2 = 90.0f;
                 markRotationModified();
             }
             if (this.look.getValue() == AntiAimMode_2.STARE) {

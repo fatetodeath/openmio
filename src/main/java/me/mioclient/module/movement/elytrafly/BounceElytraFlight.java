@@ -51,7 +51,7 @@ public class BounceElytraFlight extends ElytraFlyModeBase {
         }
         boolean z = minecraftClient.player.input.keyPresses.jump();
         if (this.elytraFly.takeoff.getValue() == ElytraFly.ElytraFlyMode_2.STRICT) {
-            z = !minecraftClient.player.onGround() && minecraftClient.player.getDeltaMovement().y < Double.longBitsToDouble(4591870180066957722L);
+            z = !minecraftClient.player.onGround() && minecraftClient.player.getDeltaMovement().y < 0.1d;
         } else {
             ClientServices.holeSnapHelper.releaseTickRate(this.elytraFly);
         }
@@ -71,7 +71,7 @@ public class BounceElytraFlight extends ElytraFlyModeBase {
                 this.num = System.currentTimeMillis();
             }
             float floatValue = this.elytraFly.speed2.getValue().floatValue();
-            double[] doubleArray2507 = MovementUtils.applyVelocity(moveEvent, Mth.lerp(Mth.clamp(((float) (System.currentTimeMillis() - this.num)) / Float.intBitsToFloat(1140457472), 0.0f, Float.intBitsToFloat(1065353216)), this.elytraFly.start.getValue().floatValue(), floatValue));
+            double[] doubleArray2507 = MovementUtils.applyVelocity(moveEvent, Mth.lerp(Mth.clamp(((float) (System.currentTimeMillis() - this.num)) / 500.0f, 0.0f, 1.0f), this.elytraFly.start.getValue().floatValue(), floatValue));
             minecraftClient.player.setDeltaMovement(doubleArray2507[0], 0.0d, doubleArray2507[1]);
             moveEvent.setY(0.0d);
             minecraftClient.player.setDeltaMovement(minecraftClient.player.getDeltaMovement().with(Direction.Axis.Y, 0.0d));
@@ -91,12 +91,12 @@ public class BounceElytraFlight extends ElytraFlyModeBase {
         if (!(sendImmediatelyEvent.getPacket() instanceof ServerboundMovePlayerPacket move)) {
             return;
         }
-        if (!minecraftClient.player.isFallFlying() || minecraftClient.player.onGround() || minecraftClient.player.getDeltaMovement().y >= Double.longBitsToDouble(4591870180066957722L) || !MovementUtils.is2181()) {
+        if (!minecraftClient.player.isFallFlying() || minecraftClient.player.onGround() || minecraftClient.player.getDeltaMovement().y >= 0.1d || !MovementUtils.is2181()) {
             return;
         }
         // 26.2 MojMap: ServerboundMovePlayerPacket is IMMUTABLE — cancel + resend with modified XRot
         sendImmediatelyEvent.cancel();
-        float newXRot = Float.intBitsToFloat(-1063256064);
+        float newXRot = (-5.0f);
         boolean og = move.isOnGround();
         boolean hc = move.horizontalCollision();
         if (move.hasPosition() && move.hasRotation()) {

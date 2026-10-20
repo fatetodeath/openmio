@@ -21,7 +21,7 @@ public final class AntiPhasePlacement {
 
     public Vec3 getFaceCenter() {
         Vec3 centerPos = Vec3.atCenterOf(this.blockPos);
-        return centerPos.relative(this.direction, Double.longBitsToDouble(4602678819172646912L));
+        return centerPos.relative(this.direction, 0.5d);
     }
 
     public BlockPos getBlockPos() {

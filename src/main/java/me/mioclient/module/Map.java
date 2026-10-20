@@ -33,8 +33,8 @@ public class Map extends me.mioclient.module.HudModule {
     public Setting<Color> setting4;
     public Setting<Color> setting5;
     public Setting<Color> setting6;
-    public static final float val2 = Float.intBitsToFloat(1090519040);
-    public static final float val = Float.intBitsToFloat(1098907648);
+    public static final float val2 = 8.0f;
+    public static final float val = 16.0f;
     /* 26.2 port: resolved lazily — eager static init ran before the module registry was ready, leaving newChunks null (NPE). */
     private static NewChunks newChunks;
 
@@ -71,8 +71,8 @@ public class Map extends me.mioclient.module.HudModule {
     public Map() {
         super("Map", "minimap");
         this.setting = add(new EnumSetting("Pointer", Mode.ARROW));
-        this.setting2 = add(new NumberSetting("Width", Float.valueOf(Float.intBitsToFloat(1117257728)), Float.valueOf(Float.intBitsToFloat(1112014848)), Float.valueOf(Float.intBitsToFloat(1140457472))));
-        this.setting3 = add(new NumberSetting("Height", Float.valueOf(Float.intBitsToFloat(1117257728)), Float.valueOf(Float.intBitsToFloat(1112014848)), Float.valueOf(Float.intBitsToFloat(1132068864))));
+        this.setting2 = add(new NumberSetting("Width", Float.valueOf(76.0f), Float.valueOf(50.0f), Float.valueOf(500.0f)));
+        this.setting3 = add(new NumberSetting("Height", Float.valueOf(76.0f), Float.valueOf(50.0f), Float.valueOf(250.0f)));
         this.setting4 = add(new ColorSetting("Pointer", Color.white));
         this.setting5 = add(new ColorSetting("Background", new Color(10, 10, 10, 50)));
         this.setting6 = add(new ColorSetting("Outline", new Color(10, 10, 10, 100)));

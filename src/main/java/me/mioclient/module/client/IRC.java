@@ -133,7 +133,7 @@ public class IRC extends Module {
 
     @Listen
     public void onCoordLogReceive(CoordLogReceiveEvent spawnTimeHelperEvent) {
-        if (((float) minecraftClient.player.getEyePosition().distanceTo(Vec3.atCenterOf(spawnTimeHelperEvent.getEntry().getBlockPos()))) >= Float.intBitsToFloat(1176255488)) {
+        if (((float) minecraftClient.player.getEyePosition().distanceTo(Vec3.atCenterOf(spawnTimeHelperEvent.getEntry().getBlockPos()))) >= 9999.0f) {
             spawnTimeHelperEvent.cancel();
             return;
         }
@@ -158,21 +158,21 @@ public class IRC extends Module {
                 for (CoordLogEntry spawnTimeHelper : ClientServices.nameTagsManager.getCoordLogEntries()) {
                     if (spawnTimeHelper.isOnSameServer()) {
                         float distanceTo = (float) minecraftClient.player.getEyePosition().distanceTo(Vec3.atCenterOf(spawnTimeHelper.getBlockPos()));
-                        if (distanceTo < Float.intBitsToFloat(1176255488)) {
+                        if (distanceTo < 9999.0f) {
                             Vec3 of = Vec3.atCenterOf(spawnTimeHelper.getBlockPos());
                             Vec3 vec3d = of;
                             if (distanceTo >= MathConstants.num2) {
                                 float[] floatArray2484 = RotationManager.getRotationsTo(of);
-                                vec3d = new Vec3(minecraftClient.player.getX() + (Float.intBitsToFloat(1116471296) * ((float) Math.cos(Math.toRadians(floatArray2484[0] + MathConstants.num2)))), of.y, minecraftClient.player.getZ() + (Float.intBitsToFloat(1116471296) * ((float) Math.sin(Math.toRadians(floatArray2484[0] + MathConstants.num2)))));
+                                vec3d = new Vec3(minecraftClient.player.getX() + (70.0f * ((float) Math.cos(Math.toRadians(floatArray2484[0] + MathConstants.num2)))), of.y, minecraftClient.player.getZ() + (70.0f * ((float) Math.sin(Math.toRadians(floatArray2484[0] + MathConstants.num2)))));
                             }
-                            float clamp = Mth.clamp(Float.intBitsToFloat(1065353216) - (((float) ((System.currentTimeMillis() - spawnTimeHelper.getSpawnTime()) - 6500)) / Float.intBitsToFloat(1148846080)), 0.0f, Float.intBitsToFloat(1065353216));
-                            float f = easeOutElastic(Mth.clamp(((float) (System.currentTimeMillis() - spawnTimeHelper.getSpawnTime())) / Float.intBitsToFloat(1153138688), 0.0f, Float.intBitsToFloat(1065353216)));
+                            float clamp = Mth.clamp(1.0f - (((float) ((System.currentTimeMillis() - spawnTimeHelper.getSpawnTime()) - 6500)) / 1000.0f), 0.0f, 1.0f);
+                            float f = easeOutElastic(Mth.clamp(((float) (System.currentTimeMillis() - spawnTimeHelper.getSpawnTime())) / 1500.0f, 0.0f, 1.0f));
                             float f2 = cubic(clamp);
-                            float min = Math.min(Vec3dUtils.getHorizontalDistance(minecraftClient.player.getPosition(inner_3.getTickDelta()), of), Float.intBitsToFloat(1086324736)) / Float.intBitsToFloat(1086324736);
-                            Vec3 add = vec3d.add(Double.longBitsToDouble(4602678819172646912L), Double.longBitsToDouble(4602678819172646912L), Double.longBitsToDouble(4602678819172646912L));
-                            double d = MathUtils.getDistanceScale(minecraftClient.gameRenderer.mainCamera().position(), add, Double.longBitsToDouble(4613937818241073152L));
-                            BoxRenderer.drawFilledBox(inner_3.getMatrixStack(), new AABB(add.add(-MathConstants.val3, -MathConstants.val3, -MathConstants.val3), add.add(MathConstants.val3, MathConstants.val3, MathConstants.val3)).setMaxY(Mth.lerp(f, add.y, minecraftClient.level.getMaxY())).setMinY(Mth.lerp(f, add.y, minecraftClient.level.getMinY())), ColorUtils.withAlphaPercent(ColorUtils.getGradientColor(Color.red, Color.yellow, Double.longBitsToDouble(4652007308841189376L), 0.0d), Float.intBitsToFloat(1050253722) * f * f2 * min));
-                            RenderUtil.INSTANCE.drawTextureBillboard(inner_3.getDrawContext(), add, Float.intBitsToFloat(1132462080), Float.intBitsToFloat(1132462080), (d / Double.longBitsToDouble(4627898977085921690L)) * f * f2, ColorUtils.getGradientColor(Color.red, Color.yellow, Double.longBitsToDouble(4652007308841189376L), 0.0d), identifier);
+                            float min = Math.min(Vec3dUtils.getHorizontalDistance(minecraftClient.player.getPosition(inner_3.getTickDelta()), of), 6.0f) / 6.0f;
+                            Vec3 add = vec3d.add(0.5d, 0.5d, 0.5d);
+                            double d = MathUtils.getDistanceScale(minecraftClient.gameRenderer.mainCamera().position(), add, 3.0d);
+                            BoxRenderer.drawFilledBox(inner_3.getMatrixStack(), new AABB(add.add(-MathConstants.val3, -MathConstants.val3, -MathConstants.val3), add.add(MathConstants.val3, MathConstants.val3, MathConstants.val3)).setMaxY(Mth.lerp(f, add.y, minecraftClient.level.getMaxY())).setMinY(Mth.lerp(f, add.y, minecraftClient.level.getMinY())), ColorUtils.withAlphaPercent(ColorUtils.getGradientColor(Color.red, Color.yellow, 1000.0d, 0.0d), 0.3f * f * f2 * min));
+                            RenderUtil.INSTANCE.drawTextureBillboard(inner_3.getDrawContext(), add, 256.0f, 256.0f, (d / 25.6d) * f * f2, ColorUtils.getGradientColor(Color.red, Color.yellow, 1000.0d, 0.0d), identifier);
                             if (this.info.getValue().is594()) {
                                 String string2864 = this.info.getValue().getString2864(spawnTimeHelper);
                                 me.mioclient.render.shape.BoxRenderer.submitNameTag(inner_3.getMatrixStack(), add, 0.0d, net.minecraft.network.chat.Component.literal(string2864), inner_3.cameraState, 1.0f);
@@ -185,11 +185,11 @@ public class IRC extends Module {
     }
 
     public float easeOutElastic(float f) {
-        double longBitsToDouble = (Double.longBitsToDouble(4611686018427387904L) * MathConstants.val) / Double.longBitsToDouble(4613937818241073152L);
+        double longBitsToDouble = (2.0d * MathConstants.val) / 3.0d;
         if (f == 0.0f) {
             return 0.0f;
         }
-        return (float) (f == Float.intBitsToFloat(1065353216) ? Double.longBitsToDouble(4607182418800017408L) : (Math.pow(Double.longBitsToDouble(4611686018427387904L), Float.intBitsToFloat(-1054867456) * f) * Math.sin(((f * Float.intBitsToFloat(1092616192)) - Double.longBitsToDouble(4604930618986332160L)) * longBitsToDouble)) + Double.longBitsToDouble(4607182418800017408L));
+        return (float) (f == 1.0f ? 1.0d : (Math.pow(2.0d, (-10.0f) * f) * Math.sin(((f * 10.0f) - 0.75d) * longBitsToDouble)) + 1.0d);
     }
 
     public float cubic(float f) {

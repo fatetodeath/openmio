@@ -30,7 +30,7 @@ public class StreamedSoundInstance extends AbstractSoundInstance {
         this.relative = true;
         this.x = 0.0d;
         this.y = 0.0d;
-        this.z = Double.longBitsToDouble(-4616189618054758400L);
+        this.z = (-1.0d);
     }
 
     @Override

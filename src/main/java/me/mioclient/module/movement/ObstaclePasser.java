@@ -155,7 +155,7 @@ public final class ObstaclePasser extends Module {
     public void processPathingTick() {
         BlockPos blockPos710;
         if (ClientServices.obstaclePasserHelper.isPathing() && (blockPos710 = ClientServices.obstaclePasserHelper.getCurrentGoal()) != null) {
-            if (Vec3dUtils.getHorizontalDistance(minecraftClient.player.position(), Vec3.atBottomCenterOf(blockPos710)) <= Float.intBitsToFloat(1065353216)) {
+            if (Vec3dUtils.getHorizontalDistance(minecraftClient.player.position(), Vec3.atBottomCenterOf(blockPos710)) <= 1.0f) {
                 ClientServices.obstaclePasserHelper.cancelAll();
                 this.num = 10;
                 ElytraFly elytraFly_lcl = getElytraFly();

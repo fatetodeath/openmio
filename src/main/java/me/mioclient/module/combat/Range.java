@@ -76,7 +76,7 @@ public class Range extends Delay {
 
     public Range(String str, String str2, Category category) {
         super(str, str2, category, new String[0]);
-        this.setting = add(new NumberSetting("Range", Float.valueOf(Float.intBitsToFloat(1084227584)), Float.valueOf(Float.intBitsToFloat(1065353216)), Float.valueOf(Float.intBitsToFloat(1090519040))).setSuffix("m"));
+        this.setting = add(new NumberSetting("Range", Float.valueOf(5.0f), Float.valueOf(1.0f), Float.valueOf(8.0f)).setSuffix("m"));
         this.setting2 = add(new BooleanSetting("Sequential", false));
         this.setting3 = add(new BooleanSetting("Targets", true).setDependent());
         this.setting4 = add(new BooleanSetting("Head", true).requiresSettings(this.setting3));
@@ -89,7 +89,7 @@ public class Range extends Delay {
 
     public Range() {
         super("AutoTrap", "Traps your enemies with obby.", Category.COMBAT, new String[0]);
-        this.setting = add(new NumberSetting("Range", Float.valueOf(Float.intBitsToFloat(1084227584)), Float.valueOf(Float.intBitsToFloat((((1333017453 | 593773) - 2926) + 1) ^ 1895642112)), Float.valueOf(Float.intBitsToFloat(1090519040))).setSuffix("m"));
+        this.setting = add(new NumberSetting("Range", Float.valueOf(5.0f), Float.valueOf(1.0f), Float.valueOf(8.0f)).setSuffix("m"));
         this.setting2 = add(new BooleanSetting("Sequential", false));
         this.setting3 = add(new BooleanSetting("Targets", true).setDependent());
         this.setting4 = add(new BooleanSetting("Head", true).requiresSettings(this.setting3));
@@ -114,10 +114,10 @@ public class Range extends Delay {
     @Override // me.mioclient.module.Delay
     public List<BlockPos> getPlacePositions() {
         this.playerEntity = getTargetPlayer();
-        if (this.playerEntity == null || Math.hypot(this.playerEntity.getX() - this.playerEntity.xo, this.playerEntity.getZ() - this.playerEntity.zo) * Double.longBitsToDouble(4626322717216342016L) * Double.longBitsToDouble(4615288898129284301L) > Double.longBitsToDouble(4626322717216342016L)) {
+        if (this.playerEntity == null || Math.hypot(this.playerEntity.getX() - this.playerEntity.xo, this.playerEntity.getZ() - this.playerEntity.zo) * 20.0d * 3.6d > 20.0d) {
             return Collections.emptyList();
         }
-        if (Math.abs(this.playerEntity.yo - this.playerEntity.getY()) > Double.longBitsToDouble(4603579539098121011L)) {
+        if (Math.abs(this.playerEntity.yo - this.playerEntity.getY()) > 0.6d) {
             return Collections.emptyList();
         }
         Position vec3d885 = getTargetPos(this.playerEntity);
@@ -227,7 +227,7 @@ public class Range extends Delay {
     public List<Vec3> getList882(BlockPos blockPos, int i, float f) {
         ArrayList arrayList = new ArrayList();
         if (is887()) {
-            arrayList.add(new Vec3(0.0d, i + f + Float.intBitsToFloat(1065353216), 0.0d));
+            arrayList.add(new Vec3(0.0d, i + f + 1.0f, 0.0d));
             Iterator<Vec3> it = getSurroundOffsetVectors(i, f).iterator();
             if (it.hasNext()) {
                 Vec3 next = it.next();
@@ -235,15 +235,15 @@ public class Range extends Delay {
                 if (minecraftClient.level.getBlockState(add).canBeReplaced()) {
                     if (BlockPlacer.findSupportSide(add, this.setting4.getValue().booleanValue(), this.setting5.getValue().booleanValue()) == null) {
                         if (next.y > i) {
-                            arrayList.add(new Vec3(Double.longBitsToDouble(-4616189618054758400L), i + 1, 0.0d));
+                            arrayList.add(new Vec3((-1.0d), i + 1, 0.0d));
                         } else {
-                            arrayList.add(new Vec3(Double.longBitsToDouble(-4616189618054758400L), i, 0.0d));
+                            arrayList.add(new Vec3((-1.0d), i, 0.0d));
                         }
                     }
                 }
             }
         } else if (this.setting4.getValue().booleanValue()) {
-            arrayList.add(new Vec3(0.0d, i + f + Float.intBitsToFloat(1065353216), 0.0d));
+            arrayList.add(new Vec3(0.0d, i + f + 1.0f, 0.0d));
         }
         for (Vec3 vec3d : getSurroundOffsetVectors(i, f)) {
             if (vec3d.y <= f && (this.setting5.getValue().booleanValue() || vec3d.y <= i)) {
@@ -253,13 +253,13 @@ public class Range extends Delay {
             }
         }
         if (this.setting7.getValue().booleanValue()) {
-            arrayList.add(new Vec3(0.0d, i + f + Float.intBitsToFloat(1073741824), 0.0d));
+            arrayList.add(new Vec3(0.0d, i + f + 2.0f, 0.0d));
         }
         return arrayList;
     }
 
     public List<Vec3> getSurroundOffsetVectors(int i, float f) {
-        return Arrays.asList(new Vec3(0.0d, i + f + Float.intBitsToFloat(1065353216), 0.0d), new Vec3(Double.longBitsToDouble(4607182418800017408L), i, 0.0d), new Vec3(0.0d, i, Double.longBitsToDouble(4607182418800017408L)), new Vec3(0.0d, i, Double.longBitsToDouble(-4616189618054758400L)), new Vec3(Double.longBitsToDouble(-4616189618054758400L), i, 0.0d), new Vec3(Double.longBitsToDouble(4607182418800017408L), i + 1, 0.0d), new Vec3(0.0d, i + 1, Double.longBitsToDouble(4607182418800017408L)), new Vec3(0.0d, i + 1, Double.longBitsToDouble(-4616189618054758400L)), new Vec3(Double.longBitsToDouble(-4616189618054758400L), i + 1, 0.0d));
+        return Arrays.asList(new Vec3(0.0d, i + f + 1.0f, 0.0d), new Vec3(1.0d, i, 0.0d), new Vec3(0.0d, i, 1.0d), new Vec3(0.0d, i, (-1.0d)), new Vec3((-1.0d), i, 0.0d), new Vec3(1.0d, i + 1, 0.0d), new Vec3(0.0d, i + 1, 1.0d), new Vec3(0.0d, i + 1, (-1.0d)), new Vec3((-1.0d), i + 1, 0.0d));
     }
 
     public boolean isValidRangeTarget(Player playerEntity) {

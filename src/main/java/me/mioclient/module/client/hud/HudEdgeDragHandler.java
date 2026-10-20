@@ -41,8 +41,8 @@ public final class HudEdgeDragHandler implements ClientAccessor {
         int scaledWindowHeight = drawContext.guiHeight();
         boolean z = isNearHorizontalEdge((double) i) || this.flag3;
         boolean z2 = isNearVerticalEdge((double) i2) || this.flag4;
-        this.zoomHelper.animateTo(z ? Float.intBitsToFloat(1124859904) : 0.0f, 250L);
-        this.zoomHelper2.animateTo((z2 && this.zoomHelper.getValue() == 0.0f) ? Float.intBitsToFloat(1124859904) : 0.0f, 250L);
+        this.zoomHelper.animateTo(z ? 140.0f : 0.0f, 250L);
+        this.zoomHelper2.animateTo((z2 && this.zoomHelper.getValue() == 0.0f) ? 140.0f : 0.0f, 250L);
         if (this.zoomHelper.getValue() > 0.0f) {
             if (this.flag3) {
                 hud_lcl.setSafeAreaX(this.flag ? Math.abs(i - scaledWindowWidth) : i);
@@ -70,8 +70,8 @@ public final class HudEdgeDragHandler implements ClientAccessor {
         if (!this.flag3) {
             this.flag4 = isNearVerticalEdge(d2);
         }
-        this.flag = d > ((double) (((float) minecraftClient.getWindow().getGuiScaledWidth()) / Float.intBitsToFloat(1073741824)));
-        this.flag2 = d2 > ((double) (((float) minecraftClient.getWindow().getGuiScaledHeight()) / Float.intBitsToFloat(1073741824)));
+        this.flag = d > ((double) (((float) minecraftClient.getWindow().getGuiScaledWidth()) / 2.0f));
+        this.flag2 = d2 > ((double) (((float) minecraftClient.getWindow().getGuiScaledHeight()) / 2.0f));
     }
 
     public void mouseReleased(double d, double d2, int i) {

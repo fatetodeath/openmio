@@ -72,7 +72,7 @@ public class ExtraTab extends Module {
     }
 
     public float getTabScale() {
-        return !isToggled() ? Float.intBitsToFloat(1065353216) : this.scale.getValue().floatValue();
+        return !isToggled() ? 1.0f : this.scale.getValue().floatValue();
     }
 
     public int getSortWeight(PlayerInfo playerListEntry) {

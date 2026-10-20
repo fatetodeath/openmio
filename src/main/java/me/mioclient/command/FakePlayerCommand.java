@@ -71,14 +71,14 @@ public final class FakePlayerCommand extends CommandFeature {
             this.yBodyRot = playerEntity.yBodyRot;
             this.yBodyRotO = this.yBodyRot;
             setPose(playerEntity.getPose());
-            setHealth(Float.intBitsToFloat(1101004800));
+            setHealth(20.0f);
             getInventory().replaceWith(playerEntity.getInventory());
         }
 
         public void setHealth(float f) {
             super.setHealth(f);
             if (getHealth() <= 0.0f) {
-                super.setHealth(Float.intBitsToFloat(1091567616));
+                super.setHealth(9.0f);
                 removeAllEffects();
                 addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
                 ClientAccessor.minecraftClient.particleEngine.createTrackingEmitter(this, ParticleTypes.TOTEM_OF_UNDYING, 30);
@@ -86,7 +86,7 @@ public final class FakePlayerCommand extends CommandFeature {
                 Player playerEntity = ClientAccessor.minecraftClient.player;
                 BlockPos blockPos = blockPosition();
                 SoundEvent soundEvent = SoundEvents.TOTEM_USE;
-                clientWorld.playSound(playerEntity, blockPos, soundEvent, SoundSource.PLAYERS, Float.intBitsToFloat(1065353216), Float.intBitsToFloat(1065353216));
+                clientWorld.playSound(playerEntity, blockPos, soundEvent, SoundSource.PLAYERS, 1.0f, 1.0f);
                 ClientAccessor.eventBus.fireEvent(new PacketReceiveEvent(new ClientboundEntityEventPacket(this, (byte) 35)));
             }
         }
@@ -98,7 +98,7 @@ public final class FakePlayerCommand extends CommandFeature {
                 addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 6000, 0));
                 addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 6000, 0));
                 addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 3));
-                setAbsorptionAmount(Float.intBitsToFloat(1098907648));
+                setAbsorptionAmount(16.0f);
             }
             if (getOffhandItem().getItem() != Items.TOTEM_OF_UNDYING) {
                 getInventory().setItem(40, new ItemStack(Items.TOTEM_OF_UNDYING, 1));
@@ -305,8 +305,8 @@ public final class FakePlayerCommand extends CommandFeature {
             // Keep the event consumed so future damage hooks can attach here.
             ClientboundExplodePacket explosionPacket = packet904;
             Vec3 center = explosionPacket.center();
-            double distanceTo = this.otherClientPlayerEntity.position().distanceTo(center) / Double.longBitsToDouble(4622945017495814144L);
-            if (distanceTo > Double.longBitsToDouble(4607182418800017408L)) {
+            double distanceTo = this.otherClientPlayerEntity.position().distanceTo(center) / 12.0d;
+            if (distanceTo > 1.0d) {
                 return;
             }
         }

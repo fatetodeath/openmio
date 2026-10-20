@@ -89,7 +89,7 @@ public final class FeetTargetStrategy extends MineStrategyBase {
             BlockPos ofFloored = BlockPos.containing(((Player) playerEntity886).position());
             List<BlockPos> list2010 = PlayerUtils.getSurroundPositions(playerEntity886);
             Block block = minecraftClient.level.getBlockState(ofFloored).getBlock();
-            boolean z2 = block.getExplosionResistance() >= Float.intBitsToFloat(1142292480) && block != Blocks.AIR;
+            boolean z2 = block.getExplosionResistance() >= 600.0f && block != Blocks.AIR;
             if (!this.autoMine.speedMineHelper.is1228(500L) || ofFloored.equals(this.autoMine.speedMineHelper.getBlockPos())) {
                 z2 = false;
             }
@@ -112,10 +112,10 @@ public final class FeetTargetStrategy extends MineStrategyBase {
         boolean z3 = false;
         list2.sort(Comparator.comparing(blockPos3 -> {
             if (minecraftClient.player.getBoundingBox().intersects(new AABB(blockPos3))) {
-                return Double.valueOf(Double.longBitsToDouble(-4556649414143246336L));
+                return Double.valueOf((-9999.0d));
             }
             if (PlayerUtils.getSurroundPositions(minecraftClient.player).contains(blockPos3)) {
-                return Double.valueOf(Double.longBitsToDouble(-4571373524106608640L));
+                return Double.valueOf((-999.0d));
             }
             boolean z4 = false;
             Iterator<Vec3i> it = list.iterator();
@@ -135,7 +135,7 @@ public final class FeetTargetStrategy extends MineStrategyBase {
             if (!z4) {
                 SpeedMine speedmine_lcl = getSpeedmine();
                 float rangeMax = speedmine_lcl != null ? speedmine_lcl.range.getMaxValue().floatValue() : 6.0f;
-                squaredDistance += Math.pow(rangeMax, Double.longBitsToDouble(4611686018427387904L));
+                squaredDistance += Math.pow(rangeMax, 2.0d);
             }
             return Double.valueOf(-squaredDistance);
         }));
@@ -193,7 +193,7 @@ public final class FeetTargetStrategy extends MineStrategyBase {
         List list2 = BlockPos.betweenClosedStream(minecraftClient.player.getBoundingBox().setMaxY(minecraftClient.player.getY())).map((v0) -> {
             return v0.immutable();
         }).filter(blockPos2 -> {
-            return minecraftClient.level.getBlockState(blockPos2).getBlock().getExplosionResistance() >= Float.intBitsToFloat(1142292480);
+            return minecraftClient.level.getBlockState(blockPos2).getBlock().getExplosionResistance() >= 600.0f;
         }).toList();
         return list2.size() == 1 && list2.contains(blockPos);
     }

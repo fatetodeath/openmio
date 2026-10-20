@@ -71,13 +71,13 @@ public class Armor extends me.mioclient.module.HudModule {
                     drawArmorItem(matrixStackEvent_2.getDrawContext(), itemStack, (scaledWindowWidth / 2) + i, scaledWindowHeight - getHudOffsetY());
                     if (itemStack.isDamageableItem() && this.setting.getValue().booleanValue()) {
                         String format = String.format("%d%s", Integer.valueOf(ExplosionDamageCalculator.getClampedDurabilityPercent(itemStack)), "%");
-                        float intBitsToFloat = Fonts.fonts.isToggled() ? Float.intBitsToFloat(1060320051) : Float.intBitsToFloat(1059481190);
+                        float intBitsToFloat = Fonts.fonts.isToggled() ? 0.7f : 0.65f;
                         if (!this.setting2.getValue().booleanValue()) {
                             format = format.substring(0, format.length() - 1);
-                            intBitsToFloat = Float.intBitsToFloat(1065353216);
+                            intBitsToFloat = 1.0f;
                         }
-                        float intBitsToFloat2 = ((scaledWindowHeight - getHudOffsetY()) - Float.intBitsToFloat(1081291571)) - (this.setting2.getValue().booleanValue() ? 0 : 2);
-                        ClientTextRenderer.INSTANCE.drawScaledTextShadow(matrixStackEvent_2.getDrawContext(), format, ((((scaledWindowWidth / Float.intBitsToFloat(1073741824)) + i) + Float.intBitsToFloat(1091567616)) - ((ClientTextRenderer.INSTANCE.getStringWidth(format) * Float.intBitsToFloat(1056964608)) * intBitsToFloat)) - intBitsToFloat, intBitsToFloat2, intBitsToFloat, this.setting3.getValue().booleanValue() ? new Color(itemStack.getBarColor(), false) : getHudColor(intBitsToFloat2));
+                        float intBitsToFloat2 = ((scaledWindowHeight - getHudOffsetY()) - 3.8f) - (this.setting2.getValue().booleanValue() ? 0 : 2);
+                        ClientTextRenderer.INSTANCE.drawScaledTextShadow(matrixStackEvent_2.getDrawContext(), format, ((((scaledWindowWidth / 2.0f) + i) + 9.0f) - ((ClientTextRenderer.INSTANCE.getStringWidth(format) * 0.5f) * intBitsToFloat)) - intBitsToFloat, intBitsToFloat2, intBitsToFloat, this.setting3.getValue().booleanValue() ? new Color(itemStack.getBarColor(), false) : getHudColor(intBitsToFloat2));
                     }
                     i += 18;
                 }
@@ -107,7 +107,7 @@ public class Armor extends me.mioclient.module.HudModule {
         } else {
             if (minecraftClient.player.isPassenger()) {
                 if (minecraftClient.player.getVehicle() instanceof LivingEntity) {
-                    i = (int) (MathConstants.num + (Math.ceil((((LivingEntity) minecraftClient.player.getVehicle()).getMaxHealth() - Float.intBitsToFloat(1065353216)) / Float.intBitsToFloat(1101004800)) * Double.longBitsToDouble(4621819117588971520L)));
+                    i = (int) (MathConstants.num + (Math.ceil((((LivingEntity) minecraftClient.player.getVehicle()).getMaxHealth() - 1.0f) / 20.0f) * 10.0d));
                 }
             }
             i = 55 - (minecraftClient.player.isCreative() ? 17 : 0);

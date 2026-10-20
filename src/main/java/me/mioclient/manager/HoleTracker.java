@@ -57,10 +57,10 @@ public final class HoleTracker implements ClientAccessor {
                     if (block == Blocks.RESPAWN_ANCHOR) {
                         return null;
                     }
-                    if ((block.getExplosionResistance() < Float.intBitsToFloat(1142292480) && block.getExplosionResistance() >= 0.0f) || block.defaultDestroyTime() == 0.0f) {
+                    if ((block.getExplosionResistance() < 600.0f && block.getExplosionResistance() >= 0.0f) || block.defaultDestroyTime() == 0.0f) {
                         return null;
                     }
-                    if (block.getExplosionResistance() >= Float.intBitsToFloat(1142292480) && block.defaultDestroyTime() >= 0.0f) {
+                    if (block.getExplosionResistance() >= 600.0f && block.defaultDestroyTime() >= 0.0f) {
                         holeSnapDataMode = HoleData.HoleSnapDataMode.UNSAFE;
                     }
                 } else {

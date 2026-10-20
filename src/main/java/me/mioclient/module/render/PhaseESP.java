@@ -79,7 +79,7 @@ public class PhaseESP extends Module {
     @Listen
     public void onRenderWorld(MatrixStackEvent.Inner_3 inner_3) {
         AABB playerBox = minecraftClient.player.getBoundingBox();
-        AABB expand = new AABB(playerBox.minX, playerBox.minY, playerBox.minZ, playerBox.maxX, playerBox.minY, playerBox.maxZ).inflate(Double.longBitsToDouble(4576918229304087675L), 0.0d, Double.longBitsToDouble(4576918229304087675L));
+        AABB expand = new AABB(playerBox.minX, playerBox.minY, playerBox.minZ, playerBox.maxX, playerBox.minY, playerBox.maxZ).inflate(0.01d, 0.0d, 0.01d);
         if (BlockPlacer.isBlockCollidable(minecraftClient.player.blockPosition()) || minecraftClient.player.isSwimming()) {
             return;
         }
@@ -88,20 +88,20 @@ public class PhaseESP extends Module {
         }).forEach(record -> {
             VoxelShape outlineShape = minecraftClient.level.getBlockState(record.blockPos).getShape(minecraftClient.level, record.blockPos);
             if (outlineShape.isEmpty()) {
-                outlineShape = Shapes.box(0.0d, 0.0d, 0.0d, Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(4607182418800017408L));
+                outlineShape = Shapes.box(0.0d, 0.0d, 0.0d, 1.0d, 1.0d, 1.0d);
             }
             AABB offset = outlineShape.bounds().move(record.blockPos);
             BoxRenderer.drawFilledBox(inner_3.getMatrixStack(), offset.setMaxY(record.blockPos.getY()), record.phaseESPMode.getModeColor(this));
             if (this.outline.getValue().booleanValue()) {
-                BoxRenderer.drawBoxOutline(inner_3.getMatrixStack(), offset.setMaxY(record.blockPos.getY()), ColorUtils.withAlphaPercent(record.phaseESPMode.getModeColor(this), this.alpha.getValue().floatValue()), Float.intBitsToFloat(1065353216));
+                BoxRenderer.drawBoxOutline(inner_3.getMatrixStack(), offset.setMaxY(record.blockPos.getY()), ColorUtils.withAlphaPercent(record.phaseESPMode.getModeColor(this), this.alpha.getValue().floatValue()), 1.0f);
             }
         });
     }
 
     public PhaseESPMode classifyPhaseMode(BlockPos blockPos) {
-        boolean z = minecraftClient.level.getBlockState(blockPos).getBlock().getExplosionResistance() >= Float.intBitsToFloat(1142292480);
+        boolean z = minecraftClient.level.getBlockState(blockPos).getBlock().getExplosionResistance() >= 600.0f;
         if (BlockPlacer.isBlockCollidable(blockPos.below()) && z) {
-            if (minecraftClient.level.getBlockState(blockPos.below()).getBlock().getExplosionResistance() >= Float.intBitsToFloat(1142292480)) {
+            if (minecraftClient.level.getBlockState(blockPos.below()).getBlock().getExplosionResistance() >= 600.0f) {
                 return (isNotBedrock(blockPos) || isNotBedrock(blockPos.below())) ? PhaseESPMode.phaseESPMode2 : PhaseESPMode.phaseESPMode;
             }
         }
@@ -114,6 +114,6 @@ public class PhaseESP extends Module {
 
     public boolean isPhaseableBlock(BlockPos blockPos) {
         BlockState blockState = minecraftClient.level.getBlockState(blockPos);
-        return blockState.getBlock().getExplosionResistance() >= Float.intBitsToFloat(1142292480) && BlockPlacer.isBlockCollidable(blockPos) && !blockState.canBeReplaced();
+        return blockState.getBlock().getExplosionResistance() >= 600.0f && BlockPlacer.isBlockCollidable(blockPos) && !blockState.canBeReplaced();
     }
 }

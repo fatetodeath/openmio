@@ -42,25 +42,25 @@ public class StrafeSpeedHandler extends SpeedModeHandler {
         }
         double d3 = moveEvent.getY();
         if (this.speed.useTimer.getValue().booleanValue() && ClientServices.holeSnapRenderHelper.getSetbackStopwatch().hasElapsedMs(250L)) {
-            ClientServices.holeSnapHelper.requestTickRate(this.speed, Float.intBitsToFloat(1066098124));
+            ClientServices.holeSnapHelper.requestTickRate(this.speed, 1.0888f);
         } else if (this.speed.useTimer.getValue().booleanValue()) {
             ClientServices.holeSnapHelper.releaseTickRate(this.speed);
         }
-        float intBitsToFloat = (this.speed.stopwatch.hasElapsedMs(1000L) || !this.speed.boost.getValue().booleanValue()) ? Float.intBitsToFloat(1065353216) : Float.intBitsToFloat(1067030938);
+        float intBitsToFloat = (this.speed.stopwatch.hasElapsedMs(1000L) || !this.speed.boost.getValue().booleanValue()) ? 1.0f : 1.2f;
         if (this.num == 1 && MovementUtils.is2181()) {
-            this.val2 = (Double.longBitsToDouble(4608758678669597082L) * MovementUtils.computeMoveSpeed(false, (Double.longBitsToDouble(4598847156609680094L) * this.speed.speed.getValue().floatValue()) * intBitsToFloat)) - Double.longBitsToDouble(4576918229304087675L);
+            this.val2 = (1.35d * MovementUtils.computeMoveSpeed(false, (0.2873d * this.speed.speed.getValue().floatValue()) * intBitsToFloat)) - 0.01d;
         } else if (this.num == 2 && MovementUtils.is2181() && minecraftClient.player.onGround()) {
-            d3 = Double.longBitsToDouble(4601237667291888353L) + MovementUtils.getJumpBoostBonus();
-            this.val2 *= Double.longBitsToDouble(4609591844600660623L);
+            d3 = 0.42d + MovementUtils.getJumpBoostBonus();
+            this.val2 *= 1.535d;
         } else if (this.num == 3) {
-            this.val2 = this.val3 - (Double.longBitsToDouble(4604119971289628672L) * (this.val3 - MovementUtils.computeMoveSpeed(true, (Double.longBitsToDouble(4598847156609680094L) * this.speed.speed.getValue().floatValue()) * intBitsToFloat)));
+            this.val2 = this.val3 - (0.6600000262260437d * (this.val3 - MovementUtils.computeMoveSpeed(true, (0.2873d * this.speed.speed.getValue().floatValue()) * intBitsToFloat)));
         } else {
             if ((hasVerticalCollision() || minecraftClient.player.verticalCollision) && this.num > 0) {
                 this.num = MovementUtils.is2181() ? 1 : 0;
             }
-            this.val2 = this.val3 - (this.val3 / Double.longBitsToDouble(4639798331726364672L));
+            this.val2 = this.val3 - (this.val3 / 159.0d);
         }
-        this.val2 = Math.max(this.val2, MovementUtils.computeMoveSpeed(false, Double.longBitsToDouble(4598847156609680094L) * this.speed.speed.getValue().floatValue() * intBitsToFloat));
+        this.val2 = Math.max(this.val2, MovementUtils.computeMoveSpeed(false, 0.2873d * this.speed.speed.getValue().floatValue() * intBitsToFloat));
         if (MovementUtils.is2181()) {
             double[] doubleArray2508 = MovementUtils.computeVelocity(minecraftClient.player.getYRot(), minecraftClient.player.input, this.val2);
             d = doubleArray2508[0];

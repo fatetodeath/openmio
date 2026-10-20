@@ -19,7 +19,7 @@ public class ValueAnimator {
     }
 
     public void toggle(boolean z, long j) {
-        animateTo(z ? Float.intBitsToFloat(1065353216) : 0.0f, j);
+        animateTo(z ? 1.0f : 0.0f, j);
     }
 
     public void setImmediate(float f) {
@@ -27,6 +27,6 @@ public class ValueAnimator {
     }
 
     public float getValue() {
-        return ((Float.intBitsToFloat(1065353216) - Mth.clamp(((float) ((this.startTime + this.duration) - System.currentTimeMillis())) / ((float) Math.max(this.duration, 1L)), 0.0f, Float.intBitsToFloat(1065353216))) * (this.targetValue - this.startValue)) + this.startValue;
+        return ((1.0f - Mth.clamp(((float) ((this.startTime + this.duration) - System.currentTimeMillis())) / ((float) Math.max(this.duration, 1L)), 0.0f, 1.0f)) * (this.targetValue - this.startValue)) + this.startValue;
     }
 }

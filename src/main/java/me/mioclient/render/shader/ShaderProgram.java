@@ -82,7 +82,7 @@ public class ShaderProgram implements ClientAccessor {
     }
 
     public void setUniformColor(String str, Color color) {
-        GlStateWrapper.uploadUniform4f(getUniformLocation(str), color.getRed() / Float.intBitsToFloat(1132396544), color.getGreen() / Float.intBitsToFloat(1132396544), color.getBlue() / Float.intBitsToFloat(1132396544), color.getAlpha() / Float.intBitsToFloat(1132396544));
+        GlStateWrapper.uploadUniform4f(getUniformLocation(str), color.getRed() / 255.0f, color.getGreen() / 255.0f, color.getBlue() / 255.0f, color.getAlpha() / 255.0f);
     }
 
     public void setUniformMatrix(String str, Matrix4f matrix4f) {

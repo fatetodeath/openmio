@@ -155,14 +155,14 @@ public class Announcer extends Module {
         if (isNotInGame()) {
             return;
         }
-        this.val += (ClientServices.feetPlaceHelper.getInstantSpeed() / Double.longBitsToDouble(4615288898129284301L)) / Double.longBitsToDouble(4626322717216342016L);
-        if (this.val >= Double.longBitsToDouble(4652007308841189376L)) {
+        this.val += (ClientServices.feetPlaceHelper.getInstantSpeed() / 3.6d) / 20.0d;
+        if (this.val >= 1000.0d) {
             this.val = 0.0d;
         }
-        if (!this.move.getValue().booleanValue() || this.val < Double.longBitsToDouble(4607182418800017408L)) {
+        if (!this.move.getValue().booleanValue() || this.val < 1.0d) {
             return;
         }
-        if (this.stopwatch.hasElapsedMs((long) (Double.longBitsToDouble(4652007308841189376L) * this.delay.getValue().doubleValue()))) {
+        if (this.stopwatch.hasElapsedMs((long) (1000.0d * this.delay.getValue().doubleValue()))) {
             sendModuleMessage(getRandomMoveMessage().replace("{blocks}", new DecimalFormat("0.00").format(this.val)));
             this.val = 0.0d;
             this.stopwatch.reset();
@@ -179,7 +179,7 @@ public class Announcer extends Module {
             if (finishUsingEvent.getItemStack().has(DataComponents.FOOD)) {
                 this.num++;
                 if (this.num >= i) {
-                    if (this.stopwatch.hasElapsedMs((long) (Double.longBitsToDouble(4652007308841189376L) * this.delay.getValue().doubleValue()))) {
+                    if (this.stopwatch.hasElapsedMs((long) (1000.0d * this.delay.getValue().doubleValue()))) {
                         String itemName = finishUsingEvent.getItemStack().getItem().toString();
                         sendModuleMessage(getRandomEatMessage().replace("{amount}", String.valueOf(this.num)).replace("{name}", itemName));
                         this.num = 0;
@@ -197,7 +197,7 @@ public class Announcer extends Module {
         }
         int i = MathUtils.randomInt(1, 6);
         this.num2++;
-        if (this.break_.getValue().booleanValue() && this.num2 >= i && this.stopwatch.hasElapsedMs((long) (Double.longBitsToDouble(4652007308841189376L) * this.delay.getValue().doubleValue()))) {
+        if (this.break_.getValue().booleanValue() && this.num2 >= i && this.stopwatch.hasElapsedMs((long) (1000.0d * this.delay.getValue().doubleValue()))) {
             String[] strArr = {BlockPlacer.getBlockAt(breakBlockEvent.getBlockPos()).toString(), "Air", "Bedrock", "Barrier"};
             sendModuleMessage(getRandomBreakMessage().replace("{amount}", String.valueOf(this.num2)).replace("{name}", strArr[new Random().nextInt(strArr.length)]));
             this.num2 = 0;

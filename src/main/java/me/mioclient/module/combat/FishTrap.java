@@ -37,7 +37,7 @@ public class FishTrap extends Range {
 
     @Override // me.mioclient.module.combat.Range
     public boolean isValidRangeTarget(Player playerEntity) {
-        if (playerEntity.getBoundingBox().getYsize() > Double.longBitsToDouble(4607182418800017408L)) {
+        if (playerEntity.getBoundingBox().getYsize() > 1.0d) {
             return false;
         }
         return super.isValidRangeTarget(playerEntity);

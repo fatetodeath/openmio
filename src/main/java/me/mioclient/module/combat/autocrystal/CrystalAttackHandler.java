@@ -150,7 +150,7 @@ public class CrystalAttackHandler implements ClientAccessor {
             return;
         }
         minecraftClient.player.resetAttackStrengthTicker();
-        this.num = (long) (Math.random() * Double.longBitsToDouble(4643985272004935680L));
+        this.num = (long) (Math.random() * 300.0d);
     }
 
     public boolean isWeaknessSwapActive() {

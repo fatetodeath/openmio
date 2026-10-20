@@ -43,7 +43,7 @@ public final class VehicleMoveHandler implements ClientAccessor {
         if (this.num2 > 0) {
             this.num2--;
         }
-        if (this.vec3d == null || 0 != 0 || Math.abs(pos.y - this.vec3d.y) >= Double.longBitsToDouble(4625759767262920704L)) {
+        if (this.vec3d == null || 0 != 0 || Math.abs(pos.y - this.vec3d.y) >= 18.0d) {
             sendVehicleSync();
             this.vec3d = pos;
         }
@@ -79,7 +79,7 @@ public final class VehicleMoveHandler implements ClientAccessor {
         } else {
             this.num++;
         }
-        sendVehicleMovePacket(Float.intBitsToFloat(1148846080));
+        sendVehicleMovePacket(1000.0f);
         this.stopwatch.reset();
         this.flag = false;
     }

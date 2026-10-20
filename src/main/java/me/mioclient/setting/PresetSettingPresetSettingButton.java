@@ -35,10 +35,10 @@ public class PresetSettingPresetSettingButton extends SettingPresetSettingButton
         super(presetEnumSettingHelper, presetHelper_2, (Setting) setting);
         this.arrayList = new ArrayList<>();
         this.hUDHelper_2 = new InterpolatedFloat((Supplier<Float>) () -> {
-            return Float.valueOf(Float.intBitsToFloat(1073741824) * getUI().animSpeed.getValue().floatValue());
+            return Float.valueOf(2.0f * getUI().animSpeed.getValue().floatValue());
         }, true);
         this.progress = new AnimationProgress((Supplier<Float>) () -> {
-            return Float.valueOf(Float.intBitsToFloat(1073741824) * UI.uI.animSpeed.getValue().floatValue());
+            return Float.valueOf(2.0f * UI.uI.animSpeed.getValue().floatValue());
         }, true);
         this.flag = false;
         int i = getRowHeight();
@@ -116,18 +116,18 @@ public class PresetSettingPresetSettingButton extends SettingPresetSettingButton
         if (this.flag) {
             this.hUDHelper_2.animate(this.num2 * getRowHeight());
             float f = this.hUDHelper_2.getValue();
-            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + getPadding() + 1, (((this.presetEnumSettingHelper.getY() + this.num) + f) + getRowHeight()) - Float.intBitsToFloat(1056964608), (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 2, (((this.presetEnumSettingHelper.getY() + this.num) + (getRowHeight() * 2)) + f) - Float.intBitsToFloat(1056964608), getUI().color.getValue());
+            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + getPadding() + 1, (((this.presetEnumSettingHelper.getY() + this.num) + f) + getRowHeight()) - 0.5f, (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 2, (((this.presetEnumSettingHelper.getY() + this.num) + (getRowHeight() * 2)) + f) - 0.5f, getUI().color.getValue());
         } else {
             this.hUDHelper_2.animate(-getRowHeight());
         }
         int i = this.flag ? 1 : 0;
-        Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + getPadding() + i, this.presetEnumSettingHelper.getY() + this.num + Float.intBitsToFloat(1056964608) + i, (this.presetEnumSettingHelper.getX() + Math.max((this.presetEnumSettingHelper.getTotalWidth() * this.progress.getValue()) - Float.intBitsToFloat(1065353216), Float.intBitsToFloat(1073741824))) - i, ((this.presetEnumSettingHelper.getY() + this.num) + getRowHeight()) - Float.intBitsToFloat(1056964608), getUI().color.getValue());
+        Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + getPadding() + i, this.presetEnumSettingHelper.getY() + this.num + 0.5f + i, (this.presetEnumSettingHelper.getX() + Math.max((this.presetEnumSettingHelper.getTotalWidth() * this.progress.getValue()) - 1.0f, 2.0f)) - i, ((this.presetEnumSettingHelper.getY() + this.num) + getRowHeight()) - 0.5f, getUI().color.getValue());
         if (this.flag) {
             this.arrayList.forEach(PresetSettingButton -> {
                 PresetSettingButton.render(drawContext, matrixStack, d, d2);
             });
             if (UI.uI.line.getValue().booleanValue()) {
-                Shape2DRenderer.drawOutline(matrixStack, this.presetEnumSettingHelper.getX() + getPadding(), this.presetEnumSettingHelper.getY() + this.num + Float.intBitsToFloat(1056964608), (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 2, ((this.presetEnumSettingHelper.getY() + this.num) + getFontHeight()) - Float.intBitsToFloat(1069547520), getUI().color.getValue());
+                Shape2DRenderer.drawOutline(matrixStack, this.presetEnumSettingHelper.getX() + getPadding(), this.presetEnumSettingHelper.getY() + this.num + 0.5f, (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 2, ((this.presetEnumSettingHelper.getY() + this.num) + getFontHeight()) - 1.5f, getUI().color.getValue());
             }
         }
         String string2921 = new StringTemplate().arg(EnumJsonConverter.getEnumDisplayName((Enum) this.setting.getValue())).arg(this.setting.getName()).format("\u0001: \u0001");

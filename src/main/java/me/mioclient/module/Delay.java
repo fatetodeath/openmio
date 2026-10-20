@@ -173,7 +173,7 @@ public abstract class Delay extends Module {
             if (hitResult985.getType() != HitResult.Type.BLOCK) {
                 return false;
             }
-            return new AABB(hitResult985.getLocation().add(Double.longBitsToDouble(-4646453807550688133L), Double.longBitsToDouble(-4646453807550688133L), Double.longBitsToDouble(-4646453807550688133L)), hitResult985.getLocation().add(Double.longBitsToDouble(4576918229304087675L), Double.longBitsToDouble(4576918229304087675L), Double.longBitsToDouble(4576918229304087675L))).intersects(new AABB(blockPos));
+            return new AABB(hitResult985.getLocation().add((-0.01d), (-0.01d), (-0.01d)), hitResult985.getLocation().add(0.01d, 0.01d, 0.01d)).intersects(new AABB(blockPos));
         }
 
         public HitResult getHitResult985() {
@@ -183,7 +183,7 @@ public abstract class Delay extends Module {
             float sin = Mth.sin(f2);
             float cos2 = Mth.cos(f);
             Vec3 vec3d = new Vec3(sin * cos2, -Mth.sin(f), cos * cos2);
-            return RaycastUtils.performCustomBlockRaycast(new CustomRaycastContext.Inner(ClientAccessor.minecraftClient.player.getEyePosition(), ClientAccessor.minecraftClient.player.getEyePosition().add(vec3d.x * Double.longBitsToDouble(4617315517961601024L), vec3d.y * Double.longBitsToDouble(4617315517961601024L), vec3d.z * Double.longBitsToDouble(4617315517961601024L))).setFilter(BlockRaycastFilter.createSolidFilter(ClientServices.stashFinderHelper.getTimedBlockMap().keySet())).build());
+            return RaycastUtils.performCustomBlockRaycast(new CustomRaycastContext.Inner(ClientAccessor.minecraftClient.player.getEyePosition(), ClientAccessor.minecraftClient.player.getEyePosition().add(vec3d.x * 5.0d, vec3d.y * 5.0d, vec3d.z * 5.0d)).setFilter(BlockRaycastFilter.createSolidFilter(ClientServices.stashFinderHelper.getTimedBlockMap().keySet())).build());
         }
 
         public float[] getLookAngles() {
@@ -212,9 +212,9 @@ public abstract class Delay extends Module {
         this.setting15 = add(new ColorSetting("Outline", new Color(189, 153, 255, 91), color2 -> {
             return this.setting13.isShown();
         }));
-        this.setting16 = add(new NumberSetting("LineWidth", Float.valueOf(Float.intBitsToFloat(1065353216)), Float.valueOf(Float.intBitsToFloat(1036831949)), Float.valueOf(Float.intBitsToFloat(1077936128))).requiresSettings(this.setting13));
+        this.setting16 = add(new NumberSetting("LineWidth", Float.valueOf(1.0f), Float.valueOf(0.1f), Float.valueOf(3.0f)).requiresSettings(this.setting13));
         this.setting17 = add(new BooleanSetting("Fade", true).requiresSettings(this.setting13));
-        this.setting18 = add(new NumberSetting("FadeTime", Float.valueOf(Float.intBitsToFloat(1065353216)), Float.valueOf(Float.intBitsToFloat(1036831949)), Float.valueOf(Float.intBitsToFloat(1065353216))).setSuffix("s").requiresSettings(this.setting13, this.setting17));
+        this.setting18 = add(new NumberSetting("FadeTime", Float.valueOf(1.0f), Float.valueOf(0.1f), Float.valueOf(1.0f)).setSuffix("s").requiresSettings(this.setting13, this.setting17));
         this.stopwatch = new Stopwatch();
         this.stopwatch2 = new Stopwatch();
         ClientServices.antiPhaseBlockHelper.register(new BlockHighlightRenderer.Record(this, this.setting14, this.setting15, this.setting16, this.setting18, () -> {
@@ -342,7 +342,7 @@ public abstract class Delay extends Module {
                         if (!it.hasNext()) {
                             break;
                         }
-                        if (it.next().closerThan(ofFloored, Double.longBitsToDouble(4611686018427387904L))) {
+                        if (it.next().closerThan(ofFloored, 2.0d)) {
                             if (!ClientServices.scaffoldHelper.sendAttackPacket(entitySpawnS2CPacket.getId(), true)) {
                                 return;
                             } else {
@@ -360,7 +360,7 @@ public abstract class Delay extends Module {
         if (packet9042 instanceof ClientboundPlayerPositionPacket) {
             ClientboundPlayerPositionPacket playerPositionLookS2CPacket = packet9042;
             this.val = playerPositionLookS2CPacket.change().position().y;
-            if (minecraftClient.player.position().distanceToSqr(playerPositionLookS2CPacket.change().position().x, playerPositionLookS2CPacket.change().position().y, playerPositionLookS2CPacket.change().position().z) >= Double.longBitsToDouble(4607182418800017408L) && this.setting12.getValue().booleanValue()) {
+            if (minecraftClient.player.position().distanceToSqr(playerPositionLookS2CPacket.change().position().x, playerPositionLookS2CPacket.change().position().y, playerPositionLookS2CPacket.change().position().z) >= 1.0d && this.setting12.getValue().booleanValue()) {
                 disable();
                 return;
             }
@@ -480,8 +480,8 @@ public abstract class Delay extends Module {
         if (!z && tryPlaceBlock(blockPos)) {
             AntiCheat antiCheat_lcl2 = getAntiCheat();
             if (RotationManager.is724() && antiCheat_lcl2 != null && antiCheat_lcl2.isF2b2t()) {
-                floatArray2485[0] = (float) (floatArray2485[0] + (Math.random() * Double.longBitsToDouble(4576918229175238656L)));
-                floatArray2485[1] = (float) (floatArray2485[1] + (Math.random() * Double.longBitsToDouble(4576918229175238656L)));
+                floatArray2485[0] = (float) (floatArray2485[0] + (Math.random() * 0.009999999776482582d));
+                floatArray2485[1] = (float) (floatArray2485[1] + (Math.random() * 0.009999999776482582d));
             }
             this.stopwatch.reset();
             if (this.setting13.getValue().booleanValue()) {
@@ -511,7 +511,7 @@ public abstract class Delay extends Module {
             BlockItem item = (itemStack.getItem()) instanceof BlockItem ? (BlockItem) (itemStack.getItem()) : null;
             if (item instanceof BlockItem) {
                 BlockItem blockItem = item;
-                if (blockItem.getBlock() != Blocks.ANVIL && blockItem.getBlock().getExplosionResistance() >= Float.intBitsToFloat(1142292480)) {
+                if (blockItem.getBlock() != Blocks.ANVIL && blockItem.getBlock().getExplosionResistance() >= 600.0f) {
                     return true;
                 }
             }
@@ -540,7 +540,7 @@ public abstract class Delay extends Module {
         if (minecraftClient.player.onGround()) {
             this.val = minecraftClient.player.getY();
         }
-        if ((minecraftClient.player.getY() <= this.val + Double.longBitsToDouble(4591870180066957722L) || y < Double.longBitsToDouble(4600877379321698714L) || !this.setting9.getValue().booleanValue()) && !minecraftClient.player.isSleeping()) {
+        if ((minecraftClient.player.getY() <= this.val + 0.1d || y < 0.4d || !this.setting9.getValue().booleanValue()) && !minecraftClient.player.isSleeping()) {
             return false;
         }
         setToggled(false);
@@ -558,7 +558,7 @@ public abstract class Delay extends Module {
         }
         for (BlockPos blockPos : list) {
             double squaredDistanceTo = minecraftClient.player.getEyePosition().distanceToSqr(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-            if (!BlockPlacer.canPlaceAt(blockPos, block, true, this.setting7.getValue().booleanValue()) || squaredDistanceTo > Double.longBitsToDouble(4630263366890291200L)) {
+            if (!BlockPlacer.canPlaceAt(blockPos, block, true, this.setting7.getValue().booleanValue()) || squaredDistanceTo > 36.0d) {
                 arrayList.add(blockPos);
             } else if (BlockPlacer.findSupportSide(blockPos) == null) {
                 this.flag = true;

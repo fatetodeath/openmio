@@ -193,10 +193,10 @@ public class Search extends Module {
                     colors_lcl.scheme.getValue().runWithShaderColor(() -> {
                         if (RotationManager.isInFrustum(box233)) {
                             if (this.fill.getValue().booleanValue()) {
-                                BoxRenderer.drawFilledBox(inner_3.getMatrixStack(), box233, ColorUtils.withAlpha(color61, (int) (Float.intBitsToFloat(1132396544) * this.fillOpacity.getValue().floatValue())));
+                                BoxRenderer.drawFilledBox(inner_3.getMatrixStack(), box233, ColorUtils.withAlpha(color61, (int) (255.0f * this.fillOpacity.getValue().floatValue())));
                             }
                             if (this.outline.getValue().booleanValue()) {
-                                BoxRenderer.drawBoxOutline(inner_3.getMatrixStack(), box233, color61, Float.intBitsToFloat(1065353216));
+                                BoxRenderer.drawBoxOutline(inner_3.getMatrixStack(), box233, color61, 1.0f);
                             }
                         }
                         if (this.tracers.getValue().booleanValue()) {
@@ -205,7 +205,7 @@ public class Search extends Module {
                             Vec3 camPos = camera.position();
                             org.joml.Vector3fc fwd = camera.forwardVector();
                             Vec3 start = new Vec3(camPos.x + fwd.x(), camPos.y + fwd.y(), camPos.z + fwd.z());
-                            RenderUtil.INSTANCE.drawDebugLine(inner_3.getMatrixStack(), start, box233.getCenter(), ColorUtils.withAlpha(color61, (int) (Float.intBitsToFloat(1132396544) * this.tracerOpacity.getValue().floatValue())));
+                            RenderUtil.INSTANCE.drawDebugLine(inner_3.getMatrixStack(), start, box233.getCenter(), ColorUtils.withAlpha(color61, (int) (255.0f * this.tracerOpacity.getValue().floatValue())));
                         }
                     });
                 }
@@ -222,10 +222,10 @@ public class Search extends Module {
                     colors_lcl.scheme.getValue().runWithShaderColor(() -> {
                         if (RotationManager.isInFrustum(offset)) {
                             if (this.fill.getValue().booleanValue()) {
-                                BoxRenderer.drawFilledBox(inner_3.getMatrixStack(), offset, ColorUtils.withAlpha(color60, (int) (Float.intBitsToFloat(1132396544) * this.fillOpacity.getValue().floatValue())));
+                                BoxRenderer.drawFilledBox(inner_3.getMatrixStack(), offset, ColorUtils.withAlpha(color60, (int) (255.0f * this.fillOpacity.getValue().floatValue())));
                             }
                             if (this.outline.getValue().booleanValue()) {
-                                BoxRenderer.drawBoxOutline(inner_3.getMatrixStack(), offset, color60, Float.intBitsToFloat(1065353216));
+                                BoxRenderer.drawBoxOutline(inner_3.getMatrixStack(), offset, color60, 1.0f);
                             }
                         }
                         if (this.tracers.getValue().booleanValue()) {
@@ -233,7 +233,7 @@ public class Search extends Module {
                             Vec3 camPos = camera.position();
                             org.joml.Vector3fc fwd = camera.forwardVector();
                             Vec3 start = new Vec3(camPos.x + fwd.x(), camPos.y + fwd.y(), camPos.z + fwd.z());
-                            RenderUtil.INSTANCE.drawDebugLine(inner_3.getMatrixStack(), start, Vec3.atCenterOf(blockPos), ColorUtils.withAlpha(color60, (int) (Float.intBitsToFloat(1132396544) * this.tracerOpacity.getValue().floatValue())));
+                            RenderUtil.INSTANCE.drawDebugLine(inner_3.getMatrixStack(), start, Vec3.atCenterOf(blockPos), ColorUtils.withAlpha(color60, (int) (255.0f * this.tracerOpacity.getValue().floatValue())));
                         }
                     });
                 }

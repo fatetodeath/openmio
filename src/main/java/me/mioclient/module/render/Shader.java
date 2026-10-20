@@ -140,7 +140,7 @@ public class Shader extends Module {
     public Shader() {
         super("Shader", "Advanced ESP using shaders.", Category.RENDER, new String[0]);
         this.objectArrayList = new ObjectArrayList<>();
-        this.val = Float.intBitsToFloat(1065353216);
+        this.val = 1.0f;
         this.radius.setConfigName("DecoratorRadius");
         this.alpha.setConfigName("DecoratorAlpha");
         this.fill2.setConfigName("HandsFill");
@@ -196,11 +196,11 @@ public class Shader extends Module {
             float width = entity.getBbWidth();
             if (distanceTo <= width && entity != minecraftClient.player) {
                 float f = (float) (distanceTo / width);
-                float intValue = norender.clusterAlpha.getValue().intValue() / Float.intBitsToFloat(1132396544);
-                return intValue + (f * (Float.intBitsToFloat(1065353216) - intValue));
+                float intValue = norender.clusterAlpha.getValue().intValue() / 255.0f;
+                return intValue + (f * (1.0f - intValue));
             }
         }
-        return Float.intBitsToFloat(1065353216);
+        return 1.0f;
     }
 
     /* Picks the outline post chain for the current mode. SOLID uses the crisp
@@ -241,7 +241,7 @@ public class Shader extends Module {
     public Color applyClusterAlpha(Color color) {
         float f = this.val;
         if (ShaderRegistry.flag2) {
-            f = Float.intBitsToFloat(1065353216);
+            f = 1.0f;
         }
         return ColorUtils.withAlpha(color, (int) (f * color.getAlpha()));
     }

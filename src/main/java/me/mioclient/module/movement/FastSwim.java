@@ -60,7 +60,7 @@ public class FastSwim extends Module {
     @Listen
     public void onMove(MoveEvent moveEvent) {
         SpeedMine speedmine_lcl = getSpeedmine();
-        boolean z = speedmine_lcl != null && speedmine_lcl.isToggled() && ((double) speedmine_lcl.getMiningProgress()) + speedmine_lcl.getCurrentMiningSpeed() >= ((double) speedmine_lcl.damage.getValue().floatValue()) - Double.longBitsToDouble(4591870180066957722L) && speedmine_lcl.getBreakingPos() != null && WorldUtils.isBreakable(speedmine_lcl.getBreakingPos());
+        boolean z = speedmine_lcl != null && speedmine_lcl.isToggled() && ((double) speedmine_lcl.getMiningProgress()) + speedmine_lcl.getCurrentMiningSpeed() >= ((double) speedmine_lcl.damage.getValue().floatValue()) - 0.1d && speedmine_lcl.getBreakingPos() != null && WorldUtils.isBreakable(speedmine_lcl.getBreakingPos());
         if (!((minecraftClient.player.isInLava() && this.lava.getValue().booleanValue()) || (PlayerUtils.isInWater(minecraftClient.player) && this.water.getValue().booleanValue())) || minecraftClient.player.isFallFlying() || !ClientServices.holeSnapRenderHelper.getSetbackStopwatch().hasElapsedMs(500L) || z) {
             this.num = System.currentTimeMillis();
             return;
@@ -68,14 +68,14 @@ public class FastSwim extends Module {
         if (!MovementUtils.is2181()) {
             this.num = System.currentTimeMillis();
         }
-        float intBitsToFloat = this.vertical.getValue().booleanValue() ? Float.intBitsToFloat(1039516303) * this.vSpeed.getValue().floatValue() : 0.0f;
-        float intBitsToFloat2 = Float.intBitsToFloat(1039516303) * this.accelMin.getValue().floatValue();
-        double intBitsToFloat3 = Float.intBitsToFloat(1039516303) * this.speed2.getValue().floatValue();
+        float intBitsToFloat = this.vertical.getValue().booleanValue() ? 0.12f * this.vSpeed.getValue().floatValue() : 0.0f;
+        float intBitsToFloat2 = 0.12f * this.accelMin.getValue().floatValue();
+        double intBitsToFloat3 = 0.12f * this.speed2.getValue().floatValue();
         if (this.water.getValue().booleanValue() && PlayerUtils.isInWater(minecraftClient.player)) {
-            intBitsToFloat3 = Float.intBitsToFloat(1039516303) * this.speed.getValue().floatValue();
+            intBitsToFloat3 = 0.12f * this.speed.getValue().floatValue();
         }
         if (this.accelerate.getValue().booleanValue() && intBitsToFloat2 < intBitsToFloat3) {
-            intBitsToFloat3 = Math.min(intBitsToFloat2 + ((intBitsToFloat3 - intBitsToFloat2) * Mth.clamp(((float) (System.currentTimeMillis() - this.num)) / (this.accelTime.getValue().floatValue() * Float.intBitsToFloat(1148846080)), 0.0f, Float.intBitsToFloat(1065353216))), intBitsToFloat3);
+            intBitsToFloat3 = Math.min(intBitsToFloat2 + ((intBitsToFloat3 - intBitsToFloat2) * Mth.clamp(((float) (System.currentTimeMillis() - this.num)) / (this.accelTime.getValue().floatValue() * 1000.0f), 0.0f, 1.0f)), intBitsToFloat3);
         }
         if (minecraftClient.player.input.keyPresses.jump() && !this.flag) {
             moveEvent.setY(intBitsToFloat);
@@ -83,7 +83,7 @@ public class FastSwim extends Module {
         } else if (minecraftClient.player.input.keyPresses.shift()) {
             moveEvent.setY(-intBitsToFloat);
             minecraftClient.player.setDeltaMovement(minecraftClient.player.getDeltaMovement().with(Direction.Axis.Y, -intBitsToFloat));
-            intBitsToFloat3 /= Double.longBitsToDouble(4611686018427387904L);
+            intBitsToFloat3 /= 2.0d;
         } else {
             moveEvent.setY(0.0d);
             minecraftClient.player.setDeltaMovement(minecraftClient.player.getDeltaMovement().with(Direction.Axis.Y, 0.0d));

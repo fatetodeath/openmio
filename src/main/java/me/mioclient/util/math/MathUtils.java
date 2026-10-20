@@ -62,11 +62,11 @@ public class MathUtils implements ClientAccessor {
 
     public static double getDistanceScale(Vec3 vec3d, Vec3 vec3d2, double d) {
         double distanceTo = vec3d.distanceTo(vec3d2);
-        double intValue = ((Integer) minecraftClient.options.fov().get()).intValue() / Double.longBitsToDouble(4637440978796412928L);
-        if (intValue < Double.longBitsToDouble(4607182418800017408L)) {
-            intValue = Double.longBitsToDouble(4607182418800017408L);
+        double intValue = ((Integer) minecraftClient.options.fov().get()).intValue() / 110.0d;
+        if (intValue < 1.0d) {
+            intValue = 1.0d;
         }
-        return distanceTo <= Double.longBitsToDouble(4621819117588971520L) / d ? Math.min(Double.longBitsToDouble(4607182418800017408L), d) * intValue : distanceTo * d * Double.longBitsToDouble(4591870180066957722L) * intValue;
+        return distanceTo <= 10.0d / d ? Math.min(1.0d, d) * intValue : distanceTo * d * 0.1d * intValue;
     }
 
     public static float getYawDifference(Player playerEntity) {
@@ -82,7 +82,7 @@ public class MathUtils implements ClientAccessor {
     }
 
     public static float getWrappedDegrees(float f) {
-        return (f < 0.0f ? f + Float.intBitsToFloat(1135869952) : f) % Float.intBitsToFloat(1135869952);
+        return (f < 0.0f ? f + 360.0f : f) % 360.0f;
     }
 
     public static float interpolateWithTick(float f, float f2) {

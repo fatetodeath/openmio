@@ -64,7 +64,7 @@ public class Blocker extends Delay {
                 }
                 i++;
             }
-            if (blockPos.getY() == minecraftClient.player.getY() + Double.longBitsToDouble(4613937818241073152L)) {
+            if (blockPos.getY() == minecraftClient.player.getY() + 3.0d) {
                 arrayList2.add(blockPos.below());
             } else {
                 arrayList2.add(blockPos.above());

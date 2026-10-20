@@ -127,7 +127,7 @@ public class AnchorAura extends Module {
         this.stopwatch = new Stopwatch();
         this.atomicReference = new AtomicReference<>();
         ClientServices.antiPhaseBlockHelper.register(new BlockHighlightRenderer.Record(this, this.fill, this.outline, () -> {
-            return Float.valueOf(Float.intBitsToFloat(1065353216));
+            return Float.valueOf(1.0f);
         }, this.fadeTime, () -> {
             return false;
         }, this.fade, 450));
@@ -353,7 +353,7 @@ public class AnchorAura extends Module {
                                     }
                                 }
                             }
-                            d5 = d6 + Double.longBitsToDouble(4607182418800017408L);
+                            d5 = d6 + 1.0d;
                         } else {
                             break;
                         }
@@ -361,9 +361,9 @@ public class AnchorAura extends Module {
                 } else {
                     break;
                 }
-                d3 = d4 + Double.longBitsToDouble(4607182418800017408L);
+                d3 = d4 + 1.0d;
             }
-            d = d2 + Double.longBitsToDouble(4607182418800017408L);
+            d = d2 + 1.0d;
         }
     }
 
@@ -371,7 +371,7 @@ public class AnchorAura extends Module {
         AnchorTarget autoCrystalData_2 = null;
         for (LivingEntity livingEntity : minecraftClient.level.players()) {
             if (!AnchorTarget.isInvalidTarget((Player) livingEntity, this.targetRange.getValue().floatValue())) {
-                double d = ExplosionDamageCalculator.getExplosionDamage(Vec3.atCenterOf(blockPos), livingEntity, ((Player) livingEntity).getBoundingBox(), Double.longBitsToDouble(4617315517961601024L), true, isRespawnAnchor(blockPos) ? blockPos : null, (BlockPos) null);
+                double d = ExplosionDamageCalculator.getExplosionDamage(Vec3.atCenterOf(blockPos), livingEntity, ((Player) livingEntity).getBoundingBox(), 5.0d, true, isRespawnAnchor(blockPos) ? blockPos : null, (BlockPos) null);
                 if (this.minDamage.getValue().floatValue() <= d && d >= MathConstants.val2 && (autoCrystalData_2 == null || d > autoCrystalData_2.getDamage())) {
                     autoCrystalData_2 = new AnchorTarget((Player) livingEntity, d);
                 }
@@ -395,9 +395,9 @@ public class AnchorAura extends Module {
             return true;
         }
         boolean isRespawnAnchor = isRespawnAnchor(blockPos);
-        double d = ExplosionDamageCalculator.getExplosionDamage(Vec3.atCenterOf( blockPos), minecraftClient.player, minecraftClient.player.getBoundingBox(), Double.longBitsToDouble(4617315517961601024L), true, isRespawnAnchor(blockPos) ? blockPos : null, (BlockPos) null);
+        double d = ExplosionDamageCalculator.getExplosionDamage(Vec3.atCenterOf( blockPos), minecraftClient.player, minecraftClient.player.getBoundingBox(), 5.0d, true, isRespawnAnchor(blockPos) ? blockPos : null, (BlockPos) null);
         boolean z = autoCrystalData_2.getDamage() >= ((double) EntityUtil.getEntityHealth(autoCrystalData_2.getAnchorPlayer()));
-        double d2 = ExplosionDamageCalculator.getExplosionDamage(Vec3.atCenterOf( blockPos), autoCrystalData_2.getAnchorPlayer(), autoCrystalData_2.getAnchorPlayer().getBoundingBox(), Double.longBitsToDouble(4617315517961601024L), true, isRespawnAnchor(blockPos) ? blockPos : null, (BlockPos) null);
+        double d2 = ExplosionDamageCalculator.getExplosionDamage(Vec3.atCenterOf( blockPos), autoCrystalData_2.getAnchorPlayer(), autoCrystalData_2.getAnchorPlayer().getBoundingBox(), 5.0d, true, isRespawnAnchor(blockPos) ? blockPos : null, (BlockPos) null);
         boolean z2 = (!z && d >= ((double) this.maxSelfDamage.getValue().floatValue())) || (d >= ((double) EntityUtil.getPlayerHealth()) && this.antiSuicide.getValue().booleanValue());
         if (isRespawnAnchor && !z2) {
             return false;

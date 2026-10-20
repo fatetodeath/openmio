@@ -88,7 +88,7 @@ public class BaritoneCommand extends CommandFeature {
             for (CoordLogEntry spawnTimeHelper : ClientServices.nameTagsManager.getCoordLogEntries()) {
                 if (spawnTimeHelper.isOnSameServer()) {
                     if (!spawnTimeHelper.getPlayerName().equalsIgnoreCase(minecraftClient.player.getName().getString())) {
-                        if (((float) minecraftClient.player.getEyePosition().distanceTo(Vec3.atCenterOf(spawnTimeHelper.getBlockPos()))) < Float.intBitsToFloat(1176255488)) {
+                        if (((float) minecraftClient.player.getEyePosition().distanceTo(Vec3.atCenterOf(spawnTimeHelper.getBlockPos()))) < 9999.0f) {
                             return spawnTimeHelper.getBlockPos();
                         }
                     }

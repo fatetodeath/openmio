@@ -60,7 +60,7 @@ public class AnvilAura extends Delay {
 
     public AnvilTarget getAnvilTarget() {
         AnvilTarget anvilAuraData;
-        double longBitsToDouble = Double.longBitsToDouble(9218868437227405311L);
+        double longBitsToDouble = 1.7976931348623157E308d;
         AnvilTarget anvilAuraData2 = null;
         for (LivingEntity livingEntity : minecraftClient.level.players()) {
             if (((AbstractClientPlayer) livingEntity).isAlive() && minecraftClient.player != livingEntity && !ClientServices.socialManager.isFriendEntity((Player) livingEntity) && (!this.ignoreNakeds.getValue().booleanValue() || PlayerUtils.hasArmor(livingEntity))) {

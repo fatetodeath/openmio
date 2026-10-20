@@ -166,7 +166,7 @@ public class InventoryUtils implements ClientAccessor {
     }
 
     public static float getArmorDurability(Player playerEntity) {
-        float intBitsToFloat = Float.intBitsToFloat(1120403456);
+        float intBitsToFloat = 100.0f;
         java.util.List<ItemStack> armorStacks = java.util.Arrays.asList(playerEntity.getItemBySlot(EquipmentSlot.FEET), playerEntity.getItemBySlot(EquipmentSlot.LEGS), playerEntity.getItemBySlot(EquipmentSlot.CHEST), playerEntity.getItemBySlot(EquipmentSlot.HEAD));
         Iterator it = armorStacks.iterator();
         while (it.hasNext()) {
@@ -179,7 +179,7 @@ public class InventoryUtils implements ClientAccessor {
     }
 
     public static float getDurabilityPercent(ItemStack itemStack) {
-        return 100 - ((int) ((Float.intBitsToFloat(1065353216) - ((itemStack.getMaxDamage() - itemStack.getDamageValue()) / (float) itemStack.getMaxDamage())) * Float.intBitsToFloat(1120403456)));
+        return 100 - ((int) ((1.0f - ((itemStack.getMaxDamage() - itemStack.getDamageValue()) / (float) itemStack.getMaxDamage())) * 100.0f));
     }
 
     public static int toNetworkSlot(int i) {
@@ -239,7 +239,7 @@ public class InventoryUtils implements ClientAccessor {
     }
 
     public static int getBestToolSlot(BlockPos blockPos, boolean z) {
-        double longBitsToDouble = Double.longBitsToDouble(-4616189618054758400L);
+        double longBitsToDouble = (-1.0d);
         int i = -1;
         BlockState blockState = minecraftClient.level.getBlockState(blockPos);
         int i2 = 0;

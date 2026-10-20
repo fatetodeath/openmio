@@ -41,7 +41,7 @@ public class Position extends me.mioclient.module.HudModule {
 
     public Position() {
         super("Position", "coordinates");
-        this.setting = add(new NumberSetting("SafeRange", Float.valueOf(0.0f), Float.valueOf(0.0f), Float.valueOf(Float.intBitsToFloat(1120403456))).setSuffix("k"));
+        this.setting = add(new NumberSetting("SafeRange", Float.valueOf(0.0f), Float.valueOf(0.0f), Float.valueOf(100.0f)).setSuffix("k"));
         this.setting2 = add(new BooleanSetting("Nether", true));
         this.setting3 = add(new BooleanSetting("Fake", false));
         this.setting.setHoleSnapConfig("None", HoleSnapMode.MIN);
@@ -49,8 +49,8 @@ public class Position extends me.mioclient.module.HudModule {
             ClientServices.tooltipsHelper.schedule(() -> {
                 boolean isChanceHit = MathUtils.isChanceHit(50);
                 boolean is3802 = MathUtils.isChanceHit(50);
-                int longBitsToDouble = ((int) (((-minecraftClient.player.getX()) * Double.longBitsToDouble(4611686018427387904L)) + (Math.random() * minecraftClient.player.getX() * Double.longBitsToDouble(4616189618054758400L)))) + 13;
-                int longBitsToDouble2 = ((int) (((-minecraftClient.player.getZ()) * Double.longBitsToDouble(4611686018427387904L)) + ((Math.random() * minecraftClient.player.getZ()) * Double.longBitsToDouble(4616189618054758400L)))) - 37;
+                int longBitsToDouble = ((int) (((-minecraftClient.player.getX()) * 2.0d) + (Math.random() * minecraftClient.player.getX() * 4.0d))) + 13;
+                int longBitsToDouble2 = ((int) (((-minecraftClient.player.getZ()) * 2.0d) + ((Math.random() * minecraftClient.player.getZ()) * 4.0d))) - 37;
                 if (isChanceHit) {
                     longBitsToDouble = -longBitsToDouble;
                 }
@@ -79,7 +79,7 @@ public class Position extends me.mioclient.module.HudModule {
                     pos = pos.add(this.positionData.get476(), 0.0d, this.positionData.getGridY());
                 }
                 BlockPos ofFloored = BlockPos.containing(pos.x, pos.y, pos.z);
-                BlockPos ofFloored2 = contains ? BlockPos.containing(pos.multiply(Double.longBitsToDouble(4620693217682128896L), Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(4620693217682128896L))) : BlockPos.containing(pos.multiply(Double.longBitsToDouble(4593671619917905920L), Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(4593671619917905920L)));
+                BlockPos ofFloored2 = contains ? BlockPos.containing(pos.multiply(8.0d, 1.0d, 8.0d)) : BlockPos.containing(pos.multiply(0.125d, 1.0d, 0.125d));
                 String string2921 = new StringTemplate().arg(String.valueOf(ChatFormatting.WHITE)).format("XYZ: \u0001");
                 String string29212 = new StringTemplate().arg(ofFloored.getZ()).arg(ofFloored.getY()).arg(ofFloored.getX()).format("\u0001, \u0001, \u0001.");
                 String string29213 = new StringTemplate().arg(ofFloored2.getZ()).arg(ofFloored2.getY()).arg(ofFloored2.getX()).format(" (\u0001, \u0001, \u0001.)");

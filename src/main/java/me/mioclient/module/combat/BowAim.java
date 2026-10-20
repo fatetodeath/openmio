@@ -66,7 +66,7 @@ public class BowAim extends Module {
                     return;
                 }
             }
-            Entity entity2440 = WorldUtils.getNearestEntity(this.players.getValue().booleanValue(), this.neutrals.getValue().booleanValue(), this.animals.getValue().booleanValue(), this.hostiles.getValue().booleanValue(), false, false, 0.0f, Float.intBitsToFloat(1124073472), false, this.ignoreNakeds.getValue().booleanValue());
+            Entity entity2440 = WorldUtils.getNearestEntity(this.players.getValue().booleanValue(), this.neutrals.getValue().booleanValue(), this.animals.getValue().booleanValue(), this.hostiles.getValue().booleanValue(), false, false, 0.0f, 128.0f, false, this.ignoreNakeds.getValue().booleanValue());
             if (entity2440 == null || (entity2440 instanceof EnderMan)) {
                 return;
             }
@@ -76,7 +76,7 @@ public class BowAim extends Module {
             }
             Vec3 center = boundingBox.getCenter();
             if (RotationManager.isInFrustum(boundingBox) && WorldUtils.isPositionVisible(center)) {
-                float[] floatArray1956 = getFloatArray1956((Entity) entity2440, true, Float.intBitsToFloat(1073741824));
+                float[] floatArray1956 = getFloatArray1956((Entity) entity2440, true, 2.0f);
                 if (Float.isNaN(floatArray1956[0]) || Float.isNaN(floatArray1956[1])) {
                     return;
                 }
@@ -108,17 +108,17 @@ public class BowAim extends Module {
     public static float[] getFloatArray1956(Entity entity, boolean z, float f) {
         LocalPlayer clientPlayerEntity = minecraftClient.player;
         double x = (entity.getX() + (z ? (entity.getX() - entity.xo) * f : 0.0d)) - (clientPlayerEntity.getX() + (z ? clientPlayerEntity.getX() - clientPlayerEntity.xo : 0.0d));
-        double eyeHeight = ((((entity.getBoundingBox().minY + (z ? (entity.getBoundingBox().minY - entity.yo) * f : 0.0d)) + entity.getEyeHeight(entity.getPose())) - Double.longBitsToDouble(4594572339843380019L)) - (clientPlayerEntity.getBoundingBox().minY + (z ? clientPlayerEntity.getY() - clientPlayerEntity.yo : 0.0d))) - clientPlayerEntity.getEyeHeight(clientPlayerEntity.getPose());
+        double eyeHeight = ((((entity.getBoundingBox().minY + (z ? (entity.getBoundingBox().minY - entity.yo) * f : 0.0d)) + entity.getEyeHeight(entity.getPose())) - 0.15d) - (clientPlayerEntity.getBoundingBox().minY + (z ? clientPlayerEntity.getY() - clientPlayerEntity.yo : 0.0d))) - clientPlayerEntity.getEyeHeight(clientPlayerEntity.getPose());
         double z2 = (entity.getZ() + (z ? (entity.getZ() - entity.zo) * f : 0.0d)) - (clientPlayerEntity.getZ() + (z ? clientPlayerEntity.getZ() - clientPlayerEntity.zo : 0.0d));
         double hypot = Math.hypot(x, z2);
-        float itemUseTime = clientPlayerEntity.getTicksUsingItem() / Float.intBitsToFloat(1101004800);
+        float itemUseTime = clientPlayerEntity.getTicksUsingItem() / 20.0f;
         if (clientPlayerEntity.isHolding(Items.CROSSBOW)) {
-            itemUseTime = Float.intBitsToFloat(1065353216);
+            itemUseTime = 1.0f;
         }
-        float intBitsToFloat = ((itemUseTime * itemUseTime) + (itemUseTime * Float.intBitsToFloat(1073741824))) / Float.intBitsToFloat(1077936128);
-        if (intBitsToFloat > Float.intBitsToFloat(1065353216)) {
-            intBitsToFloat = Float.intBitsToFloat(1065353216);
+        float intBitsToFloat = ((itemUseTime * itemUseTime) + (itemUseTime * 2.0f)) / 3.0f;
+        if (intBitsToFloat > 1.0f) {
+            intBitsToFloat = 1.0f;
         }
-        return new float[]{((float) ((Math.atan2(z2, x) * Double.longBitsToDouble(4640537203540230144L)) / MathConstants.val)) - MathConstants.num2, (float) (-Math.toDegrees(Math.atan(((intBitsToFloat * intBitsToFloat) - Math.sqrt((((intBitsToFloat * intBitsToFloat) * intBitsToFloat) * intBitsToFloat) - (Double.longBitsToDouble(4573567551241453568L) * ((Double.longBitsToDouble(4573567551241453568L) * (hypot * hypot)) + ((Double.longBitsToDouble(4611686018427387904L) * eyeHeight) * (intBitsToFloat * intBitsToFloat)))))) / (Double.longBitsToDouble(4573567551241453568L) * hypot))))};
+        return new float[]{((float) ((Math.atan2(z2, x) * 180.0d) / MathConstants.val)) - MathConstants.num2, (float) (-Math.toDegrees(Math.atan(((intBitsToFloat * intBitsToFloat) - Math.sqrt((((intBitsToFloat * intBitsToFloat) * intBitsToFloat) * intBitsToFloat) - (0.006000000052154064d * ((0.006000000052154064d * (hypot * hypot)) + ((2.0d * eyeHeight) * (intBitsToFloat * intBitsToFloat)))))) / (0.006000000052154064d * hypot))))};
     }
 }

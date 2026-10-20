@@ -12,7 +12,7 @@ import me.mioclient.manager.RotationManager;
 public class FadingBoxRenderer {
     public AABB box;
     public long num;
-    public float val = Float.intBitsToFloat(1065353216);
+    public float val = 1.0f;
 
     public void startFadeOut() {
         this.num = System.currentTimeMillis() + 150;
@@ -43,7 +43,7 @@ public class FadingBoxRenderer {
     }
 
     public float getFadeProgress(float f) {
-        return Mth.clamp(Float.intBitsToFloat(1065353216) - (((float) Math.max(System.currentTimeMillis() - this.num, 0L)) / f), 0.0f, Float.intBitsToFloat(1065353216));
+        return Mth.clamp(1.0f - (((float) Math.max(System.currentTimeMillis() - this.num, 0L)) / f), 0.0f, 1.0f);
     }
 
     public AABB getBox() {

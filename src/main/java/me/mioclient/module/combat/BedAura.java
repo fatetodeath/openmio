@@ -94,7 +94,7 @@ public final class BedAura extends Module {
         this.stopwatch = new Stopwatch();
         this.stopwatch2 = new Stopwatch();
         ClientServices.antiPhaseBlockHelper.register(new BlockHighlightRenderer.Record(this, this.fill, this.outline, () -> {
-            return Float.valueOf(Float.intBitsToFloat(1065353216));
+            return Float.valueOf(1.0f);
         }, this.fadeTime, () -> {
             return false;
         }, this.fade, 1000));
@@ -139,7 +139,7 @@ public final class BedAura extends Module {
 
     public Player getTargetPlayer() {
         Player playerEntity = null;
-        float intBitsToFloat = Float.intBitsToFloat(1203982208);
+        float intBitsToFloat = 99999.0f;
         for (Player playerEntity2 : minecraftClient.level.players()) {
             if (playerEntity2 != minecraftClient.player && !ClientServices.socialManager.isFriendEntity(playerEntity2)) {
                 if (intBitsToFloat > minecraftClient.player.getEyePosition().distanceTo(playerEntity2.position())) {
@@ -179,7 +179,7 @@ public final class BedAura extends Module {
             });
             minecraftClient.player.swing(InteractionHand.MAIN_HAND);
             AABB enclosing = AABB.encapsulatingFullBlocks(bedAuraData.getBedPos(), bedAuraData.getHeadPos());
-            AABB expand = enclosing.setMaxY(enclosing.minY + Double.longBitsToDouble(4603241769126068224L)).inflate(Double.longBitsToDouble(4566758108763783168L));
+            AABB expand = enclosing.setMaxY(enclosing.minY + 0.5625d).inflate(0.0020000000949949026d);
             if (this.render.getValue().booleanValue()) {
                 ClientServices.antiPhaseBlockHelper.addHighlight(this, expand);
             }
@@ -244,7 +244,7 @@ public final class BedAura extends Module {
     }
 
     public boolean isDelayElapsed(Stopwatch stopwatch, Setting<Integer> setting) {
-        return stopwatch.hasElapsedMs((long) (((float) (50 * setting.getValue().intValue())) * (this.tPSSync.getValue().booleanValue() ? ClientServices.holeSnapRenderHelper.getTickRateFactor() : Float.intBitsToFloat(1065353216))));
+        return stopwatch.hasElapsedMs((long) (((float) (50 * setting.getValue().intValue())) * (this.tPSSync.getValue().booleanValue() ? ClientServices.holeSnapRenderHelper.getTickRateFactor() : 1.0f)));
     }
 
     public AABB getPredictedBox(LivingEntity livingEntity) {

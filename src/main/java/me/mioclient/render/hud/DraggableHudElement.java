@@ -27,8 +27,8 @@ public abstract class DraggableHudElement implements ClientAccessor, GuiComponen
     public final ValueAnimator zoomHelper = new ValueAnimator();
     public final ValueAnimator zoomHelper2 = new ValueAnimator();
     public ModuleListMode moduleListMode = ModuleListMode.NONE;
-    public float val = Float.intBitsToFloat(1056964608);
-    public float val2 = Float.intBitsToFloat(1056964608);
+    public float val = 0.5f;
+    public float val2 = 0.5f;
     public int num;
     public int num2;
     public float[] floatArr;
@@ -49,7 +49,7 @@ public abstract class DraggableHudElement implements ClientAccessor, GuiComponen
                 this.num3 = System.currentTimeMillis();
             }
             if (this.num3 + 300 <= System.currentTimeMillis()) {
-                HudEditorScreen.helper_22.initialize(this.moduleList.getName(), getHorizontalSide() == 1 ? getX() + floatArray2950[0] + Float.intBitsToFloat(1073741824) : (getX() - Float.intBitsToFloat(1073741824)) - ClientTextRenderer.INSTANCE.getStringWidth(this.moduleList.getName()), getY(), getHorizontalSide());
+                HudEditorScreen.helper_22.initialize(this.moduleList.getName(), getHorizontalSide() == 1 ? getX() + floatArray2950[0] + 2.0f : (getX() - 2.0f) - ClientTextRenderer.INSTANCE.getStringWidth(this.moduleList.getName()), getY(), getHorizontalSide());
             }
         }
         if (flag) {
@@ -57,21 +57,21 @@ public abstract class DraggableHudElement implements ClientAccessor, GuiComponen
         }
         float f = getX();
         float f2 = getY();
-        Shape2DRenderer.drawRect(matrixStack, f, f2, f + Math.max(floatArray2950[0], Float.intBitsToFloat(1082130432)), f2 + Math.max(floatArray2950[1], Float.intBitsToFloat(1082130432)), ColorUtils.toIntWithAlphaPercent(color, (ClientServices.getHud().getAlpha() * color.getAlpha()) / Float.intBitsToFloat(1132396544)));
+        Shape2DRenderer.drawRect(matrixStack, f, f2, f + Math.max(floatArray2950[0], 4.0f), f2 + Math.max(floatArray2950[1], 4.0f), ColorUtils.toIntWithAlphaPercent(color, (ClientServices.getHud().getAlpha() * color.getAlpha()) / 255.0f));
         float f3 = this.zoomHelper.getValue();
         if (f3 > 0.0f) {
-            Shape2DRenderer.drawOutline(matrixStack, f - Float.intBitsToFloat(1065353216), f2 - Float.intBitsToFloat(1065353216), f + Math.max(floatArray2950[0], Float.intBitsToFloat(1082130432)), f2 + Math.max(floatArray2950[1], Float.intBitsToFloat(1082130432)), ColorUtils.withAlpha(ColorUtils.getThemeColor(), (int) (f3 * Float.intBitsToFloat(1132396544))));
+            Shape2DRenderer.drawOutline(matrixStack, f - 1.0f, f2 - 1.0f, f + Math.max(floatArray2950[0], 4.0f), f2 + Math.max(floatArray2950[1], 4.0f), ColorUtils.withAlpha(ColorUtils.getThemeColor(), (int) (f3 * 255.0f)));
         }
     }
 
     @Override
     public boolean containsPoint(double d, double d2) {
         float[] floatArray2950 = getMeasuredSize();
-        return d >= ((double) getX()) && d <= ((double) (getX() + Math.max(floatArray2950[0], Float.intBitsToFloat(1082130432)))) && d2 >= ((double) getY()) && d2 <= ((double) (getY() + Math.max(floatArray2950[1], Float.intBitsToFloat(1082130432))));
+        return d >= ((double) getX()) && d <= ((double) (getX() + Math.max(floatArray2950[0], 4.0f))) && d2 >= ((double) getY()) && d2 <= ((double) (getY() + Math.max(floatArray2950[1], 4.0f)));
     }
 
     public void updateVisibilityAnim() {
-        this.zoomHelper2.animateTo(isVisible() ? Float.intBitsToFloat(1065353216) : 0.0f, 250L);
+        this.zoomHelper2.animateTo(isVisible() ? 1.0f : 0.0f, 250L);
     }
 
     public abstract float[] getSize();
@@ -88,7 +88,7 @@ public abstract class DraggableHudElement implements ClientAccessor, GuiComponen
         if (z) {
             this.val = f / minecraftClient.getWindow().getGuiScaledWidth();
         } else {
-            this.val = Mth.clamp(f, 0.0f, Float.intBitsToFloat(1065353216));
+            this.val = Mth.clamp(f, 0.0f, 1.0f);
         }
     }
 
@@ -104,7 +104,7 @@ public abstract class DraggableHudElement implements ClientAccessor, GuiComponen
         if (z) {
             this.val2 = f / minecraftClient.getWindow().getGuiScaledHeight();
         } else {
-            this.val2 = Mth.clamp(f, 0.0f, Float.intBitsToFloat(1065353216));
+            this.val2 = Mth.clamp(f, 0.0f, 1.0f);
         }
     }
 
@@ -121,7 +121,7 @@ public abstract class DraggableHudElement implements ClientAccessor, GuiComponen
         if (this.flag2 == z) {
             return;
         }
-        this.zoomHelper.animateTo(z ? Float.intBitsToFloat(1065353216) : 0.0f, 250L);
+        this.zoomHelper.animateTo(z ? 1.0f : 0.0f, 250L);
         this.flag2 = z;
     }
 
@@ -150,7 +150,7 @@ public abstract class DraggableHudElement implements ClientAccessor, GuiComponen
     }
 
     public float getAlignedX(float f) {
-        return this.moduleListMode == ModuleListMode.TOP_CENTER ? (getX() + (this.floatArr[0] / Float.intBitsToFloat(1073741824))) - (f / Float.intBitsToFloat(1073741824)) : getHorizontalSide() == -1 ? (getX() + this.floatArr[0]) - f : getX();
+        return this.moduleListMode == ModuleListMode.TOP_CENTER ? (getX() + (this.floatArr[0] / 2.0f)) - (f / 2.0f) : getHorizontalSide() == -1 ? (getX() + this.floatArr[0]) - f : getX();
     }
 
     public float getAlignedY(float f) {
@@ -172,8 +172,8 @@ public abstract class DraggableHudElement implements ClientAccessor, GuiComponen
     }
 
     public void computeSides() {
-        this.num = getX() + (this.floatArr[0] / Float.intBitsToFloat(1073741824)) > ((float) minecraftClient.getWindow().getGuiScaledWidth()) / Float.intBitsToFloat(1073741824) ? -1 : 1;
-        this.num2 = getY() + (this.floatArr[1] / Float.intBitsToFloat(1073741824)) > ((float) minecraftClient.getWindow().getGuiScaledHeight()) / Float.intBitsToFloat(1073741824) ? -1 : 1;
+        this.num = getX() + (this.floatArr[0] / 2.0f) > ((float) minecraftClient.getWindow().getGuiScaledWidth()) / 2.0f ? -1 : 1;
+        this.num2 = getY() + (this.floatArr[1] / 2.0f) > ((float) minecraftClient.getWindow().getGuiScaledHeight()) / 2.0f ? -1 : 1;
     }
 
     public Rectangle getData_32936() {

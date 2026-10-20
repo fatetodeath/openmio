@@ -120,7 +120,7 @@ public class Tooltips extends Module {
                         Color color = new Color(shulkerBoxBlock.getColor().getMapColor().col, false);
                         float[] fArr = new float[3];
                         color.getColorComponents(fArr);
-                        setShulkerTintColor(new Color(fArr[0], fArr[1], fArr[2], Float.intBitsToFloat(1056964608)));
+                        setShulkerTintColor(new Color(fArr[0], fArr[1], fArr[2], 0.5f));
                     }
                 }
             }

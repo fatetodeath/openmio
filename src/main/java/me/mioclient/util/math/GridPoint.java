@@ -14,7 +14,7 @@ public final class GridPoint {
     }
 
     public double getSquaredDistanceTo(GridPoint positionData) {
-        return Math.pow(this.num - positionData.num, Double.longBitsToDouble(4611686018427387904L)) + Math.pow(this.num2 - positionData.num2, Double.longBitsToDouble(4611686018427387904L));
+        return Math.pow(this.num - positionData.num, 2.0d) + Math.pow(this.num2 - positionData.num2, 2.0d);
     }
 
     public double getDistanceTo(GridPoint positionData) {

@@ -124,18 +124,18 @@ public class NoRender extends Module {
     @Listen(get219= RenderConstants.num4)
     public void onEntityModelRender(EntityModelRenderEvent entityEvent) {
         if (!this.noCluster.getValue().booleanValue()) {
-            this.val = Float.intBitsToFloat(1065353216);
+            this.val = 1.0f;
             return;
         }
         double distanceTo = minecraftClient.player.position().distanceTo(entityEvent.getEntity().position());
         float width = entityEvent.getEntity().getBbWidth();
         if (distanceTo > width || entityEvent.getEntity() == minecraftClient.player) {
-            this.val = Float.intBitsToFloat(1065353216);
+            this.val = 1.0f;
             return;
         }
         float f = (float) (distanceTo / width);
-        float intValue = this.clusterAlpha.getValue().intValue() / Float.intBitsToFloat(1132396544);
-        entityEvent.setAlpha(intValue + (f * (Float.intBitsToFloat(1065353216) - intValue)));
+        float intValue = this.clusterAlpha.getValue().intValue() / 255.0f;
+        entityEvent.setAlpha(intValue + (f * (1.0f - intValue)));
         this.val = entityEvent.getAlpha();
     }
 
@@ -233,28 +233,28 @@ public class NoRender extends Module {
 
     public float getHandOpacity() {
         if (!isToggled() || !this.hands.getValue().booleanValue() || ShaderRegistry.flag || ShaderRegistry.flag2) {
-            return Float.intBitsToFloat(1065353216);
+            return 1.0f;
         }
         float floatValue = this.opacity2.getValue().floatValue();
         if (floatValue == 0.0f) {
             return 0.0f;
         }
-        return Math.max(floatValue, Float.intBitsToFloat(1038174126));
+        return Math.max(floatValue, 0.11f);
     }
 
     public float getArmorOpacity() {
         if (!isToggled() || !this.armor.getValue().booleanValue()) {
-            return Float.intBitsToFloat(1065353216);
+            return 1.0f;
         }
         float floatValue = this.opacity.getValue().floatValue();
         if (floatValue == 0.0f) {
             return 0.0f;
         }
-        return Math.max(floatValue, Float.intBitsToFloat(1038174126));
+        return Math.max(floatValue, 0.11f);
     }
 
     public float getGlobalOpacity() {
-        return !isToggled() ? Float.intBitsToFloat(1065353216) : this.val;
+        return !isToggled() ? 1.0f : this.val;
     }
 
     public boolean isTintEnabled() {

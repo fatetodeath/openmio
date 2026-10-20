@@ -159,7 +159,7 @@ public class EspOutlineRenderer implements ClientAccessor {
         } else if (entity instanceof ThrownEnderpearl) {
             color = z ? this.eSP.fill3.getValue() : this.eSP.outline.getValue();
         }
-        int clamp = (int) Mth.clamp(MathUtils.interpolateWithTick(entity.tickCount - 1, entity.tickCount) * Float.intBitsToFloat(1101004800), 0.0f, color.getAlpha());
+        int clamp = (int) Mth.clamp(MathUtils.interpolateWithTick(entity.tickCount - 1, entity.tickCount) * 20.0f, 0.0f, color.getAlpha());
         if ((entity instanceof ThrownEnderpearl) || (entity instanceof ThrownExperienceBottle)) {
             clamp = color.getAlpha();
         }

@@ -366,7 +366,7 @@ public class ElytraFly extends Module {
         if (packet904 instanceof ClientboundAddEntityPacket) {
             ClientboundAddEntityPacket entitySpawnS2CPacket = packet904;
             if (entitySpawnS2CPacket.getType() == EntityTypes.FIREWORK_ROCKET) {
-                if (new Vec3(entitySpawnS2CPacket.getX(), entitySpawnS2CPacket.getY(), entitySpawnS2CPacket.getZ()).distanceToSqr(minecraftClient.player.position()) <= Double.longBitsToDouble(4630263366890291200L)) {
+                if (new Vec3(entitySpawnS2CPacket.getX(), entitySpawnS2CPacket.getY(), entitySpawnS2CPacket.getZ()).distanceToSqr(minecraftClient.player.position()) <= 36.0d) {
                     this.stopwatch3.reset();
                 }
             }
@@ -415,7 +415,7 @@ public class ElytraFly extends Module {
             return;
         }
         if (this.takeoff.getValue() == ElytraFlyMode_2.STRICT) {
-            ClientServices.holeSnapHelper.requestTickRate(this, Float.intBitsToFloat(1036831949));
+            ClientServices.holeSnapHelper.requestTickRate(this, 0.1f);
         }
         long j = 100;
         if (this.mode.getValue() == ElytraFlyPredicateMode.STRICT) {

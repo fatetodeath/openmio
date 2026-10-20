@@ -56,7 +56,7 @@ public class AntiVoid extends Module {
         }
         if (minecraftClient.level.clip(new ClipContext(minecraftClient.player.position(), new Vec3(minecraftClient.player.getX(), minecraftClient.level.getMinY() - 1, minecraftClient.player.getZ()), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, minecraftClient.player)).getType() == HitResult.Type.MISS && minecraftClient.level.getMinY() + this.height.getValue().intValue() >= minecraftClient.player.getY()) {
             if (this.mode.getValue() == AntiVoidMode.TELEPORT) {
-                minecraftClient.player.setDeltaMovement(0.0d, Double.longBitsToDouble(4621819117588971520L), 0.0d);
+                minecraftClient.player.setDeltaMovement(0.0d, 10.0d, 0.0d);
             } else {
                 minecraftClient.player.setDeltaMovement(minecraftClient.player.getDeltaMovement().with(Direction.Axis.Y, 0.0d));
                 if (this.forceGround.getValue().booleanValue()) {

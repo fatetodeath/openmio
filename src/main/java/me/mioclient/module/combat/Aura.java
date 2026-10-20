@@ -284,7 +284,7 @@ public class Aura extends Module {
         }
         AntiCheat antiCheat_lcl = getAntiCheat();
         if (minecraftClient.player.containerMenu == minecraftClient.player.inventoryMenu || antiCheat_lcl == null || !antiCheat_lcl.isF2b2t()) {
-            this.entity = WorldUtils.getNearestEntity(this.players.getValue().booleanValue(), this.neutrals.getValue().booleanValue(), this.animals.getValue().booleanValue(), this.hostiles.getValue().booleanValue(), this.crystals.getValue().booleanValue(), this.projectiles.getValue().booleanValue(), this.wallRange.getValue().floatValue() + Float.intBitsToFloat(1056964608), this.range.getValue().floatValue() + Float.intBitsToFloat(1056964608), this.ignoreNamed.getValue().booleanValue(), this.ignoreNakeds.getValue().booleanValue(), this.sorting.getValue().getComparator(), this::isEntityInFOV);
+            this.entity = WorldUtils.getNearestEntity(this.players.getValue().booleanValue(), this.neutrals.getValue().booleanValue(), this.animals.getValue().booleanValue(), this.hostiles.getValue().booleanValue(), this.crystals.getValue().booleanValue(), this.projectiles.getValue().booleanValue(), this.wallRange.getValue().floatValue() + 0.5f, this.range.getValue().floatValue() + 0.5f, this.ignoreNamed.getValue().booleanValue(), this.ignoreNakeds.getValue().booleanValue(), this.sorting.getValue().getComparator(), this::isEntityInFOV);
             ClientServices.obstaclePasserHelper.removePauseRequest(this);
             if (this.pauseBaritone.getValue().booleanValue() && this.entity != null) {
                 ClientServices.obstaclePasserHelper.addPauseRequest(this);
@@ -309,12 +309,12 @@ public class Aura extends Module {
         ServerboundMovePlayerPacket packet904 = (sendImmediatelyEvent.getPacket()) instanceof ServerboundMovePlayerPacket ? (ServerboundMovePlayerPacket) (sendImmediatelyEvent.getPacket()) : null;
         if (packet904 instanceof ServerboundMovePlayerPacket) {
             ServerboundMovePlayerPacket playerMoveC2SPacket = packet904;
-            if (minecraftClient.player.fallDistance > Float.intBitsToFloat(1077936128)) {
-                if (minecraftClient.level.noCollision(minecraftClient.player.getBoundingBox().expandTowards(0.0d, minecraftClient.player.getDeltaMovement().y * Double.longBitsToDouble(4607632778762754458L), 0.0d)) || !this.flag) {
+            if (minecraftClient.player.fallDistance > 3.0f) {
+                if (minecraftClient.level.noCollision(minecraftClient.player.getBoundingBox().expandTowards(0.0d, minecraftClient.player.getDeltaMovement().y * 1.1d, 0.0d)) || !this.flag) {
                     return;
                 }
                 sendImmediatelyEvent.cancel();
-                double newY = playerMoveC2SPacket.getY(0.0d) + Double.longBitsToDouble(4611686018427387904L);
+                double newY = playerMoveC2SPacket.getY(0.0d) + 2.0d;
                 boolean onGround = playerMoveC2SPacket.isOnGround();
                 boolean horizontalCollision = playerMoveC2SPacket.horizontalCollision();
                 if (playerMoveC2SPacket.hasPosition() && playerMoveC2SPacket.hasRotation()) {
@@ -326,7 +326,7 @@ public class Aura extends Module {
                 } else {
                     PacketSender.sendPacket(new ServerboundMovePlayerPacket.StatusOnly(onGround, horizontalCollision));
                 }
-                minecraftClient.player.setPos(minecraftClient.player.getX(), minecraftClient.player.getY() + Double.longBitsToDouble(4613937818241073152L), minecraftClient.player.getZ());
+                minecraftClient.player.setPos(minecraftClient.player.getX(), minecraftClient.player.getY() + 3.0d, minecraftClient.player.getZ());
                 this.flag = false;
             }
         }
@@ -335,7 +335,7 @@ public class Aura extends Module {
     @Listen
     public void onRenderWorld(MatrixStackEvent.Inner_3 inner_3) {
         if (this.render.getValue().booleanValue()) {
-            this.zoomHelper.animateTo(this.entity == null ? 0.0f : Float.intBitsToFloat(1065353216), 250L);
+            this.zoomHelper.animateTo(this.entity == null ? 0.0f : 1.0f, 250L);
             float f = this.zoomHelper.getValue();
             AABB box1747 = getClusterBox();
             if (box1747 == null || f == 0.0f) {
@@ -433,7 +433,7 @@ public class Aura extends Module {
     public boolean canAttack(Entity entity) {
         if (!(this.entity instanceof Player) && (entity instanceof LivingEntity)) {
             LivingEntity livingEntity = (LivingEntity) entity;
-            if (EntityUtil.getEntityHealth((Entity) livingEntity) <= Double.longBitsToDouble(4607182418800017408L) && livingEntity.getMaxHealth() <= Float.intBitsToFloat(1082130432)) {
+            if (EntityUtil.getEntityHealth((Entity) livingEntity) <= 1.0d && livingEntity.getMaxHealth() <= 4.0f) {
                 return true;
             }
         }
@@ -443,7 +443,7 @@ public class Aura extends Module {
     public float getAttackCooldown() {
         double d = MathConstants.val2;
         if (this.tPSSync.getValue().booleanValue()) {
-            d -= Float.intBitsToFloat(1101004800) - ClientServices.holeSnapRenderHelper.getSmoothedTickRate();
+            d -= 20.0f - ClientServices.holeSnapRenderHelper.getSmoothedTickRate();
         }
         return minecraftClient.player.getAttackStrengthScale((float) d);
     }
@@ -468,7 +468,7 @@ public class Aura extends Module {
         int i = InventoryUtils.findInHotbar(itemStack -> {
             return itemStack.getItem() == Items.MACE && this.mace.getValue().matchesItem(itemStack);
         });
-        return (this.mace.getValue() == AuraMode_2.SMART && minecraftClient.player.fallDistance > Float.intBitsToFloat(1077936128) && i == -1) ? InventoryUtils.findInHotbar(itemStack2 -> {
+        return (this.mace.getValue() == AuraMode_2.SMART && minecraftClient.player.fallDistance > 3.0f && i == -1) ? InventoryUtils.findInHotbar(itemStack2 -> {
             return itemStack2.getItem() == Items.MACE;
         }) : i;
     }

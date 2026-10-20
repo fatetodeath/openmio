@@ -198,7 +198,7 @@ public class AutoArmor extends Module {
                                     i2 = i3;
                                 }
                             }
-                            if (i2 != autoArmorMode.getSlotIndex() && d != Double.longBitsToDouble(-4616189618054758400L)) {
+                            if (i2 != autoArmorMode.getSlotIndex() && d != (-1.0d)) {
                                 this.inner = new Inner(this, autoArmorMode, i2);
                                 break;
                             }
@@ -223,15 +223,15 @@ public class AutoArmor extends Module {
     public double getArmorProtectionScore(ItemStack itemStack, AutoArmorMode autoArmorMode) {
         float f = InventoryUtils.getDurabilityPercent(itemStack);
         if (this.safe.getValue().booleanValue() && f < this.safeAmount.getValue().intValue()) {
-            return Double.longBitsToDouble(-4616189618054758400L);
+            return (-1.0d);
         }
         if (!this.bindingCurse.getValue().booleanValue() && EnchantmentHelper.hasEnchantment(Enchantments.BINDING_CURSE, itemStack)) {
-            return Double.longBitsToDouble(-4616189618054758400L);
+            return (-1.0d);
         }
         EquipmentSlot slot = minecraftClient.player.getEquipmentSlotForItem(itemStack);
         if (slot == autoArmorMode.getEquipmentSlot()) {
             if (shouldRemoveHelmet() && slot == EquipmentSlot.HEAD) {
-                return Double.longBitsToDouble(-4616189618054758400L);
+                return (-1.0d);
             }
             double armor = 0.0d;
             double toughness = 0.0d;
@@ -248,14 +248,14 @@ public class AutoArmor extends Module {
             {
                 double d = 0.0d;
                 if (this.turtleShell.getValue().booleanValue() && itemStack.getItem() == Items.TURTLE_HELMET) {
-                    d = Double.longBitsToDouble(4666722622711529472L);
+                    d = 9999.0d;
                 }
                 double protection = d + (armor * 10) + (((int) toughness) * 10);
                 if (itemStack.isEnchanted()) {
                     ResourceKey<Enchantment> registryKey = (autoArmorMode == AutoArmorMode.LEGGINGS || this.blast.getValue().booleanValue()) ? Enchantments.BLAST_PROTECTION : Enchantments.PROTECTION;
                     for (Object2IntMap.Entry<Holder<Enchantment>> entry : itemStack.getEnchantments().entrySet()) {
                         if (!entry.getKey().is(EnchantmentTags.CURSE)) {
-                            protection = entry.getKey().is(registryKey) ? protection + (entry.getIntValue() * 3) : protection + (entry.getIntValue() * Double.longBitsToDouble(4591870180066957722L));
+                            protection = entry.getKey().is(registryKey) ? protection + (entry.getIntValue() * 3) : protection + (entry.getIntValue() * 0.1d);
                             if (entry.getKey().is(Enchantments.THORNS) && !this.thorns.getValue().booleanValue()) {
                                 protection -= entry.getIntValue();
                             }
@@ -266,14 +266,14 @@ public class AutoArmor extends Module {
             }
         }
         if (itemStack.getItem() != Items.ELYTRA || autoArmorMode != AutoArmorMode.CHESTPLATE) {
-            return Double.longBitsToDouble(-4616189618054758400L);
+            return (-1.0d);
         }
         if (itemStack.getDamageValue() >= itemStack.getMaxDamage() - 1 || ExplosionDamageCalculator.getClampedDurabilityPercent(itemStack) <= 1) {
-            return Double.longBitsToDouble(-4616189618054758400L);
+            return (-1.0d);
         }
-        double longBitsToDouble = Double.longBitsToDouble(4607182418800017408L);
+        double longBitsToDouble = 1.0d;
         if (this.elytra.getValue().booleanValue()) {
-            longBitsToDouble *= Double.longBitsToDouble(4666722622711529472L);
+            longBitsToDouble *= 9999.0d;
         }
         if (itemStack.isEnchanted()) {
             longBitsToDouble = longBitsToDouble + EnchantmentHelper.getEnchantmentLevel(Enchantments.UNBREAKING, itemStack) + EnchantmentHelper.getEnchantmentLevel(Enchantments.MENDING, itemStack);

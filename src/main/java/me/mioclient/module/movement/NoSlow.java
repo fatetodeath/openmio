@@ -110,8 +110,8 @@ public class NoSlow extends Module {
     public NoSlow() {
         super("NoSlow", "Cancels several things that may slow you down.", Category.MOVEMENT, new String[0]);
         this.stopwatch = new Stopwatch();
-        this.hUDHelper_2 = new InterpolatedFloat(Float.intBitsToFloat(1073741824), true);
-        this.hUDHelper_22 = new InterpolatedFloat(Float.intBitsToFloat(1073741824), true);
+        this.hUDHelper_2 = new InterpolatedFloat(2.0f, true);
+        this.hUDHelper_22 = new InterpolatedFloat(2.0f, true);
         setDrawn(false);
     }
 
@@ -183,7 +183,7 @@ public class NoSlow extends Module {
         }
         if (MovementUtils.is2181() && this.mode.getValue() != NoSlowMode.GRIMV3) {
             if (ClientServices.antiPhaseHelper.getGroundTicks() > 1 && !this.flag3) {
-                PacketSender.sendPosition(minecraftClient.player.getX(), minecraftClient.player.getY() + Double.longBitsToDouble(4589175226049939217L), minecraftClient.player.getZ(), false);
+                PacketSender.sendPosition(minecraftClient.player.getX(), minecraftClient.player.getY() + 0.0626d, minecraftClient.player.getZ(), false);
                 this.flag3 = true;
                 this.flag = true;
             }
@@ -226,14 +226,14 @@ public class NoSlow extends Module {
             return;
         }
         if (isKeyPressed(264)) {
-            this.hUDHelper_2.animate(Math.min(Mth.lerp(inner_3.getTickDelta(), minecraftClient.player.xRotO, minecraftClient.player.getXRot()) + Float.intBitsToFloat(1090519040), MathConstants.num2));
+            this.hUDHelper_2.animate(Math.min(Mth.lerp(inner_3.getTickDelta(), minecraftClient.player.xRotO, minecraftClient.player.getXRot()) + 8.0f, MathConstants.num2));
         } else if (isKeyPressed(265)) {
-            this.hUDHelper_2.animate(Math.max(Mth.lerp(inner_3.getTickDelta(), minecraftClient.player.xRotO, minecraftClient.player.getXRot()) - Float.intBitsToFloat(1090519040), -MathConstants.num2));
+            this.hUDHelper_2.animate(Math.max(Mth.lerp(inner_3.getTickDelta(), minecraftClient.player.xRotO, minecraftClient.player.getXRot()) - 8.0f, -MathConstants.num2));
         }
         if (isKeyPressed(262)) {
-            this.hUDHelper_22.animate(Mth.lerp(inner_3.getTickDelta(), minecraftClient.player.yRotO, minecraftClient.player.getYRot()) + Float.intBitsToFloat(1090519040));
+            this.hUDHelper_22.animate(Mth.lerp(inner_3.getTickDelta(), minecraftClient.player.yRotO, minecraftClient.player.getYRot()) + 8.0f);
         } else if (isKeyPressed(263)) {
-            this.hUDHelper_22.animate(Mth.lerp(inner_3.getTickDelta(), minecraftClient.player.yRotO, minecraftClient.player.getYRot()) - Float.intBitsToFloat(1090519040));
+            this.hUDHelper_22.animate(Mth.lerp(inner_3.getTickDelta(), minecraftClient.player.yRotO, minecraftClient.player.getYRot()) - 8.0f);
         }
         if (is3104()) {
             minecraftClient.player.setXRot(this.hUDHelper_2.getValue());

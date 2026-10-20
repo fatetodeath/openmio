@@ -15,7 +15,7 @@ public final class SetYawCommand extends CommandFeature {
 
     @Override // me.mioclient.command.CommandFeature
     public void exec(com.mojang.brigadier.builder.LiteralArgumentBuilder<CommandSourceStack> literalArgumentBuilder) {
-        literalArgumentBuilder.then(CommandFeature.argument("yaw", FloatArgumentType.floatArg(Float.intBitsToFloat(-1020002304), Float.intBitsToFloat(1127481344))).executes(commandContext -> {
+        literalArgumentBuilder.then(CommandFeature.argument("yaw", FloatArgumentType.floatArg((-180.0f), 180.0f)).executes(commandContext -> {
             minecraftClient.player.setYRot(((Float) commandContext.getArgument("yaw", Float.class)).floatValue());
             ChatUtils.sendMessage(Component.literal(new StringTemplate().arg(String.valueOf(commandContext.getArgument("yaw", Float.class))).format("Player's yaw has been set to \u0001.")), ChatUtils.createSignature(-1));
             return 1;

@@ -33,7 +33,7 @@ public final class CoordsCommand extends CommandFeature {
         if (minecraftClient.player == null) {
             return "";
         }
-        return new StringTemplate().arg((int) Math.floor(Math.random() * Double.longBitsToDouble(4666723172467343360L))).arg(WorldUtils.getDimension().getDisplayName()).arg((int) minecraftClient.player.getZ()).arg((int) minecraftClient.player.getY()).arg((int) minecraftClient.player.getX()).format("X: \u0001, Y: \u0001, Z: \u0001 in The \u0001 [\u0001]");
+        return new StringTemplate().arg((int) Math.floor(Math.random() * 10000.0d)).arg(WorldUtils.getDimension().getDisplayName()).arg((int) minecraftClient.player.getZ()).arg((int) minecraftClient.player.getY()).arg((int) minecraftClient.player.getX()).format("X: \u0001, Y: \u0001, Z: \u0001 in The \u0001 [\u0001]");
     }
 
     public void do1387(String str, String str2) {

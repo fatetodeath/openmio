@@ -106,15 +106,15 @@ public class ControlElytraFlight extends ElytraFlyModeBase {
                 this.val += fireworks_lcl.getBoostFactor(false);
             }
             if (this.num == 0) {
-                if (minecraftClient.player.input.keyPresses.jump() && this.elytraFly.vertical.getValue() == ElytraFly.ElytraFlyMode.STRICT && this.val >= Double.longBitsToDouble(4611686018427387904L)) {
-                    this.val = Double.longBitsToDouble(4611686018427387904L);
+                if (minecraftClient.player.input.keyPresses.jump() && this.elytraFly.vertical.getValue() == ElytraFly.ElytraFlyMode.STRICT && this.val >= 2.0d) {
+                    this.val = 2.0d;
                 }
                 double[] doubleArray2507 = MovementUtils.applyVelocity(moveEvent, this.val);
                 minecraftClient.player.setDeltaMovement(doubleArray2507[0], minecraftClient.player.getDeltaMovement().y, doubleArray2507[1]);
                 this.vec3d = minecraftClient.player.getDeltaMovement();
                 if (this.elytraFly.antiKick.getValue().booleanValue() && minecraftClient.player.tickCount % 4 == 0) {
-                    moveEvent.setY(moveEvent.getY() - Double.longBitsToDouble(4547007122018943789L));
-                    minecraftClient.player.setDeltaMovement(minecraftClient.player.getDeltaMovement().add(0.0d, Double.longBitsToDouble(-4676364914835832019L), 0.0d));
+                    moveEvent.setY(moveEvent.getY() - 1.0E-4d);
+                    minecraftClient.player.setDeltaMovement(minecraftClient.player.getDeltaMovement().add(0.0d, (-1.0E-4d), 0.0d));
                 }
             }
             if (minecraftClient.player.input.keyPresses.jump() && minecraftClient.player.isFallFlying()) {
@@ -250,17 +250,17 @@ public class ControlElytraFlight extends ElytraFlyModeBase {
         double horizontalLength2 = Math.hypot(vec3d375.x, vec3d375.z);
         double length = vec3d375.length();
         double cos = Math.cos(d);
-        Vec3 add = vec3d.add(0.0d, Double.longBitsToDouble(4590429028186199163L) * (Double.longBitsToDouble(-4616189618054758400L) + (cos * cos * Math.min(Double.longBitsToDouble(4607182418800017408L), length / Double.longBitsToDouble(4600877379321698714L)) * Double.longBitsToDouble(4604930618986332160L))), 0.0d);
+        Vec3 add = vec3d.add(0.0d, 0.08d * ((-1.0d) + (cos * cos * Math.min(1.0d, length / 0.4d) * 0.75d)), 0.0d);
         if (d < 0.0d && horizontalLength2 > 0.0d) {
-            double longBitsToDouble = horizontalLength * (-Math.sin(d)) * Double.longBitsToDouble(4585925428558828667L);
-            add = add.add(((-vec3d375.x) * longBitsToDouble) / horizontalLength2, longBitsToDouble * Double.longBitsToDouble(4614388178203810202L), ((-vec3d375.z) * longBitsToDouble) / horizontalLength2);
+            double longBitsToDouble = horizontalLength * (-Math.sin(d)) * 0.04d;
+            add = add.add(((-vec3d375.x) * longBitsToDouble) / horizontalLength2, longBitsToDouble * 3.2d, ((-vec3d375.z) * longBitsToDouble) / horizontalLength2);
         }
-        minecraftClient.player.setDeltaMovement(add.multiply(Double.longBitsToDouble(4607092346807469998L), Double.longBitsToDouble(4607002274814922588L), Double.longBitsToDouble(4607092346807469998L)));
+        minecraftClient.player.setDeltaMovement(add.multiply(0.99d, 0.98d, 0.99d));
         this.vec3d = minecraftClient.player.getDeltaMovement();
     }
 
     public float getYaw() {
-        double[] doubleArray2508 = MovementUtils.computeVelocity(minecraftClient.player.getYRot(), minecraftClient.player.input, Double.longBitsToDouble(4607182418800017408L));
+        double[] doubleArray2508 = MovementUtils.computeVelocity(minecraftClient.player.getYRot(), minecraftClient.player.input, 1.0d);
         return (float) (Math.toDegrees(Math.atan2(doubleArray2508[1], doubleArray2508[0])) - MathConstants.num2);
     }
 

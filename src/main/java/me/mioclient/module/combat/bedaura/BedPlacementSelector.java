@@ -34,7 +34,7 @@ public class BedPlacementSelector implements ClientFunction<LivingEntity, BedPla
     public BedPlacement selectTarget(LivingEntity livingEntity) {
         this.val = this.bedAura.range2.getValue().floatValue();
         Vec3 pos = livingEntity.position();
-        float intBitsToFloat = Float.intBitsToFloat(1073741824);
+        float intBitsToFloat = 2.0f;
         BedPlacement bedAuraData = null;
         float f = -intBitsToFloat;
         while (true) {
@@ -45,7 +45,7 @@ public class BedPlacementSelector implements ClientFunction<LivingEntity, BedPla
             float f3 = -intBitsToFloat;
             while (true) {
                 float f4 = f3;
-                if (f4 < Float.intBitsToFloat(1077936128)) {
+                if (f4 < 3.0f) {
                     float f5 = -intBitsToFloat;
                     while (true) {
                         float f6 = f5;
@@ -56,17 +56,17 @@ public class BedPlacementSelector implements ClientFunction<LivingEntity, BedPla
                             if (bedAuraData965 != null && (bedAuraData == null || bedAuraData965.getTargetDamage() >= bedAuraData.getTargetDamage())) {
                                 bedAuraData = bedAuraData965;
                             }
-                            f5 = f6 + Float.intBitsToFloat(1065353216);
+                            f5 = f6 + 1.0f;
                         } else {
                             break;
                         }
                     }
-                    f3 = f4 + Float.intBitsToFloat(1065353216);
+                    f3 = f4 + 1.0f;
                 } else {
                     break;
                 }
             }
-            f = f2 + Float.intBitsToFloat(1065353216);
+            f = f2 + 1.0f;
         }
     }
 
@@ -109,7 +109,7 @@ public class BedPlacementSelector implements ClientFunction<LivingEntity, BedPla
             return null;
         }
         if (this.vec3d == null && !this.bedAura.rotate.getValue().booleanValue()) {
-            this.vec3d = Vec3.atCenterOf(blockPos2).relative(direction, Double.longBitsToDouble(4602678819172646912L));
+            this.vec3d = Vec3.atCenterOf(blockPos2).relative(direction, 0.5d);
         }
         return new BedPlacement(blockPos2, blockPos.immutable(), f, f2, getBlockHitResult969(direction, blockPos2));
     }

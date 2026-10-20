@@ -14,7 +14,7 @@ public class RangeHoleFilter implements HoleFilter {
 
     @Override // me.mioclient.module.combat.holefill.HoleFilter
     public boolean isWithinRange(HoleData holeSnapData) {
-        if ((holeSnapData.getBox().getXsize() == Double.longBitsToDouble(4607182418800017408L) && holeSnapData.getBox().getZsize() == Double.longBitsToDouble(4607182418800017408L)) || this.holeFill.doubles.getValue().booleanValue()) {
+        if ((holeSnapData.getBox().getXsize() == 1.0d && holeSnapData.getBox().getZsize() == 1.0d) || this.holeFill.doubles.getValue().booleanValue()) {
             if (minecraftClient.player.getEyePosition().distanceTo(Vec3.atCenterOf(holeSnapData.getBlockPos())) <= this.holeFill.range.getValue().floatValue() && Math.abs(minecraftClient.player.getEyePosition().y - Vec3.atCenterOf(holeSnapData.getBlockPos()).y) <= this.holeFill.verticalRange.getValue().floatValue()) {
                 return true;
             }

@@ -15,7 +15,7 @@ import org.lwjgl.system.MemoryUtil;
 
 public class MeshBuilder implements ClientAccessor {
     public boolean flag = false;
-    public double val = Double.longBitsToDouble(4607182418800017408L);
+    public double val = 1.0d;
     public final Mode_2 mode_2;
     public final int num;
     public final int num2;

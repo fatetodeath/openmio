@@ -173,7 +173,7 @@ public class Speed extends Module {
 
     @Listen
     public void onMoveSpeed(MoveSpeedEvent moveEvent_2) {
-        if (moveEvent_2.getPhase() == KeyPearlMode.Post && minecraftClient.player.onGround() && moveEvent_2.getSpeed() > Double.longBitsToDouble(4603579539098121011L)) {
+        if (moveEvent_2.getPhase() == KeyPearlMode.Post && minecraftClient.player.onGround() && moveEvent_2.getSpeed() > 0.6d) {
             this.flag = true;
         }
     }
@@ -196,8 +196,8 @@ public class Speed extends Module {
     @Listen
     public void onExplosionVelocity(ExplosionVelocityEvent explosionVelocityEvent) {
         Vec3 vec3d = new Vec3(explosionVelocityEvent.getX(), explosionVelocityEvent.getY(), explosionVelocityEvent.getZ());
-        double d = ExplosionDamageCalculator.getExplosionDamage(vec3d, minecraftClient.player, minecraftClient.player.getBoundingBox(), Double.longBitsToDouble(4618441417868443648L), true, (BlockPos) null, (BlockPos) null);
-        if (MovementUtils.is2181() && ClientServices.holeSnapRenderHelper.getSetbackStopwatch().hasElapsedMs(500L) && this.boost.getValue().booleanValue() && Math.sqrt(minecraftClient.player.distanceToSqr(vec3d)) <= Double.longBitsToDouble(4618441417868443648L) && d >= Double.longBitsToDouble(4616189618054758400L)) {
+        double d = ExplosionDamageCalculator.getExplosionDamage(vec3d, minecraftClient.player, minecraftClient.player.getBoundingBox(), 6.0d, true, (BlockPos) null, (BlockPos) null);
+        if (MovementUtils.is2181() && ClientServices.holeSnapRenderHelper.getSetbackStopwatch().hasElapsedMs(500L) && this.boost.getValue().booleanValue() && Math.sqrt(minecraftClient.player.distanceToSqr(vec3d)) <= 6.0d && d >= 4.0d) {
             this.stopwatch.reset();
         }
     }
@@ -218,7 +218,7 @@ public class Speed extends Module {
 
     public boolean hasHeadCollision() {
         AABB boundingBox = minecraftClient.player.getBoundingBox();
-        return !minecraftClient.level.noCollision(minecraftClient.player, new AABB((double) minecraftClient.player.blockPosition().getX(), boundingBox.minY, (double) minecraftClient.player.blockPosition().getZ(), ((double) minecraftClient.player.blockPosition().getX()) + Double.longBitsToDouble(4607182418800017408L), boundingBox.maxY, ((double) minecraftClient.player.blockPosition().getZ()) + Double.longBitsToDouble(4607182418800017408L)).deflate(Double.longBitsToDouble(4502148214488346440L))) && this.pauseInBlocks.getValue().booleanValue();
+        return !minecraftClient.level.noCollision(minecraftClient.player, new AABB((double) minecraftClient.player.blockPosition().getX(), boundingBox.minY, (double) minecraftClient.player.blockPosition().getZ(), ((double) minecraftClient.player.blockPosition().getX()) + 1.0d, boundingBox.maxY, ((double) minecraftClient.player.blockPosition().getZ()) + 1.0d).deflate(1.0E-7d)) && this.pauseInBlocks.getValue().booleanValue();
     }
 
     public boolean is2824() {

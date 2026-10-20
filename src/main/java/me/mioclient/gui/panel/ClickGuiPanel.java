@@ -30,7 +30,7 @@ public class ClickGuiPanel implements NamedValue, GuiComponent, CollectionRegist
     public int totalHeight;
     public final ArrayList<GuiComponent> registry = new ArrayList<>();
     public AnimationProgress progress = new AnimationProgress((Supplier<Float>) () -> {
-        return Float.valueOf(getUI().animSpeed.getValue().floatValue() * Float.intBitsToFloat(1073741824));
+        return Float.valueOf(getUI().animSpeed.getValue().floatValue() * 2.0f);
     }, true);
     public final int panelWidth = 92;
     public int dragOffsetY = 0;
@@ -49,15 +49,15 @@ public class ClickGuiPanel implements NamedValue, GuiComponent, CollectionRegist
     @Override // me.mioclient.gui.GuiComponent
     public void render(GuiGraphicsExtractor drawContext, PoseStack matrixStack, double d, double d2) {
         drawContext.fill(this.x, this.y, this.x + getTotalWidth(), this.y + 14, UI.uI.color.getValue().getRGB());
-        ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, this.name, this.x + 2, (this.y + Float.intBitsToFloat(1088421888)) - (ClientTextRenderer.INSTANCE.getFontHeight() / Float.intBitsToFloat(1073741824)), Color.white);
+        ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, this.name, this.x + 2, (this.y + 7.0f) - (ClientTextRenderer.INSTANCE.getFontHeight() / 2.0f), Color.white);
         this.progress.animateToggle(this.flag);
         float f = this.progress.getValue();
-        if (f != Float.intBitsToFloat(1065353216) && this.totalHeight != 0) {
+        if (f != 1.0f && this.totalHeight != 0) {
             Shape2DRenderer.resetShadowOffset();
-            ScissorStackManager.pushClipRegion(this.x - 1, this.y - 1, getTotalWidth() + 2, ((int) (Float.intBitsToFloat(1096810496) + (this.totalHeight * f))) + 3);
+            ScissorStackManager.pushClipRegion(this.x - 1, this.y - 1, getTotalWidth() + 2, ((int) (14.0f + (this.totalHeight * f))) + 3);
         }
         if (f > 0.0f && !this.registry.isEmpty()) {
-            drawContext.fill(this.x, this.y + 14, this.x + getTotalWidth(), (int) (this.y + this.totalHeight + Float.intBitsToFloat(1056964608)), UI.uI.bgColor.getValue().getRGB());
+            drawContext.fill(this.x, this.y + 14, this.x + getTotalWidth(), (int) (this.y + this.totalHeight + 0.5f), UI.uI.bgColor.getValue().getRGB());
             this.registry.forEach(presetHelper_5 -> {
                 if (shouldShowChild(presetHelper_5)) {
                     presetHelper_5.update(d, d2);
@@ -66,16 +66,16 @@ public class ClickGuiPanel implements NamedValue, GuiComponent, CollectionRegist
             });
             if (UI.uI.windowShadow.getValue().booleanValue()) {
                 int shadow = (int) UI.uI.shadowSize.getValue().floatValue();
-                int shadowBottom = (int) (this.y + this.totalHeight + Float.intBitsToFloat(1056964608));
+                int shadowBottom = (int) (this.y + this.totalHeight + 0.5f);
                 drawContext.fill(this.x + shadow, shadowBottom, this.x + getTotalWidth(), shadowBottom + shadow, UI.uI.shadowColor.getValue().getRGB());
                 drawContext.fill(this.x + getTotalWidth(), this.y + shadow, this.x + getTotalWidth() + shadow, shadowBottom + shadow, UI.uI.shadowColor.getValue().getRGB());
             }
         }
         if (UI.uI.line.getValue().booleanValue()) {
-            int bottom = this.y + (f == 0.0f ? 14 : (int) (this.totalHeight + Float.intBitsToFloat(1056964608)));
+            int bottom = this.y + (f == 0.0f ? 14 : (int) (this.totalHeight + 0.5f));
             drawContext.outline(this.x - 1, this.y - 1, getTotalWidth() + 2, bottom - (this.y - 1), UI.uI.color.getValue().getRGB());
         }
-        if (f != Float.intBitsToFloat(1065353216) && this.totalHeight != 0) {
+        if (f != 1.0f && this.totalHeight != 0) {
             Shape2DRenderer.resetShadowOffset();
             ScissorStackManager.popClipRegion();
         }
@@ -178,11 +178,11 @@ public class ClickGuiPanel implements NamedValue, GuiComponent, CollectionRegist
     }
 
     public boolean isShown() {
-        return this.flag && this.progress.val == Float.intBitsToFloat(1073741824);
+        return this.flag && this.progress.val == 2.0f;
     }
 
     public float getAnimationProgress() {
-        return this.progress.getRawValue() - Float.intBitsToFloat(1065353216);
+        return this.progress.getRawValue() - 1.0f;
     }
 
     public void setExpanded(boolean z) {

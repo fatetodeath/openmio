@@ -116,7 +116,7 @@ public class FeetPlace extends Delay {
         ClientboundTeleportEntityPacket packet904 = (channelRead0Event.getPacket()) instanceof ClientboundTeleportEntityPacket ? (ClientboundTeleportEntityPacket) (channelRead0Event.getPacket()) : null;
         if (packet904 instanceof ClientboundTeleportEntityPacket) {
             ClientboundTeleportEntityPacket playerPositionLookS2CPacket = packet904;
-            if (minecraftClient.player.position().distanceToSqr(playerPositionLookS2CPacket.change().position()) > Double.longBitsToDouble(4621256167635550208L)) {
+            if (minecraftClient.player.position().distanceToSqr(playerPositionLookS2CPacket.change().position()) > 9.0d) {
                 this.val = playerPositionLookS2CPacket.change().position().y;
                 ClientServices.holeSnapRenderHelper.getTeleportStopwatch().reset();
             }
@@ -138,7 +138,7 @@ public class FeetPlace extends Delay {
         while (it.hasNext()) {
             Position position = (Vec3) it.next();
             BlockPos add = blockPos.offset(BlockPos.containing(position));
-            if (((Vec3) position).y == Double.longBitsToDouble(-4616189618054758400L)) {
+            if (((Vec3) position).y == (-1.0d)) {
                 if (!ClientServices.holeSnapOverlayHelper.isHoleAt(add) || minecraftClient.player.onGround()) {
                     if (this.flatten.getValue().booleanValue() && !minecraftClient.player.isSwimming() && !add.equals(ClientServices.stashFinderHelper.getUnconfirmedBreakPos())) {
                     }
@@ -172,11 +172,11 @@ public class FeetPlace extends Delay {
     }
 
     public List<Vec3> getNeighborOffsets(int i) {
-        return Arrays.asList(new Vec3(Double.longBitsToDouble(-4616189618054758400L), i, 0.0d), new Vec3(Double.longBitsToDouble(4607182418800017408L), i, 0.0d), new Vec3(0.0d, i, Double.longBitsToDouble(4607182418800017408L)), new Vec3(0.0d, i, Double.longBitsToDouble(-4616189618054758400L)), new Vec3(0.0d, i - 1, 0.0d));
+        return Arrays.asList(new Vec3((-1.0d), i, 0.0d), new Vec3(1.0d, i, 0.0d), new Vec3(0.0d, i, 1.0d), new Vec3(0.0d, i, (-1.0d)), new Vec3(0.0d, i - 1, 0.0d));
     }
 
     public Comparator<BlockPos> getPlacementComparator() {
-        return ClientServices.feetPlaceHelper.getInstantSpeed() <= Double.longBitsToDouble(4621819117588971520L) ? Comparator.comparing(blockPos -> {
+        return ClientServices.feetPlaceHelper.getInstantSpeed() <= 10.0d ? Comparator.comparing(blockPos -> {
             return Float.valueOf(getPlacementScore(minecraftClient.player.getYRot(), blockPos));
         }) : Comparator.comparing(blockPos2 -> {
             return Float.valueOf(getAngularPlacementScore(MovementUtils.getMovementYaw(), blockPos2));
@@ -191,15 +191,15 @@ public class FeetPlace extends Delay {
     }
 
     public float getAngularPlacementScore(float f, BlockPos blockPos) {
-        return Mth.degreesDifferenceAbs(f, RotationManager.getRotationsTo(Vec3.atCenterOf(blockPos))[0]) + (blockPos.getY() * Float.intBitsToFloat(981668463));
+        return Mth.degreesDifferenceAbs(f, RotationManager.getRotationsTo(Vec3.atCenterOf(blockPos))[0]) + (blockPos.getY() * 0.001f);
     }
 
     public void centerPlayerInBlock() {
         if (isNotInGame() || !this.center.getValue().booleanValue() || !minecraftClient.player.onGround() || ClientServices.holeSnapOverlayHelper.isInHole() || PlayerUtils.getSurroundPositions(minecraftClient.player).size() <= 4) {
             return;
         }
-        Vec3 vec3d = new Vec3(Math.floor(minecraftClient.player.getX()) + Double.longBitsToDouble(4602678819172646912L), minecraftClient.player.getY(), Math.floor(minecraftClient.player.getZ()) + Double.longBitsToDouble(4602678819172646912L));
-        minecraftClient.player.setDeltaMovement((vec3d.x - minecraftClient.player.getX()) * Double.longBitsToDouble(4602678819172646912L), minecraftClient.player.getDeltaMovement().y, (vec3d.z - minecraftClient.player.getZ()) * Double.longBitsToDouble(4602678819172646912L));
+        Vec3 vec3d = new Vec3(Math.floor(minecraftClient.player.getX()) + 0.5d, minecraftClient.player.getY(), Math.floor(minecraftClient.player.getZ()) + 0.5d);
+        minecraftClient.player.setDeltaMovement((vec3d.x - minecraftClient.player.getX()) * 0.5d, minecraftClient.player.getDeltaMovement().y, (vec3d.z - minecraftClient.player.getZ()) * 0.5d);
         minecraftClient.player.setPos(vec3d);
     }
 

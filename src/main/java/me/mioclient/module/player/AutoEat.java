@@ -155,7 +155,7 @@ public class AutoEat extends Module {
     }
 
     public int get2085() {
-        double longBitsToDouble = Double.longBitsToDouble(-4616189618054758400L);
+        double longBitsToDouble = (-1.0d);
         int i = -1;
         int i2 = 0;
         while (true) {
@@ -198,7 +198,7 @@ public class AutoEat extends Module {
                 break;
             }
             LocalPlayer clientPlayerEntity2 = (LocalPlayer)((Player) it.next());
-            if (((Player) clientPlayerEntity2).distanceTo(minecraftClient.player) <= Float.intBitsToFloat(1094713344) && !ClientServices.socialManager.isFriendEntity((Player) clientPlayerEntity2) && clientPlayerEntity2 != minecraftClient.player) {
+            if (((Player) clientPlayerEntity2).distanceTo(minecraftClient.player) <= 12.0f && !ClientServices.socialManager.isFriendEntity((Player) clientPlayerEntity2) && clientPlayerEntity2 != minecraftClient.player) {
                 clientPlayerEntity = clientPlayerEntity2;
                 break;
             }

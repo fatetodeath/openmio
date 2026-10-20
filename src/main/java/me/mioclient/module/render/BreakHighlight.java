@@ -45,7 +45,7 @@ public class BreakHighlight extends Module {
                 VoxelShape outlineShape = minecraftClient.level.getBlockState(entityIdHelper.getBlockPos()).getShape(minecraftClient.level, entityIdHelper.getBlockPos());
                 float f = entityIdHelper.get2814(inner_3.getTickDelta());
                 Player entity181 = (entityIdHelper.getEntity()) instanceof Player ? (Player) (entityIdHelper.getEntity()) : null;
-                AABB offset = scaleBoxByProgress(outlineShape.isEmpty() ? new AABB(0.0d, 0.0d, 0.0d, Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(4607182418800017408L)) : outlineShape.bounds(), f).move(entityIdHelper.getBlockPos());
+                AABB offset = scaleBoxByProgress(outlineShape.isEmpty() ? new AABB(0.0d, 0.0d, 0.0d, 1.0d, 1.0d, 1.0d) : outlineShape.bounds(), f).move(entityIdHelper.getBlockPos());
                 if (entity181 instanceof Player) {
                     Player playerEntity = entity181;
                     Color color530 = ClientServices.socialManager.getSocialColor(playerEntity.getGameProfile().name(), (Color) null);
@@ -59,17 +59,17 @@ public class BreakHighlight extends Module {
                     }
                 }
                 BoxRenderer.drawFilledBox(inner_3.getMatrixStack(), scaleBoxByProgress(offset, f), value);
-                BoxRenderer.drawBoxOutline(inner_3.getMatrixStack(), scaleBoxByProgress(offset, f), value2, Float.intBitsToFloat(1065353216));
+                BoxRenderer.drawBoxOutline(inner_3.getMatrixStack(), scaleBoxByProgress(offset, f), value2, 1.0f);
             }
         }
     }
 
     public AABB scaleBoxByProgress(AABB box, float f) {
-        float clamp = Mth.clamp(f, 0.0f, Float.intBitsToFloat(1065353216));
+        float clamp = Mth.clamp(f, 0.0f, 1.0f);
         double abs = Math.abs(box.getXsize());
         double abs2 = Math.abs(box.getYsize());
         double abs3 = Math.abs(box.getZsize());
         Vec3 center = box.getCenter();
-        return new AABB(center.subtract((clamp * abs) / Double.longBitsToDouble(4611686018427387904L), (clamp * abs2) / Double.longBitsToDouble(4611686018427387904L), (clamp * abs3) / Double.longBitsToDouble(4611686018427387904L)), center.add((clamp * abs) / Double.longBitsToDouble(4611686018427387904L), (clamp * abs2) / Double.longBitsToDouble(4611686018427387904L), (clamp * abs3) / Double.longBitsToDouble(4611686018427387904L)));
+        return new AABB(center.subtract((clamp * abs) / 2.0d, (clamp * abs2) / 2.0d, (clamp * abs3) / 2.0d), center.add((clamp * abs) / 2.0d, (clamp * abs2) / 2.0d, (clamp * abs3) / 2.0d));
     }
 }

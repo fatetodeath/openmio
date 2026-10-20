@@ -41,7 +41,7 @@ public abstract class PanelTextButton extends PanelComponent {
 
     @Override // me.mioclient.gui.widget.PanelComponent, me.mioclient.gui.GuiComponent
     public boolean containsPoint(double d, double d2) {
-        return d > ((double) (((float) this.presetEnumSettingHelper.getX()) + getX())) && d < ((double) ((((float) this.presetEnumSettingHelper.getX()) + getX()) + ClientTextRenderer.INSTANCE.getStringWidth(getName()))) && d2 > ((double) (((float) (this.presetEnumSettingHelper.getY() + this.num)) + getY())) && d2 < ((double) (((((float) (this.presetEnumSettingHelper.getY() + this.num)) + getY()) + ((float) ClientTextRenderer.INSTANCE.getFontHeight())) + (getTextOffsetY() * Float.intBitsToFloat(1073741824))));
+        return d > ((double) (((float) this.presetEnumSettingHelper.getX()) + getX())) && d < ((double) ((((float) this.presetEnumSettingHelper.getX()) + getX()) + ClientTextRenderer.INSTANCE.getStringWidth(getName()))) && d2 > ((double) (((float) (this.presetEnumSettingHelper.getY() + this.num)) + getY())) && d2 < ((double) (((((float) (this.presetEnumSettingHelper.getY() + this.num)) + getY()) + ((float) ClientTextRenderer.INSTANCE.getFontHeight())) + (getTextOffsetY() * 2.0f)));
     }
 
     public abstract float getX();

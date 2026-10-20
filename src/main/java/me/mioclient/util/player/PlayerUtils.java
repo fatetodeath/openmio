@@ -49,7 +49,7 @@ public class PlayerUtils implements ClientAccessor {
     }
 
     public static Direction getMovementDirection() {
-        double[] doubleArray2508 = MovementUtils.computeVelocity(minecraftClient.player.getYRot(), minecraftClient.player.input, Double.longBitsToDouble(4607182418800017408L));
+        double[] doubleArray2508 = MovementUtils.computeVelocity(minecraftClient.player.getYRot(), minecraftClient.player.input, 1.0d);
         return Direction.fromYRot(Math.toDegrees(Math.atan2(doubleArray2508[1], doubleArray2508[0])) - MathConstants.num2);
     }
 

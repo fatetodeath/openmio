@@ -40,7 +40,7 @@ public class AutoFish extends Module {
             }) || minecraftClient.player.fishing == null) {
                 return;
             }
-            if (new Vec3(playSoundS2CPacket.getX(), playSoundS2CPacket.getY(), playSoundS2CPacket.getZ()).distanceTo(minecraftClient.player.fishing.position()) <= Double.longBitsToDouble(4616189618054758400L)) {
+            if (new Vec3(playSoundS2CPacket.getX(), playSoundS2CPacket.getY(), playSoundS2CPacket.getZ()).distanceTo(minecraftClient.player.fishing.position()) <= 4.0d) {
                 minecraftClient.gameMode.useItem(minecraftClient.player, InteractionHand.MAIN_HAND);
                 minecraftClient.player.swing(InteractionHand.MAIN_HAND);
                 this.stopwatch.reset();
@@ -51,7 +51,7 @@ public class AutoFish extends Module {
     @Listen
     public void onTick(TickEvent tickEvent) {
         if (minecraftClient.player.getMainHandItem().is(Items.FISHING_ROD)) {
-            if (!this.stopwatch.hasElapsed(Double.longBitsToDouble(4607182418800017408L), TimeUnit.MINUTES)) {
+            if (!this.stopwatch.hasElapsed(1.0d, TimeUnit.MINUTES)) {
                 if (minecraftClient.player.fishing != null) {
                     return;
                 }

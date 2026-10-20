@@ -29,7 +29,7 @@ public class HudTextLine {
     public final Supplier<Component> supplier;
     public final Supplier<Boolean> supplier2;
     public float val;
-    public final InterpolatedFloat hUDHelper_2 = new InterpolatedFloat(Float.intBitsToFloat(1073741824), true);
+    public final InterpolatedFloat hUDHelper_2 = new InterpolatedFloat(2.0f, true);
 
     public HudTextLine(Supplier<Component> supplier, Supplier<Boolean> supplier2) {
         this.supplier = supplier;
@@ -45,18 +45,18 @@ public class HudTextLine {
             this.hUDHelper_2.setImmediate(f3);
         }
         if (this.val > 0.0f) {
-            ClientTextRenderer.INSTANCE.drawTextShadowObj(drawContext, getAsText(), f, f2, ColorUtils.withAlpha(color, (int) (color.getAlpha() * Mth.clamp(this.val * Float.intBitsToFloat(1073741824), Double.longBitsToDouble(4591870180066957722L), Double.longBitsToDouble(4607182418800017408L)))));
+            ClientTextRenderer.INSTANCE.drawTextShadowObj(drawContext, getAsText(), f, f2, ColorUtils.withAlpha(color, (int) (color.getAlpha() * Mth.clamp(this.val * 2.0f, 0.1d, 1.0d))));
         }
     }
 
     public void recalculateLayout() {
-        float intBitsToFloat = Float.intBitsToFloat(1065353216) / (ClientServices.hitmarkerHelper.getFrameRate() >> 2);
+        float intBitsToFloat = 1.0f / (ClientServices.hitmarkerHelper.getFrameRate() >> 2);
         if (isDrawn()) {
             this.val += intBitsToFloat;
         } else {
             this.val -= intBitsToFloat;
         }
-        this.val = Mth.clamp(this.val, 0.0f, Float.intBitsToFloat(1065353216));
+        this.val = Mth.clamp(this.val, 0.0f, 1.0f);
     }
 
     public float getAlpha() {

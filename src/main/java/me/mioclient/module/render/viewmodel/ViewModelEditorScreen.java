@@ -39,8 +39,8 @@ public class ViewModelEditorScreen extends AbstractClickGuiScreen {
         if (getActiveTransformMode() == ViewModelTransformMode.NONE) {
             return;
         }
-        float f2 = ((float) MathUtils.floorToDecimals((this.val - i) * Double.longBitsToDouble(4572414629547868160L), 2)) * (this.flag ? -1 : 1);
-        float f3 = (float) MathUtils.floorToDecimals((this.val2 - i2) * Double.longBitsToDouble(4572414629547868160L), 2);
+        float f2 = ((float) MathUtils.floorToDecimals((this.val - i) * 0.004999999888241291d, 2)) * (this.flag ? -1 : 1);
+        float f3 = (float) MathUtils.floorToDecimals((this.val2 - i2) * 0.004999999888241291d, 2);
         if (InputState.isLeftShiftDown()) {
             if (Math.abs(f2) > Math.abs(f3)) {
                 f3 = 0.0f;
@@ -90,8 +90,8 @@ public class ViewModelEditorScreen extends AbstractClickGuiScreen {
             }
         }
         if (getActiveTransformMode() == ViewModelTransformMode.ROTATE) {
-            float intBitsToFloat = f2 / Float.intBitsToFloat(1000593162);
-            float intBitsToFloat2 = f3 / Float.intBitsToFloat(1000593162);
+            float intBitsToFloat = f2 / 0.005f;
+            float intBitsToFloat2 = f3 / 0.005f;
             if (!InputState.isLeftCtrlDown()) {
                 this.viewmodel.offRotateX.setValue(Float.valueOf(MathUtils.getWrappedDegrees(data_2.getOffRotationX() + intBitsToFloat2)));
                 this.viewmodel.offRotateY.setValue(Float.valueOf(MathUtils.getWrappedDegrees(data_2.getOffRotateY() + intBitsToFloat)));
@@ -115,7 +115,7 @@ public class ViewModelEditorScreen extends AbstractClickGuiScreen {
         if (getActiveTransformMode() != ViewModelTransformMode.NONE) {
             this.data_2 = ViewModelTransform.fromViewModel(this.viewmodel);
             this.linkedList.add(this.data_2);
-            this.flag = d * GuiScaleOverride.getScaleMultiplier((float) this.val) < ((double) (((float) minecraftClient.getWindow().getGuiScaledWidth()) / Float.intBitsToFloat(1073741824)));
+            this.flag = d * GuiScaleOverride.getScaleMultiplier((float) this.val) < ((double) (((float) minecraftClient.getWindow().getGuiScaledWidth()) / 2.0f));
             this.val = d;
             this.val2 = d2;
         }
@@ -128,11 +128,11 @@ public class ViewModelEditorScreen extends AbstractClickGuiScreen {
 
     @Override // me.mioclient.gui.screen.AbstractClickGuiScreen
     public boolean mouseScrolled(double d, double d2, double d3, double d4) {
-        if (d4 > Double.longBitsToDouble(-4616189618054758400L) && d4 < Double.longBitsToDouble(4607182418800017408L)) {
+        if (d4 > (-1.0d) && d4 < 1.0d) {
             return super.mouseScrolled(d, d2, d3, d4);
         }
-        boolean z = d * GuiScaleOverride.getScaleMultiplier((float) this.val) < ((double) (((float) minecraftClient.getWindow().getGuiScaledWidth()) / Float.intBitsToFloat(1073741824)));
-        float longBitsToDouble = (float) (d4 * Double.longBitsToDouble(-4631501856680443904L));
+        boolean z = d * GuiScaleOverride.getScaleMultiplier((float) this.val) < ((double) (((float) minecraftClient.getWindow().getGuiScaledWidth()) / 2.0f));
+        float longBitsToDouble = (float) (d4 * (-0.10000000149011612d));
         if (this.stopwatch.hasElapsedMs(100L)) {
             this.linkedList.add(ViewModelTransform.fromViewModel(this.viewmodel));
         }
@@ -145,8 +145,8 @@ public class ViewModelEditorScreen extends AbstractClickGuiScreen {
             applyZDelta(this.viewmodel.mainZ, this.viewmodel.offZ, z, longBitsToDouble);
             return super.mouseScrolled(d, d2, d3, d4);
         }
-        float f = MathUtils.getWrappedDegrees(this.viewmodel.offRotateZ.getValue().floatValue() + (((float) d4) * Float.intBitsToFloat(1092616192)));
-        float f2 = MathUtils.getWrappedDegrees(this.viewmodel.mainRotateZ.getValue().floatValue() + (((float) d4) * Float.intBitsToFloat(1092616192)));
+        float f = MathUtils.getWrappedDegrees(this.viewmodel.offRotateZ.getValue().floatValue() + (((float) d4) * 10.0f));
+        float f2 = MathUtils.getWrappedDegrees(this.viewmodel.mainRotateZ.getValue().floatValue() + (((float) d4) * 10.0f));
         if (!InputState.isLeftCtrlDown()) {
             this.viewmodel.offRotateZ.setValue(Float.valueOf(f));
             this.viewmodel.mainRotateZ.setValue(Float.valueOf(f2));
@@ -182,7 +182,7 @@ public class ViewModelEditorScreen extends AbstractClickGuiScreen {
         drawContext.fill((int) ((scaledWindowWidth / 2.0f) - 1.0f), 0, (int) ((scaledWindowWidth / 2.0f) + 1.0f), 50, color.getRGB());
         int i = 2;
         for (String str : List.of("Left Click - Rotate", "Right Click - Move", "Middle Click - Scale", "MouseHandler Scroll - Move by Z", "MouseHandler Scroll + Shift - Rotate by Z", "MouseHandler Scroll + Alt - Scale by Z", "Hold Ctrl - Modify one", "Hold Shift - Lock axis", "Ctrl + Z - Undo", "Delete - Reset to defaults")) {
-            ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, str, (scaledWindowWidth - ClientTextRenderer.INSTANCE.getStringWidth(str)) / Float.intBitsToFloat(1073741824), 50 + i, ColorUtils.withAlpha(Color.white, 180));
+            ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, str, (scaledWindowWidth - ClientTextRenderer.INSTANCE.getStringWidth(str)) / 2.0f, 50 + i, ColorUtils.withAlpha(Color.white, 180));
             i += ClientTextRenderer.INSTANCE.getFontHeight() + 1;
         }
         drawContext.fill((int) ((scaledWindowWidth / 2.0f) - 1.0f), i + 52, (int) ((scaledWindowWidth / 2.0f) + 1.0f), (int) scaledWindowHeight, color.getRGB());

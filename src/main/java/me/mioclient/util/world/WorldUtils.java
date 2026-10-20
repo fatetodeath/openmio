@@ -181,17 +181,17 @@ public class WorldUtils implements ClientAccessor {
                             if (ofFloored.closerThan(add, f) && (!z || !minecraftClient.level.getBlockState(add).isAir())) {
                                 arrayList.add(add);
                             }
-                            f6 = f7 + Float.intBitsToFloat(1065353216);
+                            f6 = f7 + 1.0f;
                         } else {
                             break;
                         }
                     }
-                    f4 = f5 + Float.intBitsToFloat(1065353216);
+                    f4 = f5 + 1.0f;
                 } else {
                     break;
                 }
             }
-            f2 = f3 + Float.intBitsToFloat(1065353216);
+            f2 = f3 + 1.0f;
         }
     }
 

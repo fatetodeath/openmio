@@ -32,7 +32,7 @@ public class Crosshair extends Module {
 
     public Crosshair() {
         super("Crosshair", "Allows you to customize your crosshair.", Category.RENDER, new String[0]);
-        this.progress = new AnimationProgress(Float.intBitsToFloat(1073741824), true);
+        this.progress = new AnimationProgress(2.0f, true);
         setDrawn(false);
     }
 
@@ -55,15 +55,15 @@ public class Crosshair extends Module {
             }
             float scaleFactor = (float) minecraftClient.getWindow().getGuiScale();
             matrixStackEvent_2.getMatrixStack().pushPose();
-            matrixStackEvent_2.getMatrixStack().scale(Float.intBitsToFloat(1065353216) / scaleFactor, Float.intBitsToFloat(1065353216) / scaleFactor, Float.intBitsToFloat(1065353216) / scaleFactor);
+            matrixStackEvent_2.getMatrixStack().scale(1.0f / scaleFactor, 1.0f / scaleFactor, 1.0f / scaleFactor);
             if (this.shadow.getValue().booleanValue()) {
                 PoseStack matrixStack472 = matrixStackEvent_2.getMatrixStack();
                 matrixStack472.pushPose();
                 matrixStack472.translate(this.distance.getValue().intValue(), this.distance.getValue().intValue(), 0.0f);
-                drawCrosshairLines(matrixStackEvent_2.getMatrixStack(), this.length.getValue().intValue(), this.width.getValue().intValue() / Float.intBitsToFloat(1073741824), intValue, Color.BLACK);
+                drawCrosshairLines(matrixStackEvent_2.getMatrixStack(), this.length.getValue().intValue(), this.width.getValue().intValue() / 2.0f, intValue, Color.BLACK);
                 matrixStack472.popPose();
             }
-            drawCrosshairLines(matrixStackEvent_2.getMatrixStack(), this.length.getValue().intValue(), this.width.getValue().intValue() / Float.intBitsToFloat(1073741824), intValue, this.color.getValue());
+            drawCrosshairLines(matrixStackEvent_2.getMatrixStack(), this.length.getValue().intValue(), this.width.getValue().intValue() / 2.0f, intValue, this.color.getValue());
             matrixStackEvent_2.getMatrixStack().popPose();
         }
     }
@@ -72,7 +72,7 @@ public class Crosshair extends Module {
         int width = minecraftClient.getWindow().getWidth() / 2;
         int height = minecraftClient.getWindow().getHeight() / 2;
         if (Math.ceil(f2) - f2 != 0.0d) {
-            f3 += Float.intBitsToFloat(1056964608);
+            f3 += 0.5f;
         } else {
             width--;
             height++;

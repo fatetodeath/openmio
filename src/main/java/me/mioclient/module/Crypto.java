@@ -82,7 +82,7 @@ public class Crypto extends me.mioclient.module.HudModule {
 
     @Listen
     public void onTick(TickEvent tickEvent) {
-        if (this.stopwatch.hasElapsed(Double.longBitsToDouble(4617315517961601024L), TimeUnit.SECONDS)) {
+        if (this.stopwatch.hasElapsed(5.0d, TimeUnit.SECONDS)) {
             executorService.submit(this::fetchExchangeRate);
             this.stopwatch.reset();
         }
@@ -119,7 +119,7 @@ public class Crypto extends me.mioclient.module.HudModule {
 
     public void do213(float f) {
         float parseFloat = Float.parseFloat(this.string2);
-        if (Math.abs(f - parseFloat) < Double.longBitsToDouble(4576918229304087675L)) {
+        if (Math.abs(f - parseFloat) < 0.01d) {
             this.formatting = ChatFormatting.WHITE;
         } else if (parseFloat > f) {
             this.formatting = ChatFormatting.RED;

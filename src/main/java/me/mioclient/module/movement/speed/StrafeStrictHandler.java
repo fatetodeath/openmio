@@ -39,7 +39,7 @@ public final class StrafeStrictHandler extends SpeedModeHandler {
         }
         if (this.speed.useTimer.getValue().booleanValue() && ClientServices.holeSnapRenderHelper.getSetbackStopwatch().hasElapsedMs(250L)) {
             TickRateManager holeSnapHelper = ClientServices.holeSnapHelper;
-            holeSnapHelper.requestTickRate(this.speed, Float.intBitsToFloat(1066098124));
+            holeSnapHelper.requestTickRate(this.speed, 1.0888f);
         } else {
             ClientServices.holeSnapHelper.releaseTickRate(this.speed);
         }
@@ -57,12 +57,12 @@ public final class StrafeStrictHandler extends SpeedModeHandler {
     @Override // me.mioclient.module.movement.speed.SpeedModeHandler
     public void onSpeedJump() {
         if (!shouldPause() && MovementUtils.is2181() && minecraftClient.player.onGround()) {
-            double[] doubleArray2508 = MovementUtils.computeVelocity(minecraftClient.player.getYRot(), minecraftClient.player.input, Double.longBitsToDouble(4607182418800017408L));
+            double[] doubleArray2508 = MovementUtils.computeVelocity(minecraftClient.player.getYRot(), minecraftClient.player.input, 1.0d);
             float degrees = (float) (Math.toDegrees(Math.atan2(doubleArray2508[1], doubleArray2508[0])) - MathConstants.num2);
             Vec3 velocity = minecraftClient.player.getDeltaMovement();
             float radians = (float) Math.toRadians(degrees);
-            float intBitsToFloat = Float.intBitsToFloat(1045220557);
-            minecraftClient.player.setDeltaMovement(velocity.x, Double.longBitsToDouble(4600877379321698714L) + MovementUtils.getJumpBoostBonus(), velocity.z);
+            float intBitsToFloat = 0.2f;
+            minecraftClient.player.setDeltaMovement(velocity.x, 0.4d + MovementUtils.getJumpBoostBonus(), velocity.z);
             // 26.2: LocalPlayer.addVelocityInternal removed -> Entity.addDeltaMovement
             minecraftClient.player.addDeltaMovement(new Vec3((-Mth.sin(radians)) * intBitsToFloat, 0.0d, Mth.cos(radians) * intBitsToFloat));
             minecraftClient.player.setSprinting(true);

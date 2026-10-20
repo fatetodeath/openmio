@@ -41,7 +41,7 @@ public final class SpeedMineTarget implements ClientAccessor {
     }
 
     public float get2142() {
-        return Mth.clamp(Mth.lerp(RenderUtil.getPartialTick(), this.val, this.val2), 0.0f, Float.intBitsToFloat(1065353216));
+        return Mth.clamp(Mth.lerp(RenderUtil.getPartialTick(), this.val, this.val2), 0.0f, 1.0f);
     }
 
     public void addMiningProgress(float f) {

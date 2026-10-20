@@ -106,7 +106,7 @@ public class ClickGuiScreen extends AbstractClickGuiScreen implements ClientAcce
         if (!this.textFieldWidget.isFocused()) {
             if (this.textFieldWidget.getValue().isEmpty()) {
                 if (ClientServices.welcomerHelper.getRank() != 8) {
-                    ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, hint, sw - ClientTextRenderer.INSTANCE.getStringWidth(hint) - 4, sh - ClientTextRenderer.INSTANCE.getFontHeight() - 2, ColorUtils.getGradientColor(Color.GRAY, Color.WHITE, Double.longBitsToDouble(4656510908468559872L), Double.longBitsToDouble(4643000109586448384L)));
+                    ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, hint, sw - ClientTextRenderer.INSTANCE.getStringWidth(hint) - 4, sh - ClientTextRenderer.INSTANCE.getFontHeight() - 2, ColorUtils.getGradientColor(Color.GRAY, Color.WHITE, 2000.0d, 250.0d));
                 }
                 return;
             }

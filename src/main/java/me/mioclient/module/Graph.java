@@ -22,7 +22,7 @@ public class Graph extends me.mioclient.module.HudModule {
 
     public Graph() {
         super("Graph", new String[0]);
-        this.setting = add(new NumberSetting("Ceil", Float.valueOf(Float.intBitsToFloat(1104150528)), Float.valueOf(Float.intBitsToFloat(1092616192)), Float.valueOf(Float.intBitsToFloat(1120403456))));
+        this.setting = add(new NumberSetting("Ceil", Float.valueOf(26.0f), Float.valueOf(10.0f), Float.valueOf(100.0f)));
         this.setting2 = add(new NumberSetting("Height", 30, 10, 40));
         this.setting3 = add(new NumberSetting("Width", 100, 50, 150));
         this.list = new ArrayList();
@@ -78,10 +78,10 @@ public class Graph extends me.mioclient.module.HudModule {
 
     public int get2579(int i) {
         if (i <= 10) {
-            return (int) Mth.clamp((i / Float.intBitsToFloat(1092616192)) * Float.intBitsToFloat(1132396544), 0.0f, Float.intBitsToFloat(1132396544));
+            return (int) Mth.clamp((i / 10.0f) * 255.0f, 0.0f, 255.0f);
         }
         if (i >= this.setting3.getValue().intValue() - 10) {
-            return (int) Mth.clamp((Float.intBitsToFloat(1065353216) - (((i - this.setting3.getValue().intValue()) + 10) / Float.intBitsToFloat(1092616192))) * Float.intBitsToFloat(1132396544), 0.0f, Float.intBitsToFloat(1132396544));
+            return (int) Mth.clamp((1.0f - (((i - this.setting3.getValue().intValue()) + 10) / 10.0f)) * 255.0f, 0.0f, 255.0f);
         }
         return 255;
     }

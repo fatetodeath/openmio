@@ -15,7 +15,7 @@ public class Chat extends me.mioclient.module.HudModule {
         if (this.moduleListSearchHelper4.getMeasuredSize() == null) {
             return 0.0f;
         }
-        return ((this.moduleListSearchHelper4.getY() - (minecraftClient.getWindow().getGuiScaledHeight() - Float.intBitsToFloat(1109393408))) / getScale()) + getSpeed();
+        return ((this.moduleListSearchHelper4.getY() - (minecraftClient.getWindow().getGuiScaledHeight() - 40.0f)) / getScale()) + getSpeed();
     }
 
     public float getChatXOffset() {
@@ -40,6 +40,6 @@ public class Chat extends me.mioclient.module.HudModule {
 
     @Override // me.mioclient.module.HudModule
     public float[] getSize() {
-        return new float[]{(minecraftClient.options.chatWidth().get().floatValue() * Float.intBitsToFloat(1133248512)) + Float.intBitsToFloat(1109393408) + (Float.intBitsToFloat(1094713344) * getScale()), getSpeed() * getScale()};
+        return new float[]{(minecraftClient.options.chatWidth().get().floatValue() * 280.0f) + 40.0f + (12.0f * getScale()), getSpeed() * getScale()};
     }
 }

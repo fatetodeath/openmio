@@ -30,11 +30,11 @@ public class InterpolatedFloat {
     }
 
     public float getValue() {
-        float f = ClientServices.hitmarkerHelper.getFrameDelta(Float.intBitsToFloat(1056964608)) * this.supplier.get().floatValue();
+        float f = ClientServices.hitmarkerHelper.getFrameDelta(0.5f) * this.supplier.get().floatValue();
         if (this.flag) {
-            double longBitsToDouble = Double.longBitsToDouble(4607182418800017408L);
-            float intBitsToFloat = f - Float.intBitsToFloat(1065353216);
-            f = (float) (longBitsToDouble - (intBitsToFloat * Math.pow(intBitsToFloat, Double.longBitsToDouble(4613937818241073152L))));
+            double longBitsToDouble = 1.0d;
+            float intBitsToFloat = f - 1.0f;
+            f = (float) (longBitsToDouble - (intBitsToFloat * Math.pow(intBitsToFloat, 3.0d)));
         }
         this.val = this.val3 + ((this.val - this.val3) * f);
         if (this.val == this.val2 || Math.abs(this.val2 - this.val) < MathConstants.val2) {

@@ -333,7 +333,7 @@ public class Nuker extends Module {
                 return;
             }
             int i2 = -1;
-            double longBitsToDouble = Double.longBitsToDouble(-4616189618054758400L);
+            double longBitsToDouble = (-1.0d);
             BlockState blockState = minecraftClient.level.getBlockState(blockPos);
             ItemSaver itemSaver_lcl = getItemSaver();
             for (i = 0; i < 9; i++) {

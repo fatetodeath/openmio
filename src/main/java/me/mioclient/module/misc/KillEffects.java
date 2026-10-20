@@ -210,7 +210,7 @@ public class KillEffects extends Module {
                             if (this.delay.isAtMinimum()) {
                                 runnable.run();
                             } else {
-                                ClientServices.tooltipsHelper.schedule(runnable, (int) (this.delay.getValue().floatValue() / Float.intBitsToFloat(1028443341)));
+                                ClientServices.tooltipsHelper.schedule(runnable, (int) (this.delay.getValue().floatValue() / 0.05f));
                             }
                         }
                     }

@@ -29,13 +29,13 @@ public class TextHudElement extends DraggableHudElement {
         float f = getAlignedY(getFontHeight());
         for (HudTextLine cryptoHelper : this.list) {
             matrixStack.pushPose();
-            float clamp = (float) Mth.clamp(Double.longBitsToDouble(4607182418800017408L) - Math.pow(Float.intBitsToFloat(1065353216) - cryptoHelper.getAlpha(), Double.longBitsToDouble(4616189618054758400L)), 0.0d, Double.longBitsToDouble(4607182418800017408L));
+            float clamp = (float) Mth.clamp(1.0d - Math.pow(1.0f - cryptoHelper.getAlpha(), 4.0d), 0.0d, 1.0d);
             Color color489 = getLineColor(f, cryptoHelper);
             float f2 = cryptoHelper.hUDHelper_2.getValue();
-            matrixStack.translate(getAlignedX(f2) - ((f2 * (Float.intBitsToFloat(1065353216) - clamp)) * getHorizontalSide()), f, 0.0f);
+            matrixStack.translate(getAlignedX(f2) - ((f2 * (1.0f - clamp)) * getHorizontalSide()), f, 0.0f);
             cryptoHelper.renderLine(drawContext, 0.0f, 0.0f, color489);
             if (clamp != 0.0f) {
-                f += ((getFontHeight() * clamp) + Float.intBitsToFloat(1065353216)) * getVerticalSide();
+                f += ((getFontHeight() * clamp) + 1.0f) * getVerticalSide();
             }
             matrixStack.popPose();
         }
@@ -48,16 +48,16 @@ public class TextHudElement extends DraggableHudElement {
         for (HudTextLine cryptoHelper : this.list) {
             cryptoHelper.recalculateLayout();
             if (cryptoHelper.getAlpha() != 0.0f) {
-                float clamp = (float) Mth.clamp(Double.longBitsToDouble(4607182418800017408L) - Math.pow(Float.intBitsToFloat(1065353216) - cryptoHelper.getAlpha(), Double.longBitsToDouble(4616189618054758400L)), 0.0d, Double.longBitsToDouble(4607182418800017408L));
+                float clamp = (float) Mth.clamp(1.0d - Math.pow(1.0f - cryptoHelper.getAlpha(), 4.0d), 0.0d, 1.0d);
                 float f3 = ClientTextRenderer.INSTANCE.getStringWidth(cryptoHelper.getAsText().getString());
-                f += (getFontHeight() * clamp) + Float.intBitsToFloat(1065353216);
+                f += (getFontHeight() * clamp) + 1.0f;
                 if (f3 > f2) {
                     f2 = f3;
                 }
             }
         }
         if (!flag && f2 == 0.0f) {
-            f2 = Float.intBitsToFloat(1112014848);
+            f2 = 50.0f;
             f = getFontHeight();
         }
         return new float[]{f2, f};

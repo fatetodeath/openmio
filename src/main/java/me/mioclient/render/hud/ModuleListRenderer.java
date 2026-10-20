@@ -100,7 +100,7 @@ public class ModuleListRenderer implements ClientAccessor, GuiComponent {
             case BOTTOM_RIGHT:
                 return (minecraftClient.getWindow().getGuiScaledWidth() - f) - (hud_lcl != null ? hud_lcl.getSafeAreaX() : 0.0f);
             case TOP_CENTER:
-                return (minecraftClient.getWindow().getGuiScaledWidth() / Float.intBitsToFloat(1073741824)) - (f / Float.intBitsToFloat(1073741824));
+                return (minecraftClient.getWindow().getGuiScaledWidth() / 2.0f) - (f / 2.0f);
             case NONE:
                 throw new IllegalArgumentException("dumb");
             default:
@@ -131,6 +131,6 @@ public class ModuleListRenderer implements ClientAccessor, GuiComponent {
         if (hud_lcl == null) {
             return 0.0f;
         }
-        return Mth.clamp(hud_lcl.getSafeAreaY() + hud_lcl.getBottomOffsetTarget(), 0.0f, Float.intBitsToFloat(1096810496));
+        return Mth.clamp(hud_lcl.getSafeAreaY() + hud_lcl.getBottomOffsetTarget(), 0.0f, 14.0f);
     }
 }

@@ -158,8 +158,8 @@ public class Trails extends Module {
     }
 
     public Color calculateTrailColor(float[] fArr, Inner inner) {
-        Color hSBColor = this.rainbow.getValue().booleanValue() ? Color.getHSBColor((float) ((Math.ceil(inner.getCreatedAt() / (Double.longBitsToDouble(4626322717216342016L) * this.threshold.getValue().doubleValue())) % MathConstants.num3) / MathConstants.num3), fArr[1], fArr[2]) : this.color.getValue();
-        return (!this.fade.getValue().booleanValue() || System.currentTimeMillis() - inner.getCreatedAt() < getFadeDelayMs()) ? ColorUtils.withAlpha(hSBColor, this.color.getValue().getAlpha()) : ColorUtils.withAlpha(hSBColor, (int) Mth.clamp((Float.intBitsToFloat(1065353216) - (((float) ((System.currentTimeMillis() - inner.getCreatedAt()) - getFadeDelayMs())) / ((float) getFadeDurationMs()))) * this.color.getValue().getAlpha(), 0.0f, Float.intBitsToFloat(1132396544)));
+        Color hSBColor = this.rainbow.getValue().booleanValue() ? Color.getHSBColor((float) ((Math.ceil(inner.getCreatedAt() / (20.0d * this.threshold.getValue().doubleValue())) % MathConstants.num3) / MathConstants.num3), fArr[1], fArr[2]) : this.color.getValue();
+        return (!this.fade.getValue().booleanValue() || System.currentTimeMillis() - inner.getCreatedAt() < getFadeDelayMs()) ? ColorUtils.withAlpha(hSBColor, this.color.getValue().getAlpha()) : ColorUtils.withAlpha(hSBColor, (int) Mth.clamp((1.0f - (((float) ((System.currentTimeMillis() - inner.getCreatedAt()) - getFadeDelayMs())) / ((float) getFadeDurationMs()))) * this.color.getValue().getAlpha(), 0.0f, 255.0f));
     }
 
     public boolean shouldRenderEntity(Entity entity) {
@@ -167,10 +167,10 @@ public class Trails extends Module {
     }
 
     public long getFadeDelayMs() {
-        return (long) (this.fadeDelay.getValue().floatValue() * Float.intBitsToFloat(1148846080));
+        return (long) (this.fadeDelay.getValue().floatValue() * 1000.0f);
     }
 
     public long getFadeDurationMs() {
-        return (long) (this.fadeDuration.getValue().floatValue() * Float.intBitsToFloat(1148846080));
+        return (long) (this.fadeDuration.getValue().floatValue() * 1000.0f);
     }
 }

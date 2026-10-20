@@ -194,7 +194,7 @@ public class Sprint extends Module {
             return;
         }
         Vec3 vec3d = new Vec3(explosionVelocityEvent.getX(), explosionVelocityEvent.getY(), explosionVelocityEvent.getZ());
-        if (MovementUtils.is2181() && ClientServices.holeSnapRenderHelper.getSetbackStopwatch().hasElapsedMs(750L) && this.boost.getValue().booleanValue() && Math.sqrt(minecraftClient.player.distanceToSqr(vec3d)) <= Double.longBitsToDouble(4618441417868443648L)) {
+        if (MovementUtils.is2181() && ClientServices.holeSnapRenderHelper.getSetbackStopwatch().hasElapsedMs(750L) && this.boost.getValue().booleanValue() && Math.sqrt(minecraftClient.player.distanceToSqr(vec3d)) <= 6.0d) {
             this.stopwatch.reset();
             this.val = ((float) Math.hypot(explosionVelocityEvent.getPlayerVelocityX(), explosionVelocityEvent.getPlayerVelocityZ())) * this.boostSpeed.getValue().floatValue();
         }
@@ -234,7 +234,7 @@ public class Sprint extends Module {
         if (this.vanillaSlowdown.getValue().booleanValue()) {
             net.minecraft.world.level.block.Block r0 = minecraftClient.level.getBlockState(minecraftClient.player.blockPosition()).getBlock();
             if (r0 == Blocks.SLIME_BLOCK) {
-                d *= Double.longBitsToDouble(4604480259023595110L);
+                d *= 0.7d;
             }
         }
         if (this.boost.getValue().booleanValue() && !this.stopwatch.hasElapsedMs(500L)) {

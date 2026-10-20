@@ -27,10 +27,10 @@ public final class BurrowTargetStrategy extends MineStrategyBase {
             return this.isValidMineTarget(blockPos);
         }).filter(blockPos2 -> {
             Block block = minecraftClient.level.getBlockState(blockPos2).getBlock();
-            return (block.getExplosionResistance() < Float.intBitsToFloat(1142292480) || block == Blocks.COBWEB || block == Blocks.ANVIL) ? false : true;
+            return (block.getExplosionResistance() < 600.0f || block == Blocks.COBWEB || block == Blocks.ANVIL) ? false : true;
         }).sorted(Comparator.comparing(blockPos3 -> {
             BlockPos pos3 = (BlockPos) blockPos3;
-            return isSpeedMineTarget(pos3) ? Double.valueOf(Double.longBitsToDouble(-4616189618054758400L)) : Double.valueOf(playerEntity886.distanceToSqr(Vec3.atCenterOf(pos3)));
+            return isSpeedMineTarget(pos3) ? Double.valueOf((-1.0d)) : Double.valueOf(playerEntity886.distanceToSqr(Vec3.atCenterOf(pos3)));
         })).toList();
         if (list.isEmpty()) {
             return;

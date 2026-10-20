@@ -17,8 +17,8 @@ public final class ClipCommand extends CommandFeature {
     @Override // me.mioclient.command.CommandFeature
     public void exec(com.mojang.brigadier.builder.LiteralArgumentBuilder<CommandSourceStack> literalArgumentBuilder) {
         literalArgumentBuilder.then(CommandFeature.literal("v").then(CommandFeature.argument("value", FloatArgumentType.floatArg()).executes(commandContext -> {
-            float clamp = Math.clamp(((Float) commandContext.getArgument("value", Float.class)).floatValue(), Float.intBitsToFloat(-874192448), Float.intBitsToFloat(1273291200));
-            int ceil = (int) Math.ceil(Math.abs(clamp / Float.intBitsToFloat(1092616192)));
+            float clamp = Math.clamp(((Float) commandContext.getArgument("value", Float.class)).floatValue(), (-3.0E7f), 3.0E7f);
+            int ceil = (int) Math.ceil(Math.abs(clamp / 10.0f));
             if (ceil > 20) {
                 ceil = 1;
             }
@@ -36,7 +36,7 @@ public final class ClipCommand extends CommandFeature {
             PacketSender.sendPosition(minecraftClient.player.getX(), minecraftClient.player.getY() + clamp, minecraftClient.player.getZ(), true);
             return 1;
         }))).then(CommandFeature.literal("h").then(CommandFeature.argument("value", FloatArgumentType.floatArg()).executes(commandContext2 -> {
-            float clamp = Math.clamp(((Float) commandContext2.getArgument("value", Float.class)).floatValue(), Float.intBitsToFloat(-874192448), Float.intBitsToFloat(1273291200));
+            float clamp = Math.clamp(((Float) commandContext2.getArgument("value", Float.class)).floatValue(), (-3.0E7f), 3.0E7f);
             double cos = Math.cos(Math.toRadians(minecraftClient.player.getYRot() + MathConstants.num2));
             double sin = Math.sin(Math.toRadians(minecraftClient.player.getYRot() + MathConstants.num2));
             if (minecraftClient.player.isPassenger()) {

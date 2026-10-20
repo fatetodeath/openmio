@@ -62,7 +62,7 @@ public class RaycastUtils implements ClientAccessor {
         float f = 0.0f;
         while (true) {
             float f2 = f;
-            if (f2 > Float.intBitsToFloat(1065353216)) {
+            if (f2 > 1.0f) {
                 return false;
             }
             List<Vec3> list228 = BoxMath.getCornersSortedByDistance(boundingBox, boundingBox.minY + ((boundingBox.maxY - boundingBox.minY) * f2));
@@ -71,7 +71,7 @@ public class RaycastUtils implements ClientAccessor {
                     return true;
                 }
             }
-            f = f2 + Float.intBitsToFloat(1056964608);
+            f = f2 + 0.5f;
         }
     }
 

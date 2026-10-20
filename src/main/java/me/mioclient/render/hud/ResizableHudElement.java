@@ -25,7 +25,7 @@ public class ResizableHudElement extends DraggableHudElement {
 
     public ResizableHudElement(HudModule moduleList) {
         super(moduleList);
-        this.setting = new NumberSetting("Size", Float.valueOf(Float.intBitsToFloat(1065353216)), Float.valueOf(Float.intBitsToFloat(1056964608)), Float.valueOf(Float.intBitsToFloat(1073741824)));
+        this.setting = new NumberSetting("Size", Float.valueOf(1.0f), Float.valueOf(0.5f), Float.valueOf(2.0f));
         this.zoomHelper = new ValueAnimator();
     }
 
@@ -35,7 +35,7 @@ public class ResizableHudElement extends DraggableHudElement {
         float[] floatArray365 = this.moduleList.getSize();
         matrixStack.pushPose();
         if (this.flag) {
-            matrixStack.scale(getScale(), getScale(), Float.intBitsToFloat(1065353216));
+            matrixStack.scale(getScale(), getScale(), 1.0f);
             matrixStack.translate(getX() / getScale(), getY() / getScale(), 0.0f);
         } else {
             matrixStack.translate(getX(), getY(), 0.0f);
@@ -47,7 +47,7 @@ public class ResizableHudElement extends DraggableHudElement {
                 this.setting.setValue(Float.valueOf((float) MathUtils.floorToDecimals(Math.min((d - getX()) / floatArray365[0], (d2 - getY()) / floatArray365[1]), 2)));
             }
             if (isOverResizeHandle && isMouseButtonDown(1)) {
-                this.setting.setValue(Float.valueOf(Float.intBitsToFloat(1065353216)));
+                this.setting.setValue(Float.valueOf(1.0f));
             }
             if (isOverResizeHandle && isMouseButtonDown(0)) {
                 size = this;
@@ -55,16 +55,16 @@ public class ResizableHudElement extends DraggableHudElement {
                 size = null;
             }
             if (size == this) {
-                this.zoomHelper.animateTo(Float.intBitsToFloat(1063675494), 250L);
+                this.zoomHelper.animateTo(0.9f, 250L);
             } else if (isOverResizeHandle) {
-                this.zoomHelper.animateTo(Float.intBitsToFloat(1053609165), 250L);
+                this.zoomHelper.animateTo(0.4f, 250L);
             } else {
-                this.zoomHelper.animateTo(Float.intBitsToFloat(1045220557), 250L);
+                this.zoomHelper.animateTo(0.2f, 250L);
             }
             matrixStack.pushPose();
-            float intBitsToFloat = Float.intBitsToFloat(1017118720);
-            matrixStack.scale(intBitsToFloat, intBitsToFloat, Float.intBitsToFloat(1140457472));
-            matrixStack.translate((floatArray365[0] - Float.intBitsToFloat(1084227584)) / intBitsToFloat, (floatArray365[1] - Float.intBitsToFloat(1084227584)) / intBitsToFloat, 0.0f);
+            float intBitsToFloat = 0.01953125f;
+            matrixStack.scale(intBitsToFloat, intBitsToFloat, 500.0f);
+            matrixStack.translate((floatArray365[0] - 5.0f) / intBitsToFloat, (floatArray365[1] - 5.0f) / intBitsToFloat, 0.0f);
             Color color811 = ColorUtils.getThemeColor();
             drawContext.blit(RenderPipelines.GUI_TEXTURED, identifier, 0, 0, 0.0f, 0.0f, 256, 256, 256, 256);
             matrixStack.popPose();
@@ -94,9 +94,9 @@ public class ResizableHudElement extends DraggableHudElement {
             return false;
         }
         float[] floatArray2950 = getMeasuredSize();
-        float f = getX() + Math.max(floatArray2950[0], Float.intBitsToFloat(1082130432));
-        float f2 = getY() + Math.max(floatArray2950[1], Float.intBitsToFloat(1082130432));
-        return d >= ((double) (f - Float.intBitsToFloat(1084227584))) && d <= ((double) f) && d2 >= ((double) (f2 - Float.intBitsToFloat(1084227584))) && d2 <= ((double) f2);
+        float f = getX() + Math.max(floatArray2950[0], 4.0f);
+        float f2 = getY() + Math.max(floatArray2950[1], 4.0f);
+        return d >= ((double) (f - 5.0f)) && d <= ((double) f) && d2 >= ((double) (f2 - 5.0f)) && d2 <= ((double) f2);
     }
 
     public boolean isMouseButtonDown(int i) {

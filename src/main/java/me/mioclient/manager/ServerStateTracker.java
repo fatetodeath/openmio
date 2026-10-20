@@ -66,12 +66,12 @@ public final class ServerStateTracker implements ClientAccessor {
                 if (this.arrayDeque.size() > 20) {
                     this.arrayDeque.poll();
                 }
-                this.val = Math.max(0.0f, Math.min(Float.intBitsToFloat(1101004800), Float.intBitsToFloat(1101004800) * (Float.intBitsToFloat(1148846080) / ((float) (System.currentTimeMillis() - this.num2)))));
+                this.val = Math.max(0.0f, Math.min(20.0f, 20.0f * (1000.0f / ((float) (System.currentTimeMillis() - this.num2)))));
                 this.arrayDeque.add(Float.valueOf(this.val));
                 float f = 0.0f;
                 Iterator<Float> it = this.arrayDeque.iterator();
                 while (it.hasNext()) {
-                    f += Math.max(0.0f, Math.min(Float.intBitsToFloat(1101004800), it.next().floatValue()));
+                    f += Math.max(0.0f, Math.min(20.0f, it.next().floatValue()));
                 }
                 if (this.arrayDeque.size() > 0) {
                     f /= this.arrayDeque.size();
@@ -170,7 +170,7 @@ public final class ServerStateTracker implements ClientAccessor {
     }
 
     public float getTickRateFactor() {
-        return this.val2 / Float.intBitsToFloat(1101004800);
+        return this.val2 / 20.0f;
     }
 
     public ServerData getServerInfo() {

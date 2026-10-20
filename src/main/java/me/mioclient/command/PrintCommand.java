@@ -14,7 +14,7 @@ public final class PrintCommand extends CommandFeature {
     @Override // me.mioclient.command.CommandFeature
     public void exec(com.mojang.brigadier.builder.LiteralArgumentBuilder<CommandSourceStack> literalArgumentBuilder) {
         literalArgumentBuilder.then(CommandFeature.argument("message", StringArgumentType.greedyString()).executes(commandContext -> {
-            minecraftClient.gui.hud.getChat().addPlayerMessage(Component.literal((String) commandContext.getArgument("message", String.class)), ChatUtils.createSignature((int) (Math.random() * Double.longBitsToDouble(4666723172467343360L))), ChatUtils.GuiMessageTag);
+            minecraftClient.gui.hud.getChat().addPlayerMessage(Component.literal((String) commandContext.getArgument("message", String.class)), ChatUtils.createSignature((int) (Math.random() * 10000.0d)), ChatUtils.GuiMessageTag);
             return 1;
         })).executes(commandContext2 -> {
             ChatUtils.sendPrefixedMessage(Component.literal("Please enter a message to print."), ChatUtils.createSignature(-1), ChatUtils.MixinClientConnectionMode.mixinClientConnectionMode3);

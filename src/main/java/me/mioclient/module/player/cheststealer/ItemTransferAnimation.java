@@ -10,7 +10,7 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.world.item.ItemStack;
 
 public class ItemTransferAnimation implements ClientAccessor {
-    public final AnimationProgress progress = new AnimationProgress(Float.intBitsToFloat(1073741824));
+    public final AnimationProgress progress = new AnimationProgress(2.0f);
     public final ItemStack itemStack;
     public final GridPoint positionData;
     public final GridPoint positionData2;
@@ -43,7 +43,7 @@ public class ItemTransferAnimation implements ClientAccessor {
     }
 
     public boolean is2551() {
-        return this.progress.getRawValue() == Float.intBitsToFloat(1073741824);
+        return this.progress.getRawValue() == 2.0f;
     }
 
     public boolean equals(Object obj) {

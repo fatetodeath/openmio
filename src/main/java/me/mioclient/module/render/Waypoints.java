@@ -135,19 +135,19 @@ public class Waypoints extends Module {
             return;
         }
         Camera camera = minecraftClient.gameRenderer.mainCamera();
-        Vec3 add = new Vec3(0.0d, 0.0d, Double.longBitsToDouble(4607182418800017408L)).xRot(-((float) Math.toRadians(camera.xRot()))).yRot(-((float) Math.toRadians(camera.yRot()))).add(minecraftClient.getEntityRenderDispatcher().camera.position());
+        Vec3 add = new Vec3(0.0d, 0.0d, 1.0d).xRot(-((float) Math.toRadians(camera.xRot()))).yRot(-((float) Math.toRadians(camera.yRot()))).add(minecraftClient.getEntityRenderDispatcher().camera.position());
         Iterator<Waypoint> it = this.copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             Waypoint next = it.next();
             if (next != null && next.getDimension() != null && next.getName() != null && next.getServer() != null) {
-                if (next.toVec3d().distanceTo(minecraftClient.gameRenderer.mainCamera().position()) <= this.distance.getValue().floatValue() * Float.intBitsToFloat(1148846080) || this.distance.getValue().floatValue() == Float.intBitsToFloat(1120534528)) {
+                if (next.toVec3d().distanceTo(minecraftClient.gameRenderer.mainCamera().position()) <= this.distance.getValue().floatValue() * 1000.0f || this.distance.getValue().floatValue() == 101.0f) {
                     Vec3 vec3d2100 = toCurrentDimension(next);
                     if (vec3d2100 != null) {
                         Vec3 vec3d = vec3d2100;
-                        if (Vec3dUtils.getHorizontalDistance(minecraftClient.player.position(), vec3d2100) >= Float.intBitsToFloat(1123024896)) {
+                        if (Vec3dUtils.getHorizontalDistance(minecraftClient.player.position(), vec3d2100) >= 120.0f) {
                             float[] floatArray2484 = RotationManager.getRotationsTo(vec3d2100);
                             Vec3 lerpedPos = minecraftClient.player.getPosition(RenderUtil.getPartialTick());
-                            vec3d = new Vec3(lerpedPos.x + (Float.intBitsToFloat(1120403456) * ((float) Math.cos(Math.toRadians(floatArray2484[0] + MathConstants.num2)))), vec3d2100.y, lerpedPos.z + (Float.intBitsToFloat(1120403456) * ((float) Math.sin(Math.toRadians(floatArray2484[0] + MathConstants.num2)))));
+                            vec3d = new Vec3(lerpedPos.x + (100.0f * ((float) Math.cos(Math.toRadians(floatArray2484[0] + MathConstants.num2)))), vec3d2100.y, lerpedPos.z + (100.0f * ((float) Math.sin(Math.toRadians(floatArray2484[0] + MathConstants.num2)))));
                         }
                         if (this.beam.getValue().booleanValue()) {
                             BoxRenderer.drawFilledBox(inner_3.getMatrixStack(), new AABB(vec3d.add(-MathConstants.val3, -MathConstants.val3, -MathConstants.val3), vec3d.add(MathConstants.val3, MathConstants.val3, MathConstants.val3)).setMaxY(minecraftClient.level.getMaxY()).setMinY(minecraftClient.level.getMinY()), ColorUtils.withAlpha(this.color.getValue(), this.beamAlpha.getValue().intValue()));
@@ -158,7 +158,7 @@ public class Waypoints extends Module {
                         if (this.tracers.getValue().booleanValue()) {
                             GL32C.glLineWidth(this.lineWidth.getValue().floatValue());
                             RenderUtil.INSTANCE.drawDebugLine(inner_3.getMatrixStack(), add, vec3d, this.color.getValue());
-                            GL32C.glLineWidth(Float.intBitsToFloat(1065353216));
+                            GL32C.glLineWidth(1.0f);
                         }
                         if (this.name.getValue().booleanValue()) {
                             if (this.eyesAlign.getValue().booleanValue()) {
@@ -178,10 +178,10 @@ public class Waypoints extends Module {
         Vec3 vec3d1303 = waypointsEnumSettingHelper.toVec3d();
         String lowerCase = WorldUtils.getDimension().getDisplayName().toLowerCase();
         if (waypointsEnumSettingHelper.getDimension().equals("overworld") && lowerCase.equals("nether")) {
-            return vec3d1303.multiply(Double.longBitsToDouble(4593671619917905920L), Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(4593671619917905920L));
+            return vec3d1303.multiply(0.125d, 1.0d, 0.125d);
         }
         if (waypointsEnumSettingHelper.getDimension().equals("nether") && lowerCase.equals("overworld")) {
-            return vec3d1303.multiply(Double.longBitsToDouble(4620693217682128896L), Double.longBitsToDouble(4607182418800017408L), Double.longBitsToDouble(4620693217682128896L));
+            return vec3d1303.multiply(8.0d, 1.0d, 8.0d);
         }
         if (waypointsEnumSettingHelper.getDimension().equals(lowerCase)) {
             return vec3d1303;

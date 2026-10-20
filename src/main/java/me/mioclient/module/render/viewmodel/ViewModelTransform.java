@@ -51,7 +51,7 @@ public final class ViewModelTransform {
     }
 
     public static ViewModelTransform identity() {
-        return new ViewModelTransform(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, Float.intBitsToFloat(1065353216), Float.intBitsToFloat(1065353216), Float.intBitsToFloat(1065353216), Float.intBitsToFloat(1065353216), Float.intBitsToFloat(1065353216), Float.intBitsToFloat(1065353216), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+        return new ViewModelTransform(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     }
 
     public void applyTo(ViewModel viewModel) {

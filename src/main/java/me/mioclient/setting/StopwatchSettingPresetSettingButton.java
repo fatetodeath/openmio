@@ -35,7 +35,7 @@ public class StopwatchSettingPresetSettingButton extends SettingPresetSettingBut
 
     public StopwatchSettingPresetSettingButton(ClickGuiPanel presetEnumSettingHelper, ClosableElement presetHelper_2, Setting<?> setting) {
         super(presetEnumSettingHelper, presetHelper_2, (Setting) setting);
-        this.hUDHelper_2 = new InterpolatedFloat(Float.intBitsToFloat(1086324736), false);
+        this.hUDHelper_2 = new InterpolatedFloat(6.0f, false);
         this.stopwatch = new Stopwatch();
         this.flag2 = false;
         this.string = "";
@@ -159,19 +159,19 @@ public class StopwatchSettingPresetSettingButton extends SettingPresetSettingBut
         double min = Math.min(d3, Math.max(0.0d, d - this.barX));
         double doubleValue = ((Number) this.setting.getMinValue()).doubleValue();
         double doubleValue2 = ((Number) this.setting.getMaxValue()).doubleValue();
-        double longBitsToDouble = ((Number) this.setting.getValue()).getClass().getSimpleName().equalsIgnoreCase("Integer") ? Double.longBitsToDouble(4607182418800017408L) : Double.longBitsToDouble(4591870180066957722L);
-        this.val = (float) ((d3 * ((longBitsToDouble == Double.longBitsToDouble(4607182418800017408L) ? ((Number) this.setting.getValue()).intValue() : ((Number) this.setting.getValue()).floatValue()) - doubleValue)) / (doubleValue2 - doubleValue));
+        double longBitsToDouble = ((Number) this.setting.getValue()).getClass().getSimpleName().equalsIgnoreCase("Integer") ? 1.0d : 0.1d;
+        this.val = (float) ((d3 * ((longBitsToDouble == 1.0d ? ((Number) this.setting.getValue()).intValue() : ((Number) this.setting.getValue()).floatValue()) - doubleValue)) / (doubleValue2 - doubleValue));
         if (this.flag) {
             if (min != 0.0d) {
                 float f = (float) (((min / d3) * (doubleValue2 - doubleValue)) + doubleValue);
-                float longBitsToDouble2 = (float) (Double.longBitsToDouble(4607182418800017408L) / longBitsToDouble);
+                float longBitsToDouble2 = (float) (1.0d / longBitsToDouble);
                 double max = Math.max(doubleValue, Math.min(doubleValue2, f));
-                if (longBitsToDouble == Double.longBitsToDouble(4591870180066957722L)) {
+                if (longBitsToDouble == 0.1d) {
                     this.setting.setValue(Double.valueOf(roundCoord(((float) Math.round(max * longBitsToDouble2)) / longBitsToDouble2)));
                 } else {
                     this.setting.setValue(Double.valueOf(roundCoord(max)));
                 }
-            } else if (longBitsToDouble == Double.longBitsToDouble(4607182418800017408L)) {
+            } else if (longBitsToDouble == 1.0d) {
                 this.setting.setValue(Integer.valueOf((int) ((Number) this.setting.getMinValue()).floatValue()));
             } else {
                 this.setting.setValue(Float.valueOf(((Number) this.setting.getMinValue()).floatValue()));
@@ -196,7 +196,7 @@ public class StopwatchSettingPresetSettingButton extends SettingPresetSettingBut
         if (this.flag && this.flag2) {
             AbstractClickGuiScreen.cursorType = CursorType.INPUT;
         }
-        Shape2DRenderer.drawRect(matrixStack, this.barX + getPadding(), this.barY + Float.intBitsToFloat(1056964608), (int) (this.barX + Mth.clamp(this.hUDHelper_2.getValue(), 0.0f, this.presetEnumSettingHelper.getTotalWidth() - 3) + Float.intBitsToFloat(1073741824)), (this.barY + getFontHeight()) - Float.intBitsToFloat(1056964608), getUI().color.getValue());
+        Shape2DRenderer.drawRect(matrixStack, this.barX + getPadding(), this.barY + 0.5f, (int) (this.barX + Mth.clamp(this.hUDHelper_2.getValue(), 0.0f, this.presetEnumSettingHelper.getTotalWidth() - 3) + 2.0f), (this.barY + getFontHeight()) - 0.5f, getUI().color.getValue());
         String string2921 = this.flag2 ? this.string == null ? "" : this.string : this.setting.isHoleSnapConfigured() ? new StringTemplate().arg(this.setting.getHoleSnapString()).arg(this.setting.getName()).format("\u0001: \u0001") : new StringTemplate().arg(((NumberSetting) this.setting).getSuffix()).arg(String.format("%s: %s", this.setting.getName(), numberFormat.format(((Number) this.setting.getValue()).doubleValue())).replace(",", ".")).format("\u0001\u0001");
         renderScrolling(matrixStack, formatDisplayText(string2921), () -> {
             ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, new StringTemplate().arg(getBlinkingCursor()).arg(string2921).format("\u0001\u0001"), this.presetEnumSettingHelper.getX() + 4, ((this.presetEnumSettingHelper.getY() + getTextOffsetY()) - getAnimationOffset()) + this.num, getUI().textColor.getValue());

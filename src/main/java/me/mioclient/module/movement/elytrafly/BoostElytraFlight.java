@@ -62,16 +62,16 @@ public class BoostElytraFlight extends ElytraFlyModeBase {
     @Override // me.mioclient.module.movement.elytrafly.ElytraFlyModeBase
     public void handleMove(MoveEvent moveEvent) {
         float floatValue = this.elytraFly.limit.getValue().floatValue();
-        if (floatValue > Float.intBitsToFloat(1128792064) && isNcpBoostInitial()) {
-            floatValue = Float.intBitsToFloat(1128792064);
+        if (floatValue > 200.0f && isNcpBoostInitial()) {
+            floatValue = 200.0f;
         }
         if (!this.elytraFly.limit.isAtMaximum() || isNcpBoostInitial()) {
             Vec3 vec3d689 = moveEvent.getMovement();
-            if (Math.hypot(vec3d689.x, vec3d689.z) * Double.longBitsToDouble(4626322717216342016L) * Double.longBitsToDouble(4615288898129284301L) <= floatValue) {
+            if (Math.hypot(vec3d689.x, vec3d689.z) * 20.0d * 3.6d <= floatValue) {
                 return;
             }
             // 26.2: Vec3.multiply(double) -> scale(double)
-            Vec3 multiply = moveEvent.getMovement().normalize().scale((floatValue / Double.longBitsToDouble(4615288898129284301L)) / Double.longBitsToDouble(4626322717216342016L));
+            Vec3 multiply = moveEvent.getMovement().normalize().scale((floatValue / 3.6d) / 20.0d);
             moveEvent.setHorizontal(multiply.x, multiply.z);
         }
     }
@@ -108,7 +108,7 @@ public class BoostElytraFlight extends ElytraFlyModeBase {
         }
         boolean z = minecraftClient.player.input.keyPresses.jump();
         if (this.elytraFly.takeoff.getValue() == ElytraFly.ElytraFlyMode_2.STRICT) {
-            z = !minecraftClient.player.onGround() && minecraftClient.player.getDeltaMovement().y < Double.longBitsToDouble(4591870180066957722L);
+            z = !minecraftClient.player.onGround() && minecraftClient.player.getDeltaMovement().y < 0.1d;
         } else {
             ClientServices.holeSnapHelper.releaseTickRate(this.elytraFly);
         }
@@ -124,24 +124,24 @@ public class BoostElytraFlight extends ElytraFlyModeBase {
                 oscillateBoostPitch();
             }
             float radians = (float) Math.toRadians(minecraftClient.player.getYRot());
-            float floatValue = this.elytraFly.minBoost.getValue().floatValue() * Float.intBitsToFloat(1036831949);
+            float floatValue = this.elytraFly.minBoost.getValue().floatValue() * 0.1f;
             if (this.elytraFly.minBoost.isAtMaximum() && antiCheat_lcl != null && antiCheat_lcl.isF2b2t()) {
-                floatValue = minecraftClient.player.getXRot() > 0.0f ? Float.intBitsToFloat(1020054733) : Float.intBitsToFloat(1016296636) + (this.elytraFly.verticalBoost.getValue().intValue() * Float.intBitsToFloat(981668463));
+                floatValue = minecraftClient.player.getXRot() > 0.0f ? 0.025f : 0.018f + (this.elytraFly.verticalBoost.getValue().intValue() * 0.001f);
                 if (minecraftClient.player.getXRot() <= 0.0f) {
-                    if (!ClientServices.holeSnapRenderHelper.getSetbackStopwatch().hasElapsed(Double.longBitsToDouble(4621819117588971520L), TimeUnit.SECONDS)) {
-                        floatValue = Float.intBitsToFloat(1006834287);
+                    if (!ClientServices.holeSnapRenderHelper.getSetbackStopwatch().hasElapsed(10.0d, TimeUnit.SECONDS)) {
+                        floatValue = 0.008f;
                     }
                 }
             }
             if (isNcpBoostInitial()) {
-                floatValue = Float.intBitsToFloat(1077936128);
+                floatValue = 3.0f;
             }
             checkNcpBoostTiming();
             if (this.flag2) {
                 return;
             }
             if (this.elytraFly.inLava.getValue().booleanValue() && minecraftClient.player.isInLava()) {
-                floatValue = Float.intBitsToFloat(1045220557) * this.elytraFly.speed.getValue().floatValue();
+                floatValue = 0.2f * this.elytraFly.speed.getValue().floatValue();
             }
             // 26.2: Options.forwardKey/backKey -> keyUp/keyDown, KeyMapping.isPressed -> isDown,
             // LocalPlayer.addVelocity -> Entity.addDeltaMovement
@@ -190,9 +190,9 @@ public class BoostElytraFlight extends ElytraFlyModeBase {
             this.flag = false;
         }
         if (this.flag) {
-            this.val += Float.intBitsToFloat(1082130432);
+            this.val += 4.0f;
         } else {
-            this.val -= Float.intBitsToFloat(1082130432);
+            this.val -= 4.0f;
         }
         this.val = Mth.clamp(this.val, -floatValue, Math.max(floatValue, minecraftClient.player.getXRot()));
     }

@@ -62,7 +62,7 @@ public class ColorPickerComponent extends SettingPresetSettingButton<Color> impl
             super.render(drawContext, matrixStack, d, d2);
             String str = "Rainbow";
             renderScrolling(matrixStack, "Rainbow", () -> {
-                ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, str, (this.presetEnumSettingHelper.getX() + (getPanel().getTotalWidth() * Float.intBitsToFloat(1056964608))) - (ClientTextRenderer.INSTANCE.getStringWidth(str) * Float.intBitsToFloat(1056964608)), ((this.presetEnumSettingHelper.getY() + getTextOffsetY()) - getAnimationOffset()) + this.num, getUI().textColor.getValue());
+                ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, str, (this.presetEnumSettingHelper.getX() + (getPanel().getTotalWidth() * 0.5f)) - (ClientTextRenderer.INSTANCE.getStringWidth(str) * 0.5f), ((this.presetEnumSettingHelper.getY() + getTextOffsetY()) - getAnimationOffset()) + this.num, getUI().textColor.getValue());
             });
         }
     }
@@ -87,13 +87,13 @@ public class ColorPickerComponent extends SettingPresetSettingButton<Color> impl
             if (this.stopwatchPresetHelper2.isHidden()) {
                 return;
             }
-            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + (this.presetEnumSettingHelper.getTotalWidth() / Float.intBitsToFloat(1073741824)) + Float.intBitsToFloat(1056964608), (int) (this.presetEnumSettingHelper.getY() + this.num + getY()), (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - Float.intBitsToFloat(1056964608), (((this.presetEnumSettingHelper.getY() + this.num) + getY()) + getFontHeight()) - Float.intBitsToFloat(1056964608), getUI().color.getValue());
+            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + (this.presetEnumSettingHelper.getTotalWidth() / 2.0f) + 0.5f, (int) (this.presetEnumSettingHelper.getY() + this.num + getY()), (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 0.5f, (((this.presetEnumSettingHelper.getY() + this.num) + getY()) + getFontHeight()) - 0.5f, getUI().color.getValue());
             super.render(drawContext, matrixStack, d, d2);
         }
 
         @Override // me.mioclient.gui.widget.PanelTextButton
         public float getX() {
-            return ((getPanel().getTotalWidth() - (getPanel().getTotalWidth() / Float.intBitsToFloat(1082130432))) - ClientTextRenderer.INSTANCE.getStringWidth(getName())) + (ClientTextRenderer.INSTANCE.getStringWidth(getName()) * Float.intBitsToFloat(1056964608));
+            return ((getPanel().getTotalWidth() - (getPanel().getTotalWidth() / 4.0f)) - ClientTextRenderer.INSTANCE.getStringWidth(getName())) + (ClientTextRenderer.INSTANCE.getStringWidth(getName()) * 0.5f);
         }
 
         @Override // me.mioclient.gui.widget.PanelTextButton
@@ -122,7 +122,7 @@ public class ColorPickerComponent extends SettingPresetSettingButton<Color> impl
             super.render(drawContext, matrixStack, d, d2);
             String str = "Sync";
             renderScrolling(matrixStack, "Sync", () -> {
-                ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, str, (this.presetEnumSettingHelper.getX() + (getPanel().getTotalWidth() * Float.intBitsToFloat(1056964608))) - (ClientTextRenderer.INSTANCE.getStringWidth(str) * Float.intBitsToFloat(1056964608)), ((this.presetEnumSettingHelper.getY() + getTextOffsetY()) - getAnimationOffset()) + this.num, getUI().textColor.getValue());
+                ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, str, (this.presetEnumSettingHelper.getX() + (getPanel().getTotalWidth() * 0.5f)) - (ClientTextRenderer.INSTANCE.getStringWidth(str) * 0.5f), ((this.presetEnumSettingHelper.getY() + getTextOffsetY()) - getAnimationOffset()) + this.num, getUI().textColor.getValue());
             });
         }
 
@@ -146,13 +146,13 @@ public class ColorPickerComponent extends SettingPresetSettingButton<Color> impl
             if (this.stopwatchPresetHelper2.isHidden()) {
                 return;
             }
-            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + 2, (int) (this.presetEnumSettingHelper.getY() + this.num + getY()), (this.presetEnumSettingHelper.getX() + (this.presetEnumSettingHelper.getTotalWidth() / Float.intBitsToFloat(1073741824))) - Float.intBitsToFloat(1056964608), (((this.presetEnumSettingHelper.getY() + this.num) + getY()) + getFontHeight()) - Float.intBitsToFloat(1056964608), getUI().color.getValue());
+            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + 2, (int) (this.presetEnumSettingHelper.getY() + this.num + getY()), (this.presetEnumSettingHelper.getX() + (this.presetEnumSettingHelper.getTotalWidth() / 2.0f)) - 0.5f, (((this.presetEnumSettingHelper.getY() + this.num) + getY()) + getFontHeight()) - 0.5f, getUI().color.getValue());
             super.render(drawContext, matrixStack, d, d2);
         }
 
         @Override // me.mioclient.gui.widget.PanelTextButton
         public float getX() {
-            return (getPanel().getTotalWidth() / Float.intBitsToFloat(1082130432)) - (ClientTextRenderer.INSTANCE.getStringWidth(getName()) / Float.intBitsToFloat(1073741824));
+            return (getPanel().getTotalWidth() / 4.0f) - (ClientTextRenderer.INSTANCE.getStringWidth(getName()) / 2.0f);
         }
 
         @Override // me.mioclient.gui.widget.PanelTextButton
@@ -173,12 +173,12 @@ public class ColorPickerComponent extends SettingPresetSettingButton<Color> impl
         this.stopwatch2 = new Stopwatch();
         this.stopwatch3 = new Stopwatch();
         this.floatArr = new float[3];
-        this.hUDHelper_2 = new InterpolatedFloat(Float.intBitsToFloat(1084227584), true);
-        this.hUDHelper_22 = new InterpolatedFloat(Float.intBitsToFloat(1084227584), true);
-        this.hUDHelper_23 = new InterpolatedFloat(Float.intBitsToFloat(1084227584), true);
-        this.hUDHelper_24 = new InterpolatedFloat(Float.intBitsToFloat(1084227584), true);
-        this.progress = new AnimationProgress(Float.intBitsToFloat(1082130432), true);
-        int i = (int) (this.num + getRowHeight() + getPanel().getTotalWidth() + Double.longBitsToDouble(4619004367821864960L) + getRowSpacing());
+        this.hUDHelper_2 = new InterpolatedFloat(5.0f, true);
+        this.hUDHelper_22 = new InterpolatedFloat(5.0f, true);
+        this.hUDHelper_23 = new InterpolatedFloat(5.0f, true);
+        this.hUDHelper_24 = new InterpolatedFloat(5.0f, true);
+        this.progress = new AnimationProgress(4.0f, true);
+        int i = (int) (this.num + getRowHeight() + getPanel().getTotalWidth() + 6.5d + getRowSpacing());
         this.list.add(new Inner_4(i, this));
         this.list.add(new Inner_2(i, this));
         if (!((ColorSetting) setting).isThemeColor()) {
@@ -205,64 +205,64 @@ public class ColorPickerComponent extends SettingPresetSettingButton<Color> impl
         renderScrolling(matrixStack, this.setting.getName(), () -> {
             ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, this.setting.getName(), this.presetEnumSettingHelper.getX() + 4, ((this.presetEnumSettingHelper.getY() + getTextOffsetY()) - getAnimationOffset()) + this.num, getUI().textColor.getValue());
         });
-        Shape2DRenderer.drawRect(matrixStack, (getX() + this.presetEnumSettingHelper.getTotalWidth()) - Float.intBitsToFloat(1095237632), getY() + Float.intBitsToFloat(1065353216), (getX() + this.presetEnumSettingHelper.getTotalWidth()) - Float.intBitsToFloat(1080033280), getY() + Float.intBitsToFloat(1092616192), getUI().color.getValue());
-        Shape2DRenderer.drawRect(matrixStack, (getX() + this.presetEnumSettingHelper.getTotalWidth()) - Float.intBitsToFloat(1094713344), getY() + Float.intBitsToFloat(1069547520), (getX() + this.presetEnumSettingHelper.getTotalWidth()) - Float.intBitsToFloat(1082130432), getY() + Float.intBitsToFloat(1092091904), ColorUtils.withAlpha((Color) this.setting.getValue(), 255));
+        Shape2DRenderer.drawRect(matrixStack, (getX() + this.presetEnumSettingHelper.getTotalWidth()) - 12.5f, getY() + 1.0f, (getX() + this.presetEnumSettingHelper.getTotalWidth()) - 3.5f, getY() + 10.0f, getUI().color.getValue());
+        Shape2DRenderer.drawRect(matrixStack, (getX() + this.presetEnumSettingHelper.getTotalWidth()) - 12.0f, getY() + 1.5f, (getX() + this.presetEnumSettingHelper.getTotalWidth()) - 4.0f, getY() + 9.5f, ColorUtils.withAlpha((Color) this.setting.getValue(), 255));
         if (this.flag) {
             int alpha = ((Color) this.setting.getValue()).getAlpha();
             int i = getRowHeight();
             if (this.flag3) {
                 AbstractClickGuiScreen.cursorType = CursorType.POINTER;
-                this.floatArr[1] = (float) Mth.clamp(((d - getX()) - Double.longBitsToDouble(4617315517961601024L)) / (getPanel().getTotalWidth() - 8), 0.0d, Double.longBitsToDouble(4607182418800017408L));
-                this.floatArr[2] = Float.intBitsToFloat(1065353216) - ((float) Mth.clamp((((d2 - getY()) - i) - Double.longBitsToDouble(4613937818241073152L)) / (getPanel().getTotalWidth() - 8), 0.0d, Double.longBitsToDouble(4607182418800017408L)));
+                this.floatArr[1] = (float) Mth.clamp(((d - getX()) - 5.0d) / (getPanel().getTotalWidth() - 8), 0.0d, 1.0d);
+                this.floatArr[2] = 1.0f - ((float) Mth.clamp((((d2 - getY()) - i) - 3.0d) / (getPanel().getTotalWidth() - 8), 0.0d, 1.0d));
             } else if (this.flag4) {
                 AbstractClickGuiScreen.cursorType = CursorType.POINTER;
-                this.floatArr[0] = Math.min((((float) Math.min(Math.max(getX(), d - Double.longBitsToDouble(4607182418800017408L)), getX() + (getPanel().getTotalWidth() - 4))) - getX()) / (getPanel().getTotalWidth() - 4), Float.intBitsToFloat(1065353216));
+                this.floatArr[0] = Math.min((((float) Math.min(Math.max(getX(), d - 1.0d), getX() + (getPanel().getTotalWidth() - 4))) - getX()) / (getPanel().getTotalWidth() - 4), 1.0f);
             } else if (this.flag5 && !this.setting.flag3) {
                 AbstractClickGuiScreen.cursorType = CursorType.POINTER;
-                alpha = (int) (Math.min(Float.intBitsToFloat(1065353216) - ((((float) Math.min(Math.max(getX(), d - Double.longBitsToDouble(4613937818241073152L)), getX() + (getPanel().getTotalWidth() - 4))) - getX()) / (getPanel().getTotalWidth() - 4)), Float.intBitsToFloat(1065353216)) * Float.intBitsToFloat(1132396544));
+                alpha = (int) (Math.min(1.0f - ((((float) Math.min(Math.max(getX(), d - 3.0d), getX() + (getPanel().getTotalWidth() - 4))) - getX()) / (getPanel().getTotalWidth() - 4)), 1.0f) * 255.0f);
             }
-            int HSBtoRGB = Color.HSBtoRGB(this.floatArr[0], Float.intBitsToFloat(1065353216), Float.intBitsToFloat(1065353216));
-            float intBitsToFloat = ((HSBtoRGB >> 16) & 255) / Float.intBitsToFloat(1132396544);
-            float intBitsToFloat2 = ((HSBtoRGB >> 8) & 255) / Float.intBitsToFloat(1132396544);
-            float intBitsToFloat3 = (HSBtoRGB & 255) / Float.intBitsToFloat(1132396544);
+            int HSBtoRGB = Color.HSBtoRGB(this.floatArr[0], 1.0f, 1.0f);
+            float intBitsToFloat = ((HSBtoRGB >> 16) & 255) / 255.0f;
+            float intBitsToFloat2 = ((HSBtoRGB >> 8) & 255) / 255.0f;
+            float intBitsToFloat3 = (HSBtoRGB & 255) / 255.0f;
             int hashCode = this.flag3 ? -1 : getUI().color.getValue().hashCode();
-            Shape2DRenderer.drawGradientRect(matrixStack.last().pose(), getX() + Float.intBitsToFloat(1075838976), getY() + i + Float.intBitsToFloat(1056964608), getPanel().getTotalWidth() - 3, getPanel().getTotalWidth() - 3, hashCode, hashCode, hashCode, hashCode);
-            Shape2DRenderer.drawGradientRect(matrixStack.last().pose(), getX() + Float.intBitsToFloat(1077936128), getY() + i + Float.intBitsToFloat(1065353216), getPanel().getTotalWidth() - 4, getPanel().getTotalWidth() - 4, -1, HSBtoRGB, -16777216, -16777216);
+            Shape2DRenderer.drawGradientRect(matrixStack.last().pose(), getX() + 2.5f, getY() + i + 0.5f, getPanel().getTotalWidth() - 3, getPanel().getTotalWidth() - 3, hashCode, hashCode, hashCode, hashCode);
+            Shape2DRenderer.drawGradientRect(matrixStack.last().pose(), getX() + 3.0f, getY() + i + 1.0f, getPanel().getTotalWidth() - 4, getPanel().getTotalWidth() - 4, -1, HSBtoRGB, -16777216, -16777216);
             Matrix4f positionMatrix = matrixStack.last().pose();
-            float f = getX() + Float.intBitsToFloat(1075838976);
-            float f2 = ((getY() + getPanel().getTotalWidth()) + i) - Float.intBitsToFloat(1056964608);
+            float f = getX() + 2.5f;
+            float f2 = ((getY() + getPanel().getTotalWidth()) + i) - 0.5f;
             float f3 = getPanel().getTotalWidth() - 3;
-            float intBitsToFloat4 = Float.intBitsToFloat(1088421888);
+            float intBitsToFloat4 = 7.0f;
             int[] iArr = new int[2];
             iArr[0] = this.flag4 ? -1 : getAccentColor().hashCode();
             iArr[1] = this.flag4 ? -1 : getAccentColor().hashCode();
             Shape2DRenderer.drawMultiGradientRect(positionMatrix, f, f2, f3, intBitsToFloat4, iArr);
-            Shape2DRenderer.drawMultiGradientRect(matrixStack.last().pose(), getX() + Float.intBitsToFloat(1077936128), getY() + getPanel().getTotalWidth() + i, getPanel().getTotalWidth() - 4, Float.intBitsToFloat(1086324736), -65536, -256, -16711936, -16711681, -16776961, -65281, -65536);
+            Shape2DRenderer.drawMultiGradientRect(matrixStack.last().pose(), getX() + 3.0f, getY() + getPanel().getTotalWidth() + i, getPanel().getTotalWidth() - 4, 6.0f, -65536, -256, -16711936, -16711681, -16776961, -65281, -65536);
             applyAnimatedValue(this.hUDHelper_23, this.floatArr[0] * (getPanel().getTotalWidth() - 2));
-            float clamp = Mth.clamp(this.hUDHelper_23.getValue(), Float.intBitsToFloat(1077936128), getPanel().getTotalWidth() - 3);
-            Shape2DRenderer.drawRect(matrixStack, ((int) (getX() + clamp)) - Float.intBitsToFloat(1056964608), ((int) ((getY() + getPanel().getTotalWidth()) + i)) - Float.intBitsToFloat(1056964608), ((int) (getX() + clamp + Float.intBitsToFloat(1073741824))) + Float.intBitsToFloat(1056964608), (int) (getY() + getPanel().getTotalWidth() + i + Float.intBitsToFloat(1087373312)), this.flag3 ? -1 : getAccentColor().hashCode());
-            Shape2DRenderer.drawRect(matrixStack, (int) (getX() + clamp), (int) (getY() + getPanel().getTotalWidth() + i), (int) (getX() + clamp + Float.intBitsToFloat(1073741824)), (int) (getY() + getPanel().getTotalWidth() + i + Float.intBitsToFloat(1087373312)), -1);
+            float clamp = Mth.clamp(this.hUDHelper_23.getValue(), 3.0f, getPanel().getTotalWidth() - 3);
+            Shape2DRenderer.drawRect(matrixStack, ((int) (getX() + clamp)) - 0.5f, ((int) ((getY() + getPanel().getTotalWidth()) + i)) - 0.5f, ((int) (getX() + clamp + 2.0f)) + 0.5f, (int) (getY() + getPanel().getTotalWidth() + i + 6.5f), this.flag3 ? -1 : getAccentColor().hashCode());
+            Shape2DRenderer.drawRect(matrixStack, (int) (getX() + clamp), (int) (getY() + getPanel().getTotalWidth() + i), (int) (getX() + clamp + 2.0f), (int) (getY() + getPanel().getTotalWidth() + i + 6.5f), -1);
             if (!this.setting.flag3) {
                 Matrix4f positionMatrix2 = matrixStack.last().pose();
-                float f4 = getX() + Float.intBitsToFloat(1075838976);
-                float f5 = ((int) getY()) + getPanel().getTotalWidth() + i + Float.intBitsToFloat(1089470464);
+                float f4 = getX() + 2.5f;
+                float f5 = ((int) getY()) + getPanel().getTotalWidth() + i + 7.5f;
                 float f6 = getPanel().getTotalWidth() - 3;
-                float intBitsToFloat5 = Float.intBitsToFloat(1088421888);
+                float intBitsToFloat5 = 7.0f;
                 int[] iArr2 = new int[2];
                 iArr2[0] = this.flag5 ? -1 : getAccentColor().hashCode();
                 iArr2[1] = this.flag5 ? -1 : getAccentColor().hashCode();
                 Shape2DRenderer.drawMultiGradientRect(positionMatrix2, f4, f5, f6, intBitsToFloat5, iArr2);
-                drawAlphaSlider(matrixStack, ((int) getX()) + 3, ((int) getY()) + getPanel().getTotalWidth() + i + 8, getPanel().getTotalWidth() - 4, 6, intBitsToFloat, intBitsToFloat2, intBitsToFloat3, alpha / Float.intBitsToFloat(1132396544));
+                drawAlphaSlider(matrixStack, ((int) getX()) + 3, ((int) getY()) + getPanel().getTotalWidth() + i + 8, getPanel().getTotalWidth() - 4, 6, intBitsToFloat, intBitsToFloat2, intBitsToFloat3, alpha / 255.0f);
             }
-            applyAnimatedValue(this.hUDHelper_2, Mth.clamp(this.floatArr[1], 0.0f, Float.intBitsToFloat(1065353216)) * (getPanel().getTotalWidth() - 8));
-            applyAnimatedValue(this.hUDHelper_22, (Float.intBitsToFloat(1065353216) - Mth.clamp(this.floatArr[2], 0.0f, Float.intBitsToFloat(1065353216))) * (getPanel().getTotalWidth() - 8));
-            float f7 = getX() + Float.intBitsToFloat(1084227584) + this.hUDHelper_2.getValue();
-            float f8 = getY() + i + Float.intBitsToFloat(1077936128) + this.hUDHelper_22.getValue();
+            applyAnimatedValue(this.hUDHelper_2, Mth.clamp(this.floatArr[1], 0.0f, 1.0f) * (getPanel().getTotalWidth() - 8));
+            applyAnimatedValue(this.hUDHelper_22, (1.0f - Mth.clamp(this.floatArr[2], 0.0f, 1.0f)) * (getPanel().getTotalWidth() - 8));
+            float f7 = getX() + 5.0f + this.hUDHelper_2.getValue();
+            float f8 = getY() + i + 3.0f + this.hUDHelper_22.getValue();
             this.progress.animateToggle(this.flag3);
-            float intBitsToFloat6 = Float.intBitsToFloat(1073741824) * Float.intBitsToFloat(1065353216) * this.progress.getValue();
+            float intBitsToFloat6 = 2.0f * 1.0f * this.progress.getValue();
             Color hSBColor = Color.getHSBColor(this.floatArr[0], this.floatArr[1], this.floatArr[2]);
-            Shape2DRenderer.drawRect(matrixStack, (f7 - Float.intBitsToFloat(1069547520)) - intBitsToFloat6, (f8 - Float.intBitsToFloat(1069547520)) - intBitsToFloat6, f7 + Float.intBitsToFloat(1069547520) + intBitsToFloat6, f8 + Float.intBitsToFloat(1069547520) + intBitsToFloat6, this.flag3 ? Color.white : getAccentColor());
-            Shape2DRenderer.drawRect(matrixStack, (f7 - Float.intBitsToFloat(1065353216)) - intBitsToFloat6, (f8 - Float.intBitsToFloat(1065353216)) - intBitsToFloat6, f7 + Float.intBitsToFloat(1065353216) + intBitsToFloat6, f8 + Float.intBitsToFloat(1065353216) + intBitsToFloat6, this.flag3 ? hSBColor : hSBColor.darker());
+            Shape2DRenderer.drawRect(matrixStack, (f7 - 1.5f) - intBitsToFloat6, (f8 - 1.5f) - intBitsToFloat6, f7 + 1.5f + intBitsToFloat6, f8 + 1.5f + intBitsToFloat6, this.flag3 ? Color.white : getAccentColor());
+            Shape2DRenderer.drawRect(matrixStack, (f7 - 1.0f) - intBitsToFloat6, (f8 - 1.0f) - intBitsToFloat6, f7 + 1.0f + intBitsToFloat6, f8 + 1.0f + intBitsToFloat6, this.flag3 ? hSBColor : hSBColor.darker());
             this.list.forEach(presetHelper_5 -> {
                 presetHelper_5.render(drawContext, matrixStack, d, d2);
             });
@@ -272,14 +272,14 @@ public class ColorPickerComponent extends SettingPresetSettingButton<Color> impl
             }
         }
         int i2 = (int) (this.num + getRowHeight() + getPanel().getTotalWidth() + 6 + getRowSpacing());
-        float intBitsToFloat7 = Float.intBitsToFloat(1065353216);
+        float intBitsToFloat7 = 1.0f;
         for (GuiComponent presetHelper_52 : this.list) {
             presetHelper_52.update(d, d2);
             presetHelper_52.setOffsetY(i2);
             if (!(presetHelper_52 instanceof PanelTextButton)) {
                 i2 += (int) (presetHelper_52.getFontHeight() + intBitsToFloat7);
                 presetHelper_52.setOffsetY(i2);
-                intBitsToFloat7 = Float.intBitsToFloat(1056964608);
+                intBitsToFloat7 = 0.5f;
             }
         }
     }
@@ -306,11 +306,11 @@ public class ColorPickerComponent extends SettingPresetSettingButton<Color> impl
             z = !z;
             i6 = i7 + i5;
         }
-        Shape2DRenderer.drawMultiGradientRect(matrixStack.last().pose(), i, i2, i3, i4, new Color(f, f2, f3, Float.intBitsToFloat(1065353216)).hashCode(), 0);
+        Shape2DRenderer.drawMultiGradientRect(matrixStack.last().pose(), i, i2, i3, i4, new Color(f, f2, f3, 1.0f).hashCode(), 0);
         applyAnimatedValue(this.hUDHelper_24, i3 - ((i3 - 2) * f4));
-        float f5 = (i + this.hUDHelper_24.getValue()) - Float.intBitsToFloat(1065353216);
-        Shape2DRenderer.drawRect(matrixStack, f5 - Float.intBitsToFloat(1069547520), i2 - Float.intBitsToFloat(1056964608), f5 + Float.intBitsToFloat(1069547520), i2 + i4 + Float.intBitsToFloat(1056964608), this.flag5 ? Color.white : getAccentColor());
-        Shape2DRenderer.drawRect(matrixStack, f5 - Float.intBitsToFloat(1065353216), i2, f5 + Float.intBitsToFloat(1065353216), i2 + i4, -1);
+        float f5 = (i + this.hUDHelper_24.getValue()) - 1.0f;
+        Shape2DRenderer.drawRect(matrixStack, f5 - 1.5f, i2 - 0.5f, f5 + 1.5f, i2 + i4 + 0.5f, this.flag5 ? Color.white : getAccentColor());
+        Shape2DRenderer.drawRect(matrixStack, f5 - 1.0f, i2, f5 + 1.0f, i2 + i4, -1);
     }
 
     @Override // me.mioclient.setting.SettingPresetSettingButton, me.mioclient.gui.widget.PanelComponent, me.mioclient.gui.GuiComponent
@@ -328,13 +328,13 @@ public class ColorPickerComponent extends SettingPresetSettingButton<Color> impl
             });
         }
         if (this.flag && i == 0) {
-            if (d > getX() + Float.intBitsToFloat(1073741824) && d < (getX() + getPanel().getTotalWidth()) - Float.intBitsToFloat(1073741824) && d2 > getY() + i2 && d2 < ((getY() + i2) + getPanel().getTotalWidth()) - Float.intBitsToFloat(1073741824)) {
+            if (d > getX() + 2.0f && d < (getX() + getPanel().getTotalWidth()) - 2.0f && d2 > getY() + i2 && d2 < ((getY() + i2) + getPanel().getTotalWidth()) - 2.0f) {
                 this.flag3 = true;
             }
-            if (d > getX() + Float.intBitsToFloat(1073741824) && d < (getX() + getPanel().getTotalWidth()) - Float.intBitsToFloat(1073741824) && d2 > getY() + i2 + getPanel().getTotalWidth() && d2 < getY() + i2 + getPanel().getTotalWidth() + Float.intBitsToFloat(1086324736)) {
+            if (d > getX() + 2.0f && d < (getX() + getPanel().getTotalWidth()) - 2.0f && d2 > getY() + i2 + getPanel().getTotalWidth() && d2 < getY() + i2 + getPanel().getTotalWidth() + 6.0f) {
                 this.flag4 = true;
             }
-            if (d > getX() + Float.intBitsToFloat(1073741824) && d < (getX() + getPanel().getTotalWidth()) - Float.intBitsToFloat(1073741824) && d2 > getY() + i2 + getPanel().getTotalWidth() + Float.intBitsToFloat(1090519040) && d2 < getY() + i2 + getPanel().getTotalWidth() + Float.intBitsToFloat(1096810496) && !this.setting.flag3) {
+            if (d > getX() + 2.0f && d < (getX() + getPanel().getTotalWidth()) - 2.0f && d2 > getY() + i2 + getPanel().getTotalWidth() + 8.0f && d2 < getY() + i2 + getPanel().getTotalWidth() + 14.0f && !this.setting.flag3) {
                 this.flag5 = true;
             }
             super.mouseClicked(d, d2, i);
@@ -382,9 +382,9 @@ public class ColorPickerComponent extends SettingPresetSettingButton<Color> impl
         if (!this.flag || isHidden()) {
             return super.getFontHeight();
         }
-        int i = (int) (getPanel().getTotalWidth() + Float.intBitsToFloat(1088421888) + (getRowHeight() * 2) + getRowSpacing());
+        int i = (int) (getPanel().getTotalWidth() + 7.0f + (getRowHeight() * 2) + getRowSpacing());
         if (this.list.size() > 2) {
-            i = (int) (i + (getRowHeight() * (this.list.size() - 2)) + Float.intBitsToFloat(1056964608));
+            i = (int) (i + (getRowHeight() * (this.list.size() - 2)) + 0.5f);
         }
         return i;
     }
@@ -415,11 +415,11 @@ public class ColorPickerComponent extends SettingPresetSettingButton<Color> impl
     }
 
     public Color getAccentColor() {
-        return ColorUtils.withAlphaPercent(getUI().color.getValue(), Float.intBitsToFloat(1065353216));
+        return ColorUtils.withAlphaPercent(getUI().color.getValue(), 1.0f);
     }
 
     public float getRowSpacing() {
-        return this.setting.flag3 ? Float.intBitsToFloat(1073741824) : Float.intBitsToFloat(1092616192);
+        return this.setting.flag3 ? 2.0f : 10.0f;
     }
 
     @Override // me.mioclient.gui.widget.PanelComponent, me.mioclient.gui.GuiComponent

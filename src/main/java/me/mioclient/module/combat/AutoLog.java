@@ -110,7 +110,7 @@ public class AutoLog extends Module {
                 triggerDisconnect(new StringTemplate().arg(String.valueOf(this.y.getValue())).format("You are below Y level \u0001"));
                 return;
             }
-            if (minecraftClient.player.tickCount / Float.intBitsToFloat(1101004800) < this.invincTimeout.getValue().floatValue()) {
+            if (minecraftClient.player.tickCount / 20.0f < this.invincTimeout.getValue().floatValue()) {
                 return;
             }
             if (this.onRender.getValue().booleanValue()) {
@@ -120,7 +120,7 @@ public class AutoLog extends Module {
                     }
                 }
             }
-            if (!minecraftClient.level.getEntities(EntityTypeTest.forClass(MinecartTNT.class), minecraftClient.player.getBoundingBox().inflate(Double.longBitsToDouble(4616189618054758400L), Double.longBitsToDouble(4616189618054758400L), Double.longBitsToDouble(4616189618054758400L)), (v0) -> {
+            if (!minecraftClient.level.getEntities(EntityTypeTest.forClass(MinecartTNT.class), minecraftClient.player.getBoundingBox().inflate(4.0d, 4.0d, 4.0d), (v0) -> {
                 return v0.isPrimed();
             }).isEmpty() && this.tNTMinecart.getValue().booleanValue()) {
                 triggerDisconnect("You are at risk of getting blown up by a TNT minecart!");
@@ -129,12 +129,12 @@ public class AutoLog extends Module {
                 minecraftClient.level.getEntities(EntityTypeTest.forClass(EndCrystal.class), minecraftClient.player.getBoundingBox().inflate(12.0d, 12.0d, 12.0d), (v0) -> {
                     return true;
                 }).forEach(entity -> {
-                    if (!(entity instanceof EndCrystal) || minecraftClient.player.distanceToSqr(entity) > Double.longBitsToDouble(4638707616191610880L)) {
+                    if (!(entity instanceof EndCrystal) || minecraftClient.player.distanceToSqr(entity) > 128.0d) {
                         return;
                     }
                     Vec3 pos = entity.position();
                     LivingEntity livingEntity = minecraftClient.player;
-                    if (ExplosionDamageCalculator.getExplosionDamage(pos, livingEntity, minecraftClient.player.getBoundingBox(), Double.longBitsToDouble(4618441417868443648L), true, (BlockPos) null, (BlockPos) null) >= EntityUtil.getPlayerHealth()) {
+                    if (ExplosionDamageCalculator.getExplosionDamage(pos, livingEntity, minecraftClient.player.getBoundingBox(), 6.0d, true, (BlockPos) null, (BlockPos) null) >= EntityUtil.getPlayerHealth()) {
                         triggerDisconnect("You are at risk of getting blown up by an end crystal!");
                     }
                 });

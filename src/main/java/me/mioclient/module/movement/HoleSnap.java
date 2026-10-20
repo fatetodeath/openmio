@@ -147,20 +147,20 @@ public class HoleSnap extends Module {
     }
 
     public Tuple<Vec3, Double> getHoleSnapData_2129() {
-        double longBitsToDouble = Double.longBitsToDouble(4666722622711529472L);
+        double longBitsToDouble = 9999.0d;
         Vec3 vec3d = null;
         Vec3 pos = minecraftClient.player.position();
         for (HoleData holeSnapData : ClientServices.holeSnapOverlayHelper.getHoles()) {
             Vec3 center = holeSnapData.getBox().getCenter();
-            Vec3 withAxis = center.with(Direction.Axis.Y, Mth.clamp(pos.y, center.y, (center.y + this.height.getValue().floatValue()) - Double.longBitsToDouble(4602678819172646912L)));
+            Vec3 withAxis = center.with(Direction.Axis.Y, Mth.clamp(pos.y, center.y, (center.y + this.height.getValue().floatValue()) - 0.5d));
             if (holeSnapData.getBlockPos().getY() < pos.y && !holeSnapData.isTrapped()) {
                 double distanceTo = pos.distanceTo(withAxis);
-                if (!this.directional.getValue().booleanValue() || MovementUtils.isLocalPlayerMovingToward(withAxis) || distanceTo <= Double.longBitsToDouble(4587366580439587226L)) {
+                if (!this.directional.getValue().booleanValue() || MovementUtils.isLocalPlayerMovingToward(withAxis) || distanceTo <= 0.05d) {
                     if (distanceTo <= this.range.getValue().floatValue()) {
                         AABB holeBox = holeSnapData.getBox();
                         AABB withMaxY = holeBox.setMaxY(minecraftClient.player.getBoundingBox().maxY);
                         if (minecraftClient.level.noCollision(withMaxY) && !isBlockedRay(pos, withAxis)) {
-                            if (!isBlockedRay(pos.add(0.0d, Double.longBitsToDouble(4610785298287165440L), 0.0d), withAxis.add(0.0d, Double.longBitsToDouble(4610785298287165440L), 0.0d)) && distanceTo < longBitsToDouble) {
+                            if (!isBlockedRay(pos.add(0.0d, 1.7999999523162842d, 0.0d), withAxis.add(0.0d, 1.7999999523162842d, 0.0d)) && distanceTo < longBitsToDouble) {
                                 longBitsToDouble = distanceTo;
                                 vec3d = withAxis;
                             }

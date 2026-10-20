@@ -33,13 +33,13 @@ public class Totems extends me.mioclient.module.HudModule {
             String valueOf = String.valueOf(itemStack.getCount());
             me.mioclient.render.shape.Shape2DRenderer.flush(false);
             drawContext.pose().pushMatrix();
-            ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, valueOf, Float.intBitsToFloat(1099431936) - ClientTextRenderer.INSTANCE.getStringWidth(valueOf), Float.intBitsToFloat(1091567616), this.setting.getValue().booleanValue() ? Color.white : getHudColor(Float.intBitsToFloat(1091567616)));
+            ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, valueOf, 17.0f - ClientTextRenderer.INSTANCE.getStringWidth(valueOf), 9.0f, this.setting.getValue().booleanValue() ? Color.white : getHudColor(9.0f));
             drawContext.pose().popMatrix();
         }
     }
 
     @Override // me.mioclient.module.HudModule
     public float[] getSize() {
-        return new float[]{Float.intBitsToFloat(1098907648), Float.intBitsToFloat(1098907648)};
+        return new float[]{16.0f, 16.0f};
     }
 }

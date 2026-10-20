@@ -21,7 +21,7 @@ public class ProgressSettingPresetSettingButton extends SettingPresetSettingButt
     public ProgressSettingPresetSettingButton(ClickGuiPanel presetEnumSettingHelper, ClosableElement presetHelper_2, Setting<?> setting) {
         super(presetEnumSettingHelper, presetHelper_2, (BooleanSetting) setting);
         this.progress = new AnimationProgress((Supplier<Float>) () -> {
-            return Float.valueOf(Float.intBitsToFloat(1073741824) * UI.uI.animSpeed.getValue().floatValue());
+            return Float.valueOf(2.0f * UI.uI.animSpeed.getValue().floatValue());
         }, true);
     }
 
@@ -53,8 +53,8 @@ public class ProgressSettingPresetSettingButton extends SettingPresetSettingButt
         this.progress.animateToggle(((Boolean) this.setting.getValue()).booleanValue());
         float f = this.progress.getValue();
         super.render(drawContext, matrixStack, d, d2);
-        if ((((Boolean) this.setting.getValue()).booleanValue() || f > Double.longBitsToDouble(4576918229304087675L)) && !this.setting.flag4) {
-            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + getPadding(), this.presetEnumSettingHelper.getY() + this.num + Float.intBitsToFloat(1056964608), this.presetEnumSettingHelper.getX() + Math.max((this.presetEnumSettingHelper.getTotalWidth() * f) - Float.intBitsToFloat(1065353216), Float.intBitsToFloat(1073741824)), ((this.presetEnumSettingHelper.getY() + this.num) + getFontHeight()) - Float.intBitsToFloat(1056964608), getUI().color.getValue());
+        if ((((Boolean) this.setting.getValue()).booleanValue() || f > 0.01d) && !this.setting.flag4) {
+            Shape2DRenderer.drawRect(matrixStack, this.presetEnumSettingHelper.getX() + getPadding(), this.presetEnumSettingHelper.getY() + this.num + 0.5f, this.presetEnumSettingHelper.getX() + Math.max((this.presetEnumSettingHelper.getTotalWidth() * f) - 1.0f, 2.0f), ((this.presetEnumSettingHelper.getY() + this.num) + getFontHeight()) - 0.5f, getUI().color.getValue());
         }
         String name = this.setting.getName();
         if (!name.isEmpty()) {

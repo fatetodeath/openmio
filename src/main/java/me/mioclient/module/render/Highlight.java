@@ -118,8 +118,8 @@ public class Highlight extends Module {
     }
 
     public void drawHighlightBox(PoseStack matrixStack, AABB box, BlockPos blockPos) {
-        BoxRenderer.drawFilledBox(matrixStack, box.move(blockPos).inflate(Double.longBitsToDouble(4566758108544739836L)), this.fillColor.getValue());
-        BoxRenderer.drawBoxOutline(matrixStack, box.move(blockPos).inflate(Double.longBitsToDouble(4566758108544739836L)), this.color.getValue(), this.lineWidth.getValue().floatValue());
+        BoxRenderer.drawFilledBox(matrixStack, box.move(blockPos).inflate(0.002d), this.fillColor.getValue());
+        BoxRenderer.drawBoxOutline(matrixStack, box.move(blockPos).inflate(0.002d), this.color.getValue(), this.lineWidth.getValue().floatValue());
     }
 
     public boolean is408() {

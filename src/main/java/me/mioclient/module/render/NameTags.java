@@ -112,7 +112,7 @@ import me.mioclient.setting.NumberSetting;
         if (animations_lcl != null && animations_lcl.isPlayerScaleModified() && player != minecraftClient.player) {
             return animations_lcl.playerScale.getValue().floatValue();
         }
-        return Float.intBitsToFloat(1065353216);
+        return 1.0f;
     }
     public static boolean flag = false;
     public Setting<Integer> range = add(new NumberSetting<>("Range", 60, 1, 300).setSuffix("m"));
@@ -252,7 +252,7 @@ import me.mioclient.setting.NumberSetting;
                 double ix = Mth.lerp(f, (float) playerEntity.xo, (float) playerEntity.getX());
                 double iy = Mth.lerp(f, (float) playerEntity.yo, (float) playerEntity.getY());
                 double iz = Mth.lerp(f, (float) playerEntity.zo, (float) playerEntity.getZ());
-                float height = (playerEntity.getBbHeight() * getPlayerScaleFactor(playerEntity)) + Float.intBitsToFloat(1056964608);
+                float height = (playerEntity.getBbHeight() * getPlayerScaleFactor(playerEntity)) + 0.5f;
                 /* 26.2 backend: world-anchored tag through vanilla's nametag pipeline
                    (bg plate, distance scaling and depth handled by vanilla). */
                 BoxRenderer.submitNameTag(inner_3.getMatrixStack(), new Vec3(ix, iy, iz), height, parseLegacyColors(buildStatusString(playerEntity)), inner_3.cameraState, this.scale.getValue().floatValue());
@@ -283,11 +283,11 @@ import me.mioclient.setting.NumberSetting;
                 matrixStack.pushPose();
                 matrixStack.translate(lerp, lerp2, lerp3);
                 matrixStack.pushPose();
-                matrixStack.translate(0.0d, (clientPlayerEntity.getBbHeight() * getPlayerScaleFactor(clientPlayerEntity)) + Float.intBitsToFloat(1056964608), 0.0d);
+                matrixStack.translate(0.0d, (clientPlayerEntity.getBbHeight() * getPlayerScaleFactor(clientPlayerEntity)) + 0.5f, 0.0d);
                 matrixStack.mulPose(minecraftClient.gameRenderer.mainCamera().rotation());
-                matrixStack.scale((-f) * Float.intBitsToFloat(1020054733), (-f) * Float.intBitsToFloat(1020054733), f * Float.intBitsToFloat(1020054733));
-                float longBitsToDouble = (float) ((-getStringWidth(buildStatusString(clientPlayerEntity))) * Double.longBitsToDouble(4602678819172646912L));
-                RenderUtil.INSTANCE.drawFilledRectColor(matrixStack, longBitsToDouble - Float.intBitsToFloat(1065353216), Float.intBitsToFloat(-1082130432), (longBitsToDouble * Float.intBitsToFloat(-1082130432)) + Float.intBitsToFloat(1065353216), getSpeed() + Float.intBitsToFloat(1065353216), Color.white);
+                matrixStack.scale((-f) * 0.025f, (-f) * 0.025f, f * 0.025f);
+                float longBitsToDouble = (float) ((-getStringWidth(buildStatusString(clientPlayerEntity))) * 0.5d);
+                RenderUtil.INSTANCE.drawFilledRectColor(matrixStack, longBitsToDouble - 1.0f, (-1.0f), (longBitsToDouble * (-1.0f)) + 1.0f, getSpeed() + 1.0f, Color.white);
                 matrixStack.popPose();
                 matrixStack.popPose();
             }
@@ -298,14 +298,14 @@ import me.mioclient.setting.NumberSetting;
         this.flag3 = false;
         this.flag4 = false;
         // 26.2: Entity.getHeight/blockPosition renamed; camera rotation via Camera.rotation(); GL state removed.
-        float height = (playerEntity.getBbHeight() * getPlayerScaleFactor(playerEntity)) + Float.intBitsToFloat(1056964608);
+        float height = (playerEntity.getBbHeight() * getPlayerScaleFactor(playerEntity)) + 0.5f;
         float f = (float) MathUtils.getDistanceScale(minecraftClient.gameRenderer.mainCamera().position(), playerEntity.position(), this.scale.getValue().floatValue());
         matrixStack.pushPose();
         matrixStack.translate(0.0f, height, 0.0f);
         matrixStack.mulPose(minecraftClient.gameRenderer.mainCamera().rotation());
-        matrixStack.scale(f * Float.intBitsToFloat(1020054733), (-f) * Float.intBitsToFloat(1020054733), (-f) * Float.intBitsToFloat(1020054733));
+        matrixStack.scale(f * 0.025f, (-f) * 0.025f, (-f) * 0.025f);
         String string1312 = buildStatusString(playerEntity);
-        float longBitsToDouble = (float) ((-getStringWidth(string1312)) * Double.longBitsToDouble(4602678819172646912L));
+        float longBitsToDouble = (float) ((-getStringWidth(string1312)) * 0.5d);
         Color value = this.outline.getValue();
         if (this.smart.getValue().booleanValue()) {
             if (isEntitySuffocating((Entity) playerEntity)) {
@@ -316,9 +316,9 @@ import me.mioclient.setting.NumberSetting;
                 }
             }
         }
-        float intBitsToFloat = Float.intBitsToFloat(1056964608);
-        Shape2DRenderer.drawRect(matrixStack, longBitsToDouble - Float.intBitsToFloat(1065353216), Float.intBitsToFloat(-1082130432), (longBitsToDouble * Float.intBitsToFloat(-1082130432)) + Float.intBitsToFloat(1065353216), getSpeed() + Float.intBitsToFloat(1065353216), this.fill.getValue());
-        Shape2DRenderer.drawOutline(matrixStack, (longBitsToDouble - Float.intBitsToFloat(1073741824)) + intBitsToFloat, Float.intBitsToFloat(-1073741824) + intBitsToFloat, (longBitsToDouble * Float.intBitsToFloat(-1082130432)) + Float.intBitsToFloat(1065353216), getSpeed() + Float.intBitsToFloat(1065353216), intBitsToFloat, value);
+        float intBitsToFloat = 0.5f;
+        Shape2DRenderer.drawRect(matrixStack, longBitsToDouble - 1.0f, (-1.0f), (longBitsToDouble * (-1.0f)) + 1.0f, getSpeed() + 1.0f, this.fill.getValue());
+        Shape2DRenderer.drawOutline(matrixStack, (longBitsToDouble - 2.0f) + intBitsToFloat, (-2.0f) + intBitsToFloat, (longBitsToDouble * (-1.0f)) + 1.0f, getSpeed() + 1.0f, intBitsToFloat, value);
         Color value2 = this.text.getValue();
         if (playerEntity.isShiftKeyDown()) {
             value2 = this.sneak.getValue();
@@ -334,7 +334,7 @@ import me.mioclient.setting.NumberSetting;
         }
         Fonts fonts_lcl = getFonts();
         boolean isToggled = fonts_lcl != null && fonts_lcl.isToggled();
-        ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, string1312, longBitsToDouble, Float.intBitsToFloat(1065353216), value2);
+        ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, string1312, longBitsToDouble, 1.0f, value2);
         flag = true;
         renderItemIcons(drawContext, matrixStack, playerEntity);
         flag = false;
@@ -342,11 +342,11 @@ import me.mioclient.setting.NumberSetting;
             // 26.2: fixed-function texture state removed; draw mio badge via GUI blit pipeline.
             Matrix3x2fStack guiPose = drawContext.pose();
             guiPose.pushMatrix();
-            float intBitsToFloat2 = Float.intBitsToFloat(1032847360);
-            guiPose.translate(longBitsToDouble - Float.intBitsToFloat(1082130432), Float.intBitsToFloat(-1065353216));
+            float intBitsToFloat2 = 0.0703125f;
+            guiPose.translate(longBitsToDouble - 4.0f, (-4.0f));
             guiPose.scale(intBitsToFloat2, intBitsToFloat2);
             if (isToggled) {
-                guiPose.translate((float) Double.longBitsToDouble(-4616189618054758400L), (float) (Double.longBitsToDouble(4608533498688228557L) + (fonts_lcl != null ? fonts_lcl.shift.getValue().intValue() : 0)));
+                guiPose.translate((float) (-1.0d), (float) (1.3d + (fonts_lcl != null ? fonts_lcl.shift.getValue().intValue() : 0)));
             }
             drawContext.blit(RenderPipelines.GUI_TEXTURED, identifier, 0, 0, 0.0f, 0.0f, 256, 256, 256, 256);
             guiPose.popMatrix();
@@ -385,32 +385,32 @@ import me.mioclient.setting.NumberSetting;
         if (this.durability.getValue() == NameTagsMode.ONLY || !this.enchants.getValue().booleanValue()) {
             max = 0;
         }
-        float f = -Math.max((((max * getSpeed()) * Float.intBitsToFloat(1056964608)) / Float.intBitsToFloat(1067030938)) / Float.intBitsToFloat(1099563008), Float.intBitsToFloat(1058642330));
+        float f = -Math.max((((max * getSpeed()) * 0.5f) / 1.2f) / 17.25f, 0.6f);
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            renderItemSlot(drawContext, playerEntity, matrixStack, (ItemStack) arrayList.get((arrayList.size() - 1) - i2), (i2 + Float.intBitsToFloat(1056964608)) - (arrayList.size() * Float.intBitsToFloat(1056964608)), f, Float.intBitsToFloat(1099563008));
+            renderItemSlot(drawContext, playerEntity, matrixStack, (ItemStack) arrayList.get((arrayList.size() - 1) - i2), (i2 + 0.5f) - (arrayList.size() * 0.5f), f, 17.25f);
         }
         if (playerEntity.getMainHandItem().isEmpty() || !this.itemName.getValue().booleanValue()) {
             return;
         }
-        float intBitsToFloat = ((f * Float.intBitsToFloat(1099563008)) - Float.intBitsToFloat(1082130432)) - getSpeed();
+        float intBitsToFloat = ((f * 17.25f) - 4.0f) - getSpeed();
         if (!this.flag3) {
             intBitsToFloat = -getSpeed();
         }
         if (this.flag4) {
-            intBitsToFloat -= getSpeed() * Float.intBitsToFloat(1056964608);
+            intBitsToFloat -= getSpeed() * 0.5f;
             if (!this.flag3) {
-                intBitsToFloat -= Float.intBitsToFloat(1065353216);
+                intBitsToFloat -= 1.0f;
             }
         }
-        drawLabel(drawContext, ChatFormatting.stripFormatting(playerEntity.getMainHandItem().getDisplayName().getString()), 0.0f, intBitsToFloat, Double.longBitsToDouble(4627005293803339776L), Color.white, false, NameTagsMode_2.nameTagsMode_2);
+        drawLabel(drawContext, ChatFormatting.stripFormatting(playerEntity.getMainHandItem().getDisplayName().getString()), 0.0f, intBitsToFloat, 22.424999177455902d, Color.white, false, NameTagsMode_2.nameTagsMode_2);
     }
 
     public void renderItemSlot(GuiGraphicsExtractor drawContext, Player playerEntity, PoseStack matrixStack, ItemStack itemStack, float f, float f2, float f3) {
         // 26.2: ArmorItem removed -> EQUIPPABLE slot check; isOf -> is; bar/durability/enchant APIs renamed.
-        float intBitsToFloat = Float.intBitsToFloat(1058642330);
+        float intBitsToFloat = 0.6f;
         int i = ExplosionDamageCalculator.getClampedDurabilityPercent(itemStack);
         if (this.items.getValue().booleanValue() && this.showEating.getValue().booleanValue() && playerEntity.isUsingItem() && playerEntity.getItemInHand(playerEntity.getUsedItemHand()) == itemStack && itemStack.has(DataComponents.FOOD)) {
-            Shape2DRenderer.drawRect(matrixStack, (f - Float.intBitsToFloat(1055286886)) * f3, (f2 * f3) - Float.intBitsToFloat(1089575322), ((f - Float.intBitsToFloat(1055286886)) + (Float.intBitsToFloat(1063675494) * Mth.clamp(((float) (System.currentTimeMillis() - ((DuckPlayerEntity) playerEntity).mio$getLastEatingTime())) / ((itemStack.getUseDuration((LivingEntity) playerEntity) * Float.intBitsToFloat(1112014848)) + Float.intBitsToFloat(1112014848)), 0.0f, Float.intBitsToFloat(1065353216)))) * f3, (f2 * f3) + Float.intBitsToFloat(1089575322), ColorUtils.toIntWithAlphaPercent(this.eating.getValue(), Float.intBitsToFloat(1045220557)));
+            Shape2DRenderer.drawRect(matrixStack, (f - 0.45f) * f3, (f2 * f3) - 7.55f, ((f - 0.45f) + (0.9f * Mth.clamp(((float) (System.currentTimeMillis() - ((DuckPlayerEntity) playerEntity).mio$getLastEatingTime())) / ((itemStack.getUseDuration((LivingEntity) playerEntity) * 50.0f) + 50.0f), 0.0f, 1.0f))) * f3, (f2 * f3) + 7.55f, ColorUtils.toIntWithAlphaPercent(this.eating.getValue(), 0.2f));
         }
         boolean z = false;
         Equippable equippable = itemStack.get(DataComponents.EQUIPPABLE);
@@ -427,23 +427,23 @@ import me.mioclient.setting.NumberSetting;
             guiPose.popMatrix();
         }
         if (itemStack.getCount() > 1) {
-            drawLabel(drawContext, String.valueOf(itemStack.getCount()), (f + Float.intBitsToFloat(1056964608)) * f3, (f2 * f3) + Float.intBitsToFloat(1065353216), f3 * Double.longBitsToDouble(4612248968380809216L), Color.white, true, NameTagsMode_2.nameTagsMode_23);
+            drawLabel(drawContext, String.valueOf(itemStack.getCount()), (f + 0.5f) * f3, (f2 * f3) + 1.0f, f3 * 2.25d, Color.white, true, NameTagsMode_2.nameTagsMode_23);
         }
         if (itemStack.isBarVisible() && z) {
-            float intBitsToFloat3 = (f2 * f3) + Float.intBitsToFloat(1085276160);
-            Shape2DRenderer.drawRect(matrixStack, (f - Float.intBitsToFloat(1055286886)) * f3, intBitsToFloat3 - Float.intBitsToFloat(1028443341), (f + Float.intBitsToFloat(1055286886)) * f3, intBitsToFloat3 + Float.intBitsToFloat(1073741824), new Color(-16777216));
-            Shape2DRenderer.drawRect(matrixStack, (f - Float.intBitsToFloat(1055286886)) * f3, intBitsToFloat3 - Float.intBitsToFloat(1028443341), (f + Mth.lerp(itemStack.getBarWidth() / Float.intBitsToFloat(1095761920), Float.intBitsToFloat(-1092196762), Float.intBitsToFloat(1055286886))) * f3, intBitsToFloat3 + Float.intBitsToFloat(1065772646), new Color(itemStack.getBarColor(), false));
+            float intBitsToFloat3 = (f2 * f3) + 5.5f;
+            Shape2DRenderer.drawRect(matrixStack, (f - 0.45f) * f3, intBitsToFloat3 - 0.05f, (f + 0.45f) * f3, intBitsToFloat3 + 2.0f, new Color(-16777216));
+            Shape2DRenderer.drawRect(matrixStack, (f - 0.45f) * f3, intBitsToFloat3 - 0.05f, (f + Mth.lerp(itemStack.getBarWidth() / 13.0f, (-0.45f), 0.45f)) * f3, intBitsToFloat3 + 1.05f, new Color(itemStack.getBarColor(), false));
         }
         Set<Object2IntMap.Entry<Holder<Enchantment>>> enchantmentEntries = (Set) (itemStack.getEnchantments().entrySet());
-        float intBitsToFloat4 = (-intBitsToFloat) * Float.intBitsToFloat(1073741824);
+        float intBitsToFloat4 = (-intBitsToFloat) * 2.0f;
         if (itemStack.is(Items.ENCHANTED_GOLDEN_APPLE) && z) {
-            drawLabel(drawContext, "God", f * f3, ((f2 * f3) - Float.intBitsToFloat(1065353216)) + (getSpeed() * intBitsToFloat * intBitsToFloat4), f3 * Float.intBitsToFloat(1067869798), this.color, false, NameTagsMode_2.nameTagsMode_23);
+            drawLabel(drawContext, "God", f * f3, ((f2 * f3) - 1.0f) + (getSpeed() * intBitsToFloat * intBitsToFloat4), f3 * 1.3f, this.color, false, NameTagsMode_2.nameTagsMode_23);
             return;
         }
         if (z && this.enchants.getValue().booleanValue()) {
             boolean z2 = this.hideMax.getValue().booleanValue() && MaxEnchantmentFilter.isFullyEnchanted(itemStack);
             if (z2) {
-                drawLabel(drawContext, "Max", (f - Float.intBitsToFloat(1056964608)) * f3, ((f2 * f3) - Float.intBitsToFloat(1073741824)) + (((getSpeed() * intBitsToFloat) / Float.intBitsToFloat(1067030938)) * intBitsToFloat4), f3 * Float.intBitsToFloat(1067869798), Color.RED, false, NameTagsMode_2.nameTagsMode_22);
+                drawLabel(drawContext, "Max", (f - 0.5f) * f3, ((f2 * f3) - 2.0f) + (((getSpeed() * intBitsToFloat) / 1.2f) * intBitsToFloat4), f3 * 1.3f, Color.RED, false, NameTagsMode_2.nameTagsMode_22);
             }
             for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantmentEntries) {
                 if (z2) {
@@ -456,20 +456,20 @@ import me.mioclient.setting.NumberSetting;
                     if (!z3) {
                         substring = new StringTemplate().arg(entry.getIntValue()).arg(substring).format("\u0001\u0001");
                     }
-                    drawLabel(drawContext, substring, (f - Float.intBitsToFloat(1056964608)) * f3, ((f2 * f3) - Float.intBitsToFloat(1073741824)) + (((getSpeed() * intBitsToFloat) / Float.intBitsToFloat(1067030938)) * intBitsToFloat4), f3 * Float.intBitsToFloat(1067869798), Color.WHITE, false, NameTagsMode_2.nameTagsMode_22);
-                    intBitsToFloat4 += Float.intBitsToFloat(1065353216);
+                    drawLabel(drawContext, substring, (f - 0.5f) * f3, ((f2 * f3) - 2.0f) + (((getSpeed() * intBitsToFloat) / 1.2f) * intBitsToFloat4), f3 * 1.3f, Color.WHITE, false, NameTagsMode_2.nameTagsMode_22);
+                    intBitsToFloat4 += 1.0f;
                 }
             }
         }
         if (!itemStack.isDamageableItem() || this.durability.getValue() == NameTagsMode.HIDE) {
             return;
         }
-        float intBitsToFloat5 = ((f2 * f3) - Float.intBitsToFloat(1082130432)) - getSpeed();
+        float intBitsToFloat5 = ((f2 * f3) - 4.0f) - getSpeed();
         if (!z) {
             intBitsToFloat5 = f2 - getSpeed();
         }
         this.flag4 = true;
-        drawLabel(drawContext, String.format("%d%s", Integer.valueOf(i), "%"), ((float) ((f - MathConstants.val2) * f3)) + Float.intBitsToFloat(1065353216), intBitsToFloat5, f3 * Float.intBitsToFloat(1069547520), new Color(itemStack.getBarColor(), false), false, NameTagsMode_2.nameTagsMode_22);
+        drawLabel(drawContext, String.format("%d%s", Integer.valueOf(i), "%"), ((float) ((f - MathConstants.val2) * f3)) + 1.0f, intBitsToFloat5, f3 * 1.5f, new Color(itemStack.getBarColor(), false), false, NameTagsMode_2.nameTagsMode_22);
     }
 
     public void drawLabel(GuiGraphicsExtractor drawContext, String str, float f, float f2, double d, Color color, boolean z, NameTagsMode_2 nameTagsMode_2) {
@@ -477,7 +477,7 @@ import me.mioclient.setting.NumberSetting;
         Matrix3x2fStack matrices = drawContext.pose();
         matrices.pushMatrix();
         matrices.translate(f, f2);
-        matrices.scale(Float.intBitsToFloat(1020054733) * ((float) d), Float.intBitsToFloat(1020054733) * ((float) d));
+        matrices.scale(0.025f * ((float) d), 0.025f * ((float) d));
         float f3 = nameTagsMode_2.getTextOffsetX(str, z);
         if (z) {
             ClientTextRenderer.INSTANCE.drawText(drawContext, str, f3, 0.0f, color);
@@ -578,7 +578,7 @@ import me.mioclient.setting.NumberSetting;
     }
 
     public ChatFormatting getHealthColor(double d) {
-        return d >= Double.longBitsToDouble(4626322717216342016L) ? ChatFormatting.GREEN : d >= Double.longBitsToDouble(4625196817309499392L) ? ChatFormatting.DARK_GREEN : d >= Double.longBitsToDouble(4621819117588971520L) ? ChatFormatting.GOLD : d >= Double.longBitsToDouble(4616189618054758400L) ? ChatFormatting.RED : ChatFormatting.DARK_RED;
+        return d >= 20.0d ? ChatFormatting.GREEN : d >= 16.0d ? ChatFormatting.DARK_GREEN : d >= 10.0d ? ChatFormatting.GOLD : d >= 4.0d ? ChatFormatting.RED : ChatFormatting.DARK_RED;
     }
 
     public static ChatFormatting getTotemPopColor(int i) {
@@ -638,9 +638,9 @@ import me.mioclient.setting.NumberSetting;
 
     public boolean isEntitySuffocating(Entity entity) {
         // 26.2: getHeight -> getBbHeight; BlockPos.stream(AABB) -> betweenClosedStream; shouldSuffocate -> isSuffocating.
-        float width = entity.getDimensions(entity.getPose()).width() * Float.intBitsToFloat(1061997773);
+        float width = entity.getDimensions(entity.getPose()).width() * 0.8f;
         Vec3 center = entity.getBoundingBox().getCenter();
-        float h = entity.getBbHeight() * Float.intBitsToFloat(1056964608);
+        float h = entity.getBbHeight() * 0.5f;
         AABB box = new AABB(center.x - width, center.y, center.z - width, center.x + width, center.y + h, center.z + width);
         return BlockPos.betweenClosedStream(box).anyMatch(blockPos -> {
             BlockState blockState = minecraftClient.level.getBlockState(blockPos);

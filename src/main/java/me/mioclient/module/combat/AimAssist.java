@@ -65,8 +65,8 @@ public class AimAssist extends Module {
                 return;
             }
             double d = getAimYawDelta(this.abstractClientPlayerEntity);
-            if (d > Double.longBitsToDouble(4607182418800017408L) || d < Double.longBitsToDouble(-4616189618054758400L)) {
-                minecraftClient.player.setYRot(minecraftClient.player.getYRot(RenderUtil.getPartialTick()) - ((float) ((d * this.setting2.getValue().floatValue()) * Double.longBitsToDouble(4576918229175238656L))));
+            if (d > 1.0d || d < (-1.0d)) {
+                minecraftClient.player.setYRot(minecraftClient.player.getYRot(RenderUtil.getPartialTick()) - ((float) ((d * this.setting2.getValue().floatValue()) * 0.009999999776482582d)));
             }
         }
     }
@@ -94,16 +94,16 @@ public class AimAssist extends Module {
     }
 
     public static double getAimYawDelta(Entity entity) {
-        return ((((minecraftClient.player.getYRot(RenderUtil.getPartialTick()) - getEntityYawAngle(entity)) % MathConstants.num3) + Double.longBitsToDouble(4647961106050973696L)) % MathConstants.num3) - Double.longBitsToDouble(4640537203540230144L);
+        return ((((minecraftClient.player.getYRot(RenderUtil.getPartialTick()) - getEntityYawAngle(entity)) % MathConstants.num3) + 540.0d) % MathConstants.num3) - 180.0d;
     }
 
     public static boolean isWithinFovAngle(Entity entity, double d) {
         double d2 = (float) (d * MathConstants.val2);
-        double yaw = ((((minecraftClient.player.getYRot(RenderUtil.getPartialTick()) - getEntityYawAngle(entity)) % MathConstants.num3) + Double.longBitsToDouble(4647961106050973696L)) % MathConstants.num3) - Double.longBitsToDouble(4640537203540230144L);
+        double yaw = ((((minecraftClient.player.getYRot(RenderUtil.getPartialTick()) - getEntityYawAngle(entity)) % MathConstants.num3) + 540.0d) % MathConstants.num3) - 180.0d;
         return (yaw > 0.0d && yaw < d2) || ((-d2) < yaw && yaw < 0.0d);
     }
 
     public static float getEntityYawAngle(Entity entity) {
-        return (float) (Math.atan2(entity.getX() - minecraftClient.player.getX(), entity.getZ() - minecraftClient.player.getZ()) * Double.longBitsToDouble(4633260481409690083L) * Double.longBitsToDouble(-4616189618054758400L));
+        return (float) (Math.atan2(entity.getX() - minecraftClient.player.getX(), entity.getZ() - minecraftClient.player.getZ()) * 57.2957795d * (-1.0d));
     }
 }

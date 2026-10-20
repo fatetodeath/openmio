@@ -40,12 +40,12 @@ public abstract class CrystalThreatDetector implements ClientAccessor {
     }
 
     public boolean isLethalExplosionAt(Vec3 vec3d) {
-        if (vec3d.distanceToSqr(minecraftClient.player.position()) > Double.longBitsToDouble(4639270566145032192L)) {
+        if (vec3d.distanceToSqr(minecraftClient.player.position()) > 144.0d) {
             return false;
         }
         for (int i = 4; i >= 0; i--) {
             AABB box1109 = ClientServices.mainhandHelper.getPredictedBox(minecraftClient.player, i);
-            if (ExplosionDamageCalculator.getExplosionDamage(vec3d, minecraftClient.player, box1109, Double.longBitsToDouble(4618441417868443648L), true, (BlockPos) null, (BlockPos) null) >= EntityUtil.getPlayerHealth()) {
+            if (ExplosionDamageCalculator.getExplosionDamage(vec3d, minecraftClient.player, box1109, 6.0d, true, (BlockPos) null, (BlockPos) null) >= EntityUtil.getPlayerHealth()) {
                 return true;
             }
         }
@@ -53,6 +53,6 @@ public abstract class CrystalThreatDetector implements ClientAccessor {
     }
 
     public boolean isNearbyCrystal(Entity entity) {
-        return (entity instanceof EndCrystal) && minecraftClient.player.distanceToSqr(entity) <= Double.longBitsToDouble(4639270566145032192L);
+        return (entity instanceof EndCrystal) && minecraftClient.player.distanceToSqr(entity) <= 144.0d;
     }
 }

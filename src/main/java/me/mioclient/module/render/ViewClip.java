@@ -17,7 +17,7 @@ public class ViewClip extends Module {
 
     public ViewClip() {
         super("ViewClip", "Allows you to clip into blocks using 3rd person camera.", Category.RENDER, new String[0]);
-        this.progress = new AnimationProgress(Float.intBitsToFloat(1067869798), true);
+        this.progress = new AnimationProgress(1.3f, true);
         setDrawn(false);
     }
 
@@ -27,6 +27,6 @@ public class ViewClip extends Module {
             this.progress.animateToggle(true);
             return;
         }
-        this.progress.setImmediate(Float.intBitsToFloat(1065353216));
+        this.progress.setImmediate(1.0f);
     }
 }

@@ -81,7 +81,7 @@ public class RotationLock extends Module {
     }
 
     public float getYaw() {
-        return !this.custom.getValue().booleanValue() ? Math.round((minecraftClient.player.getYRot() + Float.intBitsToFloat(1065353216)) / MathConstants.num) * MathConstants.num : this.value2.getValue().floatValue();
+        return !this.custom.getValue().booleanValue() ? Math.round((minecraftClient.player.getYRot() + 1.0f) / MathConstants.num) * MathConstants.num : this.value2.getValue().floatValue();
     }
 
     public float getPitch() {

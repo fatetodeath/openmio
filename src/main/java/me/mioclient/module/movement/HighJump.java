@@ -12,7 +12,7 @@ import me.mioclient.setting.BooleanSetting;
 import me.mioclient.setting.NumberSetting;
 
 public class HighJump extends Module {
-    public static final float val = Float.intBitsToFloat(1054280253);
+    public static final float val = 0.42f;
     public Setting<Float> strength = add(new NumberSetting<>("Strength", 1.0f, 0.0f, 5.0f));
     public Setting<Boolean> inMovement = add(new BooleanSetting("InMovement", true));
 
@@ -38,7 +38,7 @@ public class HighJump extends Module {
     }
 
     public void reset() {
-        setJumpStrength(Float.intBitsToFloat(1054280253));
+        setJumpStrength(0.42f);
     }
 
     public void setJumpStrength(float f) {

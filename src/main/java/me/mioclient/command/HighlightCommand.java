@@ -20,9 +20,9 @@ public class HighlightCommand extends CommandFeature {
         }, () -> {
             return color2;
         }, () -> {
-            return Float.valueOf(Float.intBitsToFloat(1065353216));
+            return Float.valueOf(1.0f);
         }, () -> {
-            return Float.valueOf(Float.intBitsToFloat(1084227584));
+            return Float.valueOf(5.0f);
         }, () -> {
             return true;
         }, () -> {

@@ -20,7 +20,7 @@ public abstract class PanelComponent implements ClientAccessor, GuiComponent {
     public final ClickGuiPanel presetEnumSettingHelper;
     public int num;
     public int num2;
-    public final InterpolatedFloat hUDHelper_2 = new InterpolatedFloat(Float.intBitsToFloat(1082130432));
+    public final InterpolatedFloat hUDHelper_2 = new InterpolatedFloat(4.0f);
     public boolean flag = false;
 
     public PanelComponent(ClickGuiPanel presetEnumSettingHelper, int i) {
@@ -45,7 +45,7 @@ public abstract class PanelComponent implements ClientAccessor, GuiComponent {
             this.flag = false;
         }
         if (getUI().bounce.getValue().booleanValue()) {
-            this.hUDHelper_2.animate(containsPoint(d, d2) ? Float.intBitsToFloat(1065353216) : 0.0f);
+            this.hUDHelper_2.animate(containsPoint(d, d2) ? 1.0f : 0.0f);
         } else {
             this.hUDHelper_2.animate(0.0f);
         }

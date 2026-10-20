@@ -72,11 +72,11 @@ public class AdvanceGlyph {
     }
 
     public int drawCenteredString(PoseStack matrixStack, String str, double d, double d2, int i) {
-        return drawStringWithShadow(matrixStack, str, ((float) d) - (measureStringWidth(str) / Float.intBitsToFloat(1073741824)), (float) d2, i, false);
+        return drawStringWithShadow(matrixStack, str, ((float) d) - (measureStringWidth(str) / 2.0f), (float) d2, i, false);
     }
 
     public int drawCenteredStringShadow(PoseStack matrixStack, String str, double d, double d2, int i) {
-        return drawStringWithShadow(matrixStack, str, ((float) d) - (measureStringWidth(str) / Float.intBitsToFloat(1073741824)), (float) d2, i, true);
+        return drawStringWithShadow(matrixStack, str, ((float) d) - (measureStringWidth(str) / 2.0f), (float) d2, i, true);
     }
 
     public int renderOrderedText(GuiGraphicsExtractor graphics, FormattedCharSequence orderedText, float f, float f2, int i, boolean z) {
@@ -220,20 +220,20 @@ public class AdvanceGlyph {
         if (z) {
             i = ((i & 16579836) >> 2) | (i & (-16777216));
         }
-        this.val = f * Float.intBitsToFloat(1073741824);
-        this.val2 = f2 * Float.intBitsToFloat(1073741824);
+        this.val = f * 2.0f;
+        this.val2 = f2 * 2.0f;
         renderStringCharacters(matrixStack, str, z, i);
-        return (int) (this.val / Float.intBitsToFloat(1082130432));
+        return (int) (this.val / 4.0f);
     }
 
     public void renderStringCharacters(PoseStack matrixStack, String str, boolean z, int i) {
-        float intBitsToFloat = ((i >> 24) & 255) / Float.intBitsToFloat(1132396544);
-        float intBitsToFloat2 = ((i >> 16) & 255) / Float.intBitsToFloat(1132396544);
-        float intBitsToFloat3 = ((i >> 8) & 255) / Float.intBitsToFloat(1132396544);
-        float intBitsToFloat4 = (i & 255) / Float.intBitsToFloat(1132396544);
+        float intBitsToFloat = ((i >> 24) & 255) / 255.0f;
+        float intBitsToFloat2 = ((i >> 16) & 255) / 255.0f;
+        float intBitsToFloat3 = ((i >> 8) & 255) / 255.0f;
+        float intBitsToFloat4 = (i & 255) / 255.0f;
         matrixStack.pushPose();
         matrixStack.translate(ClientTextRenderer.getTranslateOffset(), ClientTextRenderer.getShiftOffset(), 0.0f);
-        matrixStack.scale(Float.intBitsToFloat(1056964608), Float.intBitsToFloat(1056964608), Float.intBitsToFloat(1056964608));
+        matrixStack.scale(0.5f, 0.5f, 0.5f);
         if (!trajectoriesVertexConsumer.isBuilding()) {
             trajectoriesVertexConsumer.beginBuffer(PrimitiveTopology.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
         }
@@ -253,13 +253,13 @@ public class AdvanceGlyph {
                         indexOf += 16;
                     }
                     int i3 = intArr[indexOf];
-                    intBitsToFloat2 = ((i3 >> 16) & 255) / Float.intBitsToFloat(1132396544);
-                    intBitsToFloat3 = ((i3 >> 8) & 255) / Float.intBitsToFloat(1132396544);
-                    intBitsToFloat4 = (i3 & 255) / Float.intBitsToFloat(1132396544);
+                    intBitsToFloat2 = ((i3 >> 16) & 255) / 255.0f;
+                    intBitsToFloat3 = ((i3 >> 8) & 255) / 255.0f;
+                    intBitsToFloat4 = (i3 & 255) / 255.0f;
                 } else {
-                    intBitsToFloat2 = ((i >> 16) & 255) / Float.intBitsToFloat(1132396544);
-                    intBitsToFloat3 = ((i >> 8) & 255) / Float.intBitsToFloat(1132396544);
-                    intBitsToFloat4 = (i & 255) / Float.intBitsToFloat(1132396544);
+                    intBitsToFloat2 = ((i >> 16) & 255) / 255.0f;
+                    intBitsToFloat3 = ((i >> 8) & 255) / 255.0f;
+                    intBitsToFloat4 = (i & 255) / 255.0f;
                 }
                 i2++;
             }

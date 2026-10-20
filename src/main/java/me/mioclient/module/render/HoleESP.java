@@ -89,7 +89,7 @@ public class HoleESP extends Module {
                         double distanceTo = pos.distanceTo(Vec3.atCenterOf(holeSnapData.getBlockPos()));
                         boolean z = holeSnapData.getBox().intersects(box) && this.hideOwn.getValue().booleanValue();
                         if (this.fade.getValue().booleanValue() && (distanceTo >= this.fadeRadius.getValue().floatValue() || z)) {
-                            float intBitsToFloat = Float.intBitsToFloat(1065353216) - ((float) Mth.clamp((distanceTo - this.fadeRadius.getValue().floatValue()) / (this.radius.getValue().intValue() - this.fadeRadius.getValue().floatValue()), 0.0d, Double.longBitsToDouble(4607182418800017408L)));
+                            float intBitsToFloat = 1.0f - ((float) Mth.clamp((distanceTo - this.fadeRadius.getValue().floatValue()) / (this.radius.getValue().intValue() - this.fadeRadius.getValue().floatValue()), 0.0d, 1.0d));
                             if (z) {
                                 intBitsToFloat = (float) (lerp - Math.floor(lerp));
                             }

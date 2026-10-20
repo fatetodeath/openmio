@@ -93,7 +93,7 @@ public class WorldStateTracker implements ClientAccessor {
             this.unconfirmedBreak = null;
         }
         this.set.removeIf(blockPos -> {
-            return !blockPos.closerThan(minecraftClient.player.blockPosition(), Double.longBitsToDouble(4638707616191610880L));
+            return !blockPos.closerThan(minecraftClient.player.blockPosition(), 128.0d);
         });
         synchronized (this.map) {
             ArrayList arrayList = new ArrayList();

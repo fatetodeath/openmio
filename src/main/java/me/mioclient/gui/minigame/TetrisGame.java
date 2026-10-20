@@ -83,7 +83,7 @@ public class TetrisGame extends StopwatchPresetSettingButton {
             }
         }
         if (!this.flag3) {
-            ClientTextRenderer.INSTANCE.drawScaledTextShadow(drawContext, String.valueOf(this.num), getPanel().getX() + Float.intBitsToFloat(1069547520), getPanel().getY() + this.num + 1, Float.intBitsToFloat(1061158912), Color.white);
+            ClientTextRenderer.INSTANCE.drawScaledTextShadow(drawContext, String.valueOf(this.num), getPanel().getX() + 1.5f, getPanel().getY() + this.num + 1, 0.75f, Color.white);
             return;
         }
         String string = new StringTemplate().arg(this.num).format("Score \u0001. Press R.");

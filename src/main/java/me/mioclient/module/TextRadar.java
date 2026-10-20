@@ -184,7 +184,7 @@ public class TextRadar extends me.mioclient.module.HudModule {
     }
 
     public ChatFormatting getHealthColor(double d) {
-        return d >= Double.longBitsToDouble(4626322717216342016L) ? ChatFormatting.GREEN : d >= Double.longBitsToDouble(4625196817309499392L) ? ChatFormatting.DARK_GREEN : d >= Double.longBitsToDouble(4621819117588971520L) ? ChatFormatting.GOLD : d >= Double.longBitsToDouble(4616189618054758400L) ? ChatFormatting.RED : ChatFormatting.DARK_RED;
+        return d >= 20.0d ? ChatFormatting.GREEN : d >= 16.0d ? ChatFormatting.DARK_GREEN : d >= 10.0d ? ChatFormatting.GOLD : d >= 4.0d ? ChatFormatting.RED : ChatFormatting.DARK_RED;
     }
 
     public double getSortValue(Entity entity) {

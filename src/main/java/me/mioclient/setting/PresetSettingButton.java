@@ -24,7 +24,7 @@ public class PresetSettingButton extends PanelComponent {
     @Override // me.mioclient.gui.widget.PanelComponent, me.mioclient.gui.GuiComponent
     public void render(GuiGraphicsExtractor drawContext, PoseStack matrixStack, double d, double d2) {
         super.render(drawContext, matrixStack, d, d2);
-        ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, this.string, (getPanel().getX() + (getPanel().getTotalWidth() / Float.intBitsToFloat(1073741824))) - (ClientTextRenderer.INSTANCE.getStringWidth(this.string) / Float.intBitsToFloat(1073741824)), (((this.presetSettingSearchHelper419.getY() + this.num) + getTextOffsetY()) - Float.intBitsToFloat(1065353216)) - getAnimationOffset(), getUI().textColor.getValue());
+        ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, this.string, (getPanel().getX() + (getPanel().getTotalWidth() / 2.0f)) - (ClientTextRenderer.INSTANCE.getStringWidth(this.string) / 2.0f), (((this.presetSettingSearchHelper419.getY() + this.num) + getTextOffsetY()) - 1.0f) - getAnimationOffset(), getUI().textColor.getValue());
     }
 
     @Override // me.mioclient.gui.widget.PanelComponent, me.mioclient.gui.GuiComponent

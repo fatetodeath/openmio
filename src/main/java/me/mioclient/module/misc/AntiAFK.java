@@ -74,7 +74,7 @@ public class AntiAFK extends Module {
     public void onAddMessage(AddMessageEvent addMessageEvent) {
         if (this.autoReply.getValue().booleanValue() && isActionReady() && addMessageEvent.getPhase() == KeyPearlMode.Pre && addMessageEvent.getText() != null && ChatUtils.isIncomingWhisper(addMessageEvent.getText().getString())) {
             minecraftClient.execute(() -> {
-                minecraftClient.player.connection.sendCommand(new StringTemplate().arg((int) Math.floor(Math.random() * Double.longBitsToDouble(4666723172467343360L))).arg(minecraftClient.player.getName().getString()).format("r Hello! This is auto reply talking. \u0001 is currently AFK :'). [\u0001]"));
+                minecraftClient.player.connection.sendCommand(new StringTemplate().arg((int) Math.floor(Math.random() * 10000.0d)).arg(minecraftClient.player.getName().getString()).format("r Hello! This is auto reply talking. \u0001 is currently AFK :'). [\u0001]"));
             });
         }
     }
@@ -120,7 +120,7 @@ public class AntiAFK extends Module {
             Random random = new Random();
             arrayList.add(() -> {
                 minecraftClient.player.setYRot(random.nextFloat(MathConstants.num3));
-                minecraftClient.player.setXRot(random.nextFloat(Float.intBitsToFloat(1127481344)) - MathConstants.num2);
+                minecraftClient.player.setXRot(random.nextFloat(180.0f) - MathConstants.num2);
             });
         }
         if (this.attack.getValue().booleanValue()) {
@@ -136,6 +136,6 @@ public class AntiAFK extends Module {
     }
 
     public boolean isActionReady() {
-        return this.stopwatch.hasElapsedMs((long) (this.delay.getValue().floatValue() * Float.intBitsToFloat(1148846080)));
+        return this.stopwatch.hasElapsedMs((long) (this.delay.getValue().floatValue() * 1000.0f));
     }
 }

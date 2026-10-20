@@ -254,7 +254,7 @@ public class Offhand extends Module {
         if (this.mainhandHelper.isThreatActive()) {
             return OffhandMode.Totem;
         }
-        if (EntityUtil.getPlayerHealth() > this.health.getValue().floatValue() && minecraftClient.player.fallDistance < Float.intBitsToFloat(1098907648) && InventoryUtils.countItems(itemStack -> {
+        if (EntityUtil.getPlayerHealth() > this.health.getValue().floatValue() && minecraftClient.player.fallDistance < 16.0f && InventoryUtils.countItems(itemStack -> {
             return itemStack.getItem() == this.item.getValue().getOffhandItem(booleanValue);
         }) > 0) {
             offhandMode = this.item.getValue();

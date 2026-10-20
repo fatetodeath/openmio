@@ -49,13 +49,13 @@ public class GrimSpeedHandler extends SpeedModeHandler {
                     // ShulkerBoxBlockEntity.getAnimationStage/AnimationStage -> getAnimationStatus/AnimationStatus
                     AntiCheat antiCheat_lcl = getAntiCheat();
                     boolean isF2b2t = antiCheat_lcl != null && antiCheat_lcl.isF2b2t();
-                    if (this.box.inflate(Double.longBitsToDouble(4602678819172646912L)).intersects(shulkerBoxBlockEntity.getBoundingBox(Blocks.SHULKER_BOX.defaultBlockState()).move(blockEntity.getBlockPos())) && shulkerBoxBlockEntity.getAnimationStatus() != ShulkerBoxBlockEntity.AnimationStatus.CLOSED) {
+                    if (this.box.inflate(0.5d).intersects(shulkerBoxBlockEntity.getBoundingBox(Blocks.SHULKER_BOX.defaultBlockState()).move(blockEntity.getBlockPos())) && shulkerBoxBlockEntity.getAnimationStatus() != ShulkerBoxBlockEntity.AnimationStatus.CLOSED) {
                         i += isF2b2t ? 0 : 4;
                     }
                 }
             }
             AntiCheat antiCheat_lcl2 = getAntiCheat();
-            float intBitsToFloat = (antiCheat_lcl2 != null && antiCheat_lcl2.isF2b2t()) ? 0.0f : Float.intBitsToFloat(1065353216);
+            float intBitsToFloat = (antiCheat_lcl2 != null && antiCheat_lcl2.isF2b2t()) ? 0.0f : 1.0f;
             // 26.2: ClientLevel.getEntities() is protected -> entitiesForRendering()
             for (Entity entity : minecraftClient.level.entitiesForRendering()) {
                 if (!(entity instanceof FakePlayerCommand.RemotePlayer) && entity != minecraftClient.player && entity.isPushable()) {
@@ -72,7 +72,7 @@ public class GrimSpeedHandler extends SpeedModeHandler {
                 return;
             }
             // 26.2: Vec3.multiply(double) -> scale(double)
-            moveEvent.setMovement(moveEvent.getMovement().add(moveEvent.getMovement().normalize().with(Direction.Axis.Y, 0.0d).scale(Double.longBitsToDouble(4590429028186199163L) * i)));
+            moveEvent.setMovement(moveEvent.getMovement().add(moveEvent.getMovement().normalize().with(Direction.Axis.Y, 0.0d).scale(0.08d * i)));
         }
     }
 

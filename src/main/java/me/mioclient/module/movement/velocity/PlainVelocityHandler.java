@@ -22,8 +22,8 @@ public class PlainVelocityHandler extends VelocityModeHandler {
         }
         if (entityVelocityUpdateS2CPacket.id() == minecraftClient.player.getId()) {
             // 26.2 port: record is immutable - cancel + apply scaled motion directly.
-            float hScale = intValue * Float.intBitsToFloat(1008981770) * i;
-            float vScale = intValue2 * Float.intBitsToFloat(1008981770);
+            float hScale = intValue * 0.01f * i;
+            float vScale = intValue2 * 0.01f;
             Vec3 m = entityVelocityUpdateS2CPacket.movement();
             if (intValue == 0 && intValue2 == 0) {
                 channelRead0Event.cancel();
@@ -40,9 +40,9 @@ public class PlainVelocityHandler extends VelocityModeHandler {
             int intValue = this.velocity.horizontal.getValue().intValue();
             int intValue2 = this.velocity.vertical.getValue().intValue();
             int i = this.velocity.inverse.getValue().booleanValue() ? -1 : 1;
-            explosionVelocityEvent.setPlayerVelocityX((int) (explosionVelocityEvent.getPlayerVelocityX() * intValue * Float.intBitsToFloat(1008981770) * i));
-            explosionVelocityEvent.setPlayerVelocityY((int) (explosionVelocityEvent.getPlayerVelocityY() * intValue2 * Float.intBitsToFloat(1008981770)));
-            explosionVelocityEvent.setPlayerVelocityZ((int) (explosionVelocityEvent.getPlayerVelocityZ() * intValue * Float.intBitsToFloat(1008981770) * i));
+            explosionVelocityEvent.setPlayerVelocityX((int) (explosionVelocityEvent.getPlayerVelocityX() * intValue * 0.01f * i));
+            explosionVelocityEvent.setPlayerVelocityY((int) (explosionVelocityEvent.getPlayerVelocityY() * intValue2 * 0.01f));
+            explosionVelocityEvent.setPlayerVelocityZ((int) (explosionVelocityEvent.getPlayerVelocityZ() * intValue * 0.01f * i));
         }
     }
 }

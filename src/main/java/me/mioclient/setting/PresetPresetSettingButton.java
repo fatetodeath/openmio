@@ -30,7 +30,7 @@ public class PresetPresetSettingButton extends PanelComponent {
     public void render(GuiGraphicsExtractor drawContext, PoseStack matrixStack, double d, double d2) {
         String[] split = this.supplier.get().split("\n");
         for (int i = 0; i < split.length; i++) {
-            ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, split[i], this.presetEnumSettingHelper.getX() + getUI().modulePadding.getValue().intValue(), ((((this.presetEnumSettingHelper.getY() + this.num) + getTextOffsetY()) + (i * ClientTextRenderer.INSTANCE.getFontHeight())) + Float.intBitsToFloat(1065353216)) - ((this.flag && containsPoint(d, d2)) ? Float.intBitsToFloat(1065353216) : 0.0f), Color.white);
+            ClientTextRenderer.INSTANCE.drawTextShadow(drawContext, split[i], this.presetEnumSettingHelper.getX() + getUI().modulePadding.getValue().intValue(), ((((this.presetEnumSettingHelper.getY() + this.num) + getTextOffsetY()) + (i * ClientTextRenderer.INSTANCE.getFontHeight())) + 1.0f) - ((this.flag && containsPoint(d, d2)) ? 1.0f : 0.0f), Color.white);
         }
         super.render(drawContext, matrixStack, d, d2);
     }

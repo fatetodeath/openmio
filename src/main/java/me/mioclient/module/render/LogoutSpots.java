@@ -255,13 +255,13 @@ public class LogoutSpots extends Module {
     @Listen
     public void onRenderWorld(MatrixStackEvent.Inner_3 inner_3) {
         Camera camera = minecraftClient.gameRenderer.mainCamera();
-        Vec3 add = new Vec3(0.0d, 0.0d, Double.longBitsToDouble(4607182418800017408L)).xRot(-((float) Math.toRadians(camera.xRot()))).yRot(-((float) Math.toRadians(camera.yRot()))).add(minecraftClient.getEntityRenderDispatcher().camera.position());
+        Vec3 add = new Vec3(0.0d, 0.0d, 1.0d).xRot(-((float) Math.toRadians(camera.xRot()))).yRot(-((float) Math.toRadians(camera.yRot()))).add(minecraftClient.getEntityRenderDispatcher().camera.position());
         synchronized (this.object2ObjectOpenHashMap) {
             Iterator it = this.object2ObjectOpenHashMap.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry entry = (Map.Entry) it.next();
                 if (((Record) entry.getValue()).getString805().equals(getServer()) && ((Record) entry.getValue()).getRecordedDimension() == WorldUtils.getDimension()) {
-                    if (((Record) entry.getValue()).box.getCenter().distanceTo(minecraftClient.gameRenderer.mainCamera().position()) <= this.distance.getValue().floatValue() || this.distance.getValue().floatValue() == Float.intBitsToFloat(1133936640)) {
+                    if (((Record) entry.getValue()).box.getCenter().distanceTo(minecraftClient.gameRenderer.mainCamera().position()) <= this.distance.getValue().floatValue() || this.distance.getValue().floatValue() == 301.0f) {
                         if (this.model.getValue() == LogoutSpotsMode_2.SIMPLE || this.model.getValue() == LogoutSpotsMode_2.BOTH) {
                             BoxRenderer.drawFilledBox(inner_3.getMatrixStack(), ((Record) entry.getValue()).getBox(), this.boxFill.getValue());
                             BoxRenderer.drawBoxOutline(inner_3.getMatrixStack(), ((Record) entry.getValue()).getBox(), this.boxLine.getValue(), this.width.getValue().floatValue());
@@ -281,11 +281,11 @@ public class LogoutSpots extends Module {
                             RenderUtil.INSTANCE.drawThickLine(inner_3.getMatrixStack(), add, ((Record) entry.getValue()).getBox().getCenter(), this.modelLine.getValue(), this.width2.getValue().floatValue());
                         }
                         if (this.nameTag.getValue().booleanValue()) {
-                            Vec3 withAxis = ((Record) entry.getValue()).getBox().getCenter().with(Direction.Axis.Y, ((Record) entry.getValue()).getBox().maxY + Double.longBitsToDouble(4602678819172646912L));
+                            Vec3 withAxis = ((Record) entry.getValue()).getBox().getCenter().with(Direction.Axis.Y, ((Record) entry.getValue()).getBox().maxY + 0.5d);
                             String string2921 = new StringTemplate().arg((String) entry.getKey()).format("\u0001 logout spot");
                             String string1289 = getString1289((Record) entry.getValue());
                             Fonts fonts_lcl = getFonts();
-                            float intBitsToFloat = fonts_lcl != null && fonts_lcl.isToggled() ? Float.intBitsToFloat(1065353216) : 0.0f;
+                            float intBitsToFloat = fonts_lcl != null && fonts_lcl.isToggled() ? 1.0f : 0.0f;
                             if (!string1289.isEmpty()) {
                                 string2921 = new StringTemplate().arg(string1289).arg(string2921).format("\u0001\u0001");
                             }
@@ -307,7 +307,7 @@ public class LogoutSpots extends Module {
                 this.object2ObjectOpenHashMap.put(playerEntity1236.getGameProfile().name(), Record.getRecord797(playerEntity1236, getServer()));
                 if (this.sounds.getValue().booleanValue() && this.logout.getValue().booleanValue()) {
                     KillstreakSoundManager KillstreakSoundManager = ClientServices.killstreakSoundManager;
-                    KillstreakSoundManager.playSound(this.sound.getValue(), Float.intBitsToFloat(1065353216));
+                    KillstreakSoundManager.playSound(this.sound.getValue(), 1.0f);
                 }
             }
         }
@@ -325,7 +325,7 @@ public class LogoutSpots extends Module {
                     GameProfile profile = entry.profile();
                     String name = profile == null ? "" : profile.name();
                     if (this.sounds.getValue().booleanValue() && this.login.getValue().booleanValue() && this.object2ObjectOpenHashMap.containsKey(name)) {
-                        ClientServices.killstreakSoundManager.playSound(this.sound2.getValue(), Float.intBitsToFloat(1065353216));
+                        ClientServices.killstreakSoundManager.playSound(this.sound2.getValue(), 1.0f);
                     }
                     this.object2ObjectOpenHashMap.remove(name);
                 });

@@ -147,14 +147,14 @@ public class Arrows extends Module {
     }
 
     public Player findClosestTargetInFov() {
-        if (!this.autoShoot.getValue().booleanValue() && minecraftClient.player.getXRot() >= Float.intBitsToFloat(-1029046272)) {
+        if (!this.autoShoot.getValue().booleanValue() && minecraftClient.player.getXRot() >= (-85.0f)) {
             AbstractClientPlayer abstractClientPlayerEntity = null;
-            double longBitsToDouble = Double.longBitsToDouble(5183643170566569984L);
+            double longBitsToDouble = 3.4028234663852886E38d;
             for (AbstractClientPlayer abstractClientPlayerEntity2 : minecraftClient.level.players()) {
                 if (minecraftClient.player != abstractClientPlayerEntity2 && !ClientServices.socialManager.isFriendEntity((Player) abstractClientPlayerEntity2)) {
                     float[] floatArray2483 = RotationManager.getRotationsTo((Entity) abstractClientPlayerEntity2);
-                    float angleBetween = Mth.degreesDifferenceAbs(minecraftClient.player.getYRot(), floatArray2483[0]) - (abstractClientPlayerEntity2.getDimensions(abstractClientPlayerEntity2.getPose()).width() * Float.intBitsToFloat(1056964608));
-                    float angleBetween2 = Mth.degreesDifferenceAbs(minecraftClient.player.getXRot(), floatArray2483[1]) - (abstractClientPlayerEntity2.getDimensions(abstractClientPlayerEntity2.getPose()).height() * Float.intBitsToFloat(1056964608));
+                    float angleBetween = Mth.degreesDifferenceAbs(minecraftClient.player.getYRot(), floatArray2483[0]) - (abstractClientPlayerEntity2.getDimensions(abstractClientPlayerEntity2.getPose()).width() * 0.5f);
+                    float angleBetween2 = Mth.degreesDifferenceAbs(minecraftClient.player.getXRot(), floatArray2483[1]) - (abstractClientPlayerEntity2.getDimensions(abstractClientPlayerEntity2.getPose()).height() * 0.5f);
                     if (angleBetween <= this.fov.getValue().floatValue() && angleBetween2 <= this.fov.getValue().floatValue()) {
                         double hypot = Math.hypot(angleBetween, angleBetween2);
                         if (hypot < longBitsToDouble) {
@@ -180,7 +180,7 @@ public class Arrows extends Module {
         for (MobEffectInstance statusEffectInstance : potion1565.getEffects()) {
             Holder<MobEffect> effectType = statusEffectInstance.getEffect();
             boolean hasStatusEffect = playerEntity.hasEffect(effectType);
-            if (hasStatusEffect && ((me.mioclient.ducks.DuckStatusEffectInstance)(Object) playerEntity.getEffect(effectType)).mio$getDurationRation() * Float.intBitsToFloat(1120403456) < this.assumeDuration.getValue().intValue()) {
+            if (hasStatusEffect && ((me.mioclient.ducks.DuckStatusEffectInstance)(Object) playerEntity.getEffect(effectType)).mio$getDurationRation() * 100.0f < this.assumeDuration.getValue().intValue()) {
                 hasStatusEffect = false;
             }
             if (!hasStatusEffect) {
@@ -206,7 +206,7 @@ public class Arrows extends Module {
     public void shootBow() {
         int i = minecraftClient.player.getInventory().getSelectedSlot();
         int i2 = InventoryUtils.findInHotbar(Items.BOW);
-        ClientServices.RotationManager.requestRotations(new float[]{minecraftClient.player.getYRot(), Float.intBitsToFloat(-1028390912)}, 999);
+        ClientServices.RotationManager.requestRotations(new float[]{minecraftClient.player.getYRot(), (-90.0f)}, 999);
         if (i2 == -1 || minecraftClient.player.isUsingItem()) {
             return;
         }

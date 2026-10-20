@@ -61,7 +61,7 @@ public class Metrics extends me.mioclient.module.HudModule {
             String string2921 = new StringTemplate().arg(this.setting2.getValue().booleanValue() ? "b/s" : "km/h").format("Speed %s%.2f\u0001");
             Object[] objArr = new Object[2];
             objArr[0] = ChatFormatting.WHITE;
-            objArr[1] = Double.valueOf(ClientServices.feetPlaceHelper.getSmoothedSpeed() / (this.setting2.getValue().booleanValue() ? Double.longBitsToDouble(4615288898129284301L) : Double.longBitsToDouble(4607182418800017408L)));
+            objArr[1] = Double.valueOf(ClientServices.feetPlaceHelper.getSmoothedSpeed() / (this.setting2.getValue().booleanValue() ? 3.6d : 1.0d));
             return Component.literal(string2921.formatted(objArr).replace(",", "."));
         };
         Setting<Boolean> setting = this.setting;

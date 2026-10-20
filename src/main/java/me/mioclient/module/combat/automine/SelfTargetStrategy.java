@@ -55,14 +55,14 @@ public final class SelfTargetStrategy extends MineStrategyBase {
         }
         BlockPos ofFloored = BlockPos.containing(minecraftClient.player.getEyePosition());
         BlockState blockState = minecraftClient.level.getBlockState(ofFloored);
-        if (blockState.isAir() || blockState.getBlock().getExplosionResistance() < Float.intBitsToFloat(1142292480) || isSmallBoundingBox() || !isValidMineTarget(ofFloored)) {
+        if (blockState.isAir() || blockState.getBlock().getExplosionResistance() < 600.0f || isSmallBoundingBox() || !isValidMineTarget(ofFloored)) {
             return null;
         }
         return ofFloored;
     }
 
     public boolean isSmallBoundingBox() {
-        return minecraftClient.player.getBoundingBox().getYsize() <= Double.longBitsToDouble(4607182418800017408L);
+        return minecraftClient.player.getBoundingBox().getYsize() <= 1.0d;
     }
 
     public boolean hasSolidGroundBelow() {
@@ -74,7 +74,7 @@ public final class SelfTargetStrategy extends MineStrategyBase {
         }
         for (BlockPos blockPos : PlayerUtils.getSurroundPositions(minecraftClient.player)) {
             BlockState blockState = minecraftClient.level.getBlockState(blockPos.below());
-            if (blockState.isAir() || blockState.getBlock().getExplosionResistance() < Float.intBitsToFloat(1142292480)) {
+            if (blockState.isAir() || blockState.getBlock().getExplosionResistance() < 600.0f) {
                 return false;
             }
         }

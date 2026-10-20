@@ -65,7 +65,7 @@ public abstract class MineStrategyBase implements ClientAccessor, MineTargetStra
     }
 
     public boolean isSpaceBelowEmpty(Entity entity) {
-        return minecraftClient.level.noCollision(entity.getBoundingBox().expandTowards(0.0d, Double.longBitsToDouble(-4631501856787818086L), 0.0d));
+        return minecraftClient.level.noCollision(entity.getBoundingBox().expandTowards(0.0d, (-0.1d), 0.0d));
     }
 
     public boolean isEnabled() {

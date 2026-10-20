@@ -57,11 +57,11 @@ public class EntityControl extends Module {
             if (!(vehicle instanceof net.minecraft.world.entity.LivingEntity living) || !living.getItemBySlot(EquipmentSlot.SADDLE).isEmpty() || vehicle instanceof net.minecraft.world.entity.animal.equine.AbstractHorse) {
                 double doubleValue = this.speed.getValue().doubleValue();
                 double floatValue = this.vertical.getValue().floatValue();
-                if (doubleValue >= Double.longBitsToDouble(4626322717216342016L)) {
-                    doubleValue = Double.longBitsToDouble(4626319902466574909L);
+                if (doubleValue >= 20.0d) {
+                    doubleValue = 19.99d;
                 }
                 if (this.accelerate.getValue().booleanValue()) {
-                    doubleValue = MovementUtils.computeAcceleratedSpeed(this.speed.getValue().doubleValue(), Double.longBitsToDouble(4591870180066957722L), this.speed.getValue().doubleValue(), this.num);
+                    doubleValue = MovementUtils.computeAcceleratedSpeed(this.speed.getValue().doubleValue(), 0.1d, this.speed.getValue().doubleValue(), this.num);
                 }
                 if (!this.entitySpeed.getValue().booleanValue() || isVehicleColliding()) {
                     return;
@@ -76,7 +76,7 @@ public class EntityControl extends Module {
                     } else if (this.glide.getValue().booleanValue() || InputState.isKeyBindingActive(minecraftClient.options.keySprint)) {
                         d = -floatValue;
                     } else {
-                        d = this.flag ? Double.longBitsToDouble(-4637266464074629120L) : Double.longBitsToDouble(4586105572780146688L);
+                        d = this.flag ? (-0.04125000163912773d) : 0.04125000163912773d;
                     }
                 } else {
                     d = tickPreEvent.getY();

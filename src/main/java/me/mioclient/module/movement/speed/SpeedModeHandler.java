@@ -11,7 +11,7 @@ import me.mioclient.module.movement.Speed;
 
 public abstract class SpeedModeHandler implements ClientAccessor {
     public final Speed speed;
-    public final double val = Double.longBitsToDouble(4598847156609680094L);
+    public final double val = 0.2873d;
     public double val2;
     public double val3;
     public int num;

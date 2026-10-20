@@ -49,7 +49,7 @@ public class PlayerSpeedTracker implements ClientAccessor {
             d2 += it.next().doubleValue();
         }
         this.val = this.arrayDeque.size() == 0 ? 0.0d : d2 / this.arrayDeque.size();
-        if (this.val < Double.longBitsToDouble(4626604192193052672L)) {
+        if (this.val < 21.0d) {
             this.val2 = this.val;
         } else if (this.stopwatch.hasElapsedMs(50L)) {
             this.val2 = this.val;
@@ -66,6 +66,6 @@ public class PlayerSpeedTracker implements ClientAccessor {
     }
 
     public double getInstantSpeed() {
-        return Math.hypot(minecraftClient.player.isPassenger() ? minecraftClient.player.getVehicle().getX() - minecraftClient.player.getVehicle().xo : minecraftClient.player.getX() - minecraftClient.player.xo, minecraftClient.player.isPassenger() ? minecraftClient.player.getVehicle().getZ() - minecraftClient.player.getVehicle().zo : minecraftClient.player.getZ() - minecraftClient.player.zo) * Double.longBitsToDouble(4626322717216342016L) * Double.longBitsToDouble(4615288898129284301L);
+        return Math.hypot(minecraftClient.player.isPassenger() ? minecraftClient.player.getVehicle().getX() - minecraftClient.player.getVehicle().xo : minecraftClient.player.getX() - minecraftClient.player.xo, minecraftClient.player.isPassenger() ? minecraftClient.player.getVehicle().getZ() - minecraftClient.player.getVehicle().zo : minecraftClient.player.getZ() - minecraftClient.player.zo) * 20.0d * 3.6d;
     }
 }

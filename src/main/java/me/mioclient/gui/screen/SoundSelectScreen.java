@@ -40,9 +40,9 @@ public class SoundSelectScreen extends AbstractClickGuiScreen {
         @Override // me.mioclient.setting.PresetPresetSettingButton, me.mioclient.gui.widget.PanelComponent, me.mioclient.gui.GuiComponent
         public void render(GuiGraphicsExtractor drawContext, PoseStack matrixStack, double d, double d2) {
             if (SoundSelectScreen.this.setting.getValue().equals(this.searchIdentifier)) {
-                RenderUtil.INSTANCE.drawFilledRectColor(matrixStack, this.presetEnumSettingHelper.getX() + 1, this.presetEnumSettingHelper.getY() + this.num + Float.intBitsToFloat(1056964608), (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 1, ((this.presetEnumSettingHelper.getY() + this.num) + getFontHeight()) - Float.intBitsToFloat(1056964608), getUI().color.getValue());
+                RenderUtil.INSTANCE.drawFilledRectColor(matrixStack, this.presetEnumSettingHelper.getX() + 1, this.presetEnumSettingHelper.getY() + this.num + 0.5f, (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 1, ((this.presetEnumSettingHelper.getY() + this.num) + getFontHeight()) - 0.5f, getUI().color.getValue());
             } else {
-                RenderUtil.INSTANCE.drawFilledRectColor(matrixStack, this.presetEnumSettingHelper.getX() + 1, this.presetEnumSettingHelper.getY() + this.num + Float.intBitsToFloat(1056964608), (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 1, ((this.presetEnumSettingHelper.getY() + this.num) + getFontHeight()) - Float.intBitsToFloat(1056964608), getUI().bgButton.getValue());
+                RenderUtil.INSTANCE.drawFilledRectColor(matrixStack, this.presetEnumSettingHelper.getX() + 1, this.presetEnumSettingHelper.getY() + this.num + 0.5f, (this.presetEnumSettingHelper.getX() + this.presetEnumSettingHelper.getTotalWidth()) - 1, ((this.presetEnumSettingHelper.getY() + this.num) + getFontHeight()) - 0.5f, getUI().bgButton.getValue());
             }
             super.render(drawContext, matrixStack, d, d2);
         }
@@ -54,7 +54,7 @@ public class SoundSelectScreen extends AbstractClickGuiScreen {
                     SoundSelectScreen.this.setting.setValue(this.searchIdentifier);
                     SoundSelectScreen.this.requestClose();
                 } else if (i == 1) {
-                    ClientServices.killstreakSoundManager.playSound(this.searchIdentifier, Float.intBitsToFloat(1065353216));
+                    ClientServices.killstreakSoundManager.playSound(this.searchIdentifier, 1.0f);
                 }
             }
         }

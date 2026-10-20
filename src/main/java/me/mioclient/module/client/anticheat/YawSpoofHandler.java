@@ -42,7 +42,7 @@ public final class YawSpoofHandler implements ClientAccessor {
             return;
         }
         net.minecraft.client.player.LocalPlayer pl = minecraftClient.player;
-        float spoofedYaw = pkt.getYRot(pl.getYRot()) + Float.intBitsToFloat(1359354950);
+        float spoofedYaw = pkt.getYRot(pl.getYRot()) + 3.5999998E10f;
         boolean onGround = pkt.isOnGround();
         boolean hc = pkt.horizontalCollision();
         sendImmediatelyEvent.cancel();
@@ -58,7 +58,7 @@ public final class YawSpoofHandler implements ClientAccessor {
     }
 
     public boolean shouldSpoofYaw(ServerboundMovePlayerPacket playerMoveC2SPacket) {
-        if ((!MovementUtils.is2181() && ClientServices.feetPlaceHelper.getEffectiveSpeed() < Double.longBitsToDouble(4617315517961601024L)) || !this.antiCheat.f2b2t.getValue().booleanValue() || PlayerUtils.isReallyFallFlying()) {
+        if ((!MovementUtils.is2181() && ClientServices.feetPlaceHelper.getEffectiveSpeed() < 5.0d) || !this.antiCheat.f2b2t.getValue().booleanValue() || PlayerUtils.isReallyFallFlying()) {
             return false;
         }
         if (playerMoveC2SPacket != null) {

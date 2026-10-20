@@ -93,7 +93,7 @@ public class FastWeb extends Module {
             });
         }
         if (this.mode.getValue() == FastWebPredicateMode.GRIM && minecraftClient.player.input.keyPresses.shift() && !minecraftClient.player.onGround() && PlayerUtils.isInCobweb(minecraftClient.player)) {
-            motionEvent.setY(minecraftClient.player.getY() + Math.random() + Double.longBitsToDouble(4607182418800017408L));
+            motionEvent.setY(minecraftClient.player.getY() + Math.random() + 1.0d);
         }
     }
 
@@ -115,7 +115,7 @@ public class FastWeb extends Module {
                 reset();
             } else if (isStrictMode()) {
                 this.flag = true;
-                ClientServices.inner.requestTickRate(this, this.vSpeed.getValue().floatValue() * Float.intBitsToFloat(1086324736));
+                ClientServices.inner.requestTickRate(this, this.vSpeed.getValue().floatValue() * 6.0f);
             } else {
                 reset();
                 minecraftClient.player.setDeltaMovement(minecraftClient.player.getDeltaMovement().with(Direction.Axis.Y, -this.vSpeed.getValue().floatValue()));

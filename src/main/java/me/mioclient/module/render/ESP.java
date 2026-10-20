@@ -203,18 +203,18 @@ public class ESP extends Module {
                             if (itemEntity.getItem().getCount() > 1) {
                                 string = new StringTemplate().arg(itemEntity.getItem().getCount()).arg(string).format("\u0001 x\u0001");
                             }
-                            this.eSPSearchHelper4_2.renderBillboardLabel(inner_3, string, BoxMath.getInterpolatedBox(itemEntity, inner_3.getTickDelta()).getCenter().add(0.0d, Double.longBitsToDouble(4603579539312869376L), 0.0d), this.scale.getValue().floatValue(), this.itemsText.getValue(), this.background.getValue());
+                            this.eSPSearchHelper4_2.renderBillboardLabel(inner_3, string, BoxMath.getInterpolatedBox(itemEntity, inner_3.getTickDelta()).getCenter().add(0.0d, 0.6000000238418579d, 0.0d), this.scale.getValue().floatValue(), this.itemsText.getValue(), this.background.getValue());
                         }
                     }
                 }
             }
             String string1768 = this.eSPSearchHelper4_2.getOwnerName(entity2);
             if (string1768 != null) {
-                Vec3 add = BoxMath.getInterpolatedBox(entity2, inner_3.getTickDelta()).getCenter().add(0.0d, Double.longBitsToDouble(4596373779694328218L), 0.0d);
+                Vec3 add = BoxMath.getInterpolatedBox(entity2, inner_3.getTickDelta()).getCenter().add(0.0d, 0.2d, 0.0d);
                 if (!(entity2 instanceof ThrownEnderpearl)) {
-                    add = add.add(0.0d, Double.longBitsToDouble(4608533498688228557L), 0.0d);
+                    add = add.add(0.0d, 1.3d, 0.0d);
                 }
-                this.eSPSearchHelper4_2.renderBillboardLabel(inner_3, string1768, add, Float.intBitsToFloat(1065353216), Color.white, (Color) null);
+                this.eSPSearchHelper4_2.renderBillboardLabel(inner_3, string1768, add, 1.0f, Color.white, (Color) null);
             }
         }
         if (this.group.getValue().booleanValue()) {
@@ -223,7 +223,7 @@ public class ESP extends Module {
         if (this.chorus.getValue().booleanValue()) {
             synchronized (this.map) {
                 for (Map.Entry<Vec3, Long> entry : this.map.entrySet()) {
-                    this.eSPSearchHelper4_2.renderBillboardLabel(inner_3, "Player teleport", entry.getKey(), Float.intBitsToFloat(1065353216), this.chorusText.getValue(), (Color) null);
+                    this.eSPSearchHelper4_2.renderBillboardLabel(inner_3, "Player teleport", entry.getKey(), 1.0f, this.chorusText.getValue(), (Color) null);
                 }
             }
         }
@@ -262,32 +262,32 @@ public class ESP extends Module {
     }
 
     public void drawGroupedItemBg(PoseStack matrixStack, EspTargetFilter eSPSearchHelper4, double d, float f) {
-        RenderUtil.INSTANCE.drawBillboard(matrixStack, eSPSearchHelper4.getMergedBox().getCenter(), 0.0f, 0.0f, eSPSearchHelper4.getMaxLabelWidth() + Float.intBitsToFloat(1065353216), f, d, this.background.getValue());
+        RenderUtil.INSTANCE.drawBillboard(matrixStack, eSPSearchHelper4.getMergedBox().getCenter(), 0.0f, 0.0f, eSPSearchHelper4.getMaxLabelWidth() + 1.0f, f, d, this.background.getValue());
     }
 
     public void renderSpawnHighlights(MatrixStackEvent matrixStackEvent) {
-        float intBitsToFloat = Float.intBitsToFloat(1061158912);
+        float intBitsToFloat = 0.75f;
         PoseStack matrixStack472 = matrixStackEvent.getMatrixStack();
         TrajectoriesVertexConsumer consumer = TrajectoriesVertexConsumer.createDefault();
         BufferBuilder begin = consumer.beginBuffer(PrimitiveTopology.DEBUG_LINES, DefaultVertexFormat.POSITION_COLOR);
         RenderUtil.INSTANCE.setupRenderState();
-        for (BlockPos blockPos : WorldUtils.getBlocksInRadius(minecraftClient.player.getEyePosition(), Float.intBitsToFloat(1094713344), true)) {
+        for (BlockPos blockPos : WorldUtils.getBlocksInRadius(minecraftClient.player.getEyePosition(), 12.0f, true)) {
             BlockState blockState = minecraftClient.level.getBlockState(blockPos);
             if (WorldUtils.isAir(blockPos.above())) {
                 if (minecraftClient.level.getMaxLocalRawBrightness(blockPos.above()) <= 7) {
                     boolean matchesKey = minecraftClient.level.getBiome(blockPos).is(Biomes.MUSHROOM_FIELDS);
                     if (blockState.isValidSpawn(minecraftClient.level, blockPos, EntityTypes.ZOMBIE) && !matchesKey) {
                         double distanceTo = minecraftClient.gameRenderer.mainCamera().position().distanceTo(Vec3.atCenterOf(blockPos));
-                        float intBitsToFloat2 = Float.intBitsToFloat(1065353216) - ((float) Mth.clamp((distanceTo - Double.longBitsToDouble(4620693217682128896L)) / Double.longBitsToDouble(4611686018427387904L), 0.0d, Double.longBitsToDouble(4607182418800017408L)));
+                        float intBitsToFloat2 = 1.0f - ((float) Mth.clamp((distanceTo - 8.0d) / 2.0d, 0.0d, 1.0d));
                         int hashCode = Color.red.hashCode();
-                        if (distanceTo >= Double.longBitsToDouble(4620693217682128896L)) {
+                        if (distanceTo >= 8.0d) {
                             hashCode = ColorUtils.toIntWithAlphaPercent(Color.red, intBitsToFloat2);
                         }
-                        double baseY = blockPos.getY() + Double.longBitsToDouble(4607272490792564818L);
-                        Vec3 cornerA = new Vec3(blockPos.getX() + Float.intBitsToFloat(1065353216) - intBitsToFloat, baseY, blockPos.getZ() + Float.intBitsToFloat(1065353216) - intBitsToFloat);
+                        double baseY = blockPos.getY() + 1.02d;
+                        Vec3 cornerA = new Vec3(blockPos.getX() + 1.0f - intBitsToFloat, baseY, blockPos.getZ() + 1.0f - intBitsToFloat);
                         Vec3 cornerB = new Vec3(blockPos.getX() + intBitsToFloat, baseY, blockPos.getZ() + intBitsToFloat);
-                        Vec3 cornerC = new Vec3(blockPos.getX() + intBitsToFloat, baseY, blockPos.getZ() + Float.intBitsToFloat(1065353216) - intBitsToFloat);
-                        Vec3 cornerD = new Vec3(blockPos.getX() + Float.intBitsToFloat(1065353216) - intBitsToFloat, baseY, blockPos.getZ() + intBitsToFloat);
+                        Vec3 cornerC = new Vec3(blockPos.getX() + intBitsToFloat, baseY, blockPos.getZ() + 1.0f - intBitsToFloat);
+                        Vec3 cornerD = new Vec3(blockPos.getX() + 1.0f - intBitsToFloat, baseY, blockPos.getZ() + intBitsToFloat);
                         RenderUtil.INSTANCE.addLineVertex(matrixStack472, begin, cornerA, cornerB, hashCode, hashCode);
                         RenderUtil.INSTANCE.addLineVertex(matrixStack472, begin, cornerC, cornerD, hashCode, hashCode);
                     }

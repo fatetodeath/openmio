@@ -31,11 +31,11 @@ public final class OnGroundSpeedHandler extends SpeedModeHandler {
         if (minecraftClient.player.onGround() || this.num == 3) {
             if ((!minecraftClient.player.horizontalCollision && ((minecraftClient.player.input.keyPresses.forward() ? 1.0f : 0.0f) - (minecraftClient.player.input.keyPresses.backward() ? 1.0f : 0.0f)) != 0.0f) || ((minecraftClient.player.input.keyPresses.left() ? 1.0f : 0.0f) - (minecraftClient.player.input.keyPresses.right() ? 1.0f : 0.0f)) != 0.0f) {
                 if (this.num == 2) {
-                    this.val2 *= Double.longBitsToDouble(4612021536599627006L);
+                    this.val2 *= 2.149d;
                     this.num = 3;
                 } else if (this.num == 3) {
                     this.num = 2;
-                    this.val2 = this.val3 - (Double.longBitsToDouble(4604119971053405471L) * (this.val3 - MovementUtils.getBaseMoveSpeed(true)));
+                    this.val2 = this.val3 - (0.66d * (this.val3 - MovementUtils.getBaseMoveSpeed(true)));
                 }
             }
             this.val2 = Math.min(this.val2, this.speed.speed.getValue().floatValue());
@@ -57,7 +57,7 @@ public final class OnGroundSpeedHandler extends SpeedModeHandler {
         }
         super.applyAntiKickMotion(motionEvent);
         if (this.num == 3) {
-            motionEvent.setY(motionEvent.getY() + (hasVerticalCollision() ? Double.longBitsToDouble(4596373779694328218L) : Double.longBitsToDouble(4600877379321698714L)) + MovementUtils.getJumpBoostBonus());
+            motionEvent.setY(motionEvent.getY() + (hasVerticalCollision() ? 0.2d : 0.4d) + MovementUtils.getJumpBoostBonus());
         }
     }
 
@@ -71,7 +71,7 @@ public final class OnGroundSpeedHandler extends SpeedModeHandler {
             return true;
         }
         // 26.2: AABB.stretch -> expandTowards
-        if (!minecraftClient.level.noCollision(minecraftClient.player.getBoundingBox().expandTowards(0.0d, Double.longBitsToDouble(-4616189618054758400L), 0.0d)) && !minecraftClient.player.horizontalCollision && minecraftClient.player.getY() <= Math.floor(minecraftClient.player.getY()) && is1827()) {
+        if (!minecraftClient.level.noCollision(minecraftClient.player.getBoundingBox().expandTowards(0.0d, (-1.0d), 0.0d)) && !minecraftClient.player.horizontalCollision && minecraftClient.player.getY() <= Math.floor(minecraftClient.player.getY()) && is1827()) {
             if (ClientServices.mainhandHelper.getPredictedBox(minecraftClient.player, 3).minY >= minecraftClient.player.getY()) {
                 return false;
             }
